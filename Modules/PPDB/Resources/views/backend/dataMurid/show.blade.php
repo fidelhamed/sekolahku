@@ -57,6 +57,8 @@
                                         @enderror
                                     </div>
                                 </div>
+
+                            @if ($murid->role == 'Terverifikasi')
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="basicInput">NIS</label>
@@ -79,7 +81,8 @@
                                             </div>
                                         @enderror
                                     </div>
-                                </div>
+                                </div>                                    
+                            @endif
 
                                 <div class="col-6">
                                     <div class="form-group">
@@ -355,8 +358,9 @@
 
                                 </div>
                             </div>
-                            <button class="btn btn-primary" type="submit" {{$murid->berkas->kartu_keluarga == NULL ? 'disabled' : ''}} >Verifikasi Data</button>
-                            <a href="{{route('data-murid.index')}}" class="btn btn-warning">Batal</a>
+                            <button class="btn btn-primary" type="submit" {{$murid->berkas->kartu_keluarga == NULL ? 'disabled' : ''}} style="display: {{ $murid->role !== 'Guest' ? 'none' : '' }}">Verifikasi Data</button>
+                            <button class="btn btn-success" type="submit" {{$murid->role == 'Terverifikasi' ? 'disabled' : ''}} style="display: {{ $murid->role !== 'Terverifikasi' ? 'none' : '' }}">Lulus</button>
+                            <a href="{{url('ppdb/data-murid?jenjang='. $murid->muridDetail->jenjang)}}" class="btn btn-warning">Batal</a>
                         </form>
                     </div>
                 </div>

@@ -65,10 +65,11 @@
                                                     <td> {{$murids->paymentRegis->status}} </td>
                                                     <td> {{$murids->role}} </td>
                                                     <td>
-                                                        <a href=" {{route('data-murid.show', $murids->id)}}" class="btn btn-success btn-sm" >Detail</a>
-                                                        <a href="{{asset('storage/images/payment_pendaftaran/' .$murids->paymentRegis->file)}}" class="btn btn btn-primary btn-sm" target="_blank" style="display: {{$murids->paymentRegis->file == null || $murids->paymentRegis->approve_date != null ? 'none' : ''}}">Bukti Pembayaran</a>
-
-                                                         <a data-id="{{$murids->paymentRegis->id}}" id="updatePayment" class="btn btn btn-info btn-sm" style="display: {{$murids->paymentRegis->file == null || $murids->paymentRegis->approve_date != null ? 'none' : ''}}">konfirmasi Pembayaran</a>
+                                                        <a href="{{route('data-murid.show', $murids->id)}}" class="btn btn-info btn-sm" >Detail</a>
+                                                        <a href="" class="btn btn-success btn-sm" style="display: {{ $murids->role !== 'Terverifikasi' ? 'none' : '' }}">Lulus</a>
+                                                        <a href="" class="btn btn-danger btn-sm" style="display: {{ $murids->role !== 'Terverifikasi' ? 'none' : '' }}">Tidak Lulus</a>
+                                                        <a href="{{asset('storage/images/payment_pendaftaran/' .$murids->paymentRegis->file)}}" class="btn btn btn-success btn-sm" target="_blank" style="display: {{$murids->paymentRegis->file == null || $murids->paymentRegis->approve_date != null ? 'none' : ''}}">Bukti Pembayaran</a>
+                                                        <a data-id="{{$murids->paymentRegis->id}}" id="updatePayment" class="btn btn btn-primary btn-sm" style="display: {{$murids->paymentRegis->file == null || $murids->paymentRegis->approve_date != null ? 'none' : ''}}">konfirmasi Pembayaran</a>
                                                     </td>
                                                 </tr>
                                             @endforeach

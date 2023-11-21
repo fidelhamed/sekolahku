@@ -30,7 +30,10 @@ class DataMuridController extends Controller
                 $a->where('jenjang', $jenjang);
             })
             ->with('muridDetail')
-            ->where('role', 'Guest')
+            ->where(function($query){
+                $query->where('role', 'Guest')
+                    ->orWhere('role', 'Terverifikasi');
+            })
             ->get();
         return view('ppdb::backend.dataMurid.index', compact('murid'));
     }
@@ -61,7 +64,12 @@ class DataMuridController extends Controller
      */
     public function show($id)
     {
-        $murid = User::with('muridDetail', 'dataOrtu', 'berkas')->where('role', 'Guest')->find($id);
+        $murid = User::with('muridDetail', 'dataOrtu', 'berkas')
+            ->where(function($query){
+                $query->where('role', 'Guest')
+                    ->orWhere('role', 'Terverifikasi');
+            })
+            ->find($id);
         if (!$murid->muridDetail->agama || !$murid->dataOrtu->nama_ayah || !$murid->berkas->kartu_keluarga) {
             Session::flash('error', 'Calon Siswa Belum Input Biodata Diri !');
             if ($murid->muridDetail->jenjang == 'SMP-IT') {
@@ -143,6 +151,16 @@ class DataMuridController extends Controller
             DB::rollback();
             throw new ErrorException($e->getMessage());
         }
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     * @param int $id
+     * @return Renderable
+     */
+    public function lulus($id)
+    {
+
     }
 
     /**

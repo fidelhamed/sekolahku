@@ -27,7 +27,7 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="basicInput">Nama Lengkap</label>
-                                        <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{$user->name}}" placeholder="Nama Lengkap" />
+                                        <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{$user->name}}" placeholder="Nama Lengkap" readonly/>
                                         @error('name')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
@@ -38,7 +38,7 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="basicInput">Email Address</label>
-                                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{$user->email}}" placeholder="Email Address" />
+                                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{$user->email}}" placeholder="Email Address" readonly/>
                                         @error('email')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
