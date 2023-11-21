@@ -36,12 +36,55 @@
                         <div class="text-center">
                             <h1 class="mb-1 text-white">Welcome {{Auth::user()->name}},</h1>
                             <p class="card-text m-auto w-75">
-                                Have fun your day :)
+                                Bismillahirrahmanirrahim :)
                             </p>
                         </div>
                     </div>
                 </div>
             </div>
+        @if (Auth::user()->role == 'Terverifikasi')
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="card card-congratulations">
+                    <div class="card-body text-center">
+                        <img src="{{asset('Assets/Backend/images/pages/decore-left.png')}}" class="congratulations-img-left" alt="card-img-left" />
+                        <img src="{{asset('Assets/Backend/images/pages/decore-right.png')}}" class="congratulations-img-right" alt="card-img-right" />
+                        <div class="avatar avatar-xl bg-primary shadow">
+                            <div class="avatar-content">
+                                <i data-feather="award" class="font-large-1"></i>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <h1 class="mb-1 text-white">Selamat {{Auth::user()->name}},</h1>
+                            <p class="card-text m-auto w-75">
+                                Kamu lulus administrasi
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <div class="text-center">
+                            <h4 class="mb-1">Berikut Informasi Tes dan ujian anda:</h4>
+                            <p class="card-text m-auto w-75">
+                                Dilaksanakan pada
+                            </p>
+                            <p class="card-text m-auto w-75">
+                                Tanggal     :       2 Februari 2024
+                            </p>
+                            <p class="card-text m-auto w-75">
+                                Tempat     :       IBS Ash-Shiddiiqi Jambi Gedung B Lantai 2 Ruang AB
+                            </p>
+                            <p>
+                                Klik tombol dibawah untuk mencetak kartu ujian
+                            </p>
+                            <button class="btn btn-primary">Cetak</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
 
            @if (Auth::user()->role == 'PPDB')
              <div class="col-lg-3 col-sm-6 col-12">

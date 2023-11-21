@@ -23,6 +23,10 @@ class AddRoleSeeder extends Seeder
             [
                 'name'          => 'PPDB',
                 'guard_name'    => 'web'
+            ],
+            [
+                'name'          => 'Terverifikasi',
+                'guard_name'    => 'web'
             ]
         ];
 

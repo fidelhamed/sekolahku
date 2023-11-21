@@ -183,24 +183,19 @@
                     <span class="menu-title text-truncate" data-i18n="Card">Calon Murid</span>
                 </a>
                 <ul class="menu-content">
-                    <li class="nav-item {{ (request()->is('ppdb/data-murid?jenjang=SD')) ? 'active' : '' }}">
-                        <a class="d-flex align-items-center" href=" {{url('ppdb/data-murid?jenjang=SD')}} "><i data-feather="circle"></i>
-                            <span class="menu-item text-truncate" data-i18n="Basic">SD</span>
+                    <li class="nav-item {{ (request()->is('ppdb/data-murid?jenjang=SMP-IT')) ? 'active' : '' }}">
+                        <a class="d-flex align-items-center" href=" {{url('ppdb/data-murid?jenjang=SMP-IT')}} "><i data-feather="circle"></i>
+                            <span class="menu-item text-truncate" data-i18n="Basic">SMP-IT</span>
                         </a>
                     </li>
-                    <li class="nav-item {{ (request()->is('ppdb/data-murid?jenjang=SMP')) ? 'active' : '' }}">
-                        <a class="d-flex align-items-center" href=" {{url('ppdb/data-murid?jenjang=SMP')}} "><i data-feather="circle"></i>
-                            <span class="menu-item text-truncate" data-i18n="Basic">SMP</span>
+                    <li class="nav-item {{ (request()->is('ppdb/data-murid?jenjang=SMA-IT')) ? 'active' : '' }}">
+                        <a class="d-flex align-items-center" href=" {{url('ppdb/data-murid?jenjang=SMA-IT')}} "><i data-feather="circle"></i>
+                            <span class="menu-item text-truncate" data-i18n="Basic">SMA-IT</span>
                         </a>
                     </li>
-                    <li class="nav-item {{ (request()->is('ppdb/data-murid?jenjang=SMA')) ? 'active' : '' }}">
-                        <a class="d-flex align-items-center" href=" {{url('ppdb/data-murid?jenjang=SMA')}} "><i data-feather="circle"></i>
-                            <span class="menu-item text-truncate" data-i18n="Basic">SMA</span>
-                        </a>
-                    </li>
-                    <li class="nav-item {{ (request()->is('ppdb/data-murid?jenjang=SMK')) ? 'active' : '' }}">
-                        <a class="d-flex align-items-center" href=" {{url('ppdb/data-murid?jenjang=SMK')}} "><i data-feather="circle"></i>
-                            <span class="menu-item text-truncate" data-i18n="Basic">SMK</span>
+                    <li class="nav-item {{ (request()->is('ppdb/data-murid?jenjang=MAN-IT')) ? 'active' : '' }}">
+                        <a class="d-flex align-items-center" href=" {{url('ppdb/data-murid?jenjang=MAN-IT')}} "><i data-feather="circle"></i>
+                            <span class="menu-item text-truncate" data-i18n="Basic">MAN-IT</span>
                         </a>
                     </li>
                 </ul>

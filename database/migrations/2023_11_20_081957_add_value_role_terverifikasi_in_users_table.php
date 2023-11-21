@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddFieldToDataMurids extends Migration
+class AddValueRoleTerverifikasiInUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddFieldToDataMurids extends Migration
      */
     public function up()
     {
-        Schema::table('data_murids', function (Blueprint $table) {
-            $table->enum('proses',['Pendaftaran','Berkas','Murid','Ditolak','Terverifikasi'])->after('asal_sekolah')->default('Pendaftaran');
+        Schema::table('users', function (Blueprint $table) {
+            \DB::statement("ALTER TABLE `users` CHANGE `role` `role` ENUM('Admin','Guru','Staf','Murid','Orang Tua','Alumni','Guest','Perpustakaan','PPDB','Bendahara','Terverifikasi')");
         });
     }
 
@@ -25,7 +25,7 @@ class AddFieldToDataMurids extends Migration
      */
     public function down()
     {
-        Schema::table('data_murids', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             //
         });
     }

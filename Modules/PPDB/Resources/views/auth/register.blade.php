@@ -90,8 +90,8 @@
                                         </div>
                                     </div>
                                 @endif
-                                <h2 class="card-title font-weight-bold mb-1">Welcome to SekolahKu! 👋</h2>
-                                <p class="card-text mb-2">Pendaftaran PPDB MK Yadika Natar</p>
+                                <h2 class="card-title font-weight-bold mb-1">Welcome to PPDB Online! 👋</h2>
+                                <p class="card-text mb-2">Pendaftaran PPDB IBS Ash-Shiddiiqi Jambi</p>
                                 <form class="auth-login-form mt-2" action="{{route('register.store')}}" method="POST">
                                     @csrf
                                     <div class="form-group">
@@ -114,7 +114,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">No WhatApp Calon Murid</label>
-                                        <input class="form-control @error('whatsapp') is-invalid @enderror" type="text" name="whatsapp" value=" {{old('whatsapp')}} " placeholder="Masukan No WhatsApp" autofocus="" tabindex="1" />
+                                        <input class="form-control @error('whatsapp') is-invalid @enderror" type="number" name="whatsapp" value=" {{old('whatsapp')}} " placeholder="Masukan No WhatsApp" autofocus="" tabindex="1" />
                                         @error('whatsapp')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -134,10 +134,9 @@
                                         <label class="form-label">Jenjang Pendaftaran</label>
                                         <select name="jenjang" class="form-control">
                                             <option>-- Pilih --</option>
-                                            <option value="SD">SD</option>
-                                            <option value="SMP">SMP</option>
-                                            <option value="SMA">SMA</option>
-                                            <option value="SMK">SMK</option>
+                                            <option value="SMP-IT">SMP-IT</option>
+                                            <option value="SMA-IT">SMA-IT</option>
+                                            <option value="MAN-IT">MAN-IT</option>
                                         </select>
                                         @error('jenjang')
                                             <span class="invalid-feedback" role="alert">

@@ -94,7 +94,7 @@ class HomeController extends Controller
 
             }
             // DASHBOARD PPDB & PENDAFTAR \\
-            elseif($role == 'Guest' || $role == 'PPDB') {
+            elseif($role == 'Guest' || $role == 'PPDB' || $role == 'Terverifikasi') {
 
               $register = dataMurid::whereNotIn('proses',['Murid','Ditolak'])->whereYear('created_at', Carbon::now())->count();
               $needVerif = dataMurid::whereNotNull(['tempat_lahir','tgl_lahir','agama'])->whereNull('nisn')->count();

@@ -15,7 +15,7 @@
         <div class="content-header-left col-md-9 col-12 mb-2">
             <div class="row breadcrumbs-top">
                 <div class="col-12">
-                    <h2>Form Pendaftaran PPDB SMK Yadika Natar</h2>
+                    <h2>Form Pendaftaran PPDB IBS Ash-Shiddiiqi Jambi</h2>
                 </div>
             </div>
         </div>
@@ -38,7 +38,7 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="basicInput">Nama Lengkap</label>
-                                        <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value=" {{$murid->name}} " placeholder="Nama Lengkap" disabled />
+                                        <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{$murid->name}}" placeholder="Nama Lengkap" disabled />
                                         @error('name')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
@@ -49,7 +49,7 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="basicInput">Email Address</label>
-                                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value=" {{$murid->email}}" placeholder="Email Address" disabled />
+                                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{$murid->email}}" placeholder="Email Address" disabled />
                                         @error('email')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
@@ -60,7 +60,7 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="basicInput">NIS</label>
-                                        <input type="text" class="form-control @error('nis') is-invalid @enderror" name="nis" value=" {{$murid->muridDetail->nis}} " />
+                                        <input type="number" class="form-control @error('nis') is-invalid @enderror" name="nis" value="{{$murid->muridDetail->nis}}" />
                                         @error('nis')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
@@ -72,7 +72,7 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="basicInput">NISN</label>
-                                        <input type="text" class="form-control @error('nisn') is-invalid @enderror" name="nisn" value=" {{$murid->muridDetail->nisn}} " />
+                                        <input type="number" class="form-control @error('nisn') is-invalid @enderror" name="nisn" value="{{$murid->muridDetail->nisn}}" />
                                         @error('nisn')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
@@ -84,7 +84,7 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="basicInput">Tempat Lahir</label>
-                                        <input type="text" class="form-control @error('tempat_lahir') is-invalid @enderror" name="tempat_lahir" value=" {{$murid->muridDetail->tempat_lahir}} " disabled/>
+                                        <input type="text" class="form-control @error('tempat_lahir') is-invalid @enderror" name="tempat_lahir" value="{{$murid->muridDetail->tempat_lahir}}" disabled/>
                                         @error('tempat_lahir')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
@@ -96,7 +96,7 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="basicInput">Tanggal Lahir</label>
-                                        <input type="text" class="form-control @error('tgl_lahir') is-invalid @enderror" name="tgl_lahir" value=" {{$murid->muridDetail->tgl_lahir}} " disabled/>
+                                        <input type="text" class="form-control @error('tgl_lahir') is-invalid @enderror" name="tgl_lahir" value="{{$murid->muridDetail->tgl_lahir}}" disabled/>
                                         @error('tgl_lahir')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
@@ -108,7 +108,7 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="basicInput">No Telp</label>
-                                        <input type="text" class="form-control @error('telp') is-invalid @enderror" name="telp" value=" {{$murid->muridDetail->telp}} "disabled/>
+                                        <input type="text" class="form-control @error('telp') is-invalid @enderror" name="telp" value="{{$murid->muridDetail->telp}}"disabled/>
                                         @error('telp')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
@@ -120,7 +120,7 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="basicInput">No WhatsApp</label>
-                                        <input type="text" class="form-control @error('whatsapp') is-invalid @enderror" name="whatsapp" value=" {{$murid->muridDetail->whatsapp}} " disabled/>
+                                        <input type="text" class="form-control @error('whatsapp') is-invalid @enderror" name="whatsapp" value="{{$murid->muridDetail->whatsapp}}" disabled/>
                                         @error('whatsapp')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
@@ -152,7 +152,7 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="basicInput">Asal Sekolah</label>
-                                        <input type="text" class="form-control @error('asal_sekolah') is-invalid @enderror" name="asal_sekolah" value=" {{$murid->muridDetail->asal_sekolah}} " disabled/>
+                                        <input type="text" class="form-control @error('asal_sekolah') is-invalid @enderror" name="asal_sekolah" value="{{$murid->muridDetail->asal_sekolah}}" disabled/>
                                         @error('asal_sekolah')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
@@ -164,7 +164,7 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label for="basicInput">Alamat Lengkap</label>
-                                        <textarea name="alamat" class="form-control @error('alamat') is-invalid @enderror" cols="30" rows="3" disabled> {{$murid->muridDetail->alamat}}</textarea>
+                                        <textarea name="alamat" class="form-control @error('alamat') is-invalid @enderror" cols="30" rows="3" disabled>{{$murid->muridDetail->alamat}}</textarea>
                                         @error('alamat')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
@@ -179,7 +179,7 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="basicInput">Nama Ayah</label>
-                                        <input type="text" class="form-control @error('nama_ayah') is-invalid @enderror" name="nama_ayah" value=" {{$murid->dataOrtu->nama_ayah}} " placeholder="Nama Ayah" disabled />
+                                        <input type="text" class="form-control @error('nama_ayah') is-invalid @enderror" name="nama_ayah" value="{{$murid->dataOrtu->nama_ayah}}" placeholder="Nama Ayah" disabled />
                                         @error('nama_ayah')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
@@ -190,7 +190,7 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="basicInput">No Telp Ayah</label>
-                                        <input type="text" class="form-control @error('telp_ayah') is-invalid @enderror" name="telp_ayah" value=" {{$murid->dataOrtu->telp_ayah}} " placeholder="telp Ayah" disabled />
+                                        <input type="text" class="form-control @error('telp_ayah') is-invalid @enderror" name="telp_ayah" value="{{$murid->dataOrtu->telp_ayah}}" placeholder="telp Ayah" disabled />
                                         @error('telp_ayah')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
@@ -237,7 +237,7 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label for="basicInput">Alamat Lengkap</label>
-                                        <textarea name="alamat_ayah" class="form-control @error('alamat_ayah') is-invalid @enderror" cols="30" rows="3" disabled> {{$murid->dataOrtu->alamat_ayah}} </textarea>
+                                        <textarea name="alamat_ayah" class="form-control @error('alamat_ayah') is-invalid @enderror" cols="30" rows="3" disabled>{{$murid->dataOrtu->alamat_ayah}}</textarea>
                                         @error('alamat_ayah')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
@@ -253,7 +253,7 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="basicInput">Nama Ibu</label>
-                                        <input type="text" class="form-control @error('nama_ibu') is-invalid @enderror" name="nama_ibu" value=" {{$murid->dataOrtu->nama_ibu}} " placeholder="Nama Ibu" disabled />
+                                        <input type="text" class="form-control @error('nama_ibu') is-invalid @enderror" name="nama_ibu" value="{{$murid->dataOrtu->nama_ibu}}" placeholder="Nama Ibu" disabled />
                                         @error('nama_ibu')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
@@ -264,7 +264,7 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="basicInput">No Telp Ibu</label>
-                                        <input type="text" class="form-control @error('telp_ibu') is-invalid @enderror" name="telp_ibu" value=" {{$murid->dataOrtu->telp_ibu}} " placeholder="telp Ibu" disabled />
+                                        <input type="text" class="form-control @error('telp_ibu') is-invalid @enderror" name="telp_ibu" value="{{$murid->dataOrtu->telp_ibu}}" placeholder="telp Ibu" disabled />
                                         @error('telp_ibu')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
@@ -312,7 +312,7 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label for="basicInput">Alamat Lengkap</label>
-                                        <textarea name="alamat_ibu" class="form-control @error('alamat_ibu') is-invalid @enderror" cols="30" rows="3" disabled> {{$murid->dataOrtu->alamat_ibu}} </textarea>
+                                        <textarea name="alamat_ibu" class="form-control @error('alamat_ibu') is-invalid @enderror" cols="30" rows="3" disabled>{{$murid->dataOrtu->alamat_ibu}}</textarea>
                                         @error('alamat_ibu')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
@@ -355,7 +355,7 @@
 
                                 </div>
                             </div>
-                            <button class="btn btn-primary" type="submit" {{$murid->berkas->kartu_keluarga == NULL ? 'disabled' : ''}} >Terima Murid</button>
+                            <button class="btn btn-primary" type="submit" {{$murid->berkas->kartu_keluarga == NULL ? 'disabled' : ''}} >Verifikasi Data</button>
                             <a href="{{route('data-murid.index')}}" class="btn btn-warning">Batal</a>
                         </form>
                     </div>

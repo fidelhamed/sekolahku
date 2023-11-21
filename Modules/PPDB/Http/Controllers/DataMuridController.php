@@ -64,14 +64,12 @@ class DataMuridController extends Controller
         $murid = User::with('muridDetail', 'dataOrtu', 'berkas')->where('role', 'Guest')->find($id);
         if (!$murid->muridDetail->agama || !$murid->dataOrtu->nama_ayah || !$murid->berkas->kartu_keluarga) {
             Session::flash('error', 'Calon Siswa Belum Input Biodata Diri !');
-            if ($murid->muridDetail->jenjang == 'SD') {
-                return redirect('/ppdb/data-murid?jenjang=SD');
-            } elseif ($murid->muridDetail->jenjang == 'SMP') {
-                return redirect('/ppdb/data-murid?jenjang=SMP');
-            } elseif ($murid->muridDetail->jenjang == 'SMA') {
-                return redirect('/ppdb/data-murid?jenjang=SMA');
-            } elseif ($murid->muridDetail->jenjang == 'SMK') {
-                return redirect('/ppdb/data-murid?jenjang=SMK');
+            if ($murid->muridDetail->jenjang == 'SMP-IT') {
+                return redirect('/ppdb/data-murid?jenjang=SMP-IT');
+            } elseif ($murid->muridDetail->jenjang == 'SMA-IT') {
+                return redirect('/ppdb/data-murid?jenjang=SMA-IT');
+            } elseif ($murid->muridDetail->jenjang == 'MAN-IT') {
+                return redirect('/ppdb/data-murid?jenjang=MAN-IT');
             }
         }
         return view('ppdb::backend.dataMurid.show', compact('murid'));
@@ -93,52 +91,53 @@ class DataMuridController extends Controller
      * @param int $id
      * @return Renderable
      */
+
     public function update(Request $request, $id)
     {
         try {
             DB::beginTransaction();
-            $validator = Validator::make(
-                $request->all(),
-                [
-                    'nis'   => 'required|numeric|unique:data_murids',
-                    'nisn'  => 'required|numeric|unique:data_murids',
-                ],
-                [
-                    'nis.required'      => 'NIS tidak boleh kosong.',
-                    'nisn.required'     => 'NISN tidak boleh kosong.',
-                    'nis.numeric'       => 'NIS hanya mendukung angka.',
-                    'nis.unique'        => 'NIS sudah pernah digunakan.',
-                    'nisn.numeric'      => 'NISN hanya mendukung angka.',
-                    'nisn.unique'       => 'NISN sudah pernah digunakan.',
-                ]
-            );
+            // $validator = Validator::make(
+            //     $request->all(),
+            //     [
+            //         'nis'   => 'required|numeric|unique:data_murids',
+            //         'nisn'  => 'required|numeric|unique:data_murids',
+            //     ],
+            //     [
+            //         'nis.required'      => 'NIS tidak boleh kosong.',
+            //         'nisn.required'     => 'NISN tidak boleh kosong.',
+            //         'nis.numeric'       => 'NIS hanya mendukung angka.',
+            //         'nis.unique'        => 'NIS sudah pernah digunakan.',
+            //         'nisn.numeric'      => 'NISN hanya mendukung angka.',
+            //         'nisn.unique'       => 'NISN sudah pernah digunakan.',
+            //     ]
+            // );
 
-            if ($validator->fails()) {
-                return redirect()->back()
-                    ->withErrors($validator)
-                    ->withInput();
-            }
+            // if ($validator->fails()) {
+            //     return redirect()->back()
+            //         ->withErrors($validator)
+            //         ->withInput();
+            // }
 
             $murid = User::find($id);
-            $murid->role = 'Murid';
+            $murid->role = 'Terverifikasi';
             $murid->update();
 
             if ($murid) {
                 $data = dataMurid::where('user_id', $id)->first();
-                $data->nis      = $request->nis;
-                $data->nisn     = $request->nisn;
+                // $data->nis      = $request->nis;
+                // $data->nisn     = $request->nisn;
                 $data->proses   = $murid->role;
                 $data->update();
 
-                // create data payment
-                $this->payment($murid->id);
+                // // create data payment
+                // $this->payment($murid->id);
             }
 
             DB::table('model_has_roles')->where('model_id', $id)->delete();
             $murid->assignRole($murid->role);
 
             DB::commit();
-            Session::flash('success', 'Success, Data Berhasil diupdate !');
+            Session::flash('success', 'Sukses, Data Berhasil diverifikasi !');
             return redirect()->route('data-murid.index');
         } catch (ErrorException $e) {
             DB::rollback();
@@ -193,7 +192,7 @@ class DataMuridController extends Controller
             'status'        => 'Paid',
             'approve_date'  => Carbon::now()
         ]);
-        Session::flash('success', 'Success, Pembayaran diterima !');
+        Session::flash('success', 'Sukses, Pembayaran diterima !');
         return back();
     }
 }

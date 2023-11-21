@@ -41,7 +41,7 @@
                     </div>
                     <div div class="col-6">
                         <div class="form-group">
-                          <label for="basicInput">Jumlah</label>
+                          <label for="basicInput">Status</label>
                           <div class="demo-inline-spacing">
                             <div class="custom-control custom-radio">
                                 <input type="radio" id="active" name="is_active" value="1" class="custom-control-input" />

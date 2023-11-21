@@ -41,7 +41,7 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="basicInput">No Telp Ayah</label>
-                                        <input type="text" class="form-control @error('telp_ayah') is-invalid @enderror" name="telp_ayah" value=" {{old('telp_ayah')}} " placeholder="telp Ayah" />
+                                        <input type="number" class="form-control @error('telp_ayah') is-invalid @enderror" name="telp_ayah" value=" {{old('telp_ayah')}} " placeholder="telp Ayah" />
                                         @error('telp_ayah')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
@@ -115,7 +115,7 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="basicInput">No Telp Ibu</label>
-                                        <input type="text" class="form-control @error('telp_ibu') is-invalid @enderror" name="telp_ibu" value=" {{old('telp_ibu')}} " placeholder="telp Ibu" />
+                                        <input type="number" class="form-control @error('telp_ibu') is-invalid @enderror" name="telp_ibu" value=" {{old('telp_ibu')}} " placeholder="telp Ibu" />
                                         @error('telp_ibu')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>

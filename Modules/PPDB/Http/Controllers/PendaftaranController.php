@@ -131,7 +131,7 @@ class PendaftaranController extends Controller
         $berkas = BerkasMurid::where('user_id', Auth::id())->first();
         // Jika data berkas sudah terisi
         if ($berkas->rapor) {
-            Session::flash('error', 'Data kamu sudah lengkap !');
+            Session::flash('error', 'Data kamu sudah lengkap, tunggu proses verifikasi data !');
             return redirect('/home');
         }
         return view('ppdb::backend.pendaftaran.berkas', compact('berkas'));
@@ -204,7 +204,7 @@ class PendaftaranController extends Controller
             $berkas->save();
 
             DB::commit();
-            Session::flash('success', 'Success, Data Berhasil dikirim !');
+            Session::flash('success', 'Sukses, Data Berhasil dikirim !');
             return redirect('/home');
         } catch (ErrorException $e) {
             DB::rollback();
@@ -217,7 +217,7 @@ class PendaftaranController extends Controller
         $accountbanks = User::with('banks')->first();
         $user = User::with('paymentRegis')->where('status', 'Aktif')->where('id', Auth::id())->first();
         if ($user->paymentRegis->file != null) {
-            Session::flash('success', 'Pembayaran kamu sedang di proses.');
+            Session::flash('error', 'Pembayaran kamu sedang di proses.');
             return redirect('/home');
         }
         return view('ppdb::backend.pendaftaran.paymentRegis', compact('accountbanks', 'user'));
@@ -237,7 +237,7 @@ class PendaftaranController extends Controller
         $payment->file              = $payments;
         $payment->update();
 
-        Session::flash('success', 'Success, Data Berhasil dikirim !');
+        Session::flash('success', 'Data pembayaran registrasi berhasil dikirim, tunggu proses verifikasi oleh admin  !');
         return redirect('/home');
     }
 }
