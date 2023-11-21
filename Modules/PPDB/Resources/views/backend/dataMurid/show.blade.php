@@ -359,7 +359,7 @@
                                 </div>
                             </div>
                             <button class="btn btn-primary" type="submit" {{$murid->berkas->kartu_keluarga == NULL ? 'disabled' : ''}} style="display: {{ $murid->role !== 'Guest' ? 'none' : '' }}">Verifikasi Data</button>
-                            <button class="btn btn-success" type="submit" {{$murid->role == 'Terverifikasi' ? 'disabled' : ''}} style="display: {{ $murid->role !== 'Terverifikasi' ? 'none' : '' }}">Lulus</button>
+                            {{-- <button class="btn btn-success" type="submit" {{$murid->role == 'Terverifikasi' ? 'disabled' : ''}} style="display: {{ $murid->role !== 'Terverifikasi' ? 'none' : '' }}">Lulus</button> --}}
                             <a href="{{url('ppdb/data-murid?jenjang='. $murid->muridDetail->jenjang)}}" class="btn btn-warning">Batal</a>
                         </form>
                     </div>
