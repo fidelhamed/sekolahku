@@ -62,7 +62,7 @@
                                                     <td> {{$murids->name}} </td>
                                                     <td> {{$murids->email}} </td>
                                                     <td> {{$murids->status}} </td>
-                                                    <td> {{$murids->role == 'Guest' ? 'Calon Murid' : 'Murid'}} </td>
+                                                    <td> {{$murids->role == 'Guest' ? 'Calon Murid' : ('Terverifikasi' ? 'Calon Murid' : 'Murid')}} </td>
                                                     <td>
                                                         <a href=" {{route('backend-pengguna-murid.edit', $murids->id)}} " class="btn btn-success btn-sm">Edit</a>
                                                     </td>
