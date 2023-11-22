@@ -27,6 +27,14 @@ class AddRoleSeeder extends Seeder
             [
                 'name'          => 'Terverifikasi',
                 'guard_name'    => 'web'
+            ],
+            [
+                'name'          => 'Lulus',
+                'guard_name'    => 'web'
+            ],
+            [
+                'name'          => 'Tidak Lulus',
+                'guard_name'    => 'web'
             ]
         ];
 

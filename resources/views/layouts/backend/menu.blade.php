@@ -200,6 +200,28 @@
                     </li>
                 </ul>
             </li>
+            <li class=" nav-item">
+                <a class="d-flex align-items-center" href="#"><i data-feather="user-check"></i>
+                    <span class="menu-title text-truncate" data-i18n="Card">Kelulusan</span>
+                </a>
+                <ul class="menu-content">
+                    <li class="nav-item {{ (request()->is('ppdb/data-kelulusan?jenjang=SMP-IT')) ? 'active' : '' }}">
+                        <a class="d-flex align-items-center" href=" {{url('ppdb/data-kelulusan?jenjang=SMP-IT')}} "><i data-feather="circle"></i>
+                            <span class="menu-item text-truncate" data-i18n="Basic">SMP-IT</span>
+                        </a>
+                    </li>
+                    <li class="nav-item {{ (request()->is('ppdb/data-kelulusan?jenjang=SMA-IT')) ? 'active' : '' }}">
+                        <a class="d-flex align-items-center" href=" {{url('ppdb/data-kelulusan?jenjang=SMA-IT')}} "><i data-feather="circle"></i>
+                            <span class="menu-item text-truncate" data-i18n="Basic">SMA-IT</span>
+                        </a>
+                    </li>
+                    <li class="nav-item {{ (request()->is('ppdb/data-kelulusan?jenjang=MAN-IT')) ? 'active' : '' }}">
+                        <a class="d-flex align-items-center" href=" {{url('ppdb/data-kelulusan?jenjang=MAN-IT')}} "><i data-feather="circle"></i>
+                            <span class="menu-item text-truncate" data-i18n="Basic">MAN-IT</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
 
             {{-- MENU PERPUSTAKAAN --}}
              @elseif(Auth::user()->role == 'Perpustakaan')

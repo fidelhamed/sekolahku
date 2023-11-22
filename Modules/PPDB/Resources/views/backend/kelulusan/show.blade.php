@@ -1,7 +1,7 @@
 @extends('layouts.backend.app')
 
 @section('title')
-    Detail Calon Siswa
+    Detail
 @endsection
 
 @section('content')
@@ -31,7 +31,7 @@
         <div class="content-header-left col-md-9 col-12 mb-2">
             <div class="row breadcrumbs-top">
                 <div class="col-12">
-                    <h2>Form Pendaftaran PPDB IBS Ash-Shiddiiqi Jambi</h2>
+                    <h2>PPDB IBS Ash-Shiddiiqi Jambi</h2>
                 </div>
             </div>
         </div>
@@ -46,7 +46,7 @@
                 </div>
                 <div class="card">
                     <div class="card-body">
-                        <form action=" {{route('data-murid.update',$murid->id)}} " method="post" enctype="multipart/form-data">
+                        <form action=" {{route('data-kelulusan.update',$murid->id)}} " method="post" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <h4>Data Murid</h4> <br>
@@ -74,7 +74,7 @@
                                     </div>
                                 </div>
 
-                            @if ($murid->role == 'Terverifikasi')
+                                @if ($murid->role == 'Lulus')
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="basicInput">NIS</label>
@@ -86,7 +86,6 @@
                                         @enderror
                                     </div>
                                 </div>
-
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="basicInput">NISN</label>
@@ -97,8 +96,8 @@
                                             </div>
                                         @enderror
                                     </div>
-                                </div>                                    
-                            @endif
+                                </div>                                                                        
+                                @endif
 
                                 <div class="col-6">
                                     <div class="form-group">
@@ -374,9 +373,8 @@
 
                                 </div>
                             </div>
-                            <button class="btn btn-primary" type="submit" {{$murid->berkas->kartu_keluarga == NULL ? 'disabled' : ''}} style="display: {{ $murid->role !== 'Guest' ? 'none' : '' }}">Verifikasi Data</button>
-                            {{-- <button class="btn btn-success" type="submit" {{$murid->role == 'Terverifikasi' ? 'disabled' : ''}} style="display: {{ $murid->role !== 'Terverifikasi' ? 'none' : '' }}">Lulus</button> --}}
-                            <a href="{{url('ppdb/data-murid?jenjang='. $murid->muridDetail->jenjang)}}" class="btn btn-warning">Batal</a>
+                            <button class="btn btn-primary" type="submit" style="display: {{ $murid->role !== 'Lulus' ? 'none' : '' }}">Simpan</button>
+                            <a href="{{url('ppdb/data-kelulusan?jenjang='. $murid->muridDetail->jenjang)}}" class="btn btn-warning">Batal</a>
                         </form>
                     </div>
                 </div>

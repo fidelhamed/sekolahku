@@ -1,7 +1,7 @@
 @extends('layouts.backend.app')
 
 @section('title')
-    Calon Murid
+    Kelulusan
 @endsection
 
 @section('content')
@@ -25,7 +25,7 @@
         <div class="content-header-left col-md-9 col-12 mb-2">
             <div class="row breadcrumbs-top">
                 <div class="col-12">
-                    <h2> Calon Murid</h2>
+                    <h2>Kelulusan</h2>
                 </div>
             </div>
         </div>
@@ -38,7 +38,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header border-bottom">
-                                    <h4 class="card-title">Calon Murid</h4>
+                                    <h4 class="card-title">Daftar Kelulusan</h4>
                                 </div>
                                 <div class="card-datatable">
                                     <table class="dt-responsive table">
@@ -61,15 +61,11 @@
                                                     <td> {{$key+1}} </td>
                                                     <td> {{$murids->name}} </td>
                                                     <td> {{$murids->email}} </td>
-                                                    <td> {{$murids->muridDetail->proses == 'Terverifikasi' ? 'Lulus Admininstrasi' : 'Pendaftaran'}} </td>
+                                                    <td> {{$murids->muridDetail->proses}} </td>
                                                     <td> {{$murids->paymentRegis->status}} </td>
-                                                    <td> {{$murids->role == 'Terverifikasi' ? 'Calon Murid' : 'Guest'}} </td>
+                                                    <td> {{$murids->role}} </td>
                                                     <td>
-                                                        <a href="{{route('data-murid.show', $murids->id)}}" class="btn btn-info btn-sm" >Detail</a>
-                                                        <a href="{{asset('storage/images/payment_pendaftaran/' .$murids->paymentRegis->file)}}" class="btn btn btn-success btn-sm" target="_blank" style="display: {{$murids->paymentRegis->file == null || $murids->paymentRegis->approve_date != null ? 'none' : ''}}">Bukti Pembayaran</a>
-                                                        <a data-id="{{$murids->paymentRegis->id}}" id="updatePayment" class="btn btn btn-primary btn-sm" style="display: {{$murids->paymentRegis->file == null || $murids->paymentRegis->approve_date != null ? 'none' : ''}}">konfirmasi Pembayaran</a>
-                                                        <a data-id="{{ $murids->id }}" id="updateLulus" class="btn btn-success btn-sm" style="display: {{ $murids->role !== 'Terverifikasi' ? 'none' : '' }}">Lulus</a>
-                                                        <a data-id="{{ $murids->id }}" id="updateTidakLulus" class="btn btn-danger btn-sm" style="display: {{ $murids->role !== 'Terverifikasi' ? 'none' : '' }}">Tidak Lulus</a>
+                                                        <a href="{{route('data-kelulusan.show', $murids->id)}}" class="btn btn-info btn-sm" >Detail</a>
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -86,24 +82,5 @@
 </div>
 @endsection
 @section('scripts')
-<script type="text/javascript">
-    $(document).on('click', '#updatePayment', function () {
-        var id = $(this).attr('data-id');
-        $.get('konfirm-payment-regis', {'_token' : $('meta[name=csrf-token]').attr('content'),id:id}, function(_resp){
-            location.reload()
-        });
-    });
-    $(document).on('click', '#updateLulus', function () {
-        var id = $(this).attr('data-id');
-        $.get('update-murid-lulus', {'_token' : $('meta[name=csrf-token]').attr('content'),id:id}, function(_resp){
-            location.reload()
-        });
-    });
-    $(document).on('click', '#updateTidakLulus', function () {
-        var id = $(this).attr('data-id');
-        $.get('update-murid-tidak-lulus', {'_token' : $('meta[name=csrf-token]').attr('content'),id:id}, function(_resp){
-            location.reload()
-        });
-    });
-</script>
+
 @endsection

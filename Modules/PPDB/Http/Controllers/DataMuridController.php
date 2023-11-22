@@ -146,21 +146,11 @@ class DataMuridController extends Controller
 
             DB::commit();
             Session::flash('success', 'Sukses, Data Berhasil diverifikasi !');
-            return redirect()->route('data-murid.index');
+            return back();
         } catch (ErrorException $e) {
             DB::rollback();
             throw new ErrorException($e->getMessage());
         }
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     * @param int $id
-     * @return Renderable
-     */
-    public function lulus($id)
-    {
-
     }
 
     /**
@@ -213,4 +203,113 @@ class DataMuridController extends Controller
         Session::flash('success', 'Sukses, Pembayaran diterima !');
         return back();
     }
+
+    // Update murid lulus
+    public function updateLulus(Request $request)
+    {
+        try {
+            DB::beginTransaction();
+            // $validator = Validator::make(
+            //     $request->all(),
+            //     [
+            //         'nis'   => 'required|numeric|unique:data_murids',
+            //         'nisn'  => 'required|numeric|unique:data_murids',
+            //     ],
+            //     [
+            //         'nis.required'      => 'NIS tidak boleh kosong.',
+            //         'nisn.required'     => 'NISN tidak boleh kosong.',
+            //         'nis.numeric'       => 'NIS hanya mendukung angka.',
+            //         'nis.unique'        => 'NIS sudah pernah digunakan.',
+            //         'nisn.numeric'      => 'NISN hanya mendukung angka.',
+            //         'nisn.unique'       => 'NISN sudah pernah digunakan.',
+            //     ]
+            // );
+
+            // if ($validator->fails()) {
+            //     return redirect()->back()
+            //         ->withErrors($validator)
+            //         ->withInput();
+            // }
+
+            $murid = User::find($request->id);
+            $murid->role = 'Lulus';
+            $murid->update();
+
+            if ($murid) {
+                $data = dataMurid::where('user_id', $request->id)->first();
+                // $data->nis      = $request->nis;
+                // $data->nisn     = $request->nisn;
+                $data->proses   = 'Selesai';
+                $data->update();
+
+                // // create data payment
+                // $this->payment($murid->id);
+            }
+
+            DB::table('model_has_roles')->where('model_id', $request->id)->delete();
+            $murid->assignRole($murid->role);
+
+            DB::commit();
+            Session::flash('success', 'Sukses, Murid diluluskan !');
+            return back();
+        } catch (ErrorException $e) {
+            DB::rollback();
+            throw new ErrorException($e->getMessage());
+        }
+    }
+
+        // Update murid tidak lulus
+        public function updateTidakLulus(Request $request)
+        {
+            try {
+                DB::beginTransaction();
+                // $validator = Validator::make(
+                //     $request->all(),
+                //     [
+                //         'nis'   => 'required|numeric|unique:data_murids',
+                //         'nisn'  => 'required|numeric|unique:data_murids',
+                //     ],
+                //     [
+                //         'nis.required'      => 'NIS tidak boleh kosong.',
+                //         'nisn.required'     => 'NISN tidak boleh kosong.',
+                //         'nis.numeric'       => 'NIS hanya mendukung angka.',
+                //         'nis.unique'        => 'NIS sudah pernah digunakan.',
+                //         'nisn.numeric'      => 'NISN hanya mendukung angka.',
+                //         'nisn.unique'       => 'NISN sudah pernah digunakan.',
+                //     ]
+                // );
+    
+                // if ($validator->fails()) {
+                //     return redirect()->back()
+                //         ->withErrors($validator)
+                //         ->withInput();
+                // }
+    
+                $murid = User::find($request->id);
+                $murid->role = 'Tidak Lulus';
+                $murid->update();
+    
+                if ($murid) {
+                    $data = dataMurid::where('user_id', $request->id)->first();
+                    // $data->nis      = $request->nis;
+                    // $data->nisn     = $request->nisn;
+                    $data->proses   = 'Selesai';
+                    $data->update();
+    
+                    // // create data payment
+                    // $this->payment($murid->id);
+                }
+    
+                DB::table('model_has_roles')->where('model_id', $request->id)->delete();
+                $murid->assignRole($murid->role);
+    
+                DB::commit();
+                Session::flash('success', 'Sukses, Murid tidak diluluskan !');
+                return back();
+            } catch (ErrorException $e) {
+                DB::rollback();
+                throw new ErrorException($e->getMessage());
+            }
+        }
+    
 }
