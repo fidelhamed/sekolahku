@@ -142,7 +142,7 @@
         @endif
 
            @if (Auth::user()->role == 'PPDB')
-             <div class="col-lg-3 col-sm-6 col-12">
+            <div class="col-lg-3 col-sm-6 col-12">
               <div class="row">
                 <div class="col-12">
                   <div class="card">
@@ -159,10 +159,6 @@
                       </div>
                   </div>
                 </div>
-              </div>
-            </div>
-            <div class="col-lg-3 col-sm-6 col-12">
-              <div class="row">
                 <div class="col-12">
                   <div class="card">
                       <div class="card-header">
@@ -179,6 +175,40 @@
                   </div>
                 </div>
               </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 col-12">
+                <div class="row">
+                  <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div>
+                                <h2 class="font-weight-bolder mb-0">{{$needConfirmPayment}}</h2>
+                                <p class="card-text">Cek Pembayaran</p>
+                            </div>
+                            <div class="avatar bg-light-warning p-50 m-0">
+                                <div class="avatar-content">
+                                    <i data-feather="dollar-sign" class="font-medium-5"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div>
+                                <h2 class="font-weight-bolder mb-0">{{$confirmedPayment}}</h2>
+                                <p class="card-text">Sudah Bayar</p>
+                            </div>
+                            <div class="avatar bg-light-success p-50 m-0">
+                                <div class="avatar-content">
+                                    <i data-feather="dollar-sign" class="font-medium-5"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
             </div>
            @endif
         </div>

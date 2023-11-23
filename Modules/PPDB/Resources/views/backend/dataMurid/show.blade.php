@@ -74,32 +74,6 @@
                                     </div>
                                 </div>
 
-                            @if ($murid->role == 'Terverifikasi')
-                                <div class="col-6">
-                                    <div class="form-group">
-                                        <label for="basicInput">NIS</label>
-                                        <input type="number" class="form-control @error('nis') is-invalid @enderror" name="nis" value="{{$murid->muridDetail->nis}}" />
-                                        @error('nis')
-                                            <div class="invalid-feedback">
-                                            <strong>{{ $message }}</strong>
-                                            </div>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                                <div class="col-6">
-                                    <div class="form-group">
-                                        <label for="basicInput">NISN</label>
-                                        <input type="number" class="form-control @error('nisn') is-invalid @enderror" name="nisn" value="{{$murid->muridDetail->nisn}}" />
-                                        @error('nisn')
-                                            <div class="invalid-feedback">
-                                            <strong>{{ $message }}</strong>
-                                            </div>
-                                        @enderror
-                                    </div>
-                                </div>                                    
-                            @endif
-
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="basicInput">Tempat Lahir</label>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\dataMurid;
 use App\Models\Events;
 use App\Models\User;
+use App\Models\dataPayment;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -38,7 +39,8 @@ class HomeController extends Controller
             if ($role == 'Admin') {
 
               $guru = User::where('role','Guru')->where('status','Aktif')->count();
-              $murid = User::where('role','Murid')->where('status','Aktif')->count();
+              $murid = dataMurid::whereNotIn('proses',['Murid','Ditolak'])->whereYear('created_at', Carbon::now())->count();
+              $lulus = User::where('role','Lulus')->count();
               $alumni = User::where('role','Alumni')->where('status','Aktif')->count();
               $acara = Events::where('is_active','0')->count();
               $event = Events::where('is_active','0')->orderBy('created_at','desc')->first();
@@ -46,7 +48,7 @@ class HomeController extends Controller
               $borrow = Borrowing::whereNull('lateness')->count();
               $member = Member::where('is_active',0)->count();
 
-              return view('backend.website.home', compact('guru','murid','alumni','event','acara','book','borrow','member'));
+              return view('backend.website.home', compact('guru','murid','lulus','alumni','event','acara','book','borrow','member'));
 
 
             }
@@ -97,8 +99,10 @@ class HomeController extends Controller
             elseif($role == 'Guest' || $role == 'PPDB' || $role == 'Terverifikasi' || $role == 'Lulus' || $role == 'Tidak Lulus') {
 
               $register = dataMurid::whereNotIn('proses',['Murid','Ditolak'])->whereYear('created_at', Carbon::now())->count();
-              $needVerif = dataMurid::whereNotNull(['tempat_lahir','tgl_lahir','agama'])->whereNull('nisn')->where('proses', ['Guest','Terverifikasi'])->count();
-              return view('ppdb::backend.index', compact('register','needVerif'));
+              $needConfirmPayment = dataPayment::whereNotNull(['sender','destination_bank','file'])->whereNull('approve_date')->count();
+              $confirmedPayment = dataPayment::where('status','Paid')->count();
+              $needVerif = dataMurid::whereNotNull(['tempat_lahir','tgl_lahir','agama'])->whereNull('nisn')->where('proses', 'Pendaftaran')->count();
+              return view('ppdb::backend.index', compact('register','needConfirmPayment','confirmedPayment','needVerif'));
 
 
             }
