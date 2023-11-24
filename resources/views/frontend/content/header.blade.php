@@ -44,33 +44,18 @@
                                     <li><a href=" {{route('visimisi.sekolah')}} ">Visi dan Misi</a></li>
                                 </ul>
                             </li>
-
-                            <li><a href="#">Program</a>
+                            
+                            <li><a href="#">PPDB</a>
                                 <ul>
-                                    <li class="has-child-menu"><a href="#">Program Studi</a>
-                                        <ul class="thired-level">
-                                            @foreach ($jurusanM as $jurusans)
-                                                <li><a href=" {{ url('program', $jurusans->slug)}} "> {{$jurusans->nama}} </a></li>
-                                            @endforeach
-                                        </ul>
-                                    </li>
-                                    <li class="has-child-menu"><a href="#">Kegiatan</a>
-                                        <ul class="thired-level">
-                                            @foreach ($kegiatanM as $kegiatans)
-                                                <li><a href=" {{url('kegiatan', $kegiatans->slug)}} ">{{$kegiatans->nama}}</a></li>
-                                            @endforeach
-                                        </ul>
-                                    </li>
+                                    <li><a href="#">Alur Pendaftaran</a></li>
+                                    <li><a href="#">Berkas</a></li>
+                                    <li><a href="#">Biaya</a></li>
+                                    <li><a href="{{ url('ppdb/register') }}">Daftar</a></li>
                                 </ul>
                             </li>
-                            <li class="{{ (request()->is('berita')) ? 'active' : '' }}"><a href=" {{route('berita')}} ">Berita</a></li>
-                            <li><a href="{{url('ppdb')}}" target="_blank">PPDB</a></li>
 
-                            <li><a href="#">Lainnya</a>
-                                <ul>
-                                    <li><a href=" {{url('murid/perpustakaan')}} ">Perpustakaan</a></li>
-                                    <li><a href="">Alumni</a></li>
-                                </ul>
+                            <li class="{{ (request()->is('berita')) ? 'active' : '' }}">
+                                <a href=" {{route('berita')}} ">Berita</a>
                             </li>
                         </ul>
                     </nav>
@@ -87,7 +72,7 @@
                 <div class="mobile-menu">
                     <nav id="dropdown">
                         <ul>
-                            <li class="active"><a href="#">Beranda</a></li>
+                            <li class="active"><a href="/">Beranda</a></li>
                             <li><a href="#">Tentang Kami</a>
                                 <ul>
                                     <li><a href=" {{route('profile.sekolah')}} ">Profile Sekolah</a></li>
@@ -95,33 +80,9 @@
                                 </ul>
                             </li>
 
-                            <li><a href="#">Program</a>
-                                <ul>
-                                    <li class="has-child-menu"><a href="#">Program Studi</a>
-                                        <ul class="thired-level">
-                                            @foreach ($jurusanM as $jurusans)
-                                                <li><a href=" {{ url('program', $jurusans->slug)}} "> {{$jurusans->nama}} </a></li>
-                                            @endforeach
-                                        </ul>
-                                    </li>
-                                    <li class="has-child-menu"><a href="#">Kegiatan</a>
-                                        <ul class="thired-level">
-                                            @foreach ($kegiatanM as $kegiatans)
-                                                <li><a href=" {{url('kegiatan', $kegiatans->slug)}} ">{{$kegiatans->nama}}</a></li>
-                                            @endforeach
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
                             <li class="{{ (request()->is('berita')) ? 'active' : '' }}"><a href=" {{route('berita')}} ">Berita</a></li>
                             <li><a href="{{url('ppdb')}}" target="_blank">PPDB</a></li>
 
-                            <li><a href="#">Lainnya</a>
-                                <ul>
-                                    <li><a href="">Perpustakaan</a></li>
-                                    <li><a href="">Alumni</a></li>
-                                </ul>
-                            </li>
                             <li>
                                 @auth
                                     <a href="">{{Auth::user()->name}}</a>

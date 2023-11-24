@@ -15,7 +15,9 @@
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <div class="news-box">
                                     <div class="news-img-holder">
-                                        <img src="{{asset('storage/images/berita/' .$beritas->thumbnail)}}" class="img-responsive" alt="research">
+                                        <a href="{{route('detail.berita', $beritas->slug)}}">{{$beritas->title}}
+                                            <img src="{{asset('storage/images/berita/' .$beritas->thumbnail)}}" class="img-responsive" alt="research">
+                                        </a>
                                         <ul class="news-date2">
                                             <li>{{Carbon\Carbon::parse($beritas->created_at)->format('d M')}}</li>
                                             <li>{{Carbon\Carbon::parse($beritas->created_at)->format('Y')}}</li>

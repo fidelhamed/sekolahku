@@ -46,7 +46,7 @@
                     @endforeach
                 </ul>
                 <div class="event-btn-holder">
-                    <a href="{{route('event')}}" class="view-all-primary-btn">View All</a>
+                    <a href="{{route('event')}}" class="view-all-primary-btn">Lihat Semua</a>
                 </div>
             </div>
         </div>

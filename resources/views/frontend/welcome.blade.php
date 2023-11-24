@@ -20,11 +20,6 @@
         @include('frontend.content.video')
     @endsection
 
-    {{-- Guru --}}
-    @section('guru')
-        @include('frontend.content.guru')
-    @endsection
-
      {{-- Berita & Event --}}
      @section('beritaEvent')
         @include('frontend.content.beritaEvent')
