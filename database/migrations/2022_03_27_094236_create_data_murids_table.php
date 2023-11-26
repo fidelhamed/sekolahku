@@ -18,13 +18,17 @@ class CreateDataMuridsTable extends Migration
             $table->bigInteger('user_id');
             $table->bigInteger('nis')->nullable();
             $table->bigInteger('nisn')->nullable();
+            $table->string('nama_panggilan')->nullable();
+            $table->enum('jenis_kelamin',['Laki-laki','Perempuan'])->nullable();
             $table->string('tempat_lahir')->nullable();
             $table->date('tgl_lahir')->nullable();
-            $table->enum('agama',['Islam','Kristen Katolik','Kristen Protestan','Hindu','Budha','Konghucu'])->nullable();
+            $table->string('anak_ke')->nullable();
+            $table->text('alamat')->nullable();
             $table->string('telp')->nullable();
             $table->string('whatsapp')->nullable();
-            $table->text('alamat')->nullable();
             $table->string('asal_sekolah')->nullable();
+            $table->text('alamat_sekolah')->nullable();
+            $table->text('prestasi')->nullable();
             $table->timestamps();
         });
     }

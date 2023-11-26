@@ -40,10 +40,6 @@
             @yield('video')
         <!-- Video Area End Here -->
 
-        <!-- Lecturers Area Start Here -->
-            @yield('guru')
-        <!-- Lecturers Area End Here -->
-
         <!-- News and Event Area Start Here -->
             @yield('beritaEvent')
         <!-- News and Event Area End Here -->

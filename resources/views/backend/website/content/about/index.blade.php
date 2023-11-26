@@ -47,6 +47,7 @@
                                             <tr>
                                                 <th></th>
                                                 <th>No</th>
+                                                <th>Title</th>
                                                 <th>Image</th>
                                                 <th>Status</th>
                                                 <th>Action</th>
@@ -56,7 +57,8 @@
                                             @foreach ($about as $key => $abouts)
                                                 <tr>
                                                     <td></td>
-                                                    <td> {{$key+1}} </td>
+                                                    <td>{{$key+1}}</td>
+                                                    <td>{{ $abouts->title }}</td>
                                                     <td> 
                                                         <img src="{{asset('storage/images/about/' .$abouts->image)}}" class="img-responsive" style="max-width: 50px; max-height:50px"> 
                                                     </td>

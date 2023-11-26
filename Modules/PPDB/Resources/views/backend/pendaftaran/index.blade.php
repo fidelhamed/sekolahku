@@ -27,7 +27,7 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="basicInput">Nama Lengkap</label>
-                                        <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{$user->name}}" placeholder="Nama Lengkap" readonly/>
+                                        <input type="text" class="form-control @error('name') is-invalid @enderror" name="name"value="{{$user->name}}" placeholder="Nama Lengkap" readonly/>
                                         @error('name')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
@@ -38,7 +38,7 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="basicInput">Email Address</label>
-                                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{$user->email}}" placeholder="Email Address" readonly/>
+                                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email"value="{{$user->email}}" placeholder="Email Address" readonly/>
                                         @error('email')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
@@ -49,7 +49,7 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="basicInput">NIS</label>
-                                        <input type="text" class="form-control @error('nis') is-invalid @enderror" name="nis" value="{{$user->muridDetail->nis}}" disabled/>
+                                        <input type="text" class="form-control @error('nis') is-invalid @enderror" name="nis"value="{{$user->muridDetail->nis}}" disabled/>
                                         @error('nis')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
@@ -124,7 +124,7 @@
                                         <select name="agama" class="form-control @error('agama') is-invalid @enderror">
                                             <option value="">-- Pilih --</option>
                                             <option value="Islam" {{$user->muridDetail->agama == 'Islam' ? 'selected' : ''}}>Islam</option>
-                                            <option value="Krtisten Katolik" {{$user->muridDetail->agama == 'Krtisten Katolik' ? 'selected' : ''}}>Krtisten Katolik</option>
+                                            <option value="Kristen Katolik" {{$user->muridDetail->agama == 'Kristen Katolik' ? 'selected' : ''}}>Kristen Katolik</option>
                                             <option value="Kristen Protestan" {{$user->muridDetail->agama == 'Kristen Protestan' ? 'selected' : ''}}>Kristen Protestan</option>
                                             <option value="Hindu" {{$user->muridDetail->agama == 'Hindu' ? 'selected' : ''}}>Hindu</option>
                                             <option value="Budha" {{$user->muridDetail->agama == 'Budha' ? 'selected' : ''}}>Budha</option>
@@ -153,7 +153,7 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label for="basicInput">Alamat Lengkap</label>
-                                        <textarea name="alamat" class="form-control @error('alamat') is-invalid @enderror" cols="30" rows="3"> {{$user->muridDetail->alamat}}</textarea>
+                                        <textarea name="alamat" class="form-control @error('alamat') is-invalid @enderror" cols="30" rows="3">{{$user->muridDetail->alamat}}</textarea>
                                         @error('alamat')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>

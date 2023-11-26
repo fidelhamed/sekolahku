@@ -30,7 +30,7 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="basicInput">Nama Ayah</label>
-                                        <input type="text" class="form-control @error('nama_ayah') is-invalid @enderror" name="nama_ayah" value=" {{old('nama_ayah')}} " placeholder="Nama Ayah" />
+                                        <input type="text" class="form-control @error('nama_ayah') is-invalid @enderror" name="nama_ayah" value="{{ $ortu->nama_ayah }}" placeholder="Nama Ayah" />
                                         @error('nama_ayah')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
@@ -41,7 +41,7 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="basicInput">No Telp Ayah</label>
-                                        <input type="number" class="form-control @error('telp_ayah') is-invalid @enderror" name="telp_ayah" value=" {{old('telp_ayah')}} " placeholder="telp Ayah" />
+                                        <input type="number" class="form-control @error('telp_ayah') is-invalid @enderror" name="telp_ayah" value="{{ $ortu->telp_ayah }}" placeholder="telp Ayah" />
                                         @error('telp_ayah')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
@@ -54,12 +54,12 @@
                                         <label for="basicInput">Pendidikan Ayah</label>
                                         <select name="pendidikan_ayah" class="form-control">
                                             <option value="">-- Pilih --</option>
-                                            <option value="SD" {{old('pendidikan_ayah') == 'SD' ? 'selected' : ''}} >SD</option>
-                                            <option value="SMP" {{old('pendidikan_ayah') == 'SMP' ? 'selected' : ''}}>SMP</option>
-                                            <option value="SMA/SMK" {{old('pendidikan_ayah') == 'SMA/SMK' ? 'selected' : ''}}>SMA/SMK</option>
-                                            <option value="S1" {{old('pendidikan_ayah') == 'S1' ? 'selected' : ''}}>S1</option>
-                                            <option value="S2" {{old('pendidikan_ayah') == 'S2' ? 'selected' : ''}}>S2</option>
-                                            <option value="S3" {{old('pendidikan_ayah') == 'S3' ? 'selected' : ''}}>S3</option>
+                                            <option value="SD" {{$ortu->pendidikan_ayah == 'SD' ? 'selected' : ''}} >SD</option>
+                                            <option value="SMP" {{$ortu->pendidikan_ayah == 'SMP' ? 'selected' : ''}}>SMP</option>
+                                            <option value="SMA/SMK" {{$ortu->pendidikan_ayah == 'SMA/SMK' ? 'selected' : ''}}>SMA/SMK</option>
+                                            <option value="S1" {{$ortu->pendidikan_ayah == 'S1' ? 'selected' : ''}}>S1</option>
+                                            <option value="S2" {{$ortu->pendidikan_ayah == 'S2' ? 'selected' : ''}}>S2</option>
+                                            <option value="S3" {{$ortu->pendidikan_ayah == 'S3' ? 'selected' : ''}}>S3</option>
                                         </select>
                                         @error('pendidikan_ayah')
                                             <div class="invalid-feedback">
@@ -73,10 +73,10 @@
                                         <label for="basicInput">Pekerjaan Ayah</label>
                                         <select name="pekerjaan_ayah" class="form-control">
                                             <option value="">-- Pilih --</option>
-                                            <option value="Wiraswasta" {{old('pekerjaan_ayah') == 'Wiraswasta' ? 'selected' : ''}} >Wiraswasta</option>
-                                            <option value="Wirausaha" {{old('pekerjaan_ayah') == 'Wirausaha' ? 'selected' : ''}}>Wirausaha</option>
-                                            <option value="ASN" {{old('pekerjaan_ayah') == 'ASN' ? 'selected' : ''}}>ASN</option>
-                                            <option value="Buruh" {{old('pekerjaan_ayah') == 'Buruh' ? 'selected' : ''}}>Buruh</option>
+                                            <option value="Wiraswasta" {{$ortu->pekerjaan_ayah == 'Wiraswasta' ? 'selected' : ''}} >Wiraswasta</option>
+                                            <option value="Wirausaha" {{$ortu->pekerjaan_ayah == 'Wirausaha' ? 'selected' : ''}}>Wirausaha</option>
+                                            <option value="ASN" {{$ortu->pekerjaan_ayah == 'ASN' ? 'selected' : ''}}>ASN</option>
+                                            <option value="Buruh" {{$ortu->pekerjaan_ayah == 'Buruh' ? 'selected' : ''}}>Buruh</option>
                                         </select>
                                         @error('pendidiakn_ayah')
                                             <div class="invalid-feedback">
@@ -88,7 +88,7 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label for="basicInput">Alamat Lengkap</label>
-                                        <textarea name="alamat_ayah" class="form-control @error('alamat_ayah') is-invalid @enderror" cols="30" rows="3"> {{old('alamat_ayah')}} </textarea>
+                                        <textarea name="alamat_ayah" class="form-control @error('alamat_ayah') is-invalid @enderror" cols="30" rows="3">{{ $ortu->alamat_ayah }}</textarea>
                                         @error('alamat_ayah')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
@@ -104,7 +104,7 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="basicInput">Nama Ibu</label>
-                                        <input type="text" class="form-control @error('nama_ibu') is-invalid @enderror" name="nama_ibu" value=" {{old('nama_ibu')}} " placeholder="Nama Ibu" />
+                                        <input type="text" class="form-control @error('nama_ibu') is-invalid @enderror" name="nama_ibu" value="{{ $ortu->nama_ibu }}" placeholder="Nama Ibu" />
                                         @error('nama_ibu')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
@@ -115,7 +115,7 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="basicInput">No Telp Ibu</label>
-                                        <input type="number" class="form-control @error('telp_ibu') is-invalid @enderror" name="telp_ibu" value=" {{old('telp_ibu')}} " placeholder="telp Ibu" />
+                                        <input type="number" class="form-control @error('telp_ibu') is-invalid @enderror" name="telp_ibu" value="{{ $ortu->telp_ibu }}" placeholder="telp Ibu" />
                                         @error('telp_ibu')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
@@ -128,12 +128,12 @@
                                         <label for="basicInput">Pendidikan Ibu</label>
                                         <select name="pendidikan_ibu" class="form-control">
                                             <option value="">-- Pilih --</option>
-                                            <option value="SD" {{old('pendidikan_ibu') == 'SD' ? 'selected' : ''}} >SD</option>
-                                            <option value="SMP" {{old('pendidikan_ibu') == 'SMP' ? 'selected' : ''}}>SMP</option>
-                                            <option value="SMA/SMK" {{old('pendidikan_ibu') == 'SMA/SMK' ? 'selected' : ''}}>SMA/SMK</option>
-                                            <option value="S1" {{old('pendidikan_ibu') == 'S1' ? 'selected' : ''}}>S1</option>
-                                            <option value="S2" {{old('pendidikan_ibu') == 'S2' ? 'selected' : ''}}>S2</option>
-                                            <option value="S3" {{old('pendidikan_ibu') == 'S3' ? 'selected' : ''}}>S3</option>
+                                            <option value="SD" {{$ortu->pendidikan_ibu == 'SD' ? 'selected' : ''}} >SD</option>
+                                            <option value="SMP" {{$ortu->pendidikan_ibu == 'SMP' ? 'selected' : ''}}>SMP</option>
+                                            <option value="SMA/SMK" {{$ortu->pendidikan_ibu == 'SMA/SMK' ? 'selected' : ''}}>SMA/SMK</option>
+                                            <option value="S1" {{$ortu->pendidikan_ibu == 'S1' ? 'selected' : ''}}>S1</option>
+                                            <option value="S2" {{$ortu->pendidikan_ibu == 'S2' ? 'selected' : ''}}>S2</option>
+                                            <option value="S3" {{$ortu->pendidikan_ibu == 'S3' ? 'selected' : ''}}>S3</option>
                                         </select>
                                         @error('pendidikan_ibu')
                                             <div class="invalid-feedback">
@@ -147,13 +147,13 @@
                                         <label for="basicInput">Pekerjaan Ibu</label>
                                         <select name="pekerjaan_ibu" class="form-control">
                                             <option value="">-- Pilih --</option>
-                                            <option value="Ibu Rumah Tangga" {{old('pekerjaan_ibu') == 'Ibu Rumah Tangga' ? 'selected' : ''}}>Ibu Rumah Tangga</option>
-                                            <option value="Wiraswasta" {{old('pekerjaan_ibu') == 'Wiraswasta' ? 'selected' : ''}} >Wiraswasta</option>
-                                            <option value="Wirausaha" {{old('pekerjaan_ibu') == 'Wirausaha' ? 'selected' : ''}}>Wirausaha</option>
-                                            <option value="ASN" {{old('pekerjaan_ibu') == 'ASN' ? 'selected' : ''}}>ASN</option>
-                                            <option value="Buruh" {{old('pekerjaan_ibu') == 'Buruh' ? 'selected' : ''}}>Buruh</option>
+                                            <option value="Ibu Rumah Tangga" {{$ortu->pekerjaan_ibu == 'Ibu Rumah Tangga' ? 'selected' : ''}}>Ibu Rumah Tangga</option>
+                                            <option value="Wiraswasta" {{$ortu->pekerjaan_ibu == 'Wiraswasta' ? 'selected' : ''}} >Wiraswasta</option>
+                                            <option value="Wirausaha" {{$ortu->pekerjaan_ibu == 'Wirausaha' ? 'selected' : ''}}>Wirausaha</option>
+                                            <option value="ASN" {{$ortu->pekerjaan_ibu == 'ASN' ? 'selected' : ''}}>ASN</option>
+                                            <option value="Buruh" {{$ortu->pekerjaan_ibu == 'Buruh' ? 'selected' : ''}}>Buruh</option>
                                         </select>
-                                        @error('pendidiakn_ibu')
+                                        @error('pendidikan_ibu')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
                                             </div>
@@ -163,7 +163,7 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label for="basicInput">Alamat Lengkap</label>
-                                        <textarea name="alamat_ibu" class="form-control @error('alamat_ibu') is-invalid @enderror" cols="30" rows="3"> {{old('alamat_ibu')}} </textarea>
+                                        <textarea name="alamat_ibu" class="form-control @error('alamat_ibu') is-invalid @enderror" cols="30" rows="3">{{ $ortu->alamat_ibu }}</textarea>
                                         @error('alamat_ibu')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>

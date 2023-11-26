@@ -7,10 +7,6 @@
         @include('ppdb::frontend.content.slider')
     @endsection
 
-    @section('studi')
-        @include('ppdb::frontend.content.studi')
-    @endsection
-
     @section('count')
         @include('ppdb::frontend.content.count')
     @endsection

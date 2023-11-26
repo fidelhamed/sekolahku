@@ -68,10 +68,6 @@ Route::middleware('auth')->group(function () {
             'backend-profile-sekolah'   => Backend\Website\ProfilSekolahController::class,
             /// VISI & MISI \\\
             'backend-visimisi'  => Backend\Website\VisidanMisiController::class,
-            //// PROGRAM STUDI \\\\
-            'program-studi' =>  Backend\Website\ProgramController::class,
-            /// KEGIATAN \\\
-            'backend-kegiatan' => Backend\Website\KegiatanController::class,
             /// IMAGE SLIDER \\\
             'backend-imageslider' => Backend\Website\ImageSliderController::class,
             /// ABOUT \\\
@@ -90,18 +86,10 @@ Route::middleware('auth')->group(function () {
 
         ///// PENGGUNA \\\\\
         Route::resources([
-            /// PENGAJAR \\\
-            'backend-pengguna-pengajar' => Backend\Pengguna\PengajarController::class,
-            /// STAF \\\
-            'backend-pengguna-staf' => Backend\Pengguna\StafController::class,
             /// MURID \\\
             'backend-pengguna-murid' => Backend\Pengguna\MuridController::class,
             /// PPDB \\\
             'backend-pengguna-ppdb' => Backend\Pengguna\PPDBController::class,
-            /// PERPUSTAKAAN \\\
-            'backend-pengguna-perpus' => Backend\Pengguna\PerpusController::class,
-            /// BENDAHARA \\\
-            'backend-pengguna-bendahara'  => Backend\Pengguna\BendaharaController::class
         ]);
     });
 });

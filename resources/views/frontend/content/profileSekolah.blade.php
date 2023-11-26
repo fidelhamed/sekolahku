@@ -19,9 +19,4 @@
             @endif
         </div>
     @endsection
-
-    {{-- Guru --}}
-    @section('guru')
-        @include('frontend.content.guru')
-    @endsection
 @endsection

@@ -49,7 +49,7 @@
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                         <label for="basicInput">Title</label> <span class="text-danger">*</span>
-                                                        <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" value=" {{old('title')}} " placeholder="Contoh : PROFILE SEKOLAH SMK NASIONAL" />
+                                                        <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{old('title')}}" placeholder="Contoh : PROFILE SEKOLAH SMK NASIONAL" />
                                                         @error('title')
                                                             <div class="invalid-feedback">
                                                             <strong>{{ $message }}</strong>
@@ -74,7 +74,7 @@
                                                 <div class="col-12">
                                                     <div class="form-group">
                                                         <label for="basicInput">Content</label> <span class="text-danger">*</span>
-                                                        <textarea name="content" class="form-control  @error('content') is-invalid @enderror" rows="10"> {{old('content')}} </textarea>
+                                                        <textarea name="content" class="form-control  @error('content') is-invalid @enderror" rows="10">{{old('content')}}</textarea>
                                                         @error('content')
                                                             <div class="invalid-feedback">
                                                             <strong>{{ $message }}</strong>
@@ -95,7 +95,7 @@
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                         <label for="basicInput">Title</label> <span class="text-danger">*</span>
-                                                        <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" value=" {{$profile->title}} " placeholder="Contoh : PROFILE SEKOLAH SMK NASIONAL" />
+                                                        <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{$profile->title}}" placeholder="Contoh : PROFILE SEKOLAH SMK NASIONAL" />
                                                         @error('title')
                                                             <div class="invalid-feedback">
                                                             <strong>{{ $message }}</strong>
@@ -121,7 +121,7 @@
                                                 <div class="col-12">
                                                     <div class="form-group">
                                                         <label for="basicInput">Content</label> <span class="text-danger">*</span>
-                                                        <textarea name="content" class="form-control  @error('content') is-invalid @enderror" rows="10"> {{$profile->content}} </textarea>
+                                                        <textarea name="content" class="form-control  @error('content') is-invalid @enderror" rows="10">{{$profile->content}}</textarea>
                                                         @error('content')
                                                             <div class="invalid-feedback">
                                                             <strong>{{ $message }}</strong>

@@ -27,8 +27,8 @@ class PendaftaranController extends Controller
         if ($user->paymentRegis->file == null || $user->paymentRegis->status == 'Unpaid') {
             return redirect('ppdb/payment-pendaftaran/' . $user->paymentRegis->id);
         }
-        // Jika data murid sudah lengkap
-        if ($user->muridDetail->agama) {
+        // Jika data murid sudah lengkap dan bukan proses perbaikan
+        if ($user->muridDetail->agama !== null AND $user->muridDetail->proses !== 'Perbaikan') {
             return redirect('ppdb/form-data-orangtua');
         }
         return view('ppdb::backend.pendaftaran.index', compact('user'));
@@ -55,10 +55,13 @@ class PendaftaranController extends Controller
                 $murid->asal_sekolah    = $request->asal_sekolah;
                 $murid->update();
 
-                if ($murid) {
-                    $ortu = new DataOrangTua;
-                    $ortu->user_id  = $id;
-                    $ortu->save();
+                if ($murid) {          
+                    $cek = DataOrangTua::where('user_id', Auth::id())->count();
+                    if ($cek === 0){
+                            $ortu = new DataOrangTua;
+                            $ortu->user_id  = $id;
+                            $ortu->save();
+                    }
                 }
             }
             DB::commit();
@@ -73,6 +76,7 @@ class PendaftaranController extends Controller
     // Data Orang Tua
     public function dataOrtuView()
     {
+        $user = User::with('paymentRegis', 'muridDetail', 'dataOrtu')->where('status', 'Aktif')->where('id', Auth::id())->first();
         $ortu = DataOrangTua::where('user_id', Auth::id())->first();
 
         // Jika data orang tua masih empty
@@ -81,12 +85,12 @@ class PendaftaranController extends Controller
             return redirect('ppdb/form-pendaftaran');
         }
 
-        // jika data orang tua sudah terisi
-        if ($ortu->telp_ayah) {
+        // jika data orang tua sudah terisi dan bukan proses perbaikan
+        if ($ortu->telp_ayah !== null AND $user->muridDetail->proses !== 'Perbaikan') {
             Session::flash('success', 'Data kamu sudah lengkap !');
             return redirect('ppdb/form-berkas');
         }
-        return view('ppdb::backend.pendaftaran.dataOrtu');
+        return view('ppdb::backend.pendaftaran.dataOrtu', compact('ortu'));
     }
 
     // Update Data Orang Tua
@@ -111,9 +115,12 @@ class PendaftaranController extends Controller
             $ortu->update();
 
             if ($ortu) {
-                $berkas = new BerkasMurid();
-                $berkas->user_id    = $id;
-                $berkas->save();
+                $cek = BerkasMurid::where('user_id', Auth::id())->count();
+                if ($cek === 0) {
+                    $berkas = new BerkasMurid();
+                    $berkas->user_id    = $id;
+                    $berkas->save();
+                }
             }
 
             DB::commit();
@@ -128,9 +135,10 @@ class PendaftaranController extends Controller
     // Berkas View
     public function berkasView()
     {
+        $user = User::with('paymentRegis', 'muridDetail', 'dataOrtu')->where('status', 'Aktif')->where('id', Auth::id())->first();
         $berkas = BerkasMurid::where('user_id', Auth::id())->first();
-        // Jika data berkas sudah terisi
-        if ($berkas->rapor) {
+        // Jika data berkas sudah terisi dan bukan proses perbaikan
+        if ($berkas->rapor !== null AND $user->muridDetail->proses !== 'Perbaikan') {
             Session::flash('error', 'Data kamu sudah lengkap, tunggu proses verifikasi data !');
             return redirect('/home');
         }
@@ -203,9 +211,18 @@ class PendaftaranController extends Controller
             $berkas->ijazah                 = $ijazah ?? null;
             $berkas->save();
 
-            DB::commit();
-            Session::flash('success', 'Sukses, Data Berhasil dikirim !');
-            return redirect('/home');
+            if ($berkas) {
+                $data = dataMurid::where('user_id', Auth::id())->first();
+                $data->proses = 'Input data';
+                $data->update();
+                
+                DB::commit();
+                Session::flash('success', 'Sukses, Data Berhasil dikirim !');
+                return redirect('/home');
+            }
+            // DB::commit();
+            // Session::flash('success', 'Sukses, Data Berhasil dikirim !');
+            // return redirect('/home');
         } catch (ErrorException $e) {
             DB::rollback();
             throw new ErrorException($e->getMessage());

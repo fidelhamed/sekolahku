@@ -14,7 +14,7 @@ class AddValueRoleLulusTidakLulusInUsersDetailsTable extends Migration
     public function up()
     {
         Schema::table('users_details', function (Blueprint $table) {
-            \DB::statement("ALTER TABLE `users_details` CHANGE `role` `role` ENUM('Admin','Guru','Staf','Murid','Orang Tua','Alumni','Guest','Perpustakaan','PPDB','Bendahara','Terverifikasi','Lulus','Tidak Lulus')");
+            \DB::statement("ALTER TABLE `users_details` CHANGE `role` `role` ENUM('Admin','Murid','Guest','PPDB','Terverifikasi','Lulus','Tidak Lulus')");
         });
     }
 

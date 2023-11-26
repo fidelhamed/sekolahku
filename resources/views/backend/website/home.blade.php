@@ -15,13 +15,13 @@
                         <img src="{{asset('Assets/Backend/images/pages/decore-right.png')}}" class="congratulations-img-right" alt="card-img-right" />
                         <div class="avatar avatar-xl bg-primary shadow">
                             <div class="avatar-content">
-                                <i data-feather="award" class="font-large-1"></i>
+                                <i data-feather="smile" class="font-large-1"></i>
                             </div>
                         </div>
                         <div class="text-center">
                             <h1 class="mb-1 text-white">Welcome {{Auth::user()->name}},</h1>
                             <p class="card-text m-auto w-75">
-                                Have fun your day :)
+                                Bismillahirrahmanirrahim
                             </p>
                         </div>
                     </div>
@@ -32,21 +32,6 @@
                 <div class="col-lg-3 col-sm-6 col-12">
                 <div class="row">
                     <div class="col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <div>
-                                <h2 class="font-weight-bolder mb-0">{{$guru}}</h2>
-                                <p class="card-text">Guru</p>
-                            </div>
-                            <div class="avatar bg-light-primary p-50 m-0">
-                                <div class="avatar-content">
-                                    <i data-feather="users" class="font-medium-5"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                    <div class="col-12">
                         <div class="card">
                             <div class="card-header">
                                 <div>
@@ -56,6 +41,21 @@
                                 <div class="avatar bg-light-danger p-50 m-0">
                                     <div class="avatar-content">
                                         <i data-feather="calendar" class="font-medium-5"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <div>
+                                    <h2 class="font-weight-bolder mb-0">{{$lulus}}</h2>
+                                    <p class="card-text">Calon Murid Lulus</p>
+                                </div>
+                                <div class="avatar bg-light-success p-50 m-0">
+                                    <div class="avatar-content">
+                                        <i data-feather="user" class="font-medium-5"></i>
                                     </div>
                                 </div>
                             </div>
@@ -79,21 +79,6 @@
                             </div>
                         </div>
                     </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <div>
-                                    <h2 class="font-weight-bolder mb-0">{{$lulus}}</h2>
-                                    <p class="card-text">Calon Murid Lulus</p>
-                                </div>
-                                <div class="avatar bg-light-success p-50 m-0">
-                                    <div class="avatar-content">
-                                        <i data-feather="user" class="font-medium-5"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 </div>

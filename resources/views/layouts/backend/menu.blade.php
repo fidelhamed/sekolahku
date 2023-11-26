@@ -47,16 +47,6 @@
                     <span class="menu-title text-truncate" data-i18n="Card">Website</span>
                 </a>
                 <ul class="menu-content">
-                    <li class="nav-item {{ (request()->is('program-studi')) ? 'active' : '' }}">
-                        <a class="d-flex align-items-center" href=" {{route('program-studi.index')}} "><i data-feather="circle"></i>
-                            <span class="menu-item text-truncate" data-i18n="Basic">Program</span>
-                        </a>
-                    </li>
-                    <li class="nav-item {{ (request()->is('backend-kegiatan')) ? 'active' : '' }}">
-                        <a class="d-flex align-items-center" href=" {{route('backend-kegiatan.index')}} "><i data-feather="circle"></i>
-                            <span class="menu-item text-truncate" data-i18n="Basic">Kegiatan</span>
-                        </a>
-                    </li>
                     <li class="nav-item {{ (request()->is('backend-imageslider')) ? 'active' : '' }}">
                         <a class="d-flex align-items-center" href=" {{route('backend-imageslider.index')}} "><i data-feather="circle"></i>
                             <span class="menu-item text-truncate" data-i18n="Basic">Gambar Slider</span>
@@ -110,59 +100,14 @@
                     <span class="menu-title text-truncate" data-i18n="Card">Pengguna</span>
                 </a>
                 <ul class="menu-content">
-                    <li class="nav-item {{ (request()->is('backend-pengguna-pengajar')) ? 'active' : '' }}">
-                        <a class="d-flex align-items-center" href=" {{route('backend-pengguna-pengajar.index')}} "><i data-feather="circle"></i>
-                            <span class="menu-item text-truncate" data-i18n="Basic">Pengajar</span>
-                        </a>
-                    </li>
-                    <li class="nav-item {{ (request()->is('backend-pengguna-staf')) ? 'active' : '' }}">
-                        <a class="d-flex align-items-center" href=" {{route('backend-pengguna-staf.index')}} "><i data-feather="circle"></i>
-                            <span class="menu-item text-truncate" data-i18n="Basic">Staf</span>
-                        </a>
-                    </li>
                     <li class="nav-item {{ (request()->is('backend-pengguna-murid')) ? 'active' : '' }}">
                         <a class="d-flex align-items-center" href=" {{route('backend-pengguna-murid.index')}} "><i data-feather="circle"></i>
-                            <span class="menu-item text-truncate" data-i18n="Basic">Murid</span>
+                            <span class="menu-item text-truncate" data-i18n="Basic">Calon Murid</span>
                         </a>
                     </li>
                     <li class="nav-item {{ (request()->is('backend-pengguna-ppdb')) ? 'active' : '' }}">
                         <a class="d-flex align-items-center" href=" {{route('backend-pengguna-ppdb.index')}} "><i data-feather="circle"></i>
-                            <span class="menu-item text-truncate" data-i18n="Basic">PPDB</span>
-                        </a>
-                    </li>
-                    <li class="nav-item {{ (request()->is('backend-pengguna-perpus')) ? 'active' : '' }}">
-                        <a class="d-flex align-items-center" href=" {{route('backend-pengguna-perpus.index')}} "><i data-feather="circle"></i>
-                            <span class="menu-item text-truncate" data-i18n="Basic">Perpustakaan</span>
-                        </a>
-                    </li>
-                    <li class="nav-item {{ (request()->is('backend-pengguna-bendahara')) ? 'active' : '' }}">
-                        <a class="d-flex align-items-center" href=" {{route('backend-pengguna-bendahara.index')}} "><i data-feather="circle"></i>
-                            <span class="menu-item text-truncate" data-i18n="Basic">Bendahara</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-
-            {{-- MENU GURU --}}
-            @elseif(Auth::user()->role == 'Guru')
-            <li class=" nav-item">
-                <a class="d-flex align-items-center" href="#"><i data-feather="credit-card"></i>
-                    <span class="menu-title text-truncate" data-i18n="Card">Data Murid</span>
-                </a>
-                <ul class="menu-content">
-                    <li>
-                        <a class="d-flex align-items-center" href=""><i data-feather="circle"></i>
-                            <span class="menu-item text-truncate" data-i18n="Basic">Kelas X</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="d-flex align-items-center" href=""><i data-feather="circle"></i>
-                            <span class="menu-item text-truncate" data-i18n="Basic">Kelas XI</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="d-flex align-items-center" href=""><i data-feather="circle"></i>
-                            <span class="menu-item text-truncate" data-i18n="Basic">Kelas XII</span>
+                            <span class="menu-item text-truncate" data-i18n="Basic">Admin PPDB</span>
                         </a>
                     </li>
                 </ul>
@@ -178,7 +123,7 @@
 
             {{-- MENU PPDB --}}
             @elseif(Auth::user()->role == 'PPDB')
-            <li class=" nav-item">
+            <li class=" nav-item {{ (request()->is('ppdb/data-murid')) ? 'active' : '' }}">
                 <a class="d-flex align-items-center" href="#"><i data-feather="users"></i>
                     <span class="menu-title text-truncate" data-i18n="Card">Calon Murid</span>
                 </a>
@@ -200,7 +145,7 @@
                     </li>
                 </ul>
             </li>
-            <li class=" nav-item">
+            <li class=" nav-item {{ (request()->is('ppdb/data-kelulusan')) ? 'active' : '' }}">
                 <a class="d-flex align-items-center" href="#"><i data-feather="user-check"></i>
                     <span class="menu-title text-truncate" data-i18n="Card">Kelulusan</span>
                 </a>
@@ -223,39 +168,6 @@
                 </ul>
             </li>
 
-            {{-- MENU PERPUSTAKAAN --}}
-             @elseif(Auth::user()->role == 'Perpustakaan')
-              <li class="nav-item {{ (request()->is('perpus/books')) ? 'active' : '' }}">
-                <a class="d-flex align-items-center" href=" {{route('books.index')}} "><i data-feather="book"></i>
-                    <span class="menu-title text-truncate" data-i18n="Books">Books</span>
-                </a>
-              </li>
-              <li class="nav-item {{ (request()->is('perpus/kategori')) ? 'active' : '' }}">
-                 <a class="d-flex align-items-center" href=" {{route('kategori.index')}} "><i data-feather="list"></i>
-                    <span class="menu-title text-truncate" data-i18n="Category">Category</span>
-                </a>
-              </li>
-              <li class="nav-item {{ (request()->is('perpus/member')) ? 'active' : '' }}">
-                 <a class="d-flex align-items-center" href=" {{route('member.index')}} "><i data-feather="users"></i>
-                    <span class="menu-title text-truncate" data-i18n="Members">Members</span>
-                </a>
-              </li>
-              <li class="nav-item {{ (request()->is('perpus/publisher')) ? 'active' : '' }}">
-                <a class="d-flex align-items-center" href="{{route('publisher.index')}}"><i data-feather="user"></i>
-                    <span class="menu-title text-truncate" data-i18n="Publisher">Publisher</span>
-                </a>
-              </li>
-              <li class="nav-item {{ (request()->is('books/author')) ? 'active' : '' }}">
-                <a class="d-flex align-items-center" href="{{route('author.index')}}"><i data-feather="user-check"></i>
-                    <span class="menu-title text-truncate" data-i18n="Authors">Authors</span>
-                </a>
-              </li>
-              <li class="nav-item {{ (request()->is('perpus/peminjam')) ? 'active' : '' }}">
-                 <a class="d-flex align-items-center" href="{{route('peminjam.index')}}"><i data-feather="briefcase"></i>
-                    <span class="menu-title text-truncate" data-i18n="Members">Peminjam</span>
-                </a>
-              </li>
-
             {{-- MENU MURID --}}
             @elseif(Auth::user()->role == 'Murid')
               <li class="nav-item {{ (request()->is('murid/perpustakaan')) ? 'active' : '' }}">
@@ -269,13 +181,6 @@
                 </a>
               </li>
 
-            {{-- MENU BENDAHARA --}}
-            @elseif(Auth::user()->role == 'Bendahara')
-              <li class="nav-item {{ (request()->is('spp/murid')) ? 'active' : '' }}">
-                <a class="d-flex align-items-center" href=" {{route('spp.murid.index')}} "><i data-feather="users"></i>
-                    <span class="menu-title text-truncate" data-i18n="Books">Pembayaran</span>
-                </a>
-              </li>
             @endif
         </ul>
     </div>

@@ -35,7 +35,7 @@ class DataMuridController extends Controller
                     ->orWhere('role', 'Terverifikasi');
             })
             ->get();
-        return view('ppdb::backend.dataMurid.index', compact('murid'));
+        return view('ppdb::backend.dataMurid.index', compact('murid','jenjang'));
     }
 
     /**
@@ -134,7 +134,7 @@ class DataMuridController extends Controller
                 $data = dataMurid::where('user_id', $id)->first();
                 // $data->nis      = $request->nis;
                 // $data->nisn     = $request->nisn;
-                $data->proses   = $murid->role;
+                $data->proses   = 'Lulus Administrasi';
                 $data->update();
 
                 // // create data payment
@@ -204,32 +204,30 @@ class DataMuridController extends Controller
         return back();
     }
 
+    // Update proses murid perbaikan
+    public function updatePerbaikan(Request $request)
+    {
+        try {
+            DB::beginTransaction();
+
+            $data = dataMurid::where('user_id', $request->id)->first();
+            $data->proses   = 'Perbaikan';
+            $data->update();
+
+            DB::commit();
+            Session::flash('success', 'Sukses, Murid diberi akses perbaikan data !');
+            return back();
+        } catch (ErrorException $e) {
+            DB::rollback();
+            throw new ErrorException($e->getMessage());
+        }
+    }
+
     // Update murid lulus
     public function updateLulus(Request $request)
     {
         try {
             DB::beginTransaction();
-            // $validator = Validator::make(
-            //     $request->all(),
-            //     [
-            //         'nis'   => 'required|numeric|unique:data_murids',
-            //         'nisn'  => 'required|numeric|unique:data_murids',
-            //     ],
-            //     [
-            //         'nis.required'      => 'NIS tidak boleh kosong.',
-            //         'nisn.required'     => 'NISN tidak boleh kosong.',
-            //         'nis.numeric'       => 'NIS hanya mendukung angka.',
-            //         'nis.unique'        => 'NIS sudah pernah digunakan.',
-            //         'nisn.numeric'      => 'NISN hanya mendukung angka.',
-            //         'nisn.unique'       => 'NISN sudah pernah digunakan.',
-            //     ]
-            // );
-
-            // if ($validator->fails()) {
-            //     return redirect()->back()
-            //         ->withErrors($validator)
-            //         ->withInput();
-            // }
 
             $murid = User::find($request->id);
             $murid->role = 'Lulus';
@@ -237,13 +235,9 @@ class DataMuridController extends Controller
 
             if ($murid) {
                 $data = dataMurid::where('user_id', $request->id)->first();
-                // $data->nis      = $request->nis;
-                // $data->nisn     = $request->nisn;
                 $data->proses   = 'Selesai';
                 $data->update();
 
-                // // create data payment
-                // $this->payment($murid->id);
             }
 
             DB::table('model_has_roles')->where('model_id', $request->id)->delete();
@@ -263,41 +257,15 @@ class DataMuridController extends Controller
         {
             try {
                 DB::beginTransaction();
-                // $validator = Validator::make(
-                //     $request->all(),
-                //     [
-                //         'nis'   => 'required|numeric|unique:data_murids',
-                //         'nisn'  => 'required|numeric|unique:data_murids',
-                //     ],
-                //     [
-                //         'nis.required'      => 'NIS tidak boleh kosong.',
-                //         'nisn.required'     => 'NISN tidak boleh kosong.',
-                //         'nis.numeric'       => 'NIS hanya mendukung angka.',
-                //         'nis.unique'        => 'NIS sudah pernah digunakan.',
-                //         'nisn.numeric'      => 'NISN hanya mendukung angka.',
-                //         'nisn.unique'       => 'NISN sudah pernah digunakan.',
-                //     ]
-                // );
-    
-                // if ($validator->fails()) {
-                //     return redirect()->back()
-                //         ->withErrors($validator)
-                //         ->withInput();
-                // }
-    
+
                 $murid = User::find($request->id);
                 $murid->role = 'Tidak Lulus';
                 $murid->update();
     
                 if ($murid) {
                     $data = dataMurid::where('user_id', $request->id)->first();
-                    // $data->nis      = $request->nis;
-                    // $data->nisn     = $request->nisn;
                     $data->proses   = 'Selesai';
                     $data->update();
-    
-                    // // create data payment
-                    // $this->payment($murid->id);
                 }
     
                 DB::table('model_has_roles')->where('model_id', $request->id)->delete();

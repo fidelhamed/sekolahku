@@ -23,7 +23,7 @@
     @endif
     <div class="content-body">
         <div class="row">
-           <div class="col-lg-6 col-md-12 col-sm-12">
+            <div class="col-lg-6 col-md-12 col-sm-12">
                 <div class="card card-congratulations">
                     <div class="card-body text-center">
                         <div class="avatar avatar-xl bg-primary shadow">
@@ -32,7 +32,7 @@
                             </div>
                         </div>
                         <div class="text-center">
-                            <h1 class="mb-1 text-white">Welcome {{Auth::user()->name}},</h1>
+                            <h1 class="mb-1 text-white">Selamat Datang {{Auth::user()->name}},</h1>
                             <p class="card-text m-auto w-75">
                                 Bismillahirrahmanirrahim
                             </p>
@@ -40,6 +40,7 @@
                     </div>
                 </div>
             </div>
+        
         @if (Auth::user()->role == 'Terverifikasi')
             <div class="col-lg-6 col-md-12 col-sm-12">
                 <div class="card card-congratulations">
@@ -208,6 +209,32 @@
                         </div>
                     </div>
                   </div>
+                </div>
+            </div>
+           @endif
+           @if (Auth::user()->role !== 'PPDB')
+            <div class="col-12">
+                <div class="card">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Noreg</th>
+                                <th>Nama</th>
+                                <th>Waktu Daftar</th>
+                                <th>Jenjang</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{ Auth::user()->id }}</td>
+                                <td>{{ Auth::user()->name }}</td>
+                                <td>{{ Auth::user()->created_at->format('d F Y') }}</td>
+                                <td>{{ Auth::user()->muridDetail->jenjang }}</td>
+                                <td>{{ Auth::user()->muridDetail->proses }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
            @endif

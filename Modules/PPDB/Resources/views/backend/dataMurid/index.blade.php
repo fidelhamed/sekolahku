@@ -38,7 +38,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header border-bottom">
-                                    <h4 class="card-title">Calon Murid</h4>
+                                    <h4 class="card-title">Calon Murid {{ $jenjang }}</h4>
                                 </div>
                                 <div class="card-datatable">
                                     <table class="dt-responsive table">
@@ -61,13 +61,14 @@
                                                     <td> {{$key+1}} </td>
                                                     <td> {{$murids->name}} </td>
                                                     <td> {{$murids->email}} </td>
-                                                    <td> {{$murids->muridDetail->proses == 'Terverifikasi' ? 'Lulus Admininstrasi' : 'Pendaftaran'}} </td>
+                                                    <td> {{$murids->muridDetail->proses}} </td>
                                                     <td> {{$murids->paymentRegis->status}} </td>
                                                     <td> {{$murids->role == 'Terverifikasi' ? 'Calon Murid' : 'Guest'}} </td>
                                                     <td>
                                                         <a href="{{route('data-murid.show', $murids->id)}}" class="btn btn-info btn-sm" >Detail</a>
                                                         <a href="{{asset('storage/images/payment_pendaftaran/' .$murids->paymentRegis->file)}}" class="btn btn btn-success btn-sm" target="_blank" style="display: {{$murids->paymentRegis->file == null || $murids->paymentRegis->approve_date != null ? 'none' : ''}}">Bukti Pembayaran</a>
                                                         <a data-id="{{$murids->paymentRegis->id}}" id="updatePayment" class="btn btn btn-primary btn-sm" style="display: {{$murids->paymentRegis->file == null || $murids->paymentRegis->approve_date != null ? 'none' : ''}}">konfirmasi Pembayaran</a>
+                                                        <a data-id="{{ $murids->id }}" id="updatePerbaikan" class="btn btn-danger btn-sm" style="display: {{ $murids->role !== 'Guest' || $murids->berkas == null || $murids->muridDetail->proses == 'Perbaikan' ? 'none' : ''}}">Perbaikan</a>
                                                         <a data-id="{{ $murids->id }}" id="updateLulus" class="btn btn-success btn-sm" style="display: {{ $murids->role !== 'Terverifikasi' ? 'none' : '' }}">Lulus</a>
                                                         <a data-id="{{ $murids->id }}" id="updateTidakLulus" class="btn btn-danger btn-sm" style="display: {{ $murids->role !== 'Terverifikasi' ? 'none' : '' }}">Tidak Lulus</a>
                                                     </td>
@@ -90,6 +91,12 @@
     $(document).on('click', '#updatePayment', function () {
         var id = $(this).attr('data-id');
         $.get('konfirm-payment-regis', {'_token' : $('meta[name=csrf-token]').attr('content'),id:id}, function(_resp){
+            location.reload()
+        });
+    });
+    $(document).on('click', '#updatePerbaikan', function () {
+        var id = $(this).attr('data-id');
+        $.get('update-murid-perbaikan', {'_token' : $('meta[name=csrf-token]').attr('content'),id:id}, function(_resp){
             location.reload()
         });
     });

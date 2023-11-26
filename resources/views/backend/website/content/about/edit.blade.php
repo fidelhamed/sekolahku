@@ -26,7 +26,7 @@
         <div class="content-header-left col-md-9 col-12 mb-2">
             <div class="row breadcrumbs-top">
                 <div class="col-12">
-                    <h2> About</h2>
+                    <h2>About</h2>
                 </div>
             </div>
         </div>
@@ -78,7 +78,7 @@
                                             <div class="col-12">
                                                 <div class="form-group">
                                                     <label for="basicInput">Title</label> <span class="text-danger">*</span>
-                                                   <input type="text" name="title" class="form-control @error('title') is-invalid @enderror" value=" {{$about->title}} ">
+                                                   <input type="text" name="title" class="form-control @error('title') is-invalid @enderror" value="{{$about->title}}">
                                                     @error('title')
                                                         <div class="invalid-feedback">
                                                         <strong>{{ $message }}</strong>
@@ -90,7 +90,7 @@
                                             <div class="col-12">
                                                 <div class="form-group">
                                                     <label for="basicInput">Description</label> <span class="text-danger">*</span>
-                                                    <textarea name="desc" class="form-control  @error('desc') is-invalid @enderror" rows="5"> {{$about->desc}} </textarea>
+                                                    <textarea name="desc" class="form-control  @error('desc') is-invalid @enderror" rows="5">{{$about->desc}}</textarea>
                                                     @error('desc')
                                                         <div class="invalid-feedback">
                                                         <strong>{{ $message }}</strong>

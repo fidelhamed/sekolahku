@@ -35,7 +35,7 @@ class KelulusanController extends Controller
                     ->orWhere('role', 'Tidak Lulus');
             })
             ->get();
-        return view('ppdb::backend.kelulusan.index', compact('murid'));
+        return view('ppdb::backend.kelulusan.index', compact('murid','jenjang'));
     }
 
     /**

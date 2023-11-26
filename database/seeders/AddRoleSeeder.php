@@ -16,11 +16,6 @@ class AddRoleSeeder extends Seeder
     {
         $role = [
             [
-                'name'          => 'Perpustakaan',
-                'guard_name'    => 'web'
-
-            ],
-            [
                 'name'          => 'PPDB',
                 'guard_name'    => 'web'
             ],

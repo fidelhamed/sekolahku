@@ -47,9 +47,6 @@
                             
                             <li><a href="#">PPDB</a>
                                 <ul>
-                                    <li><a href="#">Alur Pendaftaran</a></li>
-                                    <li><a href="#">Berkas</a></li>
-                                    <li><a href="#">Biaya</a></li>
                                     <li><a href="{{ url('ppdb/register') }}">Daftar</a></li>
                                 </ul>
                             </li>
@@ -81,7 +78,11 @@
                             </li>
 
                             <li class="{{ (request()->is('berita')) ? 'active' : '' }}"><a href=" {{route('berita')}} ">Berita</a></li>
-                            <li><a href="{{url('ppdb')}}" target="_blank">PPDB</a></li>
+                            <li><a href="#">PPDB</a>
+                                <ul>
+                                    <li><a href="{{ url('ppdb/register') }}">Daftar</a></li>
+                                </ul>
+                            </li>
 
                             <li>
                                 @auth

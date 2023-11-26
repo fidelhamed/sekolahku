@@ -20,12 +20,17 @@ class CreateDataOrangTuasTable extends Migration
             $table->enum('pendidikan_ayah',['SD','SMP','SMA/SMK','S1','S2','S3'])->nullable();
             $table->string('telp_ayah')->nullable();
             $table->enum('pekerjaan_ayah',['Wiraswasta','Wirausaha','ASN','Buruh'])->nullable();
+            $table->bigInteger('penghasilan_ayah')->nullable();
             $table->string('alamat_ayah')->nullable();
             $table->string('nama_ibu')->nullable();
             $table->enum('pendidikan_ibu',['SD','SMP','SMA/SMK','S1','S2','S3'])->nullable();
             $table->string('telp_ibu')->nullable();
             $table->enum('pekerjaan_ibu',['Ibu Rumah Tangga','Wiraswasta','Wirausaha','ASN','Buruh'])->nullable();
+            $table->bigInteger('penghasilan_ibu')->nullable();
             $table->string('alamat_ibu')->nullable();
+            $table->string('nama_wali')->nullable();
+            $table->string('telp_wali')->nullable();
+            $table->text('alamat_wali')->nullable();
             $table->timestamps();
         });
     }
