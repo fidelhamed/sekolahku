@@ -96,7 +96,7 @@ class HomeController extends Controller
               $register = dataMurid::whereNotIn('proses',['Murid','Ditolak'])->whereYear('created_at', Carbon::now())->count();
               $needConfirmPayment = dataPayment::whereNotNull(['sender','destination_bank','file'])->whereNull('approve_date')->count();
               $confirmedPayment = dataPayment::where('status','Paid')->count();
-              $needVerif = dataMurid::whereNotNull(['tempat_lahir','tgl_lahir','agama'])->whereNull('nisn')->where('proses', 'Input Data')->count();
+              $needVerif = dataMurid::whereNotNull(['tempat_lahir','tgl_lahir'])->whereNull('nisn')->where('proses', 'Input Data')->count();
               return view('ppdb::backend.index', compact('register','needConfirmPayment','confirmedPayment','needVerif'));
 
 

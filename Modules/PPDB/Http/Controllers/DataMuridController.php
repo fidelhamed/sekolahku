@@ -70,7 +70,7 @@ class DataMuridController extends Controller
                     ->orWhere('role', 'Terverifikasi');
             })
             ->find($id);
-        if (!$murid->muridDetail->agama || !$murid->dataOrtu->nama_ayah || !$murid->berkas->kartu_keluarga) {
+        if (!$murid->muridDetail->jenis_kelamin || !$murid->dataOrtu->nama_ayah || !$murid->berkas->kartu_keluarga) {
             Session::flash('error', 'Calon Siswa Belum Input Biodata Diri !');
             if ($murid->muridDetail->jenjang == 'SMP-IT') {
                 return redirect('/ppdb/data-murid?jenjang=SMP-IT');

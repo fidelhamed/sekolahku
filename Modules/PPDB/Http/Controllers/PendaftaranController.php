@@ -28,7 +28,7 @@ class PendaftaranController extends Controller
             return redirect('ppdb/payment-pendaftaran/' . $user->paymentRegis->id);
         }
         // Jika data murid sudah lengkap dan bukan proses perbaikan
-        if ($user->muridDetail->agama !== null AND $user->muridDetail->proses !== 'Perbaikan') {
+        if ($user->muridDetail->jenis_kelamin !== null AND $user->muridDetail->proses !== 'Perbaikan') {
             return redirect('ppdb/form-data-orangtua');
         }
         return view('ppdb::backend.pendaftaran.index', compact('user'));
@@ -46,13 +46,17 @@ class PendaftaranController extends Controller
 
             if ($user) {
                 $murid = dataMurid::where('user_id', $id)->first();
+                $murid->nama_panggilan  = $request->nama_panggilan;
+                $murid->jenis_kelamin   = $request->jenis_kelamin;
                 $murid->tempat_lahir    = $request->tempat_lahir;
                 $murid->tgl_lahir       = $request->tgl_lahir;
-                $murid->agama           = $request->agama;
+                $murid->anak_ke         = $request->anak_ke;
+                $murid->alamat          = $request->alamat;
                 $murid->telp            = $request->telp;
                 $murid->whatsapp        = $request->whatsapp;
-                $murid->alamat          = $request->alamat;
                 $murid->asal_sekolah    = $request->asal_sekolah;
+                $murid->alamat_sekolah  = $request->alamat_sekolah;
+                $murid->prestasi        = $request->prestasi;
                 $murid->update();
 
                 if ($murid) {          
@@ -103,6 +107,7 @@ class PendaftaranController extends Controller
             $ortu->nama_ayah        = $request->nama_ayah;
             $ortu->pekerjaan_ayah   = $request->pekerjaan_ayah;
             $ortu->pendidikan_ayah  = $request->pendidikan_ayah;
+            $ortu->penghasilan_ayah = $request->penghasilan_ayah;
             $ortu->telp_ayah        = $request->telp_ayah;
             $ortu->alamat_ayah      = $request->nama_ayah;
 
@@ -110,6 +115,7 @@ class PendaftaranController extends Controller
             $ortu->nama_ibu         = $request->nama_ibu;
             $ortu->pekerjaan_ibu    = $request->pekerjaan_ibu;
             $ortu->pendidikan_ibu   = $request->pendidikan_ibu;
+            $ortu->penghasilan_ibu = $request->penghasilan_ibu;
             $ortu->telp_ibu         = $request->telp_ibu;
             $ortu->alamat_ibu       = $request->nama_ibu;
             $ortu->update();
@@ -254,7 +260,7 @@ class PendaftaranController extends Controller
         $payment->file              = $payments;
         $payment->update();
 
-        Session::flash('success', 'Data pembayaran registrasi berhasil dikirim, tunggu proses verifikasi oleh admin  !');
+        Session::flash('success', 'Data pembayaran registrasi berhasil dikirim, tunggu proses konfirmasi oleh admin  !');
         return redirect('/home');
     }
 }

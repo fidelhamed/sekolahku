@@ -16,31 +16,38 @@ class DataMuridRequest extends FormRequest
         return [
             'name'          => 'required',
             'email'         => 'required|email',
+            'nama_panggilan'=> 'required',
+            'jenis_kelamin' => 'required',
             'tempat_lahir'  => 'required',
             'tgl_lahir'     => 'required',
-            'agama'         => 'required',
+            'anak_ke'       => 'required',
+            'alamat'        => 'required',
             'telp'          => 'required|numeric',
             'whatsapp'      => 'required|numeric',
-            'alamat'        => 'required',
-            'asal_sekolah'  => 'required'
+            'asal_sekolah'  => 'required',
+            'alamat_sekolah'=> 'required',
+            'prestasi'      => 'nullable'
         ];
     }
 
     public function messages()
     {
         return [
-            'name.required'          => 'Nama Lengkap tidak boleh kosong.',
-            'email.required'         => 'Email tidak boleh kosong.',
-            'email.email'       => 'Email yang digunakan tidak valid.',
-            'tempat_lahir.required'  => 'Tempat Lahir tidak boleh kosong.',
-            'tgl_lahir.required'     => 'Tanggal Lahir tidak boleh kosong.',
-            'agama.required'         => 'Agama tidak boleh kosong.',
-            'telp.required'          => 'No Telp tidak boleh kosong.',
-            'telp.numeric'           => 'No Telp hanya mendukung angka.',
-            'whatsapp.required'      => 'No WhatsApp tidak boleh kosong.',
-            'whatsapp.numeric'       => 'No WhatsApp hanya mendukung angka.',
-            'alamat.required'        => 'Alamat tidak boleh kosong.',
-            'asal_sekolah.required'  => 'Asal Sekolah tidak boleh kosong.'
+            'name.required'             => 'Nama Lengkap tidak boleh kosong.',
+            'email.required'            => 'Email tidak boleh kosong.',
+            'email.email'               => 'Email yang digunakan tidak valid.',
+            'nama_panggilan.required'   => 'Nama Panggilan tidak boleh kosong',
+            'jenis_kelamin.required'    => 'Jenis Kelamin tidak boleh kosong',
+            'tempat_lahir.required'     => 'Tempat Lahir tidak boleh kosong.',
+            'tgl_lahir.required'        => 'Tanggal Lahir tidak boleh kosong.',
+            'anak_ke.required'          => 'Anak ke- tidak boleh kosong',
+            'alamat.required'           => 'Alamat tidak boleh kosong.',
+            'telp.required'             => 'No Telp tidak boleh kosong.',
+            'telp.numeric'              => 'No Telp hanya mendukung angka.',
+            'whatsapp.required'         => 'No WhatsApp tidak boleh kosong.',
+            'whatsapp.numeric'          => 'No WhatsApp hanya mendukung angka.',
+            'asal_sekolah.required'     => 'Asal Sekolah tidak boleh kosong.',
+            'alamat_sekolah.required'     => 'Alamat Asal Sekolah tidak boleh kosong.'
         ];
     }
 

@@ -21,7 +21,7 @@ class MuridController extends Controller
      */
     public function index()
     {
-        $murid = User::whereIn('role',['Guest','Murid','Terverifikasi'])->get();
+        $murid = User::whereIn('role',['Guest','Murid','Terverifikasi','Lulus','Tidak Lulus'])->get();
         return view('backend.pengguna.murid.index', compact('murid'));
     }
 

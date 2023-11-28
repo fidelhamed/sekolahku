@@ -46,11 +46,12 @@
                                         @enderror
                                     </div>
                                 </div>
+
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <label for="basicInput">NIS</label>
-                                        <input type="text" class="form-control @error('nis') is-invalid @enderror" name="nis"value="{{$user->muridDetail->nis}}" disabled/>
-                                        @error('nis')
+                                        <label for="basicInput">Nama Panggilan</label>
+                                        <input type="text" class="form-control @error('nama_panggilan') is-invalid @enderror" name="nama_panggilan" value="{{$user->muridDetail->nama_panggilan}}"/>
+                                        @error('nama_panggilan')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
                                             </div>
@@ -60,9 +61,13 @@
 
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <label for="basicInput">NISN</label>
-                                        <input type="text" class="form-control @error('nisn') is-invalid @enderror" name="nisn" value="{{$user->muridDetail->nisn}}" disabled/>
-                                        @error('nisn')
+                                        <label for="basicInput">Jenis Kelamin</label>
+                                        <select name="jenis_kelamin" class="form-control @error('jenis_kelamin') is-invalid @enderror">
+                                            <option value="">-- Pilih --</option>
+                                            <option value="Laki-laki" {{$user->muridDetail->jenis_kelamin == 'Laki-laki' ? 'selected' : ''}}>Laki-laki</option>
+                                            <option value="Perempuan" {{$user->muridDetail->jenis_kelamin == 'Perempuan' ? 'selected' : ''}}>Perempuan</option>
+                                           </select>
+                                        @error('jenis_kelamin')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
                                             </div>
@@ -96,6 +101,30 @@
 
                                 <div class="col-6">
                                     <div class="form-group">
+                                        <label for="basicInput">Anak Ke-</label>
+                                        <input type="number" class="form-control @error('anak_ke') is-invalid @enderror" name="anak_ke" value="{{$user->muridDetail->anak_ke}}"/>
+                                        @error('anak_ke')
+                                            <div class="invalid-feedback">
+                                            <strong>{{ $message }}</strong>
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="basicInput">Alamat Lengkap</label>
+                                        <textarea name="alamat" class="form-control @error('alamat') is-invalid @enderror" cols="30" rows="3">{{$user->muridDetail->alamat}}</textarea>
+                                        @error('alamat')
+                                            <div class="invalid-feedback">
+                                            <strong>{{ $message }}</strong>
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="form-group">
                                         <label for="basicInput">No Telp</label>
                                         <input type="number" class="form-control @error('telp') is-invalid @enderror" name="telp" value="{{$user->muridDetail->telp}}"/>
                                         @error('telp')
@@ -120,26 +149,6 @@
 
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <label for="basicInput">Agama</label>
-                                        <select name="agama" class="form-control @error('agama') is-invalid @enderror">
-                                            <option value="">-- Pilih --</option>
-                                            <option value="Islam" {{$user->muridDetail->agama == 'Islam' ? 'selected' : ''}}>Islam</option>
-                                            <option value="Kristen Katolik" {{$user->muridDetail->agama == 'Kristen Katolik' ? 'selected' : ''}}>Kristen Katolik</option>
-                                            <option value="Kristen Protestan" {{$user->muridDetail->agama == 'Kristen Protestan' ? 'selected' : ''}}>Kristen Protestan</option>
-                                            <option value="Hindu" {{$user->muridDetail->agama == 'Hindu' ? 'selected' : ''}}>Hindu</option>
-                                            <option value="Budha" {{$user->muridDetail->agama == 'Budha' ? 'selected' : ''}}>Budha</option>
-                                            <option value="Konghucu" {{$user->muridDetail->agama == 'Konghucu' ? 'selected' : ''}}>Konghucu</option>
-                                        </select>
-                                        @error('agama')
-                                            <div class="invalid-feedback">
-                                            <strong>{{ $message }}</strong>
-                                            </div>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                                <div class="col-6">
-                                    <div class="form-group">
                                         <label for="basicInput">Asal Sekolah</label>
                                         <input type="text" class="form-control @error('asal_sekolah') is-invalid @enderror" name="asal_sekolah" value="{{$user->muridDetail->asal_sekolah}}"/>
                                         @error('asal_sekolah')
@@ -150,17 +159,30 @@
                                     </div>
                                 </div>
 
-                                <div class="col-12">
+                                <div class="col-6">
                                     <div class="form-group">
-                                        <label for="basicInput">Alamat Lengkap</label>
-                                        <textarea name="alamat" class="form-control @error('alamat') is-invalid @enderror" cols="30" rows="3">{{$user->muridDetail->alamat}}</textarea>
-                                        @error('alamat')
+                                        <label for="basicInput">Alamat Asal Sekolah</label>
+                                        <input type="text" class="form-control @error('alamat_sekolah') is-invalid @enderror" name="alamat_sekolah" value="{{$user->muridDetail->alamat_sekolah}}"/>
+                                        @error('alamat_sekolah')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
                                             </div>
                                         @enderror
                                     </div>
                                 </div>
+
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="basicInput">Prestasi Pernah Diraih</label>
+                                        <textarea name="prestasi" class="form-control @error('prestasi') is-invalid @enderror" cols="30" rows="3">{{$user->muridDetail->prestasi}}</textarea>
+                                        @error('prestasi')
+                                            <div class="invalid-feedback">
+                                            <strong>{{ $message }}</strong>
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+
                             </div>
                             <button class="btn btn-primary" type="submit">Simpan</button>
                             <a href="/home" class="btn btn-warning">Batal</a>

@@ -222,6 +222,7 @@
                                 <th>Nama</th>
                                 <th>Waktu Daftar</th>
                                 <th>Jenjang</th>
+                                <th>Pembayaran</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
@@ -231,6 +232,7 @@
                                 <td>{{ Auth::user()->name }}</td>
                                 <td>{{ Auth::user()->created_at->format('d F Y') }}</td>
                                 <td>{{ Auth::user()->muridDetail->jenjang }}</td>
+                                <td>{{ Auth::user()->paymentRegis->status == 'Paid' ? 'Berhasil' : 'Pending' }}</td>
                                 <td>{{ Auth::user()->muridDetail->proses }}</td>
                             </tr>
                         </tbody>

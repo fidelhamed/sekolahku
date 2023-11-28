@@ -41,7 +41,7 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="basicInput">No Telp Ayah</label>
-                                        <input type="number" class="form-control @error('telp_ayah') is-invalid @enderror" name="telp_ayah" value="{{ $ortu->telp_ayah }}" placeholder="telp Ayah" />
+                                        <input type="number" class="form-control @error('telp_ayah') is-invalid @enderror" name="telp_ayah" value="{{ $ortu->telp_ayah }}" placeholder="Nomor Telepon Ayah" />
                                         @error('telp_ayah')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
@@ -78,7 +78,18 @@
                                             <option value="ASN" {{$ortu->pekerjaan_ayah == 'ASN' ? 'selected' : ''}}>ASN</option>
                                             <option value="Buruh" {{$ortu->pekerjaan_ayah == 'Buruh' ? 'selected' : ''}}>Buruh</option>
                                         </select>
-                                        @error('pendidiakn_ayah')
+                                        @error('pendidikan_ayah')
+                                            <div class="invalid-feedback">
+                                            <strong>{{ $message }}</strong>
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="basicInput">Penghasilan Ayah</label>
+                                        <input type="number" class="form-control @error('penghasilan_ayah') is-invalid @enderror" name="penghasilan_ayah" value="{{ $ortu->penghasilan_ayah }}" placeholder="0" />
+                                        @error('penghasilan_ayah')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
                                             </div>
@@ -115,7 +126,7 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="basicInput">No Telp Ibu</label>
-                                        <input type="number" class="form-control @error('telp_ibu') is-invalid @enderror" name="telp_ibu" value="{{ $ortu->telp_ibu }}" placeholder="telp Ibu" />
+                                        <input type="number" class="form-control @error('telp_ibu') is-invalid @enderror" name="telp_ibu" value="{{ $ortu->telp_ibu }}" placeholder="Nomor Telepon Ibu" />
                                         @error('telp_ibu')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
@@ -160,6 +171,17 @@
                                         @enderror
                                     </div>
                                 </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="basicInput">Penghasilan Ibu</label>
+                                        <input type="number" class="form-control @error('penghasilan_ibu') is-invalid @enderror" name="penghasilan_ibu" value="{{ $ortu->penghasilan_ibu }}" placeholder="0" />
+                                        @error('penghasilan_ibu')
+                                            <div class="invalid-feedback">
+                                            <strong>{{ $message }}</strong>
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label for="basicInput">Alamat Lengkap</label>
@@ -172,6 +194,45 @@
                                     </div>
                                 </div>
                             </div>
+
+                            {{-- Data Wali Opsional --}}
+                            <h4>Data Wali</h4> <br>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="basicInput">Nama Wali</label>
+                                        <input type="text" class="form-control @error('nama_wali') is-invalid @enderror" name="nama_wali" value="{{ $ortu->nama_wali }}" placeholder="Nama Wali" />
+                                        @error('nama_wali')
+                                            <div class="invalid-feedback">
+                                            <strong>{{ $message }}</strong>
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="basicInput">No Telp Wali</label>
+                                        <input type="number" class="form-control @error('telp_wali') is-invalid @enderror" name="telp_wali" value="{{ $ortu->telp_wali }}" placeholder="Nomor Telepon Wali" />
+                                        @error('telp_wali')
+                                            <div class="invalid-feedback">
+                                            <strong>{{ $message }}</strong>
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="basicInput">Alamat Lengkap Wali</label>
+                                        <textarea name="alamat_wali" class="form-control @error('alamat_wali') is-invalid @enderror" cols="30" rows="3">{{ $ortu->alamat_wali }}</textarea>
+                                        @error('alamat_wali')
+                                            <div class="invalid-feedback">
+                                            <strong>{{ $message }}</strong>
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+
                             <button class="btn btn-primary" type="submit">Simpan</button>
                             <a href="/home" class="btn btn-warning">Batal</a>
                         </form>

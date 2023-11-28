@@ -70,14 +70,14 @@ class KelulusanController extends Controller
                     ->orWhere('role', 'Tidak Lulus');
             })
             ->find($id);
-        if (!$murid->muridDetail->agama || !$murid->dataOrtu->nama_ayah || !$murid->berkas->kartu_keluarga) {
+        if (!$murid->muridDetail->jenis_kelamin || !$murid->dataOrtu->nama_ayah || !$murid->berkas->kartu_keluarga) {
             Session::flash('error', 'Calon Siswa Belum Input Biodata Diri !');
             if ($murid->muridDetail->jenjang == 'SMP-IT') {
-                return redirect('/ppdb/data-murid?jenjang=SMP-IT');
+                return redirect('/ppdb/data-kelulusan?jenjang=SMP-IT');
             } elseif ($murid->muridDetail->jenjang == 'SMA-IT') {
-                return redirect('/ppdb/data-murid?jenjang=SMA-IT');
+                return redirect('/ppdb/data-kelulusan?jenjang=SMA-IT');
             } elseif ($murid->muridDetail->jenjang == 'MAN-IT') {
-                return redirect('/ppdb/data-murid?jenjang=MAN-IT');
+                return redirect('/ppdb/data-kelulusan?jenjang=MAN-IT');
             }
         }
         return view('ppdb::backend.kelulusan.show', compact('murid'));
