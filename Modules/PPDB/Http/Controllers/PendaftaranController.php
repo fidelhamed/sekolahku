@@ -54,6 +54,7 @@ class PendaftaranController extends Controller
                 $murid->alamat          = $request->alamat;
                 $murid->telp            = $request->telp;
                 $murid->whatsapp        = $request->whatsapp;
+                $murid->sakit           = $request->sakit;
                 $murid->asal_sekolah    = $request->asal_sekolah;
                 $murid->alamat_sekolah  = $request->alamat_sekolah;
                 $murid->prestasi        = $request->prestasi;
@@ -115,9 +116,14 @@ class PendaftaranController extends Controller
             $ortu->nama_ibu         = $request->nama_ibu;
             $ortu->pekerjaan_ibu    = $request->pekerjaan_ibu;
             $ortu->pendidikan_ibu   = $request->pendidikan_ibu;
-            $ortu->penghasilan_ibu = $request->penghasilan_ibu;
+            $ortu->penghasilan_ibu  = $request->penghasilan_ibu;
             $ortu->telp_ibu         = $request->telp_ibu;
             $ortu->alamat_ibu       = $request->nama_ibu;
+
+            // Data Wali
+            $ortu->nama_wali        = $request->nama_wali;
+            $ortu->telp_wali        = $request->telp_wali;
+            $ortu->alamat_wali      = $request->alamat_wali;
             $ortu->update();
 
             if ($ortu) {
@@ -168,23 +174,23 @@ class PendaftaranController extends Controller
             $tujuan_upload = 'public/images/berkas_murid';
             $imageakte->storeAs($tujuan_upload, $akteKelahiran);
 
-            $imageskbaik = $request->file('surat_kelakuan_baik');
-            $suratbaik = time() . "_" . $imageskbaik->getClientOriginalName();
-            // isi dengan nama folder tempat kemana file diupload
-            $tujuan_upload = 'public/images/berkas_murid';
-            $imageskbaik->storeAs($tujuan_upload, $suratbaik);
+            // $imageskbaik = $request->file('surat_kelakuan_baik');
+            // $suratbaik = time() . "_" . $imageskbaik->getClientOriginalName();
+            // // isi dengan nama folder tempat kemana file diupload
+            // $tujuan_upload = 'public/images/berkas_murid';
+            // $imageskbaik->storeAs($tujuan_upload, $suratbaik);
 
-            $imagesehat = $request->file('surat_sehat');
-            $suratsehat = time() . "_" . $imagesehat->getClientOriginalName();
-            // isi dengan nama folder tempat kemana file diupload
-            $tujuan_upload = 'public/images/berkas_murid';
-            $imagesehat->storeAs($tujuan_upload, $suratsehat);
+            // $imagesehat = $request->file('surat_sehat');
+            // $suratsehat = time() . "_" . $imagesehat->getClientOriginalName();
+            // // isi dengan nama folder tempat kemana file diupload
+            // $tujuan_upload = 'public/images/berkas_murid';
+            // $imagesehat->storeAs($tujuan_upload, $suratsehat);
 
-            $imagemata = $request->file('surat_tidak_buta_warna');
-            $surattidakbutawarna = time() . "_" . $imagemata->getClientOriginalName();
-            // isi dengan nama folder tempat kemana file diupload
-            $tujuan_upload = 'public/images/berkas_murid';
-            $imagemata->storeAs($tujuan_upload, $surattidakbutawarna);
+            // $imagemata = $request->file('surat_tidak_buta_warna');
+            // $surattidakbutawarna = time() . "_" . $imagemata->getClientOriginalName();
+            // // isi dengan nama folder tempat kemana file diupload
+            // $tujuan_upload = 'public/images/berkas_murid';
+            // $imagemata->storeAs($tujuan_upload, $surattidakbutawarna);
 
             $imagerapor = $request->file('rapor');
             $rapor = time() . "_" . $imagerapor->getClientOriginalName();
@@ -209,9 +215,9 @@ class PendaftaranController extends Controller
             $berkas = BerkasMurid::find($id);
             $berkas->kartu_keluarga         = $kartuKeluarga;
             $berkas->akte_kelahiran         = $akteKelahiran;
-            $berkas->surat_kelakuan_baik    = $suratbaik;
-            $berkas->surat_sehat            = $suratsehat;
-            $berkas->surat_tidak_buta_warna = $surattidakbutawarna;
+            // $berkas->surat_kelakuan_baik    = $suratbaik;
+            // $berkas->surat_sehat            = $suratsehat;
+            // $berkas->surat_tidak_buta_warna = $surattidakbutawarna;
             $berkas->rapor                  = $rapor;
             $berkas->foto                   = $foto;
             $berkas->ijazah                 = $ijazah ?? null;

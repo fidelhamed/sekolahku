@@ -10,7 +10,7 @@
         <div class="content-header-left col-md-9 col-12 mb-2">
             <div class="row breadcrumbs-top">
                 <div class="col-12">
-                    <h2>Form Pendaftaran PPDB SMK Yadika Natar</h2>
+                    <h2>Form Pendaftaran PPDB IBS Ash-Shiddiiqi Jambi</h2>
                 </div>
             </div>
         </div>
@@ -51,7 +51,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-6">
+                                {{-- <div class="col-6">
                                     <div class="form-group">
                                         <label for="basicInput">Surat Kelakuan Baik</label>
                                         <input type="file" class="form-control @error('surat_kelakuan_baik') is-invalid @enderror" name="surat_kelakuan_baik"/>
@@ -88,13 +88,13 @@
                                             </div>
                                         @enderror
                                     </div>
-                                </div>
+                                </div> --}}
 
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="basicInput">Rapor</label>
                                         <input type="file" class="form-control @error('rapor') is-invalid @enderror" name="rapor"/>
-                                        <small class="text-danger">Rapor Semester 1-4, harap satukan pada 1 file .pdf.</small>
+                                        <small class="text-danger">Rapor Semester Akhir, harap satukan pada 1 file .pdf jika lebih dari 1 lembar</small>
                                         @error('rapor')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>

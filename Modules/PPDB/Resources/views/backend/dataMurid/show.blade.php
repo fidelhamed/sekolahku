@@ -174,6 +174,18 @@
                                     </div>
                                 </div>
 
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="basicInput">Sakit Pernah Diderita</label>
+                                        <textarea name="sakit" class="form-control @error('sakit') is-invalid @enderror" cols="30" rows="3" disabled>{{$murid->muridDetail->sakit}}</textarea>
+                                        @error('sakit')
+                                            <div class="invalid-feedback">
+                                            <strong>{{ $message }}</strong>
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="basicInput">Asal Sekolah</label>
@@ -387,7 +399,7 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="basicInput">Nama Wali</label>
-                                        <input type="text" class="form-control @error('nama_wali') is-invalid @enderror" name="nama_wali" value="{{ $murid->muridDetail->nama_wali }}" disabled/>
+                                        <input type="text" class="form-control @error('nama_wali') is-invalid @enderror" name="nama_wali" value="{{ $murid->dataOrtu->nama_wali }}" disabled/>
                                         @error('nama_wali')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
@@ -398,7 +410,7 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="basicInput">No Telp Wali</label>
-                                        <input type="number" class="form-control @error('telp_wali') is-invalid @enderror" name="telp_wali" value="{{ $murid->muridDetail->telp_wali }}" disabled/>
+                                        <input type="number" class="form-control @error('telp_wali') is-invalid @enderror" name="telp_wali" value="{{ $murid->dataOrtu->telp_wali }}" disabled/>
                                         @error('telp_wali')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
@@ -409,7 +421,7 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label for="basicInput">Alamat Lengkap Wali</label>
-                                        <textarea name="alamat_wali" class="form-control @error('alamat_wali') is-invalid @enderror" cols="30" rows="3" disabled>{{ $murid->muridDetail->alamat_wali }}</textarea>
+                                        <textarea name="alamat_wali" class="form-control @error('alamat_wali') is-invalid @enderror" cols="30" rows="3" disabled>{{ $murid->dataOrtu->alamat_wali }}</textarea>
                                         @error('alamat_wali')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
@@ -425,15 +437,18 @@
                                     <ul>
                                       <li>Kartu Keluarga
                                         <a href="{{asset('storage/images/berkas_murid/' .$murid->berkas->kartu_keluarga)}}" target="_blank" class="badge badge-info {{$murid->berkas->kartu_keluarga == NULL ? 'hidden' : ''}}">view</a>
-                                      </li>
-                                      <li>Surat Kelakuan Baik
+                                      </li>                                      
+                                      {{-- <li>Surat Kelakuan Baik
                                         <a href="{{asset('storage/images/berkas_murid/' .$murid->berkas->surat_kelakuan_baik)}}" target="_blank" class="badge badge-info {{$murid->berkas->surat_kelakuan_baik == NULL ? 'hidden' : ''}} ">view</a>
                                       </li>
                                       <li>Surat Tidak Buta Warna
                                         <a href="{{asset('storage/images/berkas_murid/' .$murid->berkas->surat_tidak_buta_warna)}}" target="_blank" class="badge badge-info {{$murid->berkas->surat_tidak_buta_warna == NULL ? 'hidden' : ''}} ">view</a>
-                                      </li>
+                                      </li> --}}
                                       <li>ijazah
                                         <a href="{{asset('storage/images/berkas_murid/' .$murid->berkas->ijazah)}}" target="_blank" class="badge badge-info {{$murid->berkas->ijazah == NULL ? 'hidden' : ''}} ">view</a>
+                                      </li>
+                                      <li>Pas Foto
+                                        <a href="{{asset('storage/images/berkas_murid/' .$murid->berkas->foto)}}" target="_blank" class="badge badge-info {{$murid->berkas->foto == NULL ? 'hidden' : ''}}">view</a>
                                       </li>
                                     </ul>
                                 </div>
@@ -442,9 +457,9 @@
                                     <li>Akte Kelahiran
                                       <a href="{{asset('storage/images/berkas_murid/' .$murid->berkas->akte_kelahiran)}}" target="_blank" class="badge badge-info {{$murid->berkas->akte_kelahiran == NULL ? 'hidden' : ''}} ">view</a>
                                     </li>
-                                    <li>Surat Sehat
+                                    {{-- <li>Surat Sehat
                                       <a href="{{asset('storage/images/berkas_murid/' .$murid->berkas->surat_sehat)}}" target="_blank" class="badge badge-info {{$murid->berkas->surat_sehat == NULL ? 'hidden' : ''}} ">view</a>
-                                    </li>
+                                    </li> --}}
                                     <li>Rapor
                                       <a href="{{asset('storage/images/berkas_murid/' .$murid->berkas->rapor)}}" target="_blank" class="badge badge-info {{$murid->berkas->rapor == NULL ? 'hidden' : ''}} ">view</a>
                                     </li>

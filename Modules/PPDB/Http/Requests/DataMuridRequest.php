@@ -24,6 +24,7 @@ class DataMuridRequest extends FormRequest
             'alamat'        => 'required',
             'telp'          => 'required|numeric',
             'whatsapp'      => 'required|numeric',
+            'sakit'         => 'nullable',
             'asal_sekolah'  => 'required',
             'alamat_sekolah'=> 'required',
             'prestasi'      => 'nullable'

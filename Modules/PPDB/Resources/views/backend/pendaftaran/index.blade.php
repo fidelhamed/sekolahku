@@ -147,6 +147,18 @@
                                     </div>
                                 </div>
 
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="basicInput">Sakit Pernah Diderita</label>
+                                        <textarea name="sakit" class="form-control @error('sakit') is-invalid @enderror" cols="30" rows="3">{{$user->muridDetail->sakit}}</textarea>
+                                        @error('sakit')
+                                            <div class="invalid-feedback">
+                                            <strong>{{ $message }}</strong>
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="basicInput">Asal Sekolah</label>

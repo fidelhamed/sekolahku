@@ -24,6 +24,7 @@ class CreateDataMuridsTable extends Migration
             $table->date('tgl_lahir')->nullable();
             $table->string('anak_ke')->nullable();
             $table->text('alamat')->nullable();
+            $table->text('sakit')->nullable();
             $table->string('telp')->nullable();
             $table->string('whatsapp')->nullable();
             $table->string('asal_sekolah')->nullable();

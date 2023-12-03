@@ -1,7 +1,7 @@
 @extends('layouts.backend.app')
 
 @section('title')
-    Dashboard
+    PPDB Online
 @endsection
 
 @section('content')
@@ -19,7 +19,7 @@
                             </div>
                         </div>
                         <div class="text-center">
-                            <h1 class="mb-1 text-white">Welcome {{Auth::user()->name}},</h1>
+                            <h1 class="mb-1 text-white">Selamat Datang {{Auth::user()->name}},</h1>
                             <p class="card-text m-auto w-75">
                                 Bismillahirrahmanirrahim
                             </p>
