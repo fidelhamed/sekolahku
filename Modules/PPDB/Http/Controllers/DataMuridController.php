@@ -76,8 +76,8 @@ class DataMuridController extends Controller
                 return redirect('/ppdb/data-murid?jenjang=SMP-IT');
             } elseif ($murid->muridDetail->jenjang == 'SMA-IT') {
                 return redirect('/ppdb/data-murid?jenjang=SMA-IT');
-            } elseif ($murid->muridDetail->jenjang == 'MAN-IT') {
-                return redirect('/ppdb/data-murid?jenjang=MAN-IT');
+            } elseif ($murid->muridDetail->jenjang == 'MA') {
+                return redirect('/ppdb/data-murid?jenjang=MA');
             }
         }
         return view('ppdb::backend.dataMurid.show', compact('murid'));
@@ -104,27 +104,6 @@ class DataMuridController extends Controller
     {
         try {
             DB::beginTransaction();
-            // $validator = Validator::make(
-            //     $request->all(),
-            //     [
-            //         'nis'   => 'required|numeric|unique:data_murids',
-            //         'nisn'  => 'required|numeric|unique:data_murids',
-            //     ],
-            //     [
-            //         'nis.required'      => 'NIS tidak boleh kosong.',
-            //         'nisn.required'     => 'NISN tidak boleh kosong.',
-            //         'nis.numeric'       => 'NIS hanya mendukung angka.',
-            //         'nis.unique'        => 'NIS sudah pernah digunakan.',
-            //         'nisn.numeric'      => 'NISN hanya mendukung angka.',
-            //         'nisn.unique'       => 'NISN sudah pernah digunakan.',
-            //     ]
-            // );
-
-            // if ($validator->fails()) {
-            //     return redirect()->back()
-            //         ->withErrors($validator)
-            //         ->withInput();
-            // }
 
             $murid = User::find($id);
             $murid->role = 'Terverifikasi';
@@ -132,13 +111,8 @@ class DataMuridController extends Controller
 
             if ($murid) {
                 $data = dataMurid::where('user_id', $id)->first();
-                // $data->nis      = $request->nis;
-                // $data->nisn     = $request->nisn;
                 $data->proses   = 'Lulus Administrasi';
                 $data->update();
-
-                // // create data payment
-                // $this->payment($murid->id);
             }
 
             DB::table('model_has_roles')->where('model_id', $id)->delete();
@@ -161,35 +135,6 @@ class DataMuridController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    // Create Data Payment
-    public function payment($murid)
-    {
-        try {
-            DB::beginTransaction();
-            $payment = PaymentSpp::create([
-                'user_id'   => $murid,
-                'year'      => date('Y'),
-                'is_active' =>  1
-            ]);
-
-            if ($payment) {
-                $generate = rand(10, 100);
-                DetailPaymentSpp::create([
-                    'payment_id'  => $payment->id,
-                    'user_id'     => $murid,
-                    'month'       => date('F'),
-                    'amount'      => 300 . $murid . $generate,
-                    'status'      => 'unpaid',
-                    'file'        => null,
-                ]);
-            }
-            DB::commit();
-        } catch (\ErrorException $e) {
-            DB::rollBack();
-            throw new ErrorException($e->getMessage());
-        }
     }
 
     // Konfirm Payment Regis Page

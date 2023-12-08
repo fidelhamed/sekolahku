@@ -136,7 +136,7 @@
                                             <option>-- Pilih --</option>
                                             <option value="SMP-IT">SMP-IT</option>
                                             <option value="SMA-IT">SMA-IT</option>
-                                            <option value="MAN-IT">MAN-IT</option>
+                                            <option value="MA">MA</option>
                                         </select>
                                         @error('jenjang')
                                             <span class="invalid-feedback" role="alert">

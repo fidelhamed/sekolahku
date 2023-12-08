@@ -93,11 +93,15 @@ class HomeController extends Controller
             // DASHBOARD PPDB & PENDAFTAR \\
             elseif($role == 'Guest' || $role == 'PPDB' || $role == 'Terverifikasi' || $role == 'Lulus' || $role == 'Tidak Lulus') {
 
-              $register = dataMurid::whereNotIn('proses',['Murid','Ditolak'])->whereYear('created_at', Carbon::now())->count();
+              $register = dataMurid::whereYear('created_at', Carbon::now())->count();
               $needConfirmPayment = dataPayment::whereNotNull(['sender','destination_bank','file'])->whereNull('approve_date')->count();
               $confirmedPayment = dataPayment::where('status','Paid')->count();
               $needVerif = dataMurid::whereNotNull(['tempat_lahir','tgl_lahir'])->whereNull('nisn')->where('proses', 'Input Data')->count();
-              return view('ppdb::backend.index', compact('register','needConfirmPayment','confirmedPayment','needVerif'));
+              $registerSMPIT = dataMurid::whereYear('created_at', Carbon::now())->where('jenjang', 'SMP-IT')->count();
+              $needConfirmPaymentSMPIT = dataPayment::whereNotNull(['sender','destination_bank','file'])->whereNull('approve_date')->where('jenjang', 'SMP-IT')->count();
+              $confirmedPaymentSMPIT = dataPayment::where('status','Paid')->where('jenjang', 'SMP-IT')->count();
+              $needVerifSMPIT = dataMurid::whereNotNull(['tempat_lahir','tgl_lahir'])->whereNull('nisn')->where('proses', 'Input Data')->where('jenjang', 'SMP-IT')->count();
+              return view('ppdb::backend.index', compact('register','needConfirmPayment','confirmedPayment','needVerif','registerSMPIT','needConfirmPaymentSMPIT','confirmedPaymentSMPIT','needVerifSMPIT'));
 
 
             }

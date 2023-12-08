@@ -14,7 +14,7 @@ class AddFieldJenjangInDataMuridTable extends Migration
     public function up()
     {
         Schema::table('data_murids', function (Blueprint $table) {
-            $table->enum('jenjang', ['SMP-IT', 'SMA-IT', 'MAN-IT'])->after('nisn');
+            $table->enum('jenjang', ['SMP-IT', 'SMA-IT', 'MA'])->after('nisn');
         });
     }
 

@@ -174,24 +174,6 @@ class PendaftaranController extends Controller
             $tujuan_upload = 'public/images/berkas_murid';
             $imageakte->storeAs($tujuan_upload, $akteKelahiran);
 
-            // $imageskbaik = $request->file('surat_kelakuan_baik');
-            // $suratbaik = time() . "_" . $imageskbaik->getClientOriginalName();
-            // // isi dengan nama folder tempat kemana file diupload
-            // $tujuan_upload = 'public/images/berkas_murid';
-            // $imageskbaik->storeAs($tujuan_upload, $suratbaik);
-
-            // $imagesehat = $request->file('surat_sehat');
-            // $suratsehat = time() . "_" . $imagesehat->getClientOriginalName();
-            // // isi dengan nama folder tempat kemana file diupload
-            // $tujuan_upload = 'public/images/berkas_murid';
-            // $imagesehat->storeAs($tujuan_upload, $suratsehat);
-
-            // $imagemata = $request->file('surat_tidak_buta_warna');
-            // $surattidakbutawarna = time() . "_" . $imagemata->getClientOriginalName();
-            // // isi dengan nama folder tempat kemana file diupload
-            // $tujuan_upload = 'public/images/berkas_murid';
-            // $imagemata->storeAs($tujuan_upload, $surattidakbutawarna);
-
             $imagerapor = $request->file('rapor');
             $rapor = time() . "_" . $imagerapor->getClientOriginalName();
             // isi dengan nama folder tempat kemana file diupload
@@ -215,9 +197,6 @@ class PendaftaranController extends Controller
             $berkas = BerkasMurid::find($id);
             $berkas->kartu_keluarga         = $kartuKeluarga;
             $berkas->akte_kelahiran         = $akteKelahiran;
-            // $berkas->surat_kelakuan_baik    = $suratbaik;
-            // $berkas->surat_sehat            = $suratsehat;
-            // $berkas->surat_tidak_buta_warna = $surattidakbutawarna;
             $berkas->rapor                  = $rapor;
             $berkas->foto                   = $foto;
             $berkas->ijazah                 = $ijazah ?? null;
@@ -232,9 +211,6 @@ class PendaftaranController extends Controller
                 Session::flash('success', 'Sukses, Data Berhasil dikirim !');
                 return redirect('/home');
             }
-            // DB::commit();
-            // Session::flash('success', 'Sukses, Data Berhasil dikirim !');
-            // return redirect('/home');
         } catch (ErrorException $e) {
             DB::rollback();
             throw new ErrorException($e->getMessage());

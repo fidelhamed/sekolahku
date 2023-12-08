@@ -138,9 +138,9 @@
                             <span class="menu-item text-truncate" data-i18n="Basic">SMA-IT</span>
                         </a>
                     </li>
-                    <li class="nav-item {{ (request()->is('ppdb/data-murid?jenjang=MAN-IT')) ? 'active' : '' }}">
-                        <a class="d-flex align-items-center" href=" {{url('ppdb/data-murid?jenjang=MAN-IT')}} "><i data-feather="circle"></i>
-                            <span class="menu-item text-truncate" data-i18n="Basic">MAN-IT</span>
+                    <li class="nav-item {{ (request()->is('ppdb/data-murid?jenjang=MA')) ? 'active' : '' }}">
+                        <a class="d-flex align-items-center" href=" {{url('ppdb/data-murid?jenjang=MA')}} "><i data-feather="circle"></i>
+                            <span class="menu-item text-truncate" data-i18n="Basic">MA</span>
                         </a>
                     </li>
                 </ul>
@@ -160,9 +160,9 @@
                             <span class="menu-item text-truncate" data-i18n="Basic">SMA-IT</span>
                         </a>
                     </li>
-                    <li class="nav-item {{ (request()->is('ppdb/data-kelulusan?jenjang=MAN-IT')) ? 'active' : '' }}">
-                        <a class="d-flex align-items-center" href=" {{url('ppdb/data-kelulusan?jenjang=MAN-IT')}} "><i data-feather="circle"></i>
-                            <span class="menu-item text-truncate" data-i18n="Basic">MAN-IT</span>
+                    <li class="nav-item {{ (request()->is('ppdb/data-kelulusan?jenjang=MA')) ? 'active' : '' }}">
+                        <a class="d-flex align-items-center" href=" {{url('ppdb/data-kelulusan?jenjang=MA')}} "><i data-feather="circle"></i>
+                            <span class="menu-item text-truncate" data-i18n="Basic">MA</span>
                         </a>
                     </li>
                 </ul>
