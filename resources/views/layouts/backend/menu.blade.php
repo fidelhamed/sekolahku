@@ -115,7 +115,7 @@
 
             {{-- MENU GUEST --}}
             @elseif(Auth::user()->role == 'Guest')
-            <li class="nav-item {{ (request()->is('ppdb/form-pendaftaran')) ? 'active' : '' }}">
+            <li class="nav-item {{ (request()->is('ppdb/payment-pendaftaran/'. Auth::user()->paymentRegis->id,'ppdb/form-pendaftaran','ppdb/form-data-orangtua','ppdb/form-berkas')) ? 'active' : '' }}">
                 <a class="d-flex align-items-center" href="{{route('ppdb.form-pendaftaran')}}"><i data-feather="book"></i>
                     <span class="menu-title text-truncate" data-i18n="Pendaftaran">Pendaftaran</span>
                 </a>

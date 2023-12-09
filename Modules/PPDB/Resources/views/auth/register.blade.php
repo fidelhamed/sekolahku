@@ -90,13 +90,13 @@
                                         </div>
                                     </div>
                                 @endif
-                                <h2 class="card-title font-weight-bold mb-1">Welcome to PPDB Online! 👋</h2>
-                                <p class="card-text mb-2">Pendaftaran PPDB IBS Ash-Shiddiiqi Jambi</p>
+                                <h2 class="card-title font-weight-bold mb-1">Registrasi PPDB Online</h2>
+                                <p class="card-text mb-2">Silahkan lakukan registrasi akun baru</p>
                                 <form class="auth-login-form mt-2" action="{{route('register.store')}}" method="POST">
                                     @csrf
                                     <div class="form-group">
                                         <label class="form-label">Nama Lengkap</label>
-                                        <input class="form-control @error('name') is-invalid @enderror" type="text" name="name" value=" {{old('name')}} " placeholder="Masukan Nama Lengkap" autofocus="" tabindex="1" />
+                                        <input class="form-control @error('name') is-invalid @enderror" type="text" name="name" value="{{old('name')}}" placeholder="Masukan Nama Lengkap" autofocus="" tabindex="1" />
                                         @error('name')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -105,7 +105,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">Email</label>
-                                        <input class="form-control @error('email') is-invalid @enderror" type="email" name="email" value=" {{old('email')}} " placeholder="Masukan Email" autofocus="" tabindex="1" />
+                                        <input class="form-control @error('email') is-invalid @enderror" type="email" name="email" value="{{old('email')}}" placeholder="Masukan Email" autofocus="" tabindex="1" />
                                         @error('email')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -114,7 +114,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">No WhatApp Calon Murid</label>
-                                        <input class="form-control @error('whatsapp') is-invalid @enderror" type="number" name="whatsapp" value=" {{old('whatsapp')}} " placeholder="Masukan No WhatsApp" autofocus="" tabindex="1" />
+                                        <input class="form-control @error('whatsapp') is-invalid @enderror" type="number" name="whatsapp" value="{{old('whatsapp')}}" placeholder="Masukan No WhatsApp" autofocus="" tabindex="1" />
                                         @error('whatsapp')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -123,7 +123,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">Asal Sekolah</label>
-                                        <input class="form-control @error('asal_sekolah') is-invalid @enderror" type="text" name="asal_sekolah" value=" {{old('asal_sekolah')}} " placeholder="Masukan Asal Sekolah" autofocus="" tabindex="1" />
+                                        <input class="form-control @error('asal_sekolah') is-invalid @enderror" type="text" name="asal_sekolah" value="{{old('asal_sekolah')}}" placeholder="Masukan Asal Sekolah" autofocus="" tabindex="1" />
                                         @error('asal_sekolah')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>

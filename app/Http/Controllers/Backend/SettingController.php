@@ -40,6 +40,20 @@ class SettingController extends Controller
       }
     }
 
+    // Hapus Bank
+    public function deleteBank($id)
+    {
+      $bank = BankAccount::find($id);
+
+      if (!$bank) {
+          return redirect()->back()->with('error', 'Akun bank tidak ditemukan');
+      }
+  
+      $bank->delete();
+  
+      return redirect()->back()->with('success', 'Akun bank berhasil dihapus');
+    }
+
     // Setting Notification
     public function notifications(Request $request)
     {

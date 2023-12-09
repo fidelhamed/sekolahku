@@ -53,6 +53,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/',[App\Http\Controllers\Backend\SettingController::class,'index'])->name('settings');
         // TAMBAH BANK
         Route::post('add-bank',[App\Http\Controllers\Backend\SettingController::class,'addBank'])->name('settings.add.bank');
+        // HAPUS BANK
+        Route::delete('delete-bank/{id}',[App\Http\Controllers\Backend\SettingController::class,'deleteBank'])->name('settings.delete.bank');
         // NOTIFICATIONS
         Route::put('notifications/{id}',[SettingController::class,'notifications']);
       });

@@ -140,6 +140,24 @@
                     </div>
                 </div>
             </div>
+        @elseif (Auth::user()->role == 'Guest' AND Auth::user()->muridDetail->proses == 'Perbaikan')
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <div class="avatar avatar-xl bg-danger shadow">
+                            <div class="avatar-content">
+                                <i data-feather="frown" class="font-large-1"></i>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <h4 class="mb-1">Mohon maaf, sayang sekali {{ Auth::user()->name }}</h4>
+                            <p class="card-text m-auto w-75 text-danger font-weight-bold">
+                                Silahkan lakukan perbaikan data kamu
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         @endif
 
            @if (Auth::user()->role == 'PPDB')
@@ -232,7 +250,7 @@
                                 <td>{{ Auth::user()->name }}</td>
                                 <td>{{ Auth::user()->created_at->format('d F Y') }}</td>
                                 <td>{{ Auth::user()->muridDetail->jenjang }}</td>
-                                <td>{{ Auth::user()->paymentRegis->status == 'Paid' ? 'Berhasil' : 'Pending' }}</td>
+                                <td>{{ Auth::user()->paymentRegis->status == 'Paid' ? 'Berhasil' : 'Belum Bayar' }}</td>
                                 <td>{{ Auth::user()->muridDetail->proses }}</td>
                             </tr>
                         </tbody>

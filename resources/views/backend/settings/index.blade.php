@@ -56,12 +56,12 @@
                                 </a>
                             </li>
 
-                            <li class="nav-item">
+                            {{-- <li class="nav-item">
                                     <a class="nav-link" id="settings" data-toggle="pill" href="#account-setting" aria-expanded="false">
                                         <i data-feather="bell" class="font-medium-3 mr-1"></i>
                                         <span class="font-weight-bold">Notifications</span>
                                     </a>
-                                </li>
+                                </li> --}}
                         </ul>
                     </div>
                     <!--/ left menu section -->
@@ -128,7 +128,7 @@
                                         <div class="row">
                                           @foreach (Auth::user()->banks as $bank)
                                             <div class="col-md-4">
-                                              <a data-toggle="modal" data-target="#editpayment">
+                                            <a data-toggle="modal" data-target="#deleteBankModal{{$bank->id}}">
                                                 <div class="card bg-danger">
                                                   <div class="card-body text-center">
                                                     <div class="card-title text-white">
@@ -140,13 +140,39 @@
                                                 </div>
                                               </a>
                                             </div>
+
+                                            <!-- Modal Hapus Bank -->
+                                            <div class="modal fade" id="deleteBankModal{{$bank->id}}" tabindex="-1" role="dialog" aria-labelledby="deleteBankModalLabel{{$bank->id}}" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="deleteBankModalLabel{{$bank->id}}">Konfirmasi Hapus Bank</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>Apakah Anda yakin ingin menghapus akun bank <strong>{{$bank->bank_name}}</strong>?</p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                                            <!-- Tombol untuk mengirimkan permintaan penghapusan -->
+                                                            <form action="{{ route('settings.delete.bank', ['id' => $bank->id]) }}" method="post">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" class="btn btn-danger">Hapus</button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                           @endforeach
                                           <div class="col-md-4">
                                             <a data-toggle="modal" data-target="#addBank">
                                               <div class="card bg-primary">
                                                 <div class="card-body">
                                                   <div class="card-title text-white text-center">
-                                                    Tambah Akun Bank<i data-feather='plus'></i>
+                                                    Tambah Akun Bank
                                                   </div>
                                                   <div class="text-center text-white">
                                                     <i data-feather='plus'></i>
