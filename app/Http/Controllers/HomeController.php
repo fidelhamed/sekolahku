@@ -101,7 +101,15 @@ class HomeController extends Controller
               $needConfirmPaymentSMPIT = dataPayment::whereNotNull(['sender','destination_bank','file'])->whereNull('approve_date')->where('jenjang', 'SMP-IT')->count();
               $confirmedPaymentSMPIT = dataPayment::where('status','Paid')->where('jenjang', 'SMP-IT')->count();
               $needVerifSMPIT = dataMurid::whereNotNull(['tempat_lahir','tgl_lahir'])->whereNull('nisn')->where('proses', 'Input Data')->where('jenjang', 'SMP-IT')->count();
-              return view('ppdb::backend.index', compact('register','needConfirmPayment','confirmedPayment','needVerif','registerSMPIT','needConfirmPaymentSMPIT','confirmedPaymentSMPIT','needVerifSMPIT'));
+              $registerSMAIT = dataMurid::whereYear('created_at', Carbon::now())->where('jenjang', 'SMA-IT')->count();
+              $needConfirmPaymentSMAIT = dataPayment::whereNotNull(['sender','destination_bank','file'])->whereNull('approve_date')->where('jenjang', 'SMA-IT')->count();
+              $confirmedPaymentSMAIT = dataPayment::where('status','Paid')->where('jenjang', 'SMA-IT')->count();
+              $needVerifSMAIT = dataMurid::whereNotNull(['tempat_lahir','tgl_lahir'])->whereNull('nisn')->where('proses', 'Input Data')->where('jenjang', 'SMA-IT')->count();
+              $registerMA = dataMurid::whereYear('created_at', Carbon::now())->where('jenjang', 'MA')->count();
+              $needConfirmPaymentMA = dataPayment::whereNotNull(['sender','destination_bank','file'])->whereNull('approve_date')->where('jenjang', 'MA')->count();
+              $confirmedPaymentMA = dataPayment::where('status','Paid')->where('jenjang', 'MA')->count();
+              $needVerifMA = dataMurid::whereNotNull(['tempat_lahir','tgl_lahir'])->whereNull('nisn')->where('proses', 'Input Data')->where('jenjang', 'MA')->count();
+              return view('ppdb::backend.index', compact('register','needConfirmPayment','confirmedPayment','needVerif','registerSMPIT','needConfirmPaymentSMPIT','confirmedPaymentSMPIT','needVerifSMPIT','registerSMAIT','needConfirmPaymentSMAIT','confirmedPaymentSMAIT','needVerifSMAIT','registerMA','needConfirmPaymentMA','confirmedPaymentMA','needVerifMA'));
 
 
             }

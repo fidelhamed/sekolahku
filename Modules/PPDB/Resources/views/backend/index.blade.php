@@ -182,8 +182,16 @@
                   <div class="card">
                       <div class="card-header">
                           <div>
-                              <h2 class="font-weight-bolder mb-0">{{$needVerif}}</h2>
-                              <p class="card-text">Perlu Verifikasi Data Murid</p>
+                            @if ($needVerifSMPIT > 0)
+                            <h4 class="font-weight-bolder mb-0">{{$needVerifSMPIT}} SMP-IT</h4>                                        
+                            @endif
+                            @if ($needVerifSMAIT > 0)
+                            <h4 class="font-weight-bolder mb-0">{{$needVerifSMAIT}} SMA-IT</h4>
+                            @endif
+                            @if ($needVerifMA > 0)
+                            <h4 class="font-weight-bolder mb-0">{{$needVerifMA}} MA</h4>
+                            @endif
+                            <p class="card-text">Perlu Verifikasi Data Murid</p>
                           </div>
                           <div class="avatar bg-light-warning p-50 m-0">
                               <div class="avatar-content">
@@ -197,36 +205,44 @@
             </div>
             <div class="col-lg-3 col-sm-6 col-12">
                 <div class="row">
-                  <div class="col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <div>
-                                <h2 class="font-weight-bolder mb-0">{{$needConfirmPayment}}</h2>
-                                <p class="card-text">Cek Pembayaran</p>
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <div>
+                                    <h2 class="font-weight-bolder mb-0">{{$confirmedPayment}}</h2>
+                                    <p class="card-text">Sudah Bayar</p>
+                                </div>
+                                <div class="avatar bg-light-success p-50 m-0">
+                                    <div class="avatar-content">
+                                        <i data-feather="dollar-sign" class="font-medium-5"></i>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="avatar bg-light-warning p-50 m-0">
-                                <div class="avatar-content">
-                                    <i data-feather="dollar-sign" class="font-medium-5"></i>
+                        </div>
+                      </div>    
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <div>
+                                    @if ($needConfirmPaymentSMPIT > 0)
+                                    <h4 class="font-weight-bolder mb-0">{{$needConfirmPaymentSMPIT}} SMP-IT</h4>                                        
+                                    @endif
+                                    @if ($needConfirmPaymentSMAIT > 0)
+                                    <h4 class="font-weight-bolder mb-0">{{$needConfirmPaymentSMAIT}} SMA-IT</h4>
+                                    @endif
+                                    @if ($needConfirmPaymentMA > 0)
+                                    <h4 class="font-weight-bolder mb-0">{{$needConfirmPaymentMA}} MA</h4>
+                                    @endif
+                                    <p class="card-text">Cek Pembayaran</p>
+                                </div>
+                                <div class="avatar bg-light-warning p-50 m-0">
+                                    <div class="avatar-content">
+                                        <i data-feather="dollar-sign" class="font-medium-5"></i>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                  </div>
-                  <div class="col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <div>
-                                <h2 class="font-weight-bolder mb-0">{{$confirmedPayment}}</h2>
-                                <p class="card-text">Sudah Bayar</p>
-                            </div>
-                            <div class="avatar bg-light-success p-50 m-0">
-                                <div class="avatar-content">
-                                    <i data-feather="dollar-sign" class="font-medium-5"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                  </div>
                 </div>
             </div>
            @endif
