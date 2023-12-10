@@ -56,7 +56,7 @@
             Detail Pendaftaran:
             <ul>
                 <li>Nomor Pendaftaran: {{ $cetak->id }}</li>
-                <li>Tanggal Pendaftaran: {{ $cetak->created_at }}</li>
+                <li>Tanggal Diterima: {{ Carbon\Carbon::parse($cetak->muridDetail->updated_at)->format('d-m-Y') }}</li>
                 <!-- Tambahkan informasi pendaftaran lainnya sesuai kebutuhan -->
             </ul>
         </p>

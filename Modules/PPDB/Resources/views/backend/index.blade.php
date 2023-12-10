@@ -117,7 +117,7 @@
                             <p class="card-text m-auto w-75">
                                 Klik tombol dibawah untuk mencetak surat kelulusan
                             </p>
-                            <a href="{{ route('ppdb.preview-kelulusan') }}" class="btn btn-primary" target="_blank"><i data-feather="printer"></i> Cetak</a>
+                            <a href="{{ route('ppdb.cetak-kelulusan') }}" class="btn btn-primary" target="_blank"><i data-feather="printer"></i> Cetak</a>
                         </div>
                     </div>
                 </div>

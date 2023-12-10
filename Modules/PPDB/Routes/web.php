@@ -55,7 +55,6 @@ Route::prefix('/ppdb')->middleware('role:Terverifikasi')->group(function () {
 Route::prefix('/ppdb')->middleware('role:Lulus')->group(function () {
     
     /// CETAK \\\
-    Route::get('preview-kelulusan', 'CetakController@previewKelulusan')->name('ppdb.preview-kelulusan');
     Route::get('cetak-kelulusan', 'CetakController@cetakKelulusan')->name('ppdb.cetak-kelulusan');
 });
 
