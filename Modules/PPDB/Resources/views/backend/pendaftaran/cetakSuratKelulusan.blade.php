@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Surat Kelulusan</title>
+    
+    <?php
+    use Carbon\carbon;
+    ?>
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -56,7 +61,7 @@
             Detail Pendaftaran:
             <ul>
                 <li>Nomor Pendaftaran: {{ $cetak->id }}</li>
-                <li>Tanggal Diterima: {{ Carbon\Carbon::parse($cetak->muridDetail->updated_at)->format('d-m-Y') }}</li>
+                <li>Tanggal Diterima: {{ Carbon::parse($cetak->muridDetail->updated_at)->format('d-m-Y') }}</li>
                 <!-- Tambahkan informasi pendaftaran lainnya sesuai kebutuhan -->
             </ul>
         </p>

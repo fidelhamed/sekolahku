@@ -2,13 +2,10 @@
 
 namespace Modules\PPDB\Http\Controllers;
 
-use App\Models\dataMurid;
 use App\Models\User;
-use Modules\PPDB\Entities\BerkasMurid;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\View;
 use Carbon\Carbon;
 use PDF;
 
@@ -18,7 +15,7 @@ class CetakController extends Controller
     public function cetakKartu()
     {
         // // Ambil data murid
-        $murid = User::with('muridDetail','berkas')->where('id',Auth::id())->first();
+        $murid = User::with('muridDetail')->where('id',Auth::id())->first();
 
         $pdf = PDF::loadView('ppdb::backend.pendaftaran.cetakKartuUjian', ['cetak' => $murid])->setPaper('A4', 'portrait');
         // $user = User::find(Auth::user()->id);
