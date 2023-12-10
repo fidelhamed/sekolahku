@@ -70,10 +70,16 @@
                                 Dilaksanakan pada
                             </p>
                             <p class="card-text m-auto w-75">
-                                Tanggal     :       2 Februari 2024
+                                Tanggal     :       {{ Carbon\Carbon::parse($infoTesUjian->waktu_tgl)->format('d-m-Y') }}
                             </p>
                             <p class="card-text m-auto w-75">
-                                Tempat     :       IBS Ash-Shiddiiqi Jambi Gedung B Lantai 2 Ruang AB
+                                Jam     :       {{ Carbon\Carbon::parse($infoTesUjian->jam_mulai)->format('H:i') . ' - ' . Carbon\Carbon::parse($infoTesUjian->jam_berakhir)->format('H:i')}}
+                            </p>
+                            <p class="card-text m-auto w-75">
+                                Tempat     :       {{ $infoTesUjian->lokasi }}
+                            </p>
+                            <p class="card-text m-auto w-75">
+                                {!! nl2br($infoTesUjian->deskripsi) !!}
                             </p>
                             <p class="card-text m-auto w-75">
                                 Klik tombol dibawah untuk mencetak kartu ujian
@@ -109,10 +115,16 @@
                         <div class="text-center">
                             <h4 class="mb-1">Silahkan lakukan daftar ulang pada</h4>
                             <p class="card-text m-auto w-75">
-                                Tanggal     :       10 Februari 2024
+                                Tanggal     :       {{ Carbon\Carbon::parse($infoDaftarUlang->waktu_tgl)->format('d-m-Y') }}
                             </p>
                             <p class="card-text m-auto w-75">
-                                Tempat     :       IBS Ash-Shiddiiqi Jambi Gedung B Lantai 2 Ruang AB
+                                Jam     :       {{ Carbon\Carbon::parse($infoDaftarUlang->jam_mulai)->format('H:i') . ' - ' . Carbon\Carbon::parse($infoDaftarUlang->jam_berakhir)->format('H:i')}}
+                            </p>
+                            <p class="card-text m-auto w-75">
+                                Tempat     :       {{ $infoDaftarUlang->lokasi }}
+                            </p>
+                            <p class="card-text m-auto w-75">
+                                {!! nl2br($infoDaftarUlang->deskripsi) !!}
                             </p>
                             <p class="card-text m-auto w-75">
                                 Klik tombol dibawah untuk mencetak surat kelulusan

@@ -4,11 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Surat Kelulusan</title>
-    
-    <?php
-    use Carbon\carbon;
-    ?>
-
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -50,7 +45,7 @@
             {{ $cetak->name }}<br>
             {{ $cetak->muridDetail->alamat }}<br>
             NIS  : {{ $cetak->muridDetail->nis }}<br>
-            NISN :{{ $cetak->muridDetail->nisn }}<br>
+            NISN : {{ $cetak->muridDetail->nisn }}<br>
         </p>
 
         <p>
@@ -58,16 +53,21 @@
         </p>
 
         <p>
-            Detail Pendaftaran:
+            Detail Pendaftaran :
             <ul>
-                <li>Nomor Pendaftaran: {{ $cetak->id }}</li>
-                <li>Tanggal Diterima: {{ Carbon::parse($cetak->muridDetail->updated_at)->format('d-m-Y') }}</li>
+                <li>Nomor Pendaftaran : {{ $cetak->id }}</li>
+                <li>Tanggal Diterima : {{ Carbon\Carbon::parse($cetak->muridDetail->updated_at)->format('d-m-Y') }}</li>
                 <!-- Tambahkan informasi pendaftaran lainnya sesuai kebutuhan -->
             </ul>
         </p>
 
         <p>
-            {{ $cetak->name }} diharapkan dapat datang ke Islamic Boarding School Ash-Shiddiiqi Jambi pada tanggal [datftar ulang] untuk proses orientasi dan pendaftaran lebih lanjut.
+            {{ $cetak->name }} diharapkan dapat datang ke Islamic Boarding School Ash-Shiddiiqi Jambi untuk melakukan proses daftar ulang pada :
+            <ul>
+                <li>Tanggal : {{ Carbon\Carbon::parse($info->waktu_tgl)->format('d-m-Y') }}</li>
+                <li>Waktu : {{ Carbon\Carbon::parse($info->jam_mulai)->format('H:i') . ' - ' . Carbon\Carbon::parse($info->jam_berakhir)->format('H:i') }}</li>
+                <li>Lokasi : {{ $info->lokasi }}</li>
+            </ul>
         </p>
 
         <p>

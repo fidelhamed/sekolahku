@@ -66,6 +66,10 @@ Route::prefix('/ppdb')->middleware('role:PPDB')->group(function () {
     /// DATA MURID \\\
     Route::resource('data-murid', 'DataMuridController');
     Route::resource('data-kelulusan', 'KelulusanController');
+    Route::resource('info-tes-ujian', 'InfoTesUjianController');
+    Route::put('info-tes-ujian/update', 'InfoTesujianController@update');
+    Route::resource('info-daftar-ulang', 'InfoDaftarUlangController');
+    Route::put('info-daftar-ulang/update', 'InfoDaftarUlangController@update');
     Route::get('konfirm-payment-regis', 'DataMuridController@confirmPayment');
     Route::get('update-murid-perbaikan', 'DataMuridController@updatePerbaikan');
     Route::get('update-murid-lulus', 'DataMuridController@updateLulus');

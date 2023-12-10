@@ -3,6 +3,8 @@
 namespace Modules\PPDB\Http\Controllers;
 
 use App\Models\User;
+use Modules\PPDB\Entities\InfoTesUjian;
+use Modules\PPDB\Entities\InfoDaftarUlang;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -15,9 +17,13 @@ class CetakController extends Controller
     public function cetakKartu()
     {
         // // Ambil data murid
-        $murid = User::with('muridDetail')->where('id',Auth::id())->first();
+        $murid = User::with('muridDetail')->where('id', Auth::id())->first();
+        $info = InfoTesUjian::where('jenjang', Auth::user()->muridDetail->jenjang)->first();
 
-        $pdf = PDF::loadView('ppdb::backend.pendaftaran.cetakKartuUjian', ['cetak' => $murid])->setPaper('A4', 'portrait');
+        $pdf = PDF::loadView('ppdb::backend.pendaftaran.cetakKartuUjian', [
+            'cetak' => $murid,
+            'info' => $info
+            ])->setPaper('A4', 'portrait');
         // $user = User::find(Auth::user()->id);
         
         // $pdf = PDF::loadview('ppdb::backend.pendaftaran.cetakKartuUjian', [
@@ -33,8 +39,12 @@ class CetakController extends Controller
     {
         // Ambil data murid
         $murid = User::with('muridDetail')->where('id',Auth::id())->first();
+        $info = InfoDaftarUlang::where('jenjang', Auth::user()->muridDetail->jenjang)->first();
 
-        $pdf = PDF::loadView('ppdb::backend.pendaftaran.cetakSuratKelulusan', ['cetak' => $murid])->setPaper('A4', 'portrait');
+        $pdf = PDF::loadView('ppdb::backend.pendaftaran.cetakSuratKelulusan', [
+            'cetak' => $murid,
+            'info'=> $info
+            ])->setPaper('A4', 'portrait');
 
         return $pdf->stream(Carbon::now()->format('Ymd') . '_Surat_Kelulsan_' . Auth::id() . '_' . Auth::user()->username . '.pdf', array('Content-Type' => 'application/pdf'));
     }

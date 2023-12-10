@@ -167,6 +167,23 @@
                     </li>
                 </ul>
             </li>
+            <li class=" nav-item">
+                <a class="d-flex align-items-center" href="#"><i data-feather="info"></i>
+                    <span class="menu-title text-truncate" data-i18n="Card">Informasi PPDB</span>
+                </a>
+                <ul class="menu-content">
+                    <li class="nav-item {{ (request()->is('ppdb/info-tes-ujian')) ? 'active' : '' }}">
+                        <a class="d-flex align-items-center" href=" {{url('ppdb/info-tes-ujian')}} "><i data-feather="circle"></i>
+                            <span class="menu-item text-truncate" data-i18n="Basic">Tes dan Ujian</span>
+                        </a>
+                    </li>
+                    <li class="nav-item {{ (request()->is('ppdb/info-daftar-ulang')) ? 'active' : '' }}">
+                        <a class="d-flex align-items-center" href=" {{url('ppdb/info-daftar-ulang')}} "><i data-feather="circle"></i>
+                            <span class="menu-item text-truncate" data-i18n="Basic">Daftar Ulang</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
 
             {{-- MENU MURID --}}
             @elseif(Auth::user()->role == 'Murid')

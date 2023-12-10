@@ -9,9 +9,8 @@ use App\Models\dataPayment;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Modules\Perpustakaan\Entities\Book;
-use Modules\Perpustakaan\Entities\Borrowing;
-use Modules\Perpustakaan\Entities\Member;
+use Modules\PPDB\Entities\InfoTesUjian;
+use Modules\PPDB\Entities\InfoDaftarUlang;
 
 class HomeController extends Controller
 {
@@ -91,7 +90,7 @@ class HomeController extends Controller
 
             // }
             // DASHBOARD PPDB & PENDAFTAR \\
-            elseif($role == 'Guest' || $role == 'PPDB' || $role == 'Terverifikasi' || $role == 'Lulus' || $role == 'Tidak Lulus') {
+            elseif($role == 'PPDB') {
 
               $register = dataMurid::whereYear('created_at', Carbon::now())->count();
               $needConfirmPayment = dataPayment::whereNotNull(['sender','destination_bank','file'])->whereNull('approve_date')->count();
@@ -108,10 +107,16 @@ class HomeController extends Controller
               $registerMA = dataMurid::whereYear('created_at', Carbon::now())->where('jenjang', 'MA')->count();
               $needConfirmPaymentMA = dataPayment::whereNotNull(['sender','destination_bank','file'])->whereNull('approve_date')->where('jenjang', 'MA')->count();
               $confirmedPaymentMA = dataPayment::where('status','Paid')->where('jenjang', 'MA')->count();
-              $needVerifMA = dataMurid::whereNotNull(['tempat_lahir','tgl_lahir'])->whereNull('nisn')->where('proses', 'Input Data')->where('jenjang', 'MA')->count();
+              $needVerifMA = dataMurid::whereNotNull(['tempat_lahir','tgl_lahir'])->whereNull('nisn')->where('proses', 'Input Data')->where('jenjang', 'MA')->count();              
+              
               return view('ppdb::backend.index', compact('register','needConfirmPayment','confirmedPayment','needVerif','registerSMPIT','needConfirmPaymentSMPIT','confirmedPaymentSMPIT','needVerifSMPIT','registerSMAIT','needConfirmPaymentSMAIT','confirmedPaymentSMAIT','needVerifSMAIT','registerMA','needConfirmPaymentMA','confirmedPaymentMA','needVerifMA'));
 
 
+            } elseif ($role == 'Guest' || $role == 'Terverifikasi' ||  $role == 'Lulus' || $role == 'Tidak Lulus') {
+              $infoTesUjian = InfoTesUjian::where('jenjang', Auth::user()->muridDetail->jenjang)->first();
+              $infoDaftarUlang = InfoDaftarUlang::where('jenjang', Auth::user()->muridDetail->jenjang)->first();
+
+              return view('ppdb::backend.index', compact('infoTesUjian', 'infoDaftarUlang'));
             }
             // // DASHBOARD PERPUSTAKAAN \\
             // elseif ($role == 'Perpustakaan') {
