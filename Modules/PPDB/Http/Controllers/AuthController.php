@@ -71,7 +71,7 @@ class AuthController extends Controller
             $register->assignRole($register->role);
 
             DB::commit();
-            Session::flash('success', 'Success, Data Berhasil dikirim !');
+            Session::flash('success', 'Sukses, Kamu berhasil registrasi akun !');
             return redirect()->route('login');
         } catch (ErrorException $e) {
             DB::rollback();

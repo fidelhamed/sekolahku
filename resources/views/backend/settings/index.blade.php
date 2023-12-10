@@ -129,8 +129,9 @@
                                           @foreach (Auth::user()->banks as $bank)
                                             <div class="col-md-4">
                                             <a data-toggle="modal" data-target="#deleteBankModal{{$bank->id}}">
-                                                <div class="card bg-danger">
+                                                <div class="card bg-success">
                                                   <div class="card-body text-center">
+                                                    <small>Klik untuk menghapus</small>
                                                     <div class="card-title text-white">
                                                       {{$bank->bank_name}}
                                                     </div>

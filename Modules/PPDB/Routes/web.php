@@ -43,6 +43,22 @@ Route::prefix('/ppdb')->middleware('role:Guest')->group(function () {
     Route::put('form-berkas/{id}', 'PendaftaranController@berkasStore');
 });
 
+/// ROLE TERVERIFIKASI \\\
+Route::prefix('/ppdb')->middleware('role:Terverifikasi')->group(function () {
+    
+    /// CETAK \\\
+    Route::get('cetak-kartu', 'CetakController@cetakKartu')->name('ppdb.cetak-kartu');
+});
+
+
+/// ROLE LULUS \\\
+Route::prefix('/ppdb')->middleware('role:Lulus')->group(function () {
+    
+    /// CETAK \\\
+    Route::get('preview-kelulusan', 'CetakController@previewKelulusan')->name('ppdb.preview-kelulusan');
+    Route::get('cetak-kelulusan', 'CetakController@cetakKelulusan')->name('ppdb.cetak-kelulusan');
+});
+
 
 //// ROLE PPDB \\\\
 Route::prefix('/ppdb')->middleware('role:PPDB')->group(function () {

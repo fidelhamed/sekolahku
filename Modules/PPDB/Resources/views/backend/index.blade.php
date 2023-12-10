@@ -78,7 +78,7 @@
                             <p class="card-text m-auto w-75">
                                 Klik tombol dibawah untuk mencetak kartu ujian
                             </p>
-                            <button class="btn btn-primary">Cetak</button>
+                            <a href="{{ route('ppdb.cetak-kartu') }}" class="btn btn-primary" target="_blank"><i data-feather="printer"></i> Cetak</a>
                         </div>
                     </div>
                 </div>
@@ -117,7 +117,7 @@
                             <p class="card-text m-auto w-75">
                                 Klik tombol dibawah untuk mencetak surat kelulusan
                             </p>
-                            <button class="btn btn-primary">Cetak</button>
+                            <a href="{{ route('ppdb.preview-kelulusan') }}" class="btn btn-primary" target="_blank"><i data-feather="printer"></i> Cetak</a>
                         </div>
                     </div>
                 </div>
@@ -144,21 +144,42 @@
             <div class="col-lg-6 col-md-12 col-sm-12">
                 <div class="card">
                     <div class="card-body text-center">
-                        <div class="avatar avatar-xl bg-danger shadow">
+                        <div class="avatar avatar-xl bg-danger shadow mb-1">
                             <div class="avatar-content">
                                 <i data-feather="frown" class="font-large-1"></i>
                             </div>
                         </div>
                         <div class="text-center">
-                            <h4 class="mb-1">Mohon maaf, sayang sekali {{ Auth::user()->name }}</h4>
+                            <h4 class="mb-1">Mohon maaf {{ Auth::user()->name }}</h4>
                             <p class="card-text m-auto w-75 text-danger font-weight-bold">
-                                Silahkan lakukan perbaikan data kamu
+                                Silahkan lakukan perbaikan dengan mengisi ulang data kamu di menu pendaftaran
                             </p>
                         </div>
                     </div>
                 </div>
             </div>
+        @elseif (Auth::user()->role == 'Guest' AND Auth::user()->paymentRegis->status == 'Paid' AND Auth::user()->muridDetail->proses == 'Pendaftaran')
+        <div class="col-lg-6 col-md-12 col-sm-12">
+            <div class="card card-congratulations">
+                <div class="card-body text-center">
+                    <img src="{{asset('Assets/Backend/images/pages/decore-left.png')}}" class="congratulations-img-left" alt="card-img-left" />
+                    <img src="{{asset('Assets/Backend/images/pages/decore-right.png')}}" class="congratulations-img-right" alt="card-img-right" />
+                    <div class="avatar avatar-xl bg-primary shadow">
+                        <div class="avatar-content">
+                            <i data-feather="award" class="font-large-1"></i>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <h1 class="mb-1 text-white">Selamat {{Auth::user()->name}},</h1>
+                        <p class="card-text m-auto w-75">
+                            Pembayaran kamu berhasil dikonfirmasi, silahkan lanjutkan mengisi formulir pendaftaran di menu pendaftaran
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
         @endif
+
 
            @if (Auth::user()->role == 'PPDB')
             <div class="col-lg-3 col-sm-6 col-12">
