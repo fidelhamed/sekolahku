@@ -134,9 +134,15 @@
                                         <label class="form-label">Jenjang Pendaftaran</label>
                                         <select name="jenjang" class="form-control">
                                             <option>-- Pilih --</option>
-                                            <option value="SMP-IT">SMP-IT</option>
+                                            @if ($periodeSMPIT > 0)
+                                            <option value="SMP-IT">SMP-IT</option>                                                
+                                            @endif
+                                            @if ($periodeSMAIT > 0)
                                             <option value="SMA-IT">SMA-IT</option>
+                                            @endif
+                                            @if ($periodeMA > 0)
                                             <option value="MA">MA</option>
+                                            @endif
                                         </select>
                                         @error('jenjang')
                                             <span class="invalid-feedback" role="alert">

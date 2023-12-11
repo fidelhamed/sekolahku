@@ -61,8 +61,8 @@
             transform: translate(-50%, -20%);
             width: 80px;
             height: 100px;
-            border: 2px dashed #333; /* Mengganti solid dengan dashed */
-            background-color: #eee; /* Memberikan latar belakang abu-abu */
+            border: 2px #333; /* Mengganti solid dengan dashed */
+            /* background-color: #eee; Memberikan latar belakang abu-abu */
         }
     </style>
 </head>
@@ -84,7 +84,7 @@
                 <strong>Waktu:</strong> {{ Carbon\Carbon::parse($info->jam_mulai)->format('H:i') . ' - ' . Carbon\Carbon::parse($info->jam_berakhir)->format('H:i') }}<br>
                 <strong>Lokasi:</strong> {{ $info->lokasi }}<br>
             </div>
-            {{-- <img src="{{ asset('storage/images/berkas_murid/' .$cetak->berkas->foto) }}" alt="Pas Foto" class="passport-photo"> --}}
+            <img src="../storage/app/public/images/berkas_murid/{{$cetak->berkas->foto}}" alt="Pas Foto" class="passport-photo">
             <div class="passport-photo"></div>
         </div>
     </div>

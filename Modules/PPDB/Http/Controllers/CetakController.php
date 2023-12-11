@@ -17,7 +17,7 @@ class CetakController extends Controller
     public function cetakKartu()
     {
         // // Ambil data murid
-        $murid = User::with('muridDetail')->where('id', Auth::id())->first();
+        $murid = User::with('muridDetail','berkas')->where('id', Auth::id())->first();
         $info = InfoTesUjian::where('jenjang', Auth::user()->muridDetail->jenjang)->first();
 
         $pdf = PDF::loadView('ppdb::backend.pendaftaran.cetakKartuUjian', [

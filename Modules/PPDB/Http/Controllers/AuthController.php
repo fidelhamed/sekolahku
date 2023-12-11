@@ -11,6 +11,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Modules\PPDB\Entities\paymentRegistration;
+use Modules\PPDB\Entities\PeriodeRegistrasi;
 use Modules\PPDB\Http\Requests\RegisterRequest;
 
 class AuthController extends Controller
@@ -32,7 +33,11 @@ class AuthController extends Controller
     // Register View
     public function registerView()
     {
-        return view('ppdb::auth.register');
+        $sekarang = now();
+        $periodeSMPIT = PeriodeRegistrasi::where('jenjang', 'SMP-IT')->where('tgl_buka', '<=', $sekarang)->where('tgl_tutup', '>=', $sekarang)->count();
+        $periodeSMAIT = PeriodeRegistrasi::where('jenjang', 'SMA-IT')->where('tgl_buka', '<=', $sekarang)->where('tgl_tutup', '>=', $sekarang)->count();
+        $periodeMA = PeriodeRegistrasi::where('jenjang', 'MA')->where('tgl_buka', '<=', $sekarang)->where('tgl_tutup', '>=', $sekarang)->count();
+        return view('ppdb::auth.register', compact('periodeSMPIT', 'periodeSMAIT', 'periodeMA'));
     }
 
     // Register Store
@@ -65,7 +70,7 @@ class AuthController extends Controller
             $payment = new paymentRegistration();
             $payment->user_id   = $register->id;
             $payment->jenjang   = $request->jenjang;
-            $payment->amount    = 300000;
+            $payment->amount    = 350000;
             $payment->save();
 
             $register->assignRole($register->role);

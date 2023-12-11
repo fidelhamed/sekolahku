@@ -184,6 +184,23 @@
                     </li>
                 </ul>
             </li>
+            {{-- <li class=" nav-item">
+                <a class="d-flex align-items-center" href="#"><i data-feather="clock"></i>
+                    <span class="menu-title text-truncate" data-i18n="Card">Informasi PPDB</span>
+                </a>
+                <ul class="menu-content">
+                    <li class="nav-item {{ (request()->is('ppdb/periode-registrasi')) ? 'active' : '' }}">
+                        <a class="d-flex align-items-center" href=" {{url('ppdb/periode-registrasi')}} "><i data-feather="clock"></i>
+                            <span class="menu-item text-truncate" data-i18n="Basic">Periode Registrasi</span>
+                        </a>
+                    </li>
+                </ul>
+            </li> --}}
+            <li class="nav-item {{ (request()->is('ppdb/periode-registrasi')) ? 'active' : '' }}">
+                <a class="d-flex align-items-center" href=" {{url('ppdb/periode-registrasi')}} "><i data-feather="clock"></i>
+                    <span class="menu-item text-truncate" data-i18n="Basic">Periode Registrasi</span>
+                </a>
+            </li>
 
             {{-- MENU MURID --}}
             @elseif(Auth::user()->role == 'Murid')
