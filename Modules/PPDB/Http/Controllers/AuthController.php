@@ -64,6 +64,10 @@ class AuthController extends Controller
                 $murid->jenjang         =   $request->jenjang;
                 $murid->whatsapp        =   $request->whatsapp;
                 $murid->asal_sekolah    =   $request->asal_sekolah;
+
+                // Generate dan simpan nomor registrasi di dataMurid
+                $murid->noreg = $this->generateNomorRegistrasi($request->jenjang);
+                
                 $murid->save();
             }
 
@@ -82,5 +86,25 @@ class AuthController extends Controller
             DB::rollback();
             throw new ErrorException($e->getMessage());
         }
+    }
+
+    // Fungsi untuk menghasilkan nomor registrasi baru
+    protected function generateNomorRegistrasi($jenjang)
+    {
+        // Sesuaikan logika penomoran sesuai kebutuhan
+        // Contoh: RR-2023-001 (RR untuk "Registrasi", tahun, dan nomor urut)
+        $tahun = date('Y');
+        $lastRegistrasi = dataMurid::whereYear('created_at', $tahun)
+            ->orderBy('id', 'desc')
+            ->first();
+
+        if ($lastRegistrasi) {
+            $lastNumber = (int) substr($lastRegistrasi->noreg, -4);
+            $newNumber = $lastNumber + 1;
+        } else {
+            $newNumber = 1;
+        }
+
+        return $tahun . '-' . $jenjang . '-' . str_pad($newNumber, 4, '0', STR_PAD_LEFT);
     }
 }

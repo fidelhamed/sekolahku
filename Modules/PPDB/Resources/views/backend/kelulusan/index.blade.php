@@ -46,10 +46,11 @@
                                             <tr>
                                                 <th></th>
                                                 <th>No</th>
+                                                <th>Noreg</th>
                                                 <th>Nama</th>
                                                 <th>Email</th>
                                                 <th>Status</th>
-                                                <th>Pembayaran Registrasi</th>
+                                                <th>Pembayaran</th>
                                                 <th>Hak Akses</th>
                                                 <th>Action</th>
                                             </tr>
@@ -58,12 +59,13 @@
                                             @foreach ($murid as $key => $murids)
                                                 <tr>
                                                     <td></td>
-                                                    <td> {{$key+1}} </td>
-                                                    <td> {{$murids->name}} </td>
-                                                    <td> {{$murids->email}} </td>
-                                                    <td> {{$murids->muridDetail->proses}} </td>
-                                                    <td> {{$murids->paymentRegis->status}} </td>
-                                                    <td> {{$murids->role}} </td>
+                                                    <td>{{$key+1}}</td>
+                                                    <td>{{ $murids->muridDetail->noreg }}</td>
+                                                    <td>{{$murids->name}}</td>
+                                                    <td>{{$murids->email}}</td>
+                                                    <td>{{$murids->muridDetail->proses}}</td>
+                                                    <td>{{$murids->paymentRegis->status  == 'Unpaid' ? 'Belum Bayar' : 'Berhasil'}}</td>
+                                                    <td>{{$murids->role}}</td>
                                                     <td>
                                                         <a href="{{route('data-kelulusan.show', $murids->id)}}" class="btn btn-info btn-sm" >Detail</a>
                                                     </td>

@@ -80,4 +80,8 @@ Route::prefix('/ppdb')->middleware('role:PPDB')->group(function () {
     // PERIODE REGISTRASI \\
     Route::resource('periode-registrasi', 'PeriodeRegistrasiController');
     Route::put('periode-registrasi/update', 'PeriodeRegistrasiController@update');
+
+    // REKAP LAPORAN \\
+    Route::resource('rekap-laporan', 'RekapLaporanController');
+    Route::post('rekap-laporan/cetak', 'RekapLaporanController@update');
 });

@@ -16,6 +16,7 @@ class CreateDataMuridsTable extends Migration
         Schema::create('data_murids', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id');
+            $table->string('noreg')->nullable();
             $table->bigInteger('nis')->nullable();
             $table->bigInteger('nisn')->nullable();
             $table->string('nama_panggilan')->nullable();

@@ -191,79 +191,48 @@
     <div class="line-1"></div>
 
     <div class="content-container">
-        <table>
-            <tr>
-                <td>Kepada Yth.,</td>
-            </tr>
-            <tr>
-                <td>{{ $cetak->name }}</td>
-            </tr>
-            <tr>
-                <td>{{ $cetak->muridDetail->alamat }}</td>
-            </tr>
-            <tr>
-                <td>NIS</td>
-                <td>:</td>
-                <td>{{ $cetak->muridDetail->nis }}</td>
-            </tr>
-            <tr>
-                <td>NISN</td>
-                <td>:</td>
-                <td>{{ $cetak->muridDetail->nisn }}</td>
-            </tr>
-        </table>
-        <br>
-        <p>
-            Dengan senang hati kami mengumumkan bahwa {{ $cetak->name }} diterima sebagai peserta didik baru di Islamic Boarding School Ash-Shiddiiqi jambi pada jenjang {{ $cetak->muridDetail->jenjang }}.
-        </p>
-        <br>
-        <p>
-            Detail Pendaftaran :
-        </p>
-        <table>
-            <tr>
-                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                <td>Nomor Pendaftaran</td>
-                <td>:</td>
-                <td>{{ $cetak->muridDetail->noreg }}</td>
-            </tr>
-            <tr>
-                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                <td>Tanggal Diterima</td>
-                <td>:</td>
-                <td>{{ Carbon\Carbon::parse($cetak->muridDetail->updated_at)->format('d-m-Y') }}</td>
-            </tr>
-        </table>
-        <br>
+        <div class="content-header">
+            <h4>Laporan Data Pendaftar yang {{ $status }}</h4>
+            <h4>
+               Jenjang : {{ $jenjang }}
+            </h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Noreg</th>
+                    <th>Nama</th>
+                    <th>Email</th>
+                    <th>Jenis Kelamin</th>
+                    <th>Tempat, Tanggal Lahir</th>
+                    <th>Asal Sekolah</th>
+                </tr>
+            </thead>
+            <tbody>
 
-        <p>
-            {{ $cetak->name }} diharapkan dapat datang ke Islamic Boarding School Ash-Shiddiiqi Jambi untuk melakukan proses daftar ulang pada :
-        </p>
-        <table>
-            <tr>
-                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                <td>Tanggal</td>
-                <td>:</td>
-                <td>{{ Carbon\Carbon::parse($info->waktu_tgl)->format('d-m-Y') }}</td>
-            </tr>
-            <tr>
-                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                <td>Waktu</td>
-                <td>:</td>
-                <td>{{ Carbon\Carbon::parse($info->jam_mulai)->format('H:i') . ' - ' . Carbon\Carbon::parse($info->jam_berakhir)->format('H:i') }}</td>
-            </tr>
-            <tr>
-                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                <td>Lokasi</td>
-                <td>:</td>
-                <td>{{ $info->lokasi }}</td>
-            </tr>
+                {{-- @for ($i = 1; $i <= 100; $i++)
+                <tr>
+                    <td>{{ $i }}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                @endfor --}}
+                @foreach ($cetak as $key => $murids)
+                    <tr>
+                        <td>{{$key+1}}</td>
+                        <td>{{ $murids->id }}</td>
+                        <td>{{$murids->name}}</td>
+                        <td>{{$murids->email}}</td>
+                        <td>{{ $murids->muridDetail->jenis_kelamin }}</td>
+                        <td>{{ $murids->muridDetail->tempat_lahir }}, {{ Carbon\Carbon::parse($murids->muridDetail->tgl_lahir)->format('d-m-Y') }}</td>
+                        <td>{{ $murids->muridDetail->asal_sekolah }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
         </table>
-        <br>
-        <p>
-            Kami berharap {{ $cetak->name }} dapat menikmati pembelajaran di Islamic Boarding School Ash-Shiddiiqi Jambi dan berprestasi selama masa sekolah.
-        </p>
-
     </div>
     <br>
     <div class="ttd-container">

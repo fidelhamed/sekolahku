@@ -47,6 +47,7 @@
                                             <tr>
                                                 <th></th>
                                                 <th>No</th>
+                                                <th>Noreg</th>
                                                 <th>Nama</th>
                                                 <th>Email</th>
                                                 <th>Status</th>
@@ -59,6 +60,7 @@
                                                 <tr>
                                                     <td></td>
                                                     <td> {{$key+1}} </td>
+                                                    <td>{{ $murids->muridDetail->noreg }}</td>
                                                     <td> {{$murids->name}} </td>
                                                     <td> {{$murids->email}} </td>
                                                     <td> {{$murids->status}} </td>

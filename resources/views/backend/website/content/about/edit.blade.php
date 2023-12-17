@@ -100,7 +100,7 @@
                                             </div>
                                           
                                         </div>
-                                        <button class="btn btn-primary" type="submit">Update</button>
+                                        <button class="btn btn-success" type="submit">Update</button>
                                         <a href="{{route('backend-about.index')}}" class="btn btn-warning">Batal</a>`
                                     </form>
                                 </div>

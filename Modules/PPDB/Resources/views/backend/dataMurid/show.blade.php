@@ -51,6 +51,17 @@
                             @method('PUT')
                             <h4>Data Murid</h4> <br>
                             <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="basicInput">Nomor Registrasi</label>
+                                        <input type="text" class="form-control @error('noreg') is-invalid @enderror" name="noreg" value="{{$murid->muridDetail->noreg}}" placeholder="Nomor Registrasi" disabled />
+                                        @error('noreg')
+                                            <div class="invalid-feedback">
+                                            <strong>{{ $message }}</strong>
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="basicInput">Nama Lengkap</label>

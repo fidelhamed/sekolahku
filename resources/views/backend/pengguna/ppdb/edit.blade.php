@@ -46,7 +46,7 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="basicInput">Nama</label> <span class="text-danger">*</span>
-                                        <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value=" {{$user->name}} " placeholder="Nama" />
+                                        <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{$user->name}}" placeholder="Nama" />
                                         @error('name')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
@@ -58,7 +58,7 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="basicInput">Email</label> <span class="text-danger">*</span>
-                                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value=" {{$user->email}} " placeholder="Email" />
+                                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{$user->email}}" placeholder="Email" />
                                         @error('email')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
@@ -71,7 +71,7 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="basicInput">NIP</label> <span class="text-danger">*</span>
-                                        <input type="text" class="form-control @error('nip') is-invalid @enderror" name="nip" value=" {{$user->userDetail->nip}} " placeholder="NIP" />
+                                        <input type="text" class="form-control @error('nip') is-invalid @enderror" name="nip" value="{{$user->userDetail->nip}}" placeholder="NIP" />
                                         @error('nip')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
@@ -111,7 +111,7 @@
                                 <div class="col-3">
                                     <div class="form-group">
                                         <label for="basicInput">Website</label>
-                                        <input type="text" class="form-control @error('website') is-invalid @enderror" name="website" value=" {{$user->userDetail->website}} " placeholder="Website" />
+                                        <input type="text" class="form-control @error('website') is-invalid @enderror" name="website" value="{{$user->userDetail->website}}" placeholder="Website" />
                                         @error('website')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
@@ -123,7 +123,7 @@
                                 <div class="col-3">
                                     <div class="form-group">
                                         <label for="basicInput">Linkedln</label>
-                                        <input type="text" class="form-control @error('linkedln') is-invalid @enderror" name="linkedln" value=" {{$user->userDetail->linkidln}} " placeholder="Linkedln" />
+                                        <input type="text" class="form-control @error('linkedln') is-invalid @enderror" name="linkedln" value="{{$user->userDetail->linkidln}}" placeholder="Linkedln" />
                                         @error('linkedln')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
@@ -135,7 +135,7 @@
                                 <div class="col-3">
                                     <div class="form-group">
                                         <label for="basicInput">Instagram</label>
-                                        <input type="text" class="form-control @error('instagram') is-invalid @enderror" name="instagram" value=" {{$user->userDetail->instagram}} " placeholder="Instagram" />
+                                        <input type="text" class="form-control @error('instagram') is-invalid @enderror" name="instagram" value="{{$user->userDetail->instagram}}" placeholder="Instagram" />
                                         @error('instagram')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
@@ -147,7 +147,7 @@
                                 <div class="col-3">
                                     <div class="form-group">
                                         <label for="basicInput">Facebook</label>
-                                        <input type="text" class="form-control @error('facebook') is-invalid @enderror" name="facebook" value=" {{$user->userDetail->facebook}} " placeholder="Facebook" />
+                                        <input type="text" class="form-control @error('facebook') is-invalid @enderror" name="facebook" value="{{$user->userDetail->facebook}}" placeholder="Facebook" />
                                         @error('facebook')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
@@ -159,7 +159,7 @@
                                 <div class="col-3">
                                     <div class="form-group">
                                         <label for="basicInput">Youtube</label>
-                                        <input type="text" class="form-control @error('youtube') is-invalid @enderror" name="youtube" value=" {{$user->userDetail->youtube}} " placeholder="Youtube" />
+                                        <input type="text" class="form-control @error('youtube') is-invalid @enderror" name="youtube" value="{{$user->userDetail->youtube}}" placeholder="Youtube" />
                                         @error('youtube')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
@@ -171,7 +171,7 @@
                                 <div class="col-3">
                                     <div class="form-group">
                                         <label for="basicInput">Twitter</label>
-                                        <input type="text" class="form-control @error('twitter') is-invalid @enderror" name="twitter" value=" {{$user->userDetail->twitter}} " placeholder="Twitter" />
+                                        <input type="text" class="form-control @error('twitter') is-invalid @enderror" name="twitter" value="{{$user->userDetail->twitter}}" placeholder="Twitter" />
                                         @error('twitter')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>

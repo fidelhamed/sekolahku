@@ -215,8 +215,7 @@
             </div>
         </div>
         @endif
-
-
+        
            @if (Auth::user()->role == 'PPDB')
             <div class="col-lg-3 col-sm-6 col-12">
               <div class="row">
@@ -337,7 +336,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>{{ Auth::user()->id }}</td>
+                                <td>{{ Auth::user()->muridDetail->noreg }}</td>
                                 <td>{{ Auth::user()->name }}</td>
                                 <td>{{ Auth::user()->created_at->format('d F Y') }}</td>
                                 <td>{{ Auth::user()->muridDetail->jenjang }}</td>

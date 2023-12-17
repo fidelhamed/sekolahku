@@ -45,7 +45,7 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="basicInput">Nama</label> <span class="text-danger">*</span>
-                                        <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value=" {{old('name')}} " placeholder="Nama" />
+                                        <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{old('name')}}" placeholder="Nama" />
                                         @error('name')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
@@ -57,7 +57,7 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="basicInput">Email</label> <span class="text-danger">*</span>
-                                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value=" {{old('email')}} " placeholder="Email" />
+                                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{old('email')}}" placeholder="Email" />
                                         @error('email')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
@@ -91,7 +91,7 @@
                                             <option value="SMA-IT">SMA-IT</option>
                                             <option value="MA">MA</option>
                                         </select>
-                                        <small class="text-warning">Jika opsi tidak tersedia, maka periode telah ditutup.</small>
+                                        {{-- <small class="text-warning">Jika opsi tidak tersedia, maka periode telah ditutup.</small> --}}
                                         @error('jenjang')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>

@@ -92,6 +92,7 @@ class MuridController extends Controller
                 $detail = new dataMurid();
                 $detail->user_id    = $murid->id;
                 $detail->jenjang    = $request->jenjang;
+                $detail->noreg      = $this->generateNomorRegistrasi($request->jenjang);
                 $detail->save();
             }
 
@@ -110,6 +111,25 @@ class MuridController extends Controller
             DB::rollback();
             throw new ErrorException($e->getMessage());
         }
+    }
+
+    // Fungsi untuk menghasilkan nomor registrasi baru
+    protected function generateNomorRegistrasi($jenjang)
+    {
+        // Sesuaikan logika penomoran sesuai kebutuhan
+        $tahun = date('Y');
+        $lastRegistrasi = dataMurid::whereYear('created_at', $tahun)
+            ->orderBy('id', 'desc')
+            ->first();
+
+        if ($lastRegistrasi) {
+            $lastNumber = (int) substr($lastRegistrasi->noreg, -4);
+            $newNumber = $lastNumber + 1;
+        } else {
+            $newNumber = 1;
+        }
+
+        return $tahun . '-' . $jenjang . '-' . str_pad($newNumber, 4, '0', STR_PAD_LEFT);
     }
 
     /**

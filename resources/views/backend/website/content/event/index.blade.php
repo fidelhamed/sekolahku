@@ -39,7 +39,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header border-bottom">
-                                    <h4 class="card-title">Event <a href=" {{route('backend-event.create')}} " class="btn btn-primary">Tambah</a> </h4>
+                                    <h4 class="card-title">Event <a href=" {{route('backend-event.create')}} " class="btn btn-success">Tambah</a> </h4>
                                 </div>
                                 <div class="card-datatable">
                                     <table class="dt-responsive table">

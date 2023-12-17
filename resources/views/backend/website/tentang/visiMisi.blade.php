@@ -84,7 +84,7 @@
                                                 </div>
                                             
                                             </div>
-                                            <button class="btn btn-primary" type="submit">Tambah</button>
+                                            <button class="btn btn-success" type="submit">Tambah</button>
                                             <a href="{{route('backend-visimisi.index')}}" class="btn btn-warning">Batal</a>
                                         </form>
                                     @else
@@ -131,7 +131,7 @@
                                             </div>
                                         
                                         </div>
-                                        <button class="btn btn-primary" type="submit">Update</button>
+                                        <button class="btn btn-success" type="submit">Update</button>
                                         <a href="{{route('backend-visimisi.index')}}" class="btn btn-warning">Batal</a>
                                     </form>
                                     @endif

@@ -194,8 +194,13 @@
                     </li>
                 </ul>
             </li>
+            <li class="nav-item {{ (request()->is('ppdb/rekap-laporan')) ? 'active' : '' }}">
+                <a class="d-flex align-items-center" href=" {{url('ppdb/rekap-laporan')}} "><i data-feather="file-text"></i>
+                    <span class="menu-item text-truncate" data-i18n="Basic">Rekap Laporan</span>
+                </a>
+            </li>
             
-            {{-- MENU MURID --}}
+            {{-- MENU MURID
             @elseif(Auth::user()->role == 'Murid')
               <li class="nav-item {{ (request()->is('murid/perpustakaan')) ? 'active' : '' }}">
                 <a class="d-flex align-items-center" href=" {{route('perpustakaan.index')}} "><i data-feather="book"></i>
@@ -206,7 +211,7 @@
                 <a class="d-flex align-items-center" href=" {{route('pembayaran.index')}} "><i data-feather="dollar-sign"></i>
                     <span class="menu-title text-truncate" data-i18n="Books">Pembayaran</span>
                 </a>
-              </li>
+              </li> --}}
 
             @endif
         </ul>

@@ -39,7 +39,7 @@
                         <div class="col-7">
                             <div class="card">
                                 <div class="card-header border-bottom">
-                                    <h4 class="card-title">Kategori Berita <a href=" {{route('backend-berita.create')}} " class="btn btn-primary">Tambah</a> </h4>
+                                    <h4 class="card-title">Kategori Berita <a href=" {{route('backend-berita.create')}} " class="btn btn-success">Tambah</a> </h4>
                                 </div>
                                 <div class="card-datatable">
                                     <table class="dt-responsive table">
@@ -106,7 +106,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <button class="btn btn-primary" type="submit">Tambah</button>
+                                        <button class="btn btn-success" type="submit">Tambah</button>
                                         <a href="{{route('backend-kategori-berita.index')}}" class="btn btn-warning">Batal</a>
                                     </form>
                                 </div>
