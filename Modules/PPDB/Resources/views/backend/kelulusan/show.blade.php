@@ -449,36 +449,97 @@
                                 <div class="col-6">
                                     <ul>
                                       <li>Kartu Keluarga
-                                        <a href="{{asset('storage/images/berkas_murid/' .$murid->berkas->kartu_keluarga)}}" target="_blank" class="badge badge-info {{$murid->berkas->kartu_keluarga == NULL ? 'hidden' : ''}}">view</a>
-                                      </li>
+                                        <a href="#" class="badge badge-info {{$murid->berkas->kartu_keluarga == NULL ? 'hidden' : ''}}" data-toggle="modal" data-target="#viewModal" data-berkas="{{asset('storage/images/berkas_murid/' .$murid->berkas->kartu_keluarga)}}" data-title="Kartu Keluarga">view</a>
+                                      </li>                                      
                                       <li>ijazah
-                                        <a href="{{asset('storage/images/berkas_murid/' .$murid->berkas->ijazah)}}" target="_blank" class="badge badge-info {{$murid->berkas->ijazah == NULL ? 'hidden' : ''}} ">view</a>
+                                        <a href="#" class="badge badge-info {{$murid->berkas->ijazah == NULL ? 'hidden' : ''}}" data-toggle="modal" data-target="#viewModal" data-berkas="{{asset('storage/images/berkas_murid/' .$murid->berkas->ijazah)}}" data-title="Ijazah">view</a>
                                       </li>
                                       <li>Pas Foto
-                                        <a href="{{asset('storage/images/berkas_murid/' .$murid->berkas->foto)}}" target="_blank" class="badge badge-info {{$murid->berkas->foto == NULL ? 'hidden' : ''}}">view</a>
+                                        <a href="#" class="badge badge-info {{$murid->berkas->foto == NULL ? 'hidden' : ''}}" data-toggle="modal" data-target="#viewModal" data-berkas="{{asset('storage/images/berkas_murid/' .$murid->berkas->foto)}}" data-title="Pas Foto">view</a>
                                       </li>
                                     </ul>
                                 </div>
                                 <div class="col-6">
                                   <ul>
                                     <li>Akte Kelahiran
-                                      <a href="{{asset('storage/images/berkas_murid/' .$murid->berkas->akte_kelahiran)}}" target="_blank" class="badge badge-info {{$murid->berkas->akte_kelahiran == NULL ? 'hidden' : ''}} ">view</a>
+                                        <a href="#" class="badge badge-info {{$murid->berkas->akte_kelahiran == NULL ? 'hidden' : ''}}" data-toggle="modal" data-target="#viewModal" data-berkas="{{asset('storage/images/berkas_murid/' .$murid->berkas->akte_kelahiran)}}" data-title="Akta Kelahiran">view</a>
                                     </li>
                                     <li>Rapor
-                                      <a href="{{asset('storage/images/berkas_murid/' .$murid->berkas->rapor)}}" target="_blank" class="badge badge-info {{$murid->berkas->rapor == NULL ? 'hidden' : ''}} ">view</a>
+                                        <a href="#" class="badge badge-info {{$murid->berkas->rapor == NULL ? 'hidden' : ''}}" data-toggle="modal" data-target="#viewModal" data-berkas="{{asset('storage/images/berkas_murid/' .$murid->berkas->rapor)}}" data-title="Rapor">view</a>
                                     </li>
                                   </ul>
 
                                 </div>
                             </div>
-                            <button class="btn btn-primary" type="submit" style="display: {{ $murid->role !== 'Lulus' ? 'none' : '' }}">Simpan</button>
-                            <a href="{{url('ppdb/data-kelulusan?jenjang='. $murid->muridDetail->jenjang)}}" class="btn btn-warning">Batal</a>
+                            <button class="btn btn-success" type="submit" style="display: {{ $murid->role !== 'Lulus' ? 'none' : '' }}">Simpan</button>
+                            <a href="{{url('ppdb/data-kelulusan?jenjangKelulusan='. $murid->muridDetail->jenjang)}}" class="btn btn-secondary">Batal</a>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-
+        {{-- <div class="modal fade" id="viewModalImage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">View Image</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="height: 500px">
+                    <img id="viewImage" src="" class="img-fluid" alt="Image">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <!-- Add a download button -->
+                    <a id="downloadButton" class="btn btn-success" download>Download</a>
+                </div>
+              </div>
+            </div>
+        </div> --}}
+        <div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">View Doc</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="height: 500px">
+                    <iframe id="viewBerkas" width="100%" height="100%" src=""></iframe>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                </div>
+              </div>
+            </div>
+        </div>
     </div>
 </div>
+@endsection
+@section('scripts')
+<script>
+    $(document).ready(function() {
+      // Handle click event on the view button
+      $('.badge-info').on('click', function() {
+        // Get the image source from the data-image attribute
+        // var imageUrl = $(this).data('image');
+        var berkas = $(this).data('berkas');
+        var berkasTitle = $(this).data('title');
+
+        // Set the image source in the modal
+        // $('#viewImage').attr('src', imageUrl);
+        $('#viewBerkas').attr('src', berkas);
+        $('#exampleModalLabel').text(berkasTitle);
+
+        // Set the download button link
+        $('#downloadButton').attr('href', berkas);
+  
+        // Open the modal
+        $('#viewModal').modal('show');
+      });
+    });
+</script>
 @endsection

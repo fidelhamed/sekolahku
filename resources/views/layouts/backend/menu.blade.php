@@ -1,8 +1,12 @@
-<div class="main-menu menu-fixed menu-dark menu-accordion menu-shadow" data-scroll-to-active="true">
+<div class="main-menu menu-fixed menu-dark menu-accordion menu-shadow navbar-expand-md" data-scroll-to-active="true">
     <div class="navbar-header">
         <ul class="nav navbar-nav flex-row">
-            <li class="nav-item mr-auto"><a class="navbar-brand" href="/home"><span class="brand-logo">
-                        <svg viewbox="0 0 139 95" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="24">
+            <li class="nav-item mr-auto"><a class="navbar-brand" href="/home">
+                <span class="brand-logo">
+                    <div class="logo-container">
+                        <img src="{{asset('Assets\Frontend\img\logo-ibs-a.png')}}" class="img-fluid" alt="logo">
+                    </div>
+                        {{-- <svg viewbox="0 0 139 95" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="24">
                             <defs>
                                 <lineargradient id="linearGradient-1" x1="100%" y1="10.5120544%" x2="50%" y2="89.4879456%">
                                     <stop stop-color="#000000" offset="0%"></stop>
@@ -24,7 +28,8 @@
                                     </g>
                                 </g>
                             </g>
-                        </svg></span>
+                        </svg> --}}
+                    </span>
                     <h2 class="brand-text">PPDB</h2>
                 </a></li>
             <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse"><i class="d-block d-xl-none text-primary toggle-icon font-medium-4" data-feather="x"></i><i class="d-none d-xl-block collapse-toggle-icon font-medium-4  text-primary" data-feather="disc" data-ticon="disc"></i></a></li>
@@ -123,45 +128,28 @@
 
             {{-- MENU PPDB --}}
             @elseif(Auth::user()->role == 'PPDB')
-            <li class=" nav-item {{ (request()->is('ppdb/data-murid')) ? 'active' : '' }}">
+            <li class="nav-item {{ (request()->is('ppdb/periode-registrasi')) ? 'active' : '' }}">
+                <a class="d-flex align-items-center" href=" {{url('ppdb/periode-registrasi')}} "><i data-feather="clock"></i>
+                    <span class="menu-item text-truncate" data-i18n="Basic">Periode Registrasi</span>
+                </a>
+            </li>
+            <li class="nav-item {{ (request()->is('ppdb/data-murid*') && !request()->has('jenjangDataMurid')) ? 'active' : '' }}">
                 <a class="d-flex align-items-center" href="#"><i data-feather="users"></i>
                     <span class="menu-title text-truncate" data-i18n="Card">Calon Murid</span>
                 </a>
                 <ul class="menu-content">
-                    <li class="nav-item {{ (request()->is('ppdb/data-murid?jenjang=SMP-IT')) ? 'active' : '' }}">
-                        <a class="d-flex align-items-center" href=" {{url('ppdb/data-murid?jenjang=SMP-IT')}} "><i data-feather="circle"></i>
+                    <li class="nav-item {{ (request()->has('jenjangDataMurid') && request()->input('jenjangDataMurid') == 'SMP-IT') ? 'active' : '' }}">
+                        <a class="d-flex align-items-center" href="{{ url('ppdb/data-murid?jenjangDataMurid=SMP-IT') }}"><i data-feather="circle"></i>
                             <span class="menu-item text-truncate" data-i18n="Basic">SMP-IT</span>
                         </a>
                     </li>
-                    <li class="nav-item {{ (request()->is('ppdb/data-murid?jenjang=SMA-IT')) ? 'active' : '' }}">
-                        <a class="d-flex align-items-center" href=" {{url('ppdb/data-murid?jenjang=SMA-IT')}} "><i data-feather="circle"></i>
+                    <li class="nav-item {{ (request()->has('jenjangDataMurid') && request()->input('jenjangDataMurid') == 'SMA-IT') ? 'active' : '' }}">
+                        <a class="d-flex align-items-center" href="{{ url('ppdb/data-murid?jenjangDataMurid=SMA-IT') }}"><i data-feather="circle"></i>
                             <span class="menu-item text-truncate" data-i18n="Basic">SMA-IT</span>
                         </a>
                     </li>
-                    <li class="nav-item {{ (request()->is('ppdb/data-murid?jenjang=MA')) ? 'active' : '' }}">
-                        <a class="d-flex align-items-center" href=" {{url('ppdb/data-murid?jenjang=MA')}} "><i data-feather="circle"></i>
-                            <span class="menu-item text-truncate" data-i18n="Basic">MA</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li class=" nav-item {{ (request()->is('ppdb/data-kelulusan')) ? 'active' : '' }}">
-                <a class="d-flex align-items-center" href="#"><i data-feather="user-check"></i>
-                    <span class="menu-title text-truncate" data-i18n="Card">Kelulusan</span>
-                </a>
-                <ul class="menu-content">
-                    <li class="nav-item {{ (request()->is('ppdb/data-kelulusan?jenjang=SMP-IT')) ? 'active' : '' }}">
-                        <a class="d-flex align-items-center" href=" {{url('ppdb/data-kelulusan?jenjang=SMP-IT')}} "><i data-feather="circle"></i>
-                            <span class="menu-item text-truncate" data-i18n="Basic">SMP-IT</span>
-                        </a>
-                    </li>
-                    <li class="nav-item {{ (request()->is('ppdb/data-kelulusan?jenjang=SMA-IT')) ? 'active' : '' }}">
-                        <a class="d-flex align-items-center" href=" {{url('ppdb/data-kelulusan?jenjang=SMA-IT')}} "><i data-feather="circle"></i>
-                            <span class="menu-item text-truncate" data-i18n="Basic">SMA-IT</span>
-                        </a>
-                    </li>
-                    <li class="nav-item {{ (request()->is('ppdb/data-kelulusan?jenjang=MA')) ? 'active' : '' }}">
-                        <a class="d-flex align-items-center" href=" {{url('ppdb/data-kelulusan?jenjang=MA')}} "><i data-feather="circle"></i>
+                    <li class="nav-item {{ (request()->has('jenjangDataMurid') && request()->input('jenjangDataMurid') == 'MA') ? 'active' : '' }}">
+                        <a class="d-flex align-items-center" href="{{ url('ppdb/data-murid?jenjangDataMurid=MA') }}"><i data-feather="circle"></i>
                             <span class="menu-item text-truncate" data-i18n="Basic">MA</span>
                         </a>
                     </li>
@@ -184,24 +172,29 @@
                     </li>
                 </ul>
             </li>
-            {{-- <li class=" nav-item">
-                <a class="d-flex align-items-center" href="#"><i data-feather="clock"></i>
-                    <span class="menu-title text-truncate" data-i18n="Card">Informasi PPDB</span>
+            <li class="nav-item {{ (request()->is('ppdb/data-kelulusan*') && !request()->has('jenjangKelulusan')) ? 'active' : '' }}">
+                <a class="d-flex align-items-center" href="#"><i data-feather="users"></i>
+                    <span class="menu-title text-truncate" data-i18n="Card">Kelulusan</span>
                 </a>
                 <ul class="menu-content">
-                    <li class="nav-item {{ (request()->is('ppdb/periode-registrasi')) ? 'active' : '' }}">
-                        <a class="d-flex align-items-center" href=" {{url('ppdb/periode-registrasi')}} "><i data-feather="clock"></i>
-                            <span class="menu-item text-truncate" data-i18n="Basic">Periode Registrasi</span>
+                    <li class="nav-item {{ (request()->has('jenjangKelulusan') && request()->input('jenjangKelulusan') == 'SMP-IT') ? 'active' : '' }}">
+                        <a class="d-flex align-items-center" href="{{ url('ppdb/data-kelulusan?jenjangKelulusan=SMP-IT') }}"><i data-feather="circle"></i>
+                            <span class="menu-item text-truncate" data-i18n="Basic">SMP-IT</span>
+                        </a>
+                    </li>
+                    <li class="nav-item {{ (request()->has('jenjangKelulusan') && request()->input('jenjangKelulusan') == 'SMA-IT') ? 'active' : '' }}">
+                        <a class="d-flex align-items-center" href="{{ url('ppdb/data-kelulusan?jenjangKelulusan=SMA-IT') }}"><i data-feather="circle"></i>
+                            <span class="menu-item text-truncate" data-i18n="Basic">SMA-IT</span>
+                        </a>
+                    </li>
+                    <li class="nav-item {{ (request()->has('jenjangKelulusan') && request()->input('jenjangKelulusan') == 'MA') ? 'active' : '' }}">
+                        <a class="d-flex align-items-center" href="{{ url('ppdb/data-kelulusan?jenjangKelulusan=MA') }}"><i data-feather="circle"></i>
+                            <span class="menu-item text-truncate" data-i18n="Basic">MA</span>
                         </a>
                     </li>
                 </ul>
-            </li> --}}
-            <li class="nav-item {{ (request()->is('ppdb/periode-registrasi')) ? 'active' : '' }}">
-                <a class="d-flex align-items-center" href=" {{url('ppdb/periode-registrasi')}} "><i data-feather="clock"></i>
-                    <span class="menu-item text-truncate" data-i18n="Basic">Periode Registrasi</span>
-                </a>
             </li>
-
+            
             {{-- MENU MURID --}}
             @elseif(Auth::user()->role == 'Murid')
               <li class="nav-item {{ (request()->is('murid/perpustakaan')) ? 'active' : '' }}">

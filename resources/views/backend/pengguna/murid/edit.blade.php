@@ -85,21 +85,22 @@
 
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <label for="basicInput">Role</label> <span class="text-danger">*</span>
-                                        <select name="role" class="form-control @error('role') is-invalid @enderror">
-                                            <option value="">-- Pilih --</option>
-                                            <option value="Murid" {{$murid->role == 'Murid' ? 'selected' : ''}} >Murid</option>
-                                            <option value="Guest" {{$murid->role == 'Guest' ? 'selected' : ''}} >Guest</option>
+                                        <label for="basicInput">Jenjang Pendaftaran</label> <span class="text-danger">*</span>
+                                        <select name="jenjang" class="form-control">
+                                            <option value="SMP-IT" {{ $murid->muridDetail->jenjang == 'SMP-IT' ? 'selected' : ''}}>SMP-IT</option>                                                
+                                            <option value="SMA-IT" {{ $murid->muridDetail->jenjang == 'SMA-IT' ? 'selected' : ''}}>SMA-IT</option>
+                                            <option value="MA" {{ $murid->muridDetail->jenjang == 'MA' ? 'selected' : ''}}>MA</option>
                                         </select>
-                                        @error('role')
-                                            <div class="invalid-feedback">
-                                            <strong>{{ $message }}</strong>
-                                            </div>
+                                        <small class="text-warning">Jika opsi tidak tersedia, maka periode telah ditutup.</small>
+                                        @error('jenjang')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
                                         @enderror
                                     </div>
                                 </div>
                             </div>
-                            <button class="btn btn-primary" type="submit">Update</button>
+                            <button class="btn btn-success" type="submit">Update</button>
                             <a href="{{route('backend-pengguna-murid.index')}}" class="btn btn-warning">Batal</a>
                         </form>
                     </div>

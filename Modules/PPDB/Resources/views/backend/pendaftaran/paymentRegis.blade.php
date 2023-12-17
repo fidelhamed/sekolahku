@@ -83,7 +83,7 @@
                             </div>
 
                             <div class="form-group">
-                                <button class="btn btn-primary" type="submit">{{@$payment->file != null ? 'Update Pembayaran' : 'Konfirmasi'}}</button>
+                                <button class="btn btn-success" type="submit">{{@$payment->file != null ? 'Update Pembayaran' : 'Konfirmasi'}}</button>
                                 <a href="/home" class="btn btn-warning">Batal</a>
                             </div>
                         </form>

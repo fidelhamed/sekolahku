@@ -233,8 +233,8 @@
                                 </div>
                             </div>
 
-                            <button class="btn btn-primary" type="submit">Simpan</button>
-                            <a href="/home" class="btn btn-warning">Batal</a>
+                            <button class="btn btn-success" type="submit">Simpan</button>
+                            <a href="/home" class="btn btn-secondary">Batal</a>
                         </form>
                     </div>
                 </div>

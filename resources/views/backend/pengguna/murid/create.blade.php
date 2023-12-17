@@ -84,6 +84,24 @@
 
                                 <div class="col-6">
                                     <div class="form-group">
+                                        <label for="basicInput">Jenjang Pendaftaran</label> <span class="text-danger">*</span>
+                                        <select name="jenjang" class="form-control">
+                                            <option>-- Pilih --</option>
+                                            <option value="SMP-IT">SMP-IT</option>                                                
+                                            <option value="SMA-IT">SMA-IT</option>
+                                            <option value="MA">MA</option>
+                                        </select>
+                                        <small class="text-warning">Jika opsi tidak tersedia, maka periode telah ditutup.</small>
+                                        @error('jenjang')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="form-group">
                                         <label for="basicInput">Foto Profile</label>  <span class="text-danger">*</span>
                                         <input type="file" class="form-control @error('foto_profile') is-invalid @enderror" name="foto_profile"/>
                                         @error('foto_profile')
@@ -95,7 +113,7 @@
                                 </div>
                               
                             </div>
-                            <button class="btn btn-primary" type="submit">Tambah</button>
+                            <button class="btn btn-success" type="submit">Tambah</button>
                             <a href="{{route('backend-pengguna-murid.index')}}" class="btn btn-warning">Batal</a>
                         </form>
                     </div>

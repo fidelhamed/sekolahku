@@ -24,7 +24,7 @@ class DataMuridController extends Controller
      */
     public function index(Request $request)
     {
-        $jenjang    = $request['jenjang'];
+        $jenjang    = $request['jenjangDataMurid'];
         $murid = User::has('muridDetail')
             ->whereHas('muridDetail', function ($a) use ($jenjang) {
                 $a->where('jenjang', $jenjang);
@@ -73,11 +73,11 @@ class DataMuridController extends Controller
         if (!$murid->muridDetail->jenis_kelamin || !$murid->dataOrtu->nama_ayah || !$murid->berkas->kartu_keluarga) {
             Session::flash('error', 'Calon Siswa Belum Input Biodata Diri !');
             if ($murid->muridDetail->jenjang == 'SMP-IT') {
-                return redirect('/ppdb/data-murid?jenjang=SMP-IT');
+                return redirect('/ppdb/data-murid?jenjangDataMurid=SMP-IT');
             } elseif ($murid->muridDetail->jenjang == 'SMA-IT') {
-                return redirect('/ppdb/data-murid?jenjang=SMA-IT');
+                return redirect('/ppdb/data-murid?jenjangDataMurid=SMA-IT');
             } elseif ($murid->muridDetail->jenjang == 'MA') {
-                return redirect('/ppdb/data-murid?jenjang=MA');
+                return redirect('/ppdb/data-murid?jenjangDataMurid=MA');
             }
         }
         return view('ppdb::backend.dataMurid.show', compact('murid'));

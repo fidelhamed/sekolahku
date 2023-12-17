@@ -118,8 +118,8 @@
                                                   </div>
                                                 </div>
                                                 <div class="col-12">
-                                                    <button type="submit" class="btn btn-primary mt-2 mr-1">Tambah</button>
-                                                    <a href="/home" class="btn btn-outline-secondary mt-2">Batal</a>
+                                                    <button type="submit" class="btn btn-success mt-2 mr-1">Tambah</button>
+                                                    <a href="/home" class="btn btn-secondary mt-2">Batal</a>
                                                 </div>
                                             </div>
                                         </form>
@@ -212,7 +212,7 @@
                                             </div>
                                             <div class="col-12 d-flex flex-sm-row flex-column justify-content-start">
                                                 <button type="submit" class="btn btn-primary mr-sm-1 mb-1 mb-sm-0">Update</button>
-                                                <button type="reset" class="btn btn-outline-warning">Batal</button>
+                                                <button type="reset" class="btn btn-outline-secondary">Batal</button>
                                                 </div>
                                             </div>
                                         </form>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend\Pengguna;
 use App\Http\Controllers\Controller;
 use App\Models\dataMurid;
 use App\Models\User;
+use Modules\PPDB\Entities\paymentRegistration;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use ErrorException;
@@ -84,14 +85,21 @@ class MuridController extends Controller
             $murid->email           = $request->email;
             $murid->role            = 'Guest';
             $murid->foto_profile    = $nama_img ?? '';
-            $murid->password        = bcrypt( $request->password);
+            $murid->password        = bcrypt('12345678');
             $murid->save();
 
             if ($murid) {
                 $detail = new dataMurid();
                 $detail->user_id    = $murid->id;
+                $detail->jenjang    = $request->jenjang;
                 $detail->save();
             }
+
+            $payment = new paymentRegistration();
+            $payment->user_id   = $murid->id;
+            $payment->jenjang   = $request->jenjang;
+            $payment->amount    = 350000;
+            $payment->save();
 
             $murid->assignRole($murid->role);
             
@@ -123,7 +131,7 @@ class MuridController extends Controller
      */
     public function edit($id)
     {
-        $murid = User::whereIn('role',['Guest','Murid'])->find($id);
+        $murid = User::with('muridDetail')->whereIn('role',['Guest','Murid','Terverifikasi','Lulus','Tidak Lulus'])->find($id);
         return view('backend.pengguna.murid.edit', compact('murid'));
     }
 
@@ -143,7 +151,7 @@ class MuridController extends Controller
                 'name'      => 'required|max:255',
                 'email'     => 'required',
                 'status'    => ['required',Rule::in(['Aktif','Tidak Aktif'])],
-                'role'      => ['required',Rule::in(['Murid','Guest'])],
+                'jenjang'      => ['required',Rule::in(['SMP-IT','SMA-IT','MA'])],
             ],
             [
                 'name.required'     => 'Nama tidak boleh kosong.',
@@ -151,8 +159,8 @@ class MuridController extends Controller
                 'email.email'       => 'Email yang dimasukan tidak valid.',
                 'status.required'   => 'Status Murid harus dipilih.',
                 'status.in'         => 'Status yang dipilih tidak valid.',
-                'role.required'     => 'Role Murid harus dipilih.',
-                'role.in'           => 'Role yang dipilih tidak valid.'
+                'jenjang.required'  => 'Jenjang Murid harus dipilih.',
+                'jenjang.in'        => 'Jenjang yang dipilih tidak valid.'
             ]
             );
 
@@ -165,14 +173,13 @@ class MuridController extends Controller
             $errors = $validator->errors();
 
             $murid = User::find($id);
+            $dataMurid = dataMurid::where('user_id',$id)->first();
             $murid->name            = $request->name;
             $murid->email           = $request->email;
-            $murid->role            = $request->role;
+            $dataMurid->jenjang     = $request->jenjang;
             $murid->status          = $request->status;
             $murid->update();
-
-            DB::table('model_has_roles')->where('model_id',$id)->delete();
-            $murid->assignRole($request->role);
+            $dataMurid->update();
 
             DB::commit();
             Session::flash('success','Calon Murid Berhasil diupdate !');

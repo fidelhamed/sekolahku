@@ -31,13 +31,23 @@
             position: relative;
         }
 
-        /* .logo {
+        .logo-container {
             position: absolute;
             top: 10px;
             right: 10px;
-            width: 50px;
-            height: 50px;
-        } */
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            border: 1px solid #333;
+            background-color: white;
+            overflow: hidden;
+            padding: 10px
+        }
+
+        .logo-container img {
+            width: 100%;
+            height: auto;
+        }
 
         .card-body {
             padding: 20px;
@@ -70,7 +80,9 @@
 
     <div class="card">
         <div class="card-header">
-            {{-- <img src="logo.png" alt="Logo" class="logo"> --}}
+            <div class="logo-container">
+                <img src="../public/Assets/Frontend/img/logo-ibs-a.png" alt="Logo" class="logo">
+            </div>
             <h3>Kartu Ujian</h3>
         </div>
         <div class="card-body">

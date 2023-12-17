@@ -242,7 +242,7 @@ class PendaftaranController extends Controller
         $payment->file              = $payments;
         $payment->update();
 
-        Session::flash('success', 'Data pembayaran registrasi berhasil dikirim, tunggu proses konfirmasi oleh admin  !');
+        Session::flash('success', 'Bukti pembayaran registrasi berhasil dikirim, tunggu proses konfirmasi oleh admin  !');
         return redirect('/home');
     }
 }

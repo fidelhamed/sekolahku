@@ -24,7 +24,7 @@ class KelulusanController extends Controller
      */
     public function index(Request $request)
     {
-        $jenjang    = $request['jenjang'];
+        $jenjang    = $request['jenjangKelulusan'];
         $murid = User::has('muridDetail')
             ->whereHas('muridDetail', function ($a) use ($jenjang) {
                 $a->where('jenjang', $jenjang);

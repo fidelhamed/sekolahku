@@ -54,7 +54,7 @@
                                 </div>
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <label for="basicInput">Lokasi Tes dan Ujian</label>
+                                        <label for="basicInput">Lokasi Daftar Ulang</label>
                                         <input type="text" class="form-control @error('lokasi') is-invalid @enderror" name="lokasi" value="{{ $infoSMPIT->lokasi }}"/>
                                         @error('lokasi')
                                             <div class="invalid-feedback">
@@ -98,7 +98,7 @@
                                 </div>
                             </div>
 
-                            <button class="btn btn-primary" type="submit">Simpan</button>
+                            <button class="btn btn-success" type="submit">Simpan</button>
                         </form>
                     </div>
                 </div>
@@ -138,7 +138,7 @@
                                 </div>
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <label for="basicInput">Lokasi Tes dan Ujian</label>
+                                        <label for="basicInput">Lokasi Daftar Ulang</label>
                                         <input type="text" class="form-control @error('lokasi') is-invalid @enderror" name="lokasi" value="{{ $infoSMAIT->lokasi }}"/>
                                         @error('lokasi')
                                             <div class="invalid-feedback">
@@ -182,7 +182,7 @@
                                 </div>
                             </div>
 
-                            <button class="btn btn-primary" type="submit">Simpan</button>
+                            <button class="btn btn-success" type="submit">Simpan</button>
                         </form>
                     </div>
                 </div>
@@ -222,7 +222,7 @@
                                 </div>
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <label for="basicInput">Lokasi Tes dan Ujian</label>
+                                        <label for="basicInput">Lokasi Daftar Ulang</label>
                                         <input type="text" class="form-control @error('lokasi') is-invalid @enderror" name="lokasi" value="{{ $infoMA->lokasi }}"/>
                                         @error('lokasi')
                                             <div class="invalid-feedback">
@@ -266,7 +266,7 @@
                                 </div>
                             </div>
 
-                            <button class="btn btn-primary" type="submit">Simpan</button>
+                            <button class="btn btn-success" type="submit">Simpan</button>
                         </form>
                     </div>
                 </div>

@@ -32,9 +32,9 @@
                             </div>
                         </div>
                         <div class="text-center">
-                            <h1 class="mb-1 text-white">Selamat Datang {{Auth::user()->name}},</h1>
+                            <h1 class="mb-1 text-white">ٱلسَّلَامُ عَلَيْكُمْ وَرَحْمَةُ ٱللَّٰهِ وَبَرَكَاتُهُ {{Auth::user()->name}},</h1>
                             <p class="card-text m-auto w-75">
-                                Bismillahirrahmanirrahim
+                                بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم
                             </p>
                         </div>
                     </div>
@@ -53,7 +53,7 @@
                             </div>
                         </div>
                         <div class="text-center">
-                            <h1 class="mb-1 text-white">Selamat {{Auth::user()->name}},</h1>
+                            <h1 class="mb-1 text-white">اَلْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ {{Auth::user()->name}},</h1>
                             <p class="card-text m-auto w-75">
                                 Kamu lulus administrasi
                             </p>
@@ -95,7 +95,7 @@
                                 Klik tombol dibawah untuk mencetak kartu ujian
                             </p>
                             @if ($infoTesUjian->waktu_tgl || $infoTesUjian->jam_mulai || $infoTesUjian->jam_berakhir || $infoTesUjian->lokasi || $infoTesUjian->deskripsi)
-                            <a href="{{ route('ppdb.cetak-kartu') }}" class="btn btn-primary" target="_blank"><i data-feather="printer"></i> Cetak</a>                                
+                            <a href="{{ route('ppdb.cetak-kartu') }}" class="btn btn-success" target="_blank"><i data-feather="printer"></i> Cetak</a>                                
                             @endif
                         </div>
                     </div>
@@ -113,9 +113,9 @@
                             </div>
                         </div>
                         <div class="text-center">
-                            <h1 class="mb-1 text-white">Selamat {{Auth::user()->name}},</h1>
+                            <h1 class="mb-1 text-white">اَلْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ {{Auth::user()->name}},</h1>
                             <p class="card-text m-auto w-75">
-                                Alhamdulillah, kamu lulus menjadi murid IBS Ash-Shiddiiqi Jambi !
+                                Anda lulus menjadi murid IBS Ash-Shiddiiqi Jambi !
                             </p>
                         </div>
                     </div>
@@ -152,7 +152,7 @@
                                 Klik tombol dibawah untuk mencetak surat kelulusan
                             </p>
                             @if ($infoDaftarUlang->waktu_tgl || $infoDaftarUlang->jam_mulai || $infoDaftarUlang->jam_berakhir || $infoDaftarUlang->lokasi || $infoDaftarUlang->deskripsi)
-                            <a href="{{ route('ppdb.cetak-kelulusan') }}" class="btn btn-primary" target="_blank"><i data-feather="printer"></i> Cetak</a>                                
+                            <a href="{{ route('ppdb.cetak-kelulusan') }}" class="btn btn-success" target="_blank"><i data-feather="printer"></i> Cetak</a>                                
                             @endif
                         </div>
                     </div>
@@ -206,7 +206,7 @@
                         </div>
                     </div>
                     <div class="text-center">
-                        <h1 class="mb-1 text-white">Selamat {{Auth::user()->name}},</h1>
+                        <h1 class="mb-1 text-white">اَلْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ {{Auth::user()->name}},</h1>
                         <p class="card-text m-auto w-75">
                             Pembayaran kamu berhasil dikonfirmasi, silahkan lanjutkan mengisi formulir pendaftaran di menu pendaftaran
                         </p>
@@ -239,14 +239,23 @@
                   <div class="card">
                       <div class="card-header">
                           <div>
+                            @if ($needVerifSMPIT == 0 AND $needVerifSMAIT == 0 AND $needVerifMA == 0)
+                                <h2 class="font-weight-bolder mb-0">0</h2>                                                                                
+                            @endif
                             @if ($needVerifSMPIT > 0)
-                            <h4 class="font-weight-bolder mb-0">{{$needVerifSMPIT}} SMP-IT</h4>                                        
+                            <a href="{{ url('ppdb/data-murid?jenjangDataMurid=SMP-IT') }}">
+                                <h4 class="font-weight-bolder mb-0">{{$needVerifSMPIT}} SMP-IT</h4>                                        
+                            </a>
                             @endif
                             @if ($needVerifSMAIT > 0)
-                            <h4 class="font-weight-bolder mb-0">{{$needVerifSMAIT}} SMA-IT</h4>
+                            <a href="{{ url('ppdb/data-murid?jenjangDataMurid=SMA-IT') }}">
+                                <h4 class="font-weight-bolder mb-0">{{$needVerifSMAIT}} SMA-IT</h4>
+                            </a>
                             @endif
                             @if ($needVerifMA > 0)
-                            <h4 class="font-weight-bolder mb-0">{{$needVerifMA}} MA</h4>
+                            <a href="{{ url('ppdb/data-murid?jenjangDataMurid=MA') }}">
+                                <h4 class="font-weight-bolder mb-0">{{$needVerifMA}} MA</h4>
+                            </a>
                             @endif
                             <p class="card-text">Perlu Verifikasi Data Murid</p>
                           </div>
@@ -281,14 +290,23 @@
                         <div class="card">
                             <div class="card-header">
                                 <div>
+                                    @if ($needConfirmPaymentSMPIT == 0 AND $needConfirmPaymentSMAIT == 0 AND $needConfirmPaymentMA == 0)
+                                    <h2 class="font-weight-bolder mb-0">0</h2>                                                                                
+                                    @endif
                                     @if ($needConfirmPaymentSMPIT > 0)
-                                    <h4 class="font-weight-bolder mb-0">{{$needConfirmPaymentSMPIT}} SMP-IT</h4>                                        
+                                    <a href="{{ url('ppdb/data-murid?jenjangDataMurid=SMP-IT') }}">
+                                        <h4 class="font-weight-bolder mb-0">{{$needConfirmPaymentSMPIT}} SMP-IT</h4>                                  
+                                    </a>
                                     @endif
                                     @if ($needConfirmPaymentSMAIT > 0)
-                                    <h4 class="font-weight-bolder mb-0">{{$needConfirmPaymentSMAIT}} SMA-IT</h4>
+                                    <a href="{{ url('ppdb/data-murid?jenjangDataMurid=SMA-IT') }}">
+                                        <h4 class="font-weight-bolder mb-0">{{$needConfirmPaymentSMAIT}} SMA-IT</h4>
+                                    </a>
                                     @endif
                                     @if ($needConfirmPaymentMA > 0)
-                                    <h4 class="font-weight-bolder mb-0">{{$needConfirmPaymentMA}} MA</h4>
+                                    <a href="{{ url('ppdb/data-murid?jenjangDataMurid=MA') }}">
+                                        <h4 class="font-weight-bolder mb-0">{{$needConfirmPaymentMA}} MA</h4>
+                                    </a>
                                     @endif
                                     <p class="card-text">Cek Pembayaran</p>
                                 </div>

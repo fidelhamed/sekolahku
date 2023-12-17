@@ -128,8 +128,8 @@
                                                     </div>
                                                 @endif --}}
                                                 <div class="col-12">
-                                                    <button type="submit" class="btn btn-primary mt-2 mr-1">Update</button>
-                                                    <a href="/home" class="btn btn-outline-secondary mt-2">Batal</a>
+                                                    <button type="submit" class="btn btn-success mt-2 mr-1">Simpan</button>
+                                                    <a href="/home" class="btn btn-secondary mt-2">Batal</a>
                                                 </div>
                                             </div>
                                         </form>
@@ -199,8 +199,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-12">
-                                                    <button type="submit" class="btn btn-primary mr-1 mt-1">Update</button>
-                                                    <button type="reset" class="btn btn-outline-secondary mt-1">Cancel</button>
+                                                    <button type="submit" class="btn btn-success mr-1 mt-1">Simpan</button>
+                                                    <button type="reset" class="btn btn-secondary mt-1">Batal</button>
                                                 </div>
                                             </div>
                                         </form>

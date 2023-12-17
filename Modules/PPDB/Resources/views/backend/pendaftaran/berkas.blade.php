@@ -94,7 +94,7 @@
                                     <div class="form-group">
                                         <label for="basicInput">Rapor</label>
                                         <input type="file" class="form-control @error('rapor') is-invalid @enderror" name="rapor"/>
-                                        <small class="text-danger">Rapor Semester Akhir, harap satukan pada 1 file .pdf jika lebih dari 1 lembar</small>
+                                        <small class="text-danger">Rapor Semester Akhir, harap satukan pada 1 file .pdf</small>
                                         @error('rapor')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
@@ -130,8 +130,8 @@
                                 </div>
 
                             </div>
-                            <button class="btn btn-primary" type="submit">Simpan</button>
-                            <a href="/home" class="btn btn-warning">Batal</a>
+                            <button class="btn btn-success" type="submit">Simpan</button>
+                            <a href="/home" class="btn btn-secondary">Batal</a>
                         </form>
                     </div>
                 </div>

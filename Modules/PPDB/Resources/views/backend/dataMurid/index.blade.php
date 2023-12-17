@@ -66,9 +66,10 @@
                                                     <td> {{$murids->role == 'Terverifikasi' ? 'Calon Murid' : 'Guest'}} </td>
                                                     <td>
                                                         <a href="{{route('data-murid.show', $murids->id)}}" class="btn btn-info btn-sm" >Detail</a>
-                                                        <a href="{{asset('storage/images/payment_pendaftaran/' .$murids->paymentRegis->file)}}" class="btn btn btn-success btn-sm" target="_blank" style="display: {{$murids->paymentRegis->file == null || $murids->paymentRegis->approve_date != null ? 'none' : ''}}">Bukti Pembayaran</a>
-                                                        <a data-id="{{$murids->paymentRegis->id}}" id="updatePayment" class="btn btn btn-primary btn-sm" style="display: {{$murids->paymentRegis->file == null || $murids->paymentRegis->approve_date != null ? 'none' : ''}}">konfirmasi Pembayaran</a>
-                                                        <a data-id="{{ $murids->id }}" id="updatePerbaikan" class="btn btn-danger btn-sm" style="display: {{ $murids->role !== 'Guest' || $murids->berkas == null || $murids->muridDetail->proses == 'Perbaikan' ? 'none' : ''}}">Perbaikan</a>
+                                                        {{-- <a href="{{asset('storage/images/payment_pendaftaran/' .$murids->paymentRegis->file)}}" class="btn btn btn-secondary btn-sm" target="_blank" style="display: {{$murids->paymentRegis->file == null || $murids->paymentRegis->approve_date != null ? 'none' : ''}}">Bukti Pembayaran</a> --}}
+                                                        <a href="{{asset('storage/images/payment_pendaftaran/' .$murids->paymentRegis->file)}}" data-download-link="{{ asset('storage/images/payment_pendaftaran/' . $murids->paymentRegis->file) }}" class="btn btn-secondary btn-sm" id="openModalBtn" style="display: {{$murids->paymentRegis->file == null || $murids->paymentRegis->approve_date != null ? 'none' : ''}}">Bukti Pembayaran</a>
+                                                        <a data-id="{{$murids->paymentRegis->id}}" id="updatePayment" class="btn btn btn-success btn-sm" style="display: {{$murids->paymentRegis->file == null || $murids->paymentRegis->approve_date != null ? 'none' : ''}}">konfirmasi Pembayaran</a>
+                                                        <a data-id="{{ $murids->id }}" id="updatePerbaikan" class="btn btn-warning btn-sm" style="display: {{ $murids->role !== 'Guest' || $murids->berkas == null || $murids->muridDetail->proses == 'Perbaikan' ? 'none' : ''}}">Perbaikan</a>
                                                         <a data-id="{{ $murids->id }}" id="updateLulus" class="btn btn-success btn-sm" style="display: {{ $murids->role !== 'Terverifikasi' ? 'none' : '' }}">Lulus</a>
                                                         <a data-id="{{ $murids->id }}" id="updateTidakLulus" class="btn btn-danger btn-sm" style="display: {{ $murids->role !== 'Terverifikasi' ? 'none' : '' }}">Tidak Lulus</a>
                                                     </td>
@@ -83,6 +84,25 @@
                 </section>
             </div>
         </div>
+        <div class="modal" tabindex="-1" role="dialog" id="paymentModal">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Bukti Pembayaran</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <img id="paymentImage" src="" alt="Bukti Pembayaran" class="img-fluid">
+                </div>
+                <div class="modal-footer">
+                    <a id="downloadButton" class="btn btn-success" download>Download</a>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+            </div>
     </div>
 </div>
 @endsection
@@ -111,6 +131,26 @@
         $.get('update-murid-tidak-lulus', {'_token' : $('meta[name=csrf-token]').attr('content'),id:id}, function(_resp){
             location.reload()
         });
+    });
+</script>
+<script>
+    $(document).ready(function() {
+      // Handle click event on the button to open the modal
+      $('#openModalBtn').on('click', function() {
+        // Get the image source from the link's href attribute
+        var paymentImageSrc = $(this).attr('href');
+        var downloadLink = $(this).attr('data-download-link');
+  
+        // Set the image source in the modal
+        $('#paymentImage').attr('src', paymentImageSrc);
+        $('#downloadButton').attr('href', downloadLink);
+  
+        // Open the modal
+        $('#paymentModal').modal('show');
+  
+        // Prevent the default behavior of the link
+        return false;
+      });
     });
 </script>
 @endsection
