@@ -397,7 +397,6 @@
     
     // Chart pendaftar
     var ctx = document.getElementById('myChart').getContext('2d');
-    var ctx = document.getElementById('myChart').getContext('2d');
     var data = @json($pendaftar);
 
     var labels = data.map(function(item) {
@@ -480,10 +479,10 @@
         return item.jumlah_pendaftar_perempuan;
     });
 
-    var backgroundColorsMale = 'rgba(40, 48, 70, 1)';
+    var backgroundColorsMale = 'rgba(40, 48, 70, 0.7)';
     var borderColorsMale = 'rgba(40, 48, 70, 1)';
 
-    var backgroundColorsFemale = 'rgba(20, 174, 92, 1)';
+    var backgroundColorsFemale = 'rgba(20, 174, 92, 0.7)';
     var borderColorsFemale = 'rgba(20, 174, 92, 1)';
 
     var datasets_jk = [
@@ -537,9 +536,9 @@
     });
 
     var backgroundColors = [
-        'rgba(20, 174, 92, 1)',
-        'rgba(40, 48, 70, 1)',
-        'rgba(72, 218, 137, 1)',
+        'rgba(20, 174, 92, 0.7)',
+        'rgba(40, 48, 70, 0.7)',
+        'rgba(72, 218, 137, 0.7)',
         // ...Tambahkan warna lain sesuai kebutuhan
     ];
 
@@ -586,7 +585,7 @@
                 },
                 title: {  // Tambahkan properti title di sini
                     display: true,
-                    text: 'Jumlah Pembayaran Registrasi Berdasarkan Jenjang'
+                    text: 'Jumlah Biaya Pendaftaran Berdasarkan Jenjang'
                 }
             },
             maintainAspectRatio: false,

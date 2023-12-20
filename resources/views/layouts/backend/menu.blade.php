@@ -126,7 +126,7 @@
                     <i data-feather="dollar-sign"></i>
                     <span class="menu-title text-truncate" data-i18n="Pendaftaran">Pembayaran</span>
                     @else
-                    <i data-feather="book"></i>
+                    <i data-feather="clipboard"></i>
                     <span class="menu-title text-truncate" data-i18n="Pendaftaran">Pendaftaran</span>
                     @endif
                 </a>
