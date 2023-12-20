@@ -61,6 +61,7 @@
                     </div>
                 </div>
             </div>
+            @if (isset($infoTesUjian->waktu_tgl, $infoTesUjian->jam_mulai, $infoTesUjian->jam_berakhir, $infoTesUjian->lokasi, $infoTesUjian->deskripsi))
             <div class="col-lg-6 col-md-12 col-sm-12">
                 <div class="card">
                     <div class="card-body text-center">
@@ -101,6 +102,7 @@
                     </div>
                 </div>
             </div>
+            @endif
         @elseif (Auth::user()->role == 'Lulus')
             <div class="col-lg-6 col-md-12 col-sm-12">
                 <div class="card card-congratulations">
@@ -121,6 +123,7 @@
                     </div>
                 </div>
             </div>
+            @if (isset($infoDaftarUlang->waktu_tgl, $infoDaftarUlang->jam_mulai, $infoDaftarUlang->jam_berakhir, $infoDaftarUlang->lokasi, $infoDaftarUlang->deskripsi))
             <div class="col-lg-6 col-md-12 col-sm-12">
                 <div class="card">
                     <div class="card-body text-center">
@@ -158,6 +161,7 @@
                     </div>
                 </div>
             </div>
+            @endif
         @elseif (Auth::user()->role == 'Tidak Lulus')
             <div class="col-lg-6 col-md-12 col-sm-12">
                 <div class="card">
@@ -582,7 +586,7 @@
                 },
                 title: {  // Tambahkan properti title di sini
                     display: true,
-                    text: 'Jumlah Biaya Registrasi Berdasarkan Jenjang'
+                    text: 'Jumlah Pembayaran Registrasi Berdasarkan Jenjang'
                 }
             },
             maintainAspectRatio: false,
