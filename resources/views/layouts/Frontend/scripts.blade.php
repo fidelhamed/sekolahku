@@ -30,3 +30,5 @@
 <script src="{{asset('Assets/Frontend/js/jquery.gridrotator.js')}}" type="text/javascript"></script>
 <!-- Custom Js -->
 <script src="{{asset('Assets/Frontend/js/main.js')}}" type="text/javascript"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.min.js" type="text/javascript"></script>

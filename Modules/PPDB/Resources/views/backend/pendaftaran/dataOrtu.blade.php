@@ -17,6 +17,18 @@
     </div>
     <div class="content-body">
         <div class="row">
+            <div class="col-lg-4 col-sm-12 mx-auto">
+                <div class="text-center">
+                    <span class="step">1</span>
+                    <span class="step active">2</span>
+                    <span class="step">3</span>
+                </div>
+                <div class="form-info">
+                    <p>Langkah 2: Informasi Data Orang Tua</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
             <div class="col-12">
                 <div class="card">
                     <div class="card-header header-bottom">

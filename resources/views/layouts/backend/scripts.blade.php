@@ -39,3 +39,4 @@
         }
     })
 </script>
+@stack('page-script')

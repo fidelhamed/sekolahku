@@ -274,8 +274,8 @@
                         <div class="card">
                             <div class="card-header">
                                 <div>
-                                    <h2 class="font-weight-bolder mb-0">{{$confirmedPayment}}</h2>
-                                    <p class="card-text">Sudah Bayar</p>
+                                    <h2 class="font-weight-bolder mb-0">Rp. {{number_format($profit, 0, ',', '.')}}</h2>
+                                    <p class="card-text">Total Pemasukan</p>
                                 </div>
                                 <div class="avatar bg-light-success p-50 m-0">
                                     <div class="avatar-content">
@@ -322,8 +322,8 @@
            @endif
            @if (Auth::user()->role !== 'PPDB')
             <div class="col-12">
-                <div class="card">
-                    <table class="table">
+                <div class="card-datatable">
+                    <table class="dt-responsive table">
                         <thead>
                             <tr>
                                 <th>Noreg</th>
@@ -349,6 +349,247 @@
             </div>
            @endif
         </div>
+        @if (Auth::user()->role == 'PPDB' || Auth::user()->role == 'Admin')
+        <div class="row">
+            <div class="col-lg-6 col-12">
+                <div class="card py-1">
+                    <canvas id="myChart" width="400" height="200"></canvas>
+                </div>
+            </div>
+            <div class="col-lg-6 col-12">
+                <div class="card py-1">
+                    <canvas id="myChart_jk" width="400" height="200"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-12">
+                <div class="card py-1">
+                    <canvas id="myChart_biaya" width="400" height="200"></canvas>
+                </div>
+            </div>            
+        </div>            
+        @endif
     </div>
 </div>
+
+
 @endsection
+@push('page-script')
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.table').DataTable({
+            searching: false,
+            paging: false,
+            info: false
+        });
+    });
+</script>
+<script>
+    @if (isset($pendaftar, $pendaftar_jk))
+    
+    // Chart pendaftar
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var data = @json($pendaftar);
+
+    var labels = data.map(function(item) {
+        return item.jenjang;
+    });
+
+    var values = data.map(function(item) {
+        return item.jumlah_pendaftar;
+    });
+
+    var backgroundColors = [
+        'rgba(20, 174, 92, 1)',
+        'rgba(40, 48, 70, 1)',
+        'rgba(72, 218, 137, 1)',
+        // ...Tambahkan warna lain sesuai kebutuhan
+    ];
+
+    var borderColors = [
+        'rgba(20, 174, 92, 1)',
+        'rgba(40, 48, 70, 1)',
+        'rgba(72, 218, 137, 1)',
+        // ...Tambahkan warna lain sesuai kebutuhan
+    ];
+
+    var datasets = [{
+        data: values,
+        backgroundColor: backgroundColors,
+        borderColor: borderColors,
+        borderWidth: 1,
+    }];
+
+    var myChart = new Chart(ctx, {
+        type: 'doughnut', // Mengganti type menjadi 'pie' untuk pie chart
+        data: {
+            labels: labels,
+            datasets: datasets
+        },
+        options: {
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'left',
+                    labels: {
+                        generateLabels: function(chart) {
+                            return labels.map(function(label, index) {
+                                return {
+                                    text: label,
+                                    fillStyle: datasets[0].backgroundColor[index],
+                                    strokeStyle: datasets[0].borderColor[index],
+                                    lineWidth: datasets[0].borderWidth
+                                };
+                            });
+                        }
+                    }
+                },
+                title: {  // Tambahkan properti title di sini
+                    display: true,
+                    text: 'Jumlah Pendaftar Berdasarkan Jenjang'
+                }
+            },
+            maintainAspectRatio: false,
+            responsive: true
+        }
+    });
+
+
+    // Chart pendaftar berdasarkan jenis kelamin
+    var ctx = document.getElementById('myChart_jk').getContext('2d');
+    var data = @json($pendaftar_jk);
+
+    var labels_jk = data.map(function(item) {
+        return item.jenjang;
+    });
+
+    var valuesMale = data.map(function(item) {
+        return item.jumlah_pendaftar_laki;
+    });
+
+    var valuesFemale = data.map(function(item) {
+        return item.jumlah_pendaftar_perempuan;
+    });
+
+    var backgroundColorsMale = 'rgba(40, 48, 70, 1)';
+    var borderColorsMale = 'rgba(40, 48, 70, 1)';
+
+    var backgroundColorsFemale = 'rgba(20, 174, 92, 1)';
+    var borderColorsFemale = 'rgba(20, 174, 92, 1)';
+
+    var datasets_jk = [
+        {
+            label: 'Laki-Laki',
+            data: valuesMale,
+            backgroundColor: backgroundColorsMale,
+            borderColor: borderColorsMale,
+            borderWidth: 1,
+        },
+        {
+            label: 'Perempuan',
+            data: valuesFemale,
+            backgroundColor: backgroundColorsFemale,
+            borderColor: borderColorsFemale,
+            borderWidth: 1,
+        }
+    ];
+
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels_jk,
+            datasets: datasets_jk
+        },
+        options: {
+            plugins: {
+                title: {  // Tambahkan properti title di sini
+                    display: true,
+                    text: 'Jumlah Pendaftar Berdasarkan Jenis Kelamin Per Jenjang'
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+
+    // Chart pemasukan biaya registrasi
+    var data = @json($biaya);
+
+    var labels_biaya = data.map(function(item) {
+        return item.jenjang;
+    });
+
+    var amounts = data.map(function(item) {
+        return item.total_amount;
+    });
+
+    var backgroundColors = [
+        'rgba(20, 174, 92, 1)',
+        'rgba(40, 48, 70, 1)',
+        'rgba(72, 218, 137, 1)',
+        // ...Tambahkan warna lain sesuai kebutuhan
+    ];
+
+    var borderColors = [
+        'rgba(20, 174, 92, 1)',
+        'rgba(40, 48, 70, 1)',
+        'rgba(72, 218, 137, 1)',
+        // ...Tambahkan warna lain sesuai kebutuhan
+    ];
+
+    var datasets_biaya = [
+        {
+            data: amounts,
+            backgroundColor: backgroundColors,
+            borderColor: borderColors,
+            borderWidth: 1
+        }
+    ];
+
+    var ctx = document.getElementById('myChart_biaya').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels_biaya,
+            datasets: datasets_biaya
+        },
+        options: {
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top',
+                    labels: {
+                        generateLabels: function(chart) {
+                            return labels_biaya.map(function(label, index) {
+                                return {
+                                    text: label,
+                                    fillStyle: datasets_biaya[0].backgroundColor[index],
+                                    strokeStyle: datasets_biaya[0].borderColor[index],
+                                    lineWidth: datasets_biaya[0].borderWidth
+                                };
+                            });
+                        }
+                    }
+                },
+                title: {  // Tambahkan properti title di sini
+                    display: true,
+                    text: 'Jumlah Biaya Registrasi Berdasarkan Jenjang'
+                }
+            },
+            maintainAspectRatio: false,
+            responsive: true
+        }
+    });
+
+    @endif
+</script>
+@endpush

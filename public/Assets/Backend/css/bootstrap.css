@@ -3923,6 +3923,31 @@ input[type="button"].btn-block {
   border-radius: 0;
   margin-bottom: -1px; }
 
+.step {
+  width: 40px; /* Mengubah lebar step menjadi 40px */
+  height: 40px; /* Mengubah tinggi step menjadi 40px */
+  border: 2px solid #14AE5C;
+  background-color: #fff;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 0 15px; /* Mengubah margin step menjadi 15px */
+  line-height: 40px; /* Mengubah line-height step menjadi 40px */
+  text-align: center;
+  font-weight: bold;
+  color: #14AE5C;
+}
+
+.step.active {
+    background-color: #14AE5C;
+    color: #fff;
+}
+
+.form-info {
+  text-align: center;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
 .breadcrumb {
   display: flex;
   flex-wrap: wrap;

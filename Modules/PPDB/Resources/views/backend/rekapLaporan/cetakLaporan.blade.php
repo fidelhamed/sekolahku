@@ -223,7 +223,7 @@
                 @foreach ($cetak as $key => $murids)
                     <tr>
                         <td>{{$key+1}}</td>
-                        <td>{{ $murids->id }}</td>
+                        <td>{{ $murids->muridDetail->noreg }}</td>
                         <td>{{$murids->name}}</td>
                         <td>{{$murids->email}}</td>
                         <td>{{ $murids->muridDetail->jenis_kelamin }}</td>
