@@ -172,7 +172,7 @@
 
     <div class="cop-container">
         <div class="cop-left">
-            <img class="logo" src="D:\Project\sekolahku\public\Assets\Frontend\img\logo-ibs-a.png" alt="logo">
+            <img class="logo" src="Assets\Frontend\img\logo-ibs-a.png" alt="logo">
         </div>
         <div class="cop-right">
             <div class="school-detail">

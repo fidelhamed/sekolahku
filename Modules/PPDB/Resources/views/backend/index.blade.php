@@ -71,20 +71,10 @@
                                 Dilaksanakan pada
                             </p>
                             <p class="card-text m-auto w-75">
-                                Tanggal     :       
-                                @if ($infoTesUjian->waktu_tgl)
-                                {{ Carbon\Carbon::parse($infoTesUjian->waktu_tgl)->format('d-m-Y') }}                                    
-                                @else
-                                Tanggal Belum Tersedia
-                                @endif
+                                Tanggal     :   {{ Carbon\Carbon::parse($infoTesUjian->waktu_tgl)->format('d-m-Y') }}                                    
                             </p>
                             <p class="card-text m-auto w-75">
-                                Jam     :       
-                                @if ($infoTesUjian->jam_mulai AND $infoTesUjian->jam_berakhir)
-                                {{ Carbon\Carbon::parse($infoTesUjian->jam_mulai)->format('H:i') . ' - ' . Carbon\Carbon::parse($infoTesUjian->jam_berakhir)->format('H:i')}}
-                                @else
-                                Jam Belum Tersedia
-                                @endif
+                                Jam     :       {{ Carbon\Carbon::parse($infoTesUjian->jam_mulai)->format('H:i') . ' - ' . Carbon\Carbon::parse($infoTesUjian->jam_berakhir)->format('H:i')}}
                             </p>
                             <p class="card-text m-auto w-75">
                                 Tempat     :       {{ $infoTesUjian->lokasi }}
@@ -95,9 +85,7 @@
                             <p class="card-text m-auto w-75">
                                 Klik tombol dibawah untuk mencetak kartu ujian
                             </p>
-                            @if ($infoTesUjian->waktu_tgl || $infoTesUjian->jam_mulai || $infoTesUjian->jam_berakhir || $infoTesUjian->lokasi || $infoTesUjian->deskripsi)
-                            <a href="{{ route('ppdb.cetak-kartu') }}" class="btn btn-success" target="_blank"><i data-feather="printer"></i> Cetak</a>                                
-                            @endif
+                            <a href="{{ route('ppdb.cetak-kartu') }}" class="btn btn-success" target="_blank"><i data-feather="printer"></i> Cetak</a>
                         </div>
                     </div>
                 </div>
@@ -130,20 +118,10 @@
                         <div class="text-center">
                             <h4 class="mb-1">Silahkan lakukan daftar ulang pada</h4>
                             <p class="card-text m-auto w-75">
-                                Tanggal     :       
-                                @if ($infoDaftarUlang->waktu_tgl)
-                                {{ Carbon\Carbon::parse($infoDaftarUlang->waktu_tgl)->format('d-m-Y') }} 
-                                @else
-                                Tanggal Belum Tersedia
-                                @endif
+                                Tanggal     :       {{ Carbon\Carbon::parse($infoDaftarUlang->waktu_tgl)->format('d-m-Y') }} 
                             </p>
                             <p class="card-text m-auto w-75">
-                                Jam     :       
-                                @if ($infoDaftarUlang->jam_mulai AND $infoDaftarUlang->jam_berakhir)
-                                {{ Carbon\Carbon::parse($infoDaftarUlang->jam_mulai)->format('H:i') . ' - ' . Carbon\Carbon::parse($infoDaftarUlang->jam_berakhir)->format('H:i')}}
-                                @else
-                                Jam Belum Tersedia
-                                @endif
+                                Jam     :       {{ Carbon\Carbon::parse($infoDaftarUlang->jam_mulai)->format('H:i') . ' - ' . Carbon\Carbon::parse($infoDaftarUlang->jam_berakhir)->format('H:i')}}
                             </p>
                             <p class="card-text m-auto w-75">
                                 Tempat     :       {{ $infoDaftarUlang->lokasi }}
@@ -154,9 +132,7 @@
                             <p class="card-text m-auto w-75">
                                 Klik tombol dibawah untuk mencetak surat kelulusan
                             </p>
-                            @if ($infoDaftarUlang->waktu_tgl || $infoDaftarUlang->jam_mulai || $infoDaftarUlang->jam_berakhir || $infoDaftarUlang->lokasi || $infoDaftarUlang->deskripsi)
                             <a href="{{ route('ppdb.cetak-kelulusan') }}" class="btn btn-success" target="_blank"><i data-feather="printer"></i> Cetak</a>                                
-                            @endif
                         </div>
                     </div>
                 </div>

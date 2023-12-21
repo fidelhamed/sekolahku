@@ -12,11 +12,11 @@
                         <div class="about-page-content-holder">
                             <div class="content-box">
                                 <h2>VISI</h2>
-                                <p>{{$visimisi->visi}}</p>
+                                <p>{!! nl2br($visimisi->visi) !!}</p>
                             </div>
                             <div class="content-box">
                                 <h2>MISI</h2>
-                                <p>{{$visimisi->misi}}</p>
+                                <p>{!! nl2br($visimisi->misi) !!}</p>
                             </div>
                         </div>
                     </div>

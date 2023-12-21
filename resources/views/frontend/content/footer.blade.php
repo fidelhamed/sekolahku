@@ -46,22 +46,22 @@
                     <h3>Photos</h3>
                     <ul class="flickr-photos">
                         <li>
-                            <a href="#"><img class="img-responsive" src="{{asset('Assets/Frontend/img/footer/1.jpg')}}" alt="flickr"></a>
+                            <a href="#"><img class="img-responsive" src="{{asset('Assets/Frontend/img/footer/2023-02-28.jpg')}}" alt="flickr"></a>
                         </li>
                         <li>
-                            <a href="#"><img class="img-responsive" src="{{asset('Assets/Frontend/img/footer/2.jpg')}}" alt="flickr"></a>
+                            <a href="#"><img class="img-responsive" src="{{asset('Assets/Frontend/img/footer/IMG_1278.JPG')}}" alt="flickr"></a>
                         </li>
                         <li>
-                            <a href="#"><img class="img-responsive" src="{{asset('Assets/Frontend/img/footer/3.jpg')}}" alt="flickr"></a>
+                            <a href="#"><img class="img-responsive" src="{{asset('Assets/Frontend/img/footer/DJI_0307.JPG')}}" alt="flickr"></a>
                         </li>
                         <li>
-                            <a href="#"><img class="img-responsive" src="{{asset('Assets/Frontend/img/footer/4.jpg')}}" alt="flickr"></a>
+                            <a href="#"><img class="img-responsive" src="{{asset('Assets/Frontend/img/footer/IMG_1287.JPG')}}" alt="flickr"></a>
                         </li>
                         <li>
-                            <a href="#"><img class="img-responsive" src="{{asset('Assets/Frontend/img/footer/5.jpg')}}" alt="flickr"></a>
+                            <a href="#"><img class="img-responsive" src="{{asset('Assets/Frontend/img/footer/DJI_0213.JPG')}}" alt="flickr"></a>
                         </li>
                         <li>
-                            <a href="#"><img class="img-responsive" src="{{asset('Assets/Frontend/img/footer/6.jpg')}}" alt="flickr"></a>
+                            <a href="#"><img class="img-responsive" src="{{asset('Assets/Frontend/img/footer/DJI_0305.JPG')}}" alt="flickr"></a>
                         </li>
                     </ul>
                 </div>
