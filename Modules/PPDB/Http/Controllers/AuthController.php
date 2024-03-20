@@ -4,13 +4,13 @@ namespace Modules\PPDB\Http\Controllers;
 
 use ErrorException;
 use App\Models\User;
-use App\Models\dataMurid;
+use App\Models\DataMurid;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Modules\PPDB\Entities\paymentRegistration;
+use Modules\PPDB\Entities\PaymentRegistration;
 use Modules\PPDB\Entities\PeriodeRegistrasi;
 use Modules\PPDB\Http\Requests\RegisterRequest;
 
@@ -59,7 +59,7 @@ class AuthController extends Controller
             $register->save();
 
             if ($register) {
-                $murid = new dataMurid();
+                $murid = new DataMurid();
                 $murid->user_id         =   $register->id;
                 $murid->jenjang         =   $request->jenjang;
                 $murid->whatsapp        =   $request->whatsapp;
@@ -71,7 +71,7 @@ class AuthController extends Controller
                 $murid->save();
             }
 
-            $payment = new paymentRegistration();
+            $payment = new PaymentRegistration();
             $payment->user_id   = $register->id;
             $payment->jenjang   = $request->jenjang;
             $payment->amount    = 350000;
@@ -94,7 +94,7 @@ class AuthController extends Controller
         // Sesuaikan logika penomoran sesuai kebutuhan
         // Contoh: RR-2023-001 (RR untuk "Registrasi", tahun, dan nomor urut)
         $tahun = date('Y');
-        $lastRegistrasi = dataMurid::whereYear('created_at', $tahun)
+        $lastRegistrasi = DataMurid::whereYear('created_at', $tahun)
             ->orderBy('id', 'desc')
             ->first();
 

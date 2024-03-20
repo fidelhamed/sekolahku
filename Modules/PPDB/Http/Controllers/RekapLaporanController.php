@@ -3,7 +3,7 @@
 namespace Modules\PPDB\Http\Controllers;
 
 use App\Models\User;
-use App\Models\dataMurid;
+use App\Models\DataMurid;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Carbon\Carbon;

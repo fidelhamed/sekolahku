@@ -4,7 +4,7 @@ namespace Modules\PPDB\Http\Controllers;
 
 use ErrorException;
 use App\Models\User;
-use App\Models\dataMurid;
+use App\Models\DataMurid;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Modules\SPP\Entities\DetailPaymentSpp;
 use Illuminate\Contracts\Support\Renderable;
-use Modules\PPDB\Entities\paymentRegistration;
+use Modules\PPDB\Entities\PaymentRegistration;
 
 class DataMuridController extends Controller
 {
@@ -110,7 +110,7 @@ class DataMuridController extends Controller
             $murid->update();
 
             if ($murid) {
-                $data = dataMurid::where('user_id', $id)->first();
+                $data = DataMurid::where('user_id', $id)->first();
                 $data->proses   = 'Lulus Administrasi';
                 $data->update();
             }
@@ -140,7 +140,7 @@ class DataMuridController extends Controller
     // Konfirm Payment Regis Page
     public function confirmPayment(Request $request)
     {
-        $payment = paymentRegistration::find($request->id);
+        $payment = PaymentRegistration::find($request->id);
         $payment->update([
             'status'        => 'Paid',
             'approve_date'  => Carbon::now()
@@ -155,7 +155,7 @@ class DataMuridController extends Controller
         try {
             DB::beginTransaction();
 
-            $data = dataMurid::where('user_id', $request->id)->first();
+            $data = DataMurid::where('user_id', $request->id)->first();
             $data->proses   = 'Perbaikan';
             $data->update();
 
@@ -179,7 +179,7 @@ class DataMuridController extends Controller
             $murid->update();
 
             if ($murid) {
-                $data = dataMurid::where('user_id', $request->id)->first();
+                $data = DataMurid::where('user_id', $request->id)->first();
                 $data->proses   = 'Selesai';
                 $data->update();
 
@@ -208,7 +208,7 @@ class DataMuridController extends Controller
                 $murid->update();
     
                 if ($murid) {
-                    $data = dataMurid::where('user_id', $request->id)->first();
+                    $data = DataMurid::where('user_id', $request->id)->first();
                     $data->proses   = 'Selesai';
                     $data->update();
                 }

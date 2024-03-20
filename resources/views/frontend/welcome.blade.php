@@ -1,6 +1,6 @@
 @extends('layouts.Frontend.app')
 @section('title')
-    Sekolahku
+    PPDB Online Ash Shiddiiqi Jambi
 @endsection
 
 @section('content')

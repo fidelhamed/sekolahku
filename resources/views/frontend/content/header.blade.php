@@ -5,11 +5,7 @@
                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                     <div class="header-top-left">
                         <div class="logo-area">
-                            @if (@$footer->logo == NULL)
-                            <img class="img-responsive" src="{{asset('Assets/Frontend/img/logo-footer.png')}}" alt="logo">
-                        @else
-                            <img class="img-responsive" src="{{asset('storage/images/logo/' .$footer->logo)}}" alt="logo">
-                        @endif
+                            <img class="img-responsive" src="{{asset('Assets/Frontend/img/logo-ibs-a-min.png')}}" alt="logo">
                         </div>
                     </div>
                 </div>

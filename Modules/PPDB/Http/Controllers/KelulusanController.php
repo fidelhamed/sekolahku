@@ -4,7 +4,7 @@ namespace Modules\PPDB\Http\Controllers;
 
 use ErrorException;
 use App\Models\User;
-use App\Models\dataMurid;
+use App\Models\DataMurid;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Modules\SPP\Entities\DetailPaymentSpp;
 use Illuminate\Contracts\Support\Renderable;
-use Modules\PPDB\Entities\paymentRegistration;
+use Modules\PPDB\Entities\PaymentRegistration;
 
 class KelulusanController extends Controller
 {
@@ -129,7 +129,7 @@ class KelulusanController extends Controller
             $murid = User::find($id);
 
             if ($murid) {
-                $data = dataMurid::where('user_id', $id)->first();
+                $data = DataMurid::where('user_id', $id)->first();
                 $data->nis      = $request->nis;
                 $data->nisn     = $request->nisn;
                 $data->update();

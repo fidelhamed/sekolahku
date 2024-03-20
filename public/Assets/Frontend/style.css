@@ -194,7 +194,7 @@ ul {
 }
 .bg-textPrimary {
   background: #FFFFFF;
-  color: black;
+  color: #1f1f1f;
 }
 .bg-primary-deep {
   position: relative;
@@ -444,7 +444,7 @@ ul {
   text-align: left;
   font-weight: 500;
   margin-bottom: 45px;
-  color: black;
+  color: #1f1f1f;
 }
 @media only screen and (max-width: 767px) {
   .title-default-left {
@@ -459,7 +459,7 @@ ul {
   }
 }
 .title-default-left a {
-  color: black;
+  color: #1f1f1f;
   -webkit-transition: all 0.3s ease-out;
   -moz-transition: all 0.3s ease-out;
   -ms-transition: all 0.3s ease-out;
@@ -762,7 +762,7 @@ h2.sidebar-title:before {
   color: #ffffff;
   padding: 8px 0;
   width: 104px;
-  background: black;
+  background: #1f1f1f;
   text-transform: uppercase;
   font-size: 12px;
   font-weight: 700;
@@ -783,7 +783,7 @@ h2.sidebar-title:before {
   color: #ffffff !important;
   padding: 10px 0;
   width: 104px;
-  background: black;
+  background: #1f1f1f;
   border-radius: 8px;
   text-transform: uppercase;
   font-size: 12px;
@@ -877,7 +877,7 @@ h2.sidebar-title:before {
 }
 .default-big-btn:hover {
   background: #ffffff;
-  color: black;
+  color: #1f1f1f;
 }
 .default-full-width-btn {
   color: #FFFFFF;
@@ -1019,7 +1019,7 @@ h2.sidebar-title:before {
   text-align: center;
   color: #FFFFFF;
   padding: 12px 34px;
-  background: black;
+  background: #1f1f1f;
   text-transform: uppercase;
   font-size: 14px;
   display: inline-block;
@@ -1062,7 +1062,7 @@ h2.sidebar-title:before {
   text-align: center;
   color: #FFFFFF;
   padding: 12px 0;
-  background: black;
+  background: #1f1f1f;
   text-transform: uppercase;
   font-size: 14px;
   display: inline-block;
@@ -1940,7 +1940,7 @@ nav#desktop-nav ul {
   text-align: right;
 }
 nav#desktop-nav ul .active > a {
-  color: black;
+  color: #1f1f1f;
 }
 nav#desktop-nav ul li {
   display: inline-block;
@@ -1978,13 +1978,13 @@ nav#desktop-nav ul li a {
   }
 }
 nav#desktop-nav ul li a:hover {
-  color: black;
+  color: #1f1f1f;
 }
 nav#desktop-nav ul li .active {
   background-color: #155533;
 }
 nav#desktop-nav ul li .active a {
-  color: black;
+  color: #1f1f1f;
 }
 nav#desktop-nav ul li > ul {
   position: relative;
@@ -2055,7 +2055,7 @@ nav#desktop-nav ul li > ul > li .active {
 }
 nav#desktop-nav ul li > ul > li:hover a,
 nav#desktop-nav ul li > ul > li .active a {
-  color: black;
+  color: #1f1f1f;
 }
 nav#desktop-nav ul li > ul > li:hover a:before,
 nav#desktop-nav ul li > ul > li .active a:before {
@@ -2094,7 +2094,7 @@ nav#desktop-nav ul li .mega-menu-area > li:hover > a {
   transition: all 0.5s ease-out;
 }
 nav#desktop-nav ul li .mega-menu-area > li:hover > a:hover {
-  color: black;
+  color: #1f1f1f;
   background: #155533;
   padding-left: 10px;
 }
@@ -2112,7 +2112,7 @@ nav#desktop-nav ul li .mega-menu-area > li:last-child {
 nav#desktop-nav ul li .mega-menu-area > li .active {
   padding-left: 10px;
   background-color: #155533;
-  color: black;
+  color: #1f1f1f;
 }
 nav#desktop-nav li.has-child-menu {
   position: relative;
@@ -2143,13 +2143,13 @@ nav#desktop-nav li.has-child-menu > ul.thired-level li a {
   transition: all 0.3s ease-out;
 }
 nav#desktop-nav li.has-child-menu > ul.thired-level li:hover a {
-  color: black;
+  color: #1f1f1f;
 }
 nav#desktop-nav li.has-child-menu > ul.thired-level .active {
   background-color: #155533;
 }
 nav#desktop-nav li.has-child-menu > ul.thired-level .active a {
-  color: black;
+  color: #1f1f1f;
 }
 nav#desktop-nav li.has-child-menu:hover ul.thired-level {
   opacity: 1;
@@ -6539,7 +6539,7 @@ ul.course-feature2 li:before {
   margin-bottom: 0;
 }
 .news-inner-area .news-wrapper li .news-content-holder h3 a {
-  color: black;
+  color: #1f1f1f;
   -webkit-transition: all 0.3s ease-out;
   -moz-transition: all 0.3s ease-out;
   -ms-transition: all 0.3s ease-out;
@@ -6711,7 +6711,7 @@ ul.course-feature2 li:before {
   margin-bottom: 10px;
 }
 .event-inner-area .event-wrapper > li .event-content-holder h3 a {
-  color: black;
+  color: #1f1f1f;
   -webkit-transition: all 0.5s ease-out;
   -moz-transition: all 0.5s ease-out;
   -ms-transition: all 0.5s ease-out;
@@ -6845,7 +6845,7 @@ ul.course-feature2 li:before {
 }
 .news-date1 li:nth-child(even) {
   background: #14AE5C;
-  color: black;
+  color: #1f1f1f;
   font-weight: 500;
 }
 .news-date2 {
@@ -6890,7 +6890,7 @@ ul.course-feature2 li:before {
 }
 .news-date2 li:nth-child(even) {
   background: #14AE5C;
-  color: black;
+  color: #1f1f1f;
   font-weight: 500;
 }
 .news-comments {
@@ -6917,7 +6917,7 @@ ul.course-feature2 li:before {
   margin-right: 8px;
 }
 .news-comments li a span {
-  color: black;
+  color: #1f1f1f;
 }
 .news-details-page-area {
   padding: 100px 0;
@@ -7084,7 +7084,7 @@ ul.course-feature2 li:before {
   line-height: 1.4;
   margin-bottom: 15px;
   font-size: 18px;
-  color: black;
+  color: #1f1f1f;
   padding-left: 40px;
   position: relative;
 }
@@ -7209,7 +7209,7 @@ ul.course-feature2 li:before {
   line-height: 1.4;
   margin-right: 30px;
   font-size: 18px;
-  color: black;
+  color: #1f1f1f;
   padding-left: 40px;
   position: relative;
   margin-bottom: 10px;
@@ -9723,7 +9723,7 @@ ul.course-feature2 li:before {
   font-size: 16px;
 }
 .footer-area-top .corporate-address li i {
-  color: black;
+  color: #1f1f1f;
   padding-right: 15px;
   position: absolute;
   left: 0;

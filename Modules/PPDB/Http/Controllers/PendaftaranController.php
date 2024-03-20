@@ -3,7 +3,7 @@
 namespace Modules\PPDB\Http\Controllers;
 
 use App\Models\Bank;
-use App\Models\dataMurid;
+use App\Models\DataMurid;
 use App\Models\User;
 use ErrorException;
 use Modules\PPDB\Http\Requests\{BerkasMuridRequest, DataMuridRequest, DataOrtuRequest};
@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\DB;
 use Modules\PPDB\Entities\BerkasMurid;
 use Modules\PPDB\Entities\DataOrangTua;
 use Illuminate\Support\Facades\Session;
-use Modules\PPDB\Entities\paymentRegistration;
+use Modules\PPDB\Entities\PaymentRegistration;
 use Illuminate\Http\Request;
 
 class PendaftaranController extends Controller
@@ -45,7 +45,7 @@ class PendaftaranController extends Controller
             $user->update();
 
             if ($user) {
-                $murid = dataMurid::where('user_id', $id)->first();
+                $murid = DataMurid::where('user_id', $id)->first();
                 $murid->nama_panggilan  = $request->nama_panggilan;
                 $murid->jenis_kelamin   = $request->jenis_kelamin;
                 $murid->tempat_lahir    = $request->tempat_lahir;
@@ -203,7 +203,7 @@ class PendaftaranController extends Controller
             $berkas->save();
 
             if ($berkas) {
-                $data = dataMurid::where('user_id', Auth::id())->first();
+                $data = DataMurid::where('user_id', Auth::id())->first();
                 $data->proses = 'Input data';
                 $data->update();
                 
@@ -236,7 +236,7 @@ class PendaftaranController extends Controller
         $tujuan_upload = 'public/images/payment_pendaftaran';
         $imagePayment->storeAs($tujuan_upload, $payments);
 
-        $payment = paymentRegistration::whereId($request->id)->first();
+        $payment = PaymentRegistration::whereId($request->id)->first();
         $payment->sender            = $request->sender;
         $payment->destination_bank  = $request->destination_bank;
         $payment->file              = $payments;
