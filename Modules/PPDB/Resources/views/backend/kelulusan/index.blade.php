@@ -52,7 +52,7 @@
                                                 <th>Status</th>
                                                 <th>Pembayaran</th>
                                                 <th>Hak Akses</th>
-                                                <th>Action</th>
+                                                <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>

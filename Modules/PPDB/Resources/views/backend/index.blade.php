@@ -55,7 +55,7 @@
                         <div class="text-center">
                             <h1 class="mb-1 text-white">اَلْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ {{Auth::user()->name}},</h1>
                             <p class="card-text m-auto w-75">
-                                Kamu lulus administrasi
+                                Selamat kamu lulus administrasi
                             </p>
                         </div>
                     </div>
@@ -105,7 +105,7 @@
                         <div class="text-center">
                             <h1 class="mb-1 text-white">اَلْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ {{Auth::user()->name}},</h1>
                             <p class="card-text m-auto w-75">
-                                Anda lulus menjadi murid IBS Ash-Shiddiiqi Jambi !
+                                Selamat anda lulus menjadi murid IBS Ash-Shiddiiqi Jambi
                             </p>
                         </div>
                     </div>
@@ -132,12 +132,25 @@
                             <p class="card-text m-auto w-75">
                                 Klik tombol dibawah untuk mencetak surat kelulusan
                             </p>
-                            <a href="{{ route('ppdb.cetak-kelulusan') }}" class="btn btn-success" target="_blank"><i data-feather="printer"></i> Cetak</a>                                
+                            <a href="{{ route('ppdb.cetak-kelulusan') }}" class="btn btn-success mt-1" target="_blank"><i data-feather="printer"></i> Cetak</a>                                
                         </div>
                     </div>
                 </div>
             </div>
             @endif
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <div class="text-center">
+                            <h4 class="mb-1">Silahkan mengisi form angket</h4>
+                            <p class="card-text m-auto w-75">
+                                Pengisian angket wajib dilakukan oleh orang tua atau wali dari anak yang bersangkutan yang telah ditetapkan kelulusan nya
+                            </p>
+                            <a href="{{ route('ppdb.show-angket-form') }}" class="btn btn-success mt-1"><i data-feather="file"></i> Angket </a>                                
+                        </div>
+                    </div>
+                </div>
+            </div>
         @elseif (Auth::user()->role == 'Tidak Lulus')
             <div class="col-lg-6 col-md-12 col-sm-12">
                 <div class="card">

@@ -131,6 +131,13 @@
                     @endif
                 </a>
             </li>
+            @elseif (Auth::user()->role == 'Lulus')
+            <li class="nav-item {{ (request()->is('ppdb/show-angket-form')) ? 'active' : '' }}">
+                <a class="d-flex align-items-center" href="{{route('ppdb.show-angket-form')}}">
+                    <i data-feather="file"></i>
+                    <span class="menu-title text-truncate" data-i18n="Pendaftaran">Angket</span>
+                </a>
+            </li>            
 
             {{-- MENU PPDB --}}
             @elseif(Auth::user()->role == 'PPDB')
@@ -199,6 +206,11 @@
                         </a>
                     </li>
                 </ul>
+            </li>
+            <li class="nav-item {{ (request()->is('ppdb/angket')) ? 'active' : '' }}">
+                <a class="d-flex align-items-center" href=" {{url('ppdb/angket')}} "><i data-feather="file"></i>
+                    <span class="menu-item text-truncate" data-i18n="Basic">Angket</span>
+                </a>
             </li>
             <li class="nav-item {{ (request()->is('ppdb/rekap-laporan')) ? 'active' : '' }}">
                 <a class="d-flex align-items-center" href=" {{url('ppdb/rekap-laporan')}} "><i data-feather="file-text"></i>

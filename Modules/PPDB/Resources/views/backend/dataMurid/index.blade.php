@@ -52,7 +52,7 @@
                                                 <th>Status</th>
                                                 <th>Pembayaran</th>
                                                 <th>Hak Akses</th>
-                                                <th>Action</th>
+                                                <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -65,9 +65,9 @@
                                                     <td>{{$murids->email}}</td>
                                                     <td>{{$murids->muridDetail->proses}}</td>
                                                     <td>{{$murids->paymentRegis->status == 'Unpaid' ? 'Belum Bayar' : 'Berhasil'}}</td>
-                                                    <td>{{$murids->role == 'Terverifikasi' ? 'Calon Murid' : 'Guest'}}</td>
+                                                    <td>{{$murids->role == 'Terverifikasi' ? 'Calon Murid' : 'Pendaftar'}}</td>
                                                     <td>
-                                                        <a href="{{route('data-murid.show', $murids->id)}}" class="btn btn-info btn-sm" >Detail</a>
+                                                        <a href="{{route('data-murid.show', $murids->id)}}" class="btn btn-info btn-sm" style="display: {{$murids->paymentRegis->file == null || $murids->paymentRegis->approve_date != null ? '' : 'none'}}">Detail</a>
                                                         {{-- <a href="{{asset('storage/images/payment_pendaftaran/' .$murids->paymentRegis->file)}}" class="btn btn btn-secondary btn-sm" target="_blank" style="display: {{$murids->paymentRegis->file == null || $murids->paymentRegis->approve_date != null ? 'none' : ''}}">Bukti Pembayaran</a> --}}
                                                         <a href="{{asset('storage/images/payment_pendaftaran/' .$murids->paymentRegis->file)}}" data-download-link="{{ asset('storage/images/payment_pendaftaran/' . $murids->paymentRegis->file) }}" class="btn btn-secondary btn-sm" id="openModalBtn" style="display: {{$murids->paymentRegis->file == null || $murids->paymentRegis->approve_date != null ? 'none' : ''}}">Bukti Pembayaran</a>
                                                         <a data-id="{{$murids->paymentRegis->id}}" id="updatePayment" class="btn btn btn-success btn-sm" style="display: {{$murids->paymentRegis->file == null || $murids->paymentRegis->approve_date != null ? 'none' : ''}}">konfirmasi Pembayaran</a>

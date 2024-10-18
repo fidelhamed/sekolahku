@@ -29,13 +29,13 @@
                     </div>
                     <div div class="col-6">
                         <div class="form-group">
-                          <label for="account-username">Nomor Rekening</label>
+                          <label for="account-number">Nomor Rekening</label>
                           <input type="number" class="form-control" name="account_number" placeholder="Nomor Rekening" value="" />
                         </div>
                     </div>
                     <div div class="col-6">
                         <div class="form-group">
-                            <label for="account-e-mail">Nama Pemilik</label>
+                            <label for="account-name">Nama Pemilik</label>
                             <input type="text" class="form-control" name="account_name" placeholder="Nama Pemilik" value="" />
                         </div>
                     </div>

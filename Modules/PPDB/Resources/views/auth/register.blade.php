@@ -182,6 +182,9 @@
                                     </div>
                                     <button class="btn btn-success btn-block" tabindex="4">Daftar</button>
                                 </form>
+                                    <div>
+                                        <p class="card-text mt-1">Sudah punya akun? <a class="font-weight-bold" href="{{ url('login') }}">Login</a></p>
+                                    </div>
                                 </div>
                         </div>
                         <!-- /Login-->
