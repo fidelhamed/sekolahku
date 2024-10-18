@@ -56,18 +56,22 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($murid as $key => $murids)
+                                            @foreach ($murids as $key => $murid)
                                                 <tr>
                                                     <td></td>
                                                     <td>{{$key+1}}</td>
-                                                    <td>{{ $murids->muridDetail->noreg }}</td>
-                                                    <td>{{$murids->name}}</td>
-                                                    <td>{{$murids->email}}</td>
-                                                    <td>{{$murids->muridDetail->proses}}</td>
-                                                    <td>{{$murids->paymentRegis->status  == 'Unpaid' ? 'Belum Bayar' : 'Berhasil'}}</td>
-                                                    <td>{{$murids->role}}</td>
+                                                    <td>{{$murid->muridDetail->noreg}}</td>
+                                                    <td>{{$murid->name}}</td>
+                                                    <td>{{$murid->email}}</td>
+                                                    <td>{{$murid->muridDetail->proses}}</td>
+                                                    <td>{{$murid->paymentRegis->status  == 'Unpaid' ? 'Belum Bayar' : 'Berhasil'}}</td>
+                                                    <td>{{$murid->role}}</td>
                                                     <td>
-                                                        <a href="{{route('data-kelulusan.show', $murids->id)}}" class="btn btn-info btn-sm" >Detail</a>
+                                                    @if ($murid->muridDetail->nis == null || $murid->muridDetail->nisn == null)
+                                                        <a href="{{route('data-kelulusan.show', $murid->id)}}" class="btn btn-warning btn-sm" >Input NIS dan NISN</a>                                                    
+                                                    @else
+                                                        <a href="{{route('data-kelulusan.show', $murid->id)}}" class="btn btn-info btn-sm" >Detail</a>
+                                                    @endif
                                                     </td>
                                                 </tr>
                                             @endforeach

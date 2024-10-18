@@ -86,9 +86,12 @@ Route::prefix('/ppdb')->middleware('role:PPDB')->group(function () {
     Route::resource('periode-registrasi', 'PeriodeRegistrasiController');
     Route::put('periode-registrasi/update', 'PeriodeRegistrasiController@update');
 
-    // ANGKET \\
-    Route::resource('angket', 'AngketController');
+    // ANGKET PERTANYAAN \\
+    Route::resource('angket-pertanyaan', 'AngketController');
     Route::post('angket/add', 'AngketController@addAngket')->name('ppdb.angket.add');
+
+    // DATA ANGKET \\
+    Route::resource('angket-data', 'AngketDataController'); 
 
     // REKAP LAPORAN \\
     Route::resource('rekap-laporan', 'RekapLaporanController');

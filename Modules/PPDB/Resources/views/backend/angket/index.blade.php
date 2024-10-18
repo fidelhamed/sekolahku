@@ -39,7 +39,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header border-bottom">
-                                    <h4 class="card-title"> Informasi Angket </h4>
+                                    <h4 class="card-title"> Daftar Pertanyaan Angket </h4>
                                 </div>
                                 <div class="card-datatable">
                                     <table class="dt-responsive table">
@@ -59,7 +59,7 @@
                                                     <td> {{$angket->pertanyaan}} </td>
                                                     <td> 
                                                         {{-- <a data-toggle="modal" data-target="#editAngket" data-id="{{ $angkets->id }}" class="btn btn-success btn-sm">Edit</a> --}}
-                                                        <form action="{{ route('angket.destroy', $angket->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus pertanyaan ini?');">
+                                                        <form action="{{ route('angket-pertanyaan.destroy', $angket->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus pertanyaan ini?');">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" class="btn btn-danger btn-sm">Hapus</button>

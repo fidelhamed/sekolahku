@@ -144,7 +144,7 @@
                         <div class="text-center">
                             <h4 class="mb-1">Silahkan mengisi form angket</h4>
                             <p class="card-text m-auto w-75">
-                                Pengisian angket wajib dilakukan oleh orang tua atau wali dari anak yang bersangkutan yang telah ditetapkan kelulusan nya
+                                Pengisian angket wajib dilakukan oleh orang tua atau wali dari calon murid yang bersangkutan dan telah ditetapkan kelulusan nya
                             </p>
                             <a href="{{ route('ppdb.show-angket-form') }}" class="btn btn-success mt-1"><i data-feather="file"></i> Angket </a>                                
                         </div>

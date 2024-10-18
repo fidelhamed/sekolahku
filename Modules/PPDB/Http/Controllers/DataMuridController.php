@@ -25,7 +25,7 @@ class DataMuridController extends Controller
     public function index(Request $request)
     {
         $jenjang    = $request['jenjangDataMurid'];
-        $murid = User::has('muridDetail')
+        $murids = User::has('muridDetail')
             ->whereHas('muridDetail', function ($a) use ($jenjang) {
                 $a->where('jenjang', $jenjang);
             })
@@ -35,7 +35,7 @@ class DataMuridController extends Controller
                     ->orWhere('role', 'Terverifikasi');
             })
             ->get();
-        return view('ppdb::backend.dataMurid.index', compact('murid','jenjang'));
+        return view('ppdb::backend.dataMurid.index', compact('murids','jenjang'));
     }
 
     /**

@@ -17,4 +17,14 @@ class AngketAnswer extends Model
         'jawaban',
     ];
 
+    public function angketResponse()  
+    {  
+        return $this->belongsTo(AngketResponse::class);  
+    }  
+
+    public function angket()  
+    {  
+        return $this->belongsTo(Angket::class);  
+    }
+
 }

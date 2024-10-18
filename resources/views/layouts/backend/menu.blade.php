@@ -208,9 +208,21 @@
                 </ul>
             </li>
             <li class="nav-item {{ (request()->is('ppdb/angket')) ? 'active' : '' }}">
-                <a class="d-flex align-items-center" href=" {{url('ppdb/angket')}} "><i data-feather="file"></i>
-                    <span class="menu-item text-truncate" data-i18n="Basic">Angket</span>
+                <a class="d-flex align-items-center" href="#"><i data-feather="file"></i>
+                    <span class="menu-title text-truncate" data-i18n="Card">Angket</span>
                 </a>
+                <ul class="menu-content">
+                    <li class="nav-item {{ (request()->is('ppdb/angket-pertanyaan')) ? 'active' : '' }}">
+                        <a class="d-flex align-items-center" href=" {{url('ppdb/angket-pertanyaan')}} "><i data-feather="circle"></i>
+                            <span class="menu-item text-truncate" data-i18n="Basic">Angket</span>
+                        </a>
+                    </li>
+                    <li class="nav-item {{ (request()->is('ppdb/angket-data')) ? 'active' : '' }}">
+                        <a class="d-flex align-items-center" href=" {{route('angket-data.index')}} "><i data-feather="circle"></i>
+                            <span class="menu-item text-truncate" data-i18n="Basic">Data Angket</span>
+                        </a>
+                    </li>
+                </ul>
             </li>
             <li class="nav-item {{ (request()->is('ppdb/rekap-laporan')) ? 'active' : '' }}">
                 <a class="d-flex align-items-center" href=" {{url('ppdb/rekap-laporan')}} "><i data-feather="file-text"></i>

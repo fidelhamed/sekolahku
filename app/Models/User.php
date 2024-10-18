@@ -2,18 +2,19 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Modules\SPP\Entities\PaymentSpp;
+use Modules\SPP\Entities\BankAccount;
+use Modules\PPDB\Entities\BerkasMurid;
+use Spatie\Permission\Traits\HasRoles;
+use Modules\PPDB\Entities\DataOrangTua;
 use Illuminate\Notifications\Notifiable;
 use Modules\Perpustakaan\Entities\Member;
-use Modules\PPDB\Entities\BerkasMurid;
-use Modules\PPDB\Entities\DataOrangTua;
+use Modules\PPDB\Entities\AngketResponse;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Modules\PPDB\Entities\paymentRegistration;
-use Modules\SPP\Entities\BankAccount;
-use Modules\SPP\Entities\PaymentSpp;
-use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
@@ -73,11 +74,6 @@ class User extends Authenticatable
         return $this->belongsTo(BerkasMurid::class, 'id', 'user_id');
     }
 
-    public function member()
-    {
-        return $this->hasOne(Member::class, 'user_id');
-    }
-
     public function payment()
     {
         return $this->hasOne(PaymentSpp::class, 'user_id');
@@ -100,5 +96,10 @@ class User extends Authenticatable
     public function paymentRegis()
     {
         return $this->belongsTo(paymentRegistration::class, 'id', 'user_id');
+    }
+
+    public function angketResponses()  
+    {  
+        return $this->hasMany(AngketResponse::class);  
     }
 }

@@ -14,4 +14,9 @@ class Angket extends Model
     protected $fillable = [
         'pertanyaan',
     ];
+
+    public function answers()  
+    {  
+        return $this->hasMany(AngketAnswer::class);  
+    }
 }

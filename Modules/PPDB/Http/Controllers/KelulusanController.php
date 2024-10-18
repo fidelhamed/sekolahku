@@ -25,7 +25,7 @@ class KelulusanController extends Controller
     public function index(Request $request)
     {
         $jenjang    = $request['jenjangKelulusan'];
-        $murid = User::has('muridDetail')
+        $murids = User::has('muridDetail')
             ->whereHas('muridDetail', function ($a) use ($jenjang) {
                 $a->where('jenjang', $jenjang);
             })
@@ -35,7 +35,7 @@ class KelulusanController extends Controller
                     ->orWhere('role', 'Tidak Lulus');
             })
             ->get();
-        return view('ppdb::backend.kelulusan.index', compact('murid','jenjang'));
+        return view('ppdb::backend.kelulusan.index', compact('murids','jenjang'));
     }
 
     /**
