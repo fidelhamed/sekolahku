@@ -16,11 +16,16 @@ class PeriodeRegistrasiController extends Controller
     {
         try {
             DB::beginTransaction();
+            $cekperiodeSDIT = PeriodeRegistrasi::where('jenjang', 'SD-IT')->count();
             $cekperiodeSMPIT = PeriodeRegistrasi::where('jenjang', 'SMP-IT')->count();
             $cekperiodeSMAIT = PeriodeRegistrasi::where('jenjang', 'SMA-IT')->count();
             $cekperiodeMA = PeriodeRegistrasi::where('jenjang', 'MA')->count();
 
-            if ($cekperiodeSMPIT === 0) {
+            if ($cekperiodeSDIT === 0) {
+                $periode = new PeriodeRegistrasi();
+                $periode->jenjang = 'SD-IT';
+                $periode->save();
+            } elseif ($cekperiodeSMPIT === 0) {
                 $periode = new PeriodeRegistrasi();
                 $periode->jenjang = 'SMP-IT';
                 $periode->save();
@@ -33,10 +38,11 @@ class PeriodeRegistrasiController extends Controller
                 $periode->jenjang = 'MA';
                 $periode->save();
             } else {
+                $periodeSDIT = PeriodeRegistrasi::where('jenjang', 'SD-IT')->first();
                 $periodeSMPIT = PeriodeRegistrasi::where('jenjang', 'SMP-IT')->first();
                 $periodeSMAIT = PeriodeRegistrasi::where('jenjang', 'SMA-IT')->first();
                 $periodeMA = PeriodeRegistrasi::where('jenjang', 'MA')->first();
-                return view('ppdb::backend.periodeRegistrasi.index', compact('periodeSMPIT', 'periodeSMAIT', 'periodeMA'));          
+                return view('ppdb::backend.periodeRegistrasi.index', compact('periodeSDIT', 'periodeSMPIT', 'periodeSMAIT', 'periodeMA'));          
             }
             DB::commit();
             Session::flash('success', 'Sukses, Data Berhasil dikirim !');

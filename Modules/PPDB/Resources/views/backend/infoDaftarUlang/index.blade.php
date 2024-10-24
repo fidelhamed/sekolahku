@@ -20,6 +20,91 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header header-bottom">
+                        <h4>Informasi Daftar Ulang SD-IT</h4>
+                    </div>
+                    <div class="card-body">
+                        <form action="{{ url('ppdb/info-daftar-ulang/update') }}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            @method('PUT')
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <select name="jenjang" class="form-control" style="display: none;">
+                                            <option value="SD-IT" selected>SD-IT</option>
+                                            <option value="SMP-IT">SMP-IT</option>
+                                            <option value="SMA-IT">SMA-IT</option>
+                                            <option value="MA">MA</option>
+                                         </select>
+                                        @error('jenjang')
+                                            <div class="invalid-feedback">
+                                            <strong>{{ $message }}</strong>
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="basicInput">Tanggal</label>
+                                        <input type="date" class="form-control flatpickr-basic @error('waktu_tgl') is-invalid @enderror" id="fp-default" name="waktu_tgl" value="{{ $infoSDIT->waktu_tgl }}"/>
+                                        @error('waktu_tgl')
+                                            <div class="invalid-feedback">
+                                            <strong>{{ $message }}</strong>
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="basicInput">Lokasi Daftar Ulang</label>
+                                        <input type="text" class="form-control @error('lokasi') is-invalid @enderror" name="lokasi" value="{{ $infoSDIT->lokasi }}"/>
+                                        @error('lokasi')
+                                            <div class="invalid-feedback">
+                                            <strong>{{ $message }}</strong>
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="basicInput">Jam Mulai</label>
+                                        <input type="time" class="form-control @error('jam_mulai') is-invalid @enderror" name="jam_mulai" value="{{ $infoSDIT->jam_mulai }}" />
+                                        @error('jam_mulai')
+                                            <div class="invalid-feedback">
+                                            <strong>{{ $message }}</strong>
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="basicInput">Jam Berakhir</label>
+                                        <input type="time" class="form-control @error('jam_berakhir') is-invalid @enderror" name="jam_berakhir" value="{{ $infoSDIT->jam_berakhir }}" />
+                                        @error('jam_berakhir')
+                                            <div class="invalid-feedback">
+                                            <strong>{{ $message }}</strong>
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="basicInput">Deskripsi</label>
+                                        <textarea name="deskripsi" class="form-control @error('deskripsi') is-invalid @enderror" cols="30" rows="3">{{ $infoSDIT->deskripsi }}</textarea>
+                                        @error('deskripsi')
+                                            <div class="invalid-feedback">
+                                            <strong>{{ $message }}</strong>
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button class="btn btn-success" type="submit">Simpan</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header header-bottom">
                         <h4>Informasi Daftar Ulang SMP-IT</h4>
                     </div>
                     <div class="card-body">
@@ -30,6 +115,7 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <select name="jenjang" class="form-control" style="display: none;">
+                                            <option value="SD-IT">SD-IT</option>
                                             <option value="SMP-IT" selected>SMP-IT</option>
                                             <option value="SMA-IT">SMA-IT</option>
                                             <option value="MA">MA</option>
@@ -114,6 +200,7 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <select name="jenjang" class="form-control" style="display: none;">
+                                            <option value="SD-IT">SD-IT</option>
                                             <option value="SMP-IT">SMP-IT</option>
                                             <option value="SMA-IT" selected>SMA-IT</option>
                                             <option value="MA">MA</option>
@@ -198,6 +285,7 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <select name="jenjang" class="form-control" style="display: none;">
+                                            <option value="SD-IT">SD-IT</option>
                                             <option value="SMP-IT">SMP-IT</option>
                                             <option value="SMA-IT">SMA-IT</option>
                                             <option value="MA" selected>MA</option>

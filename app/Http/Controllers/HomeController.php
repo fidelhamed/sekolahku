@@ -61,11 +61,11 @@ class HomeController extends Controller
               $biaya = DB::table('payment_registrations')
                 ->select('jenjang', DB::raw('SUM(amount) as total_amount'))
                 ->whereNotNull('approve_date')
-                ->whereIn('jenjang', ['SMP-IT', 'SMA-IT', 'MA'])
+                ->whereIn('jenjang', ['SD-IT', 'SMP-IT', 'SMA-IT', 'MA'])
                 ->groupBy('jenjang')
                 ->get();
 
-              return view('backend.website.home', compact('murid','lulus','tidakLulus','event','acara', 'profit', 'pendaftar', 'pendaftar_jk', 'profit', 'biaya'));
+              return view('backend.website.home', compact('murid','lulus','tidakLulus','event','acara', 'pendaftar', 'pendaftar_jk', 'profit', 'biaya'));
 
 
             }
@@ -117,6 +117,9 @@ class HomeController extends Controller
 
               $register = dataMurid::whereYear('created_at', Carbon::now())->count();
               $profit = dataPayment::whereNotNull('approve_date')->sum('amount');
+              $needConfirmPaymentSDIT = dataPayment::whereNotNull(['sender','destination_bank','file'])->whereNull('approve_date')->where('jenjang', 'SD-IT')->count();
+              $confirmedPaymentSDIT = dataPayment::where('status','Paid')->where('jenjang', 'SD-IT')->count();
+              $needVerifSDIT = dataMurid::whereNotNull(['tempat_lahir','tgl_lahir'])->whereNull('nisn')->where('proses', 'Input Data')->where('jenjang', 'SD-IT')->count();
               $needConfirmPaymentSMPIT = dataPayment::whereNotNull(['sender','destination_bank','file'])->whereNull('approve_date')->where('jenjang', 'SMP-IT')->count();
               $confirmedPaymentSMPIT = dataPayment::where('status','Paid')->where('jenjang', 'SMP-IT')->count();
               $needVerifSMPIT = dataMurid::whereNotNull(['tempat_lahir','tgl_lahir'])->whereNull('nisn')->where('proses', 'Input Data')->where('jenjang', 'SMP-IT')->count();
@@ -143,11 +146,11 @@ class HomeController extends Controller
               $biaya = DB::table('payment_registrations')
                 ->select('jenjang', DB::raw('SUM(amount) as total_amount'))
                 ->whereNotNull('approve_date')
-                ->whereIn('jenjang', ['SMP-IT', 'SMA-IT', 'MA'])
+                ->whereIn('jenjang', ['SD-IT', 'SMP-IT', 'SMA-IT', 'MA'])
                 ->groupBy('jenjang')
                 ->get();
 
-              return view('ppdb::backend.index', compact('register','needConfirmPaymentSMPIT','confirmedPaymentSMPIT','profit','needVerifSMPIT','needConfirmPaymentSMAIT','confirmedPaymentSMAIT','needVerifSMAIT','needConfirmPaymentMA','confirmedPaymentMA','needVerifMA', 'pendaftar', 'pendaftar_jk', 'biaya'));
+              return view('ppdb::backend.index', compact('register','needConfirmPaymentSDIT','confirmedPaymentSDIT','needVerifSDIT','needConfirmPaymentSMPIT','confirmedPaymentSMPIT','needVerifSMPIT','needConfirmPaymentSMAIT','confirmedPaymentSMAIT','needVerifSMAIT','needConfirmPaymentMA','confirmedPaymentMA','needVerifMA', 'pendaftar', 'pendaftar_jk', 'biaya', 'profit'));
 
 
             } elseif ($role == 'Guest' || $role == 'Terverifikasi' ||  $role == 'Lulus' || $role == 'Tidak Lulus') {

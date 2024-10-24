@@ -15,7 +15,7 @@ class CreateInfoDaftarUlangTable extends Migration
     {
         Schema::create('info_daftar_ulang', function (Blueprint $table) {
             $table->id();
-            $table->enum('jenjang', ['SMP-IT', 'SMA-IT', 'MA'])->nullable();
+            $table->enum('jenjang', ['SD-IT', 'SMP-IT', 'SMA-IT', 'MA'])->nullable();
             $table->date('waktu_tgl')->nullable();
             $table->time('jam_mulai')->nullable();
             $table->time('jam_berakhir')->nullable();

@@ -35,10 +35,45 @@
             <div class="col-12">
                 <section>
                     <div class="row">
+                        <div class="col-6">
+                            <div class="card">
+                                <div class="card-header header-bottom">
+                                    <h4>Cetak Laporan Angket</h4>
+                                </div>
+                                <div class="card-body">
+                                    <form action="{{ url('ppdb/rekap-angket/cetak') }}" method="post" enctype="multipart/form-data">
+                                        @csrf
+                                        @method('POST')
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">Jenjang</label>
+                                                    <select name="jenjang" class="form-control">
+                                                        <option value="">-- Pilih --</option>
+                                                        <option value="SD-IT">SD-IT</option>
+                                                        <option value="SMP-IT">SMP-IT</option>
+                                                        <option value="SMA-IT">SMA-IT</option>
+                                                        <option value="MA">MA</option>
+                                                     </select>
+                                                    @error('jenjang')
+                                                        <div class="invalid-feedback">
+                                                        <strong>{{ $message }}</strong>
+                                                        </div>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button class="btn btn-success" type="submit"><i data-feather="printer"></i> Cetak</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header border-bottom">
-                                    <h4 class="card-title">Dari calon murid yang telah ditentukan lulus dan diisi oleh orang tua atau wali yang bersangkutan</h4>
+                                    <h4 class="card-title">Data Angket Orang Tua atau Wali</h4>
                                 </div>
                                 <div class="card-datatable">
                                     <table class="dt-responsive table">
@@ -70,7 +105,7 @@
                                                             @endforeach 
                                                         </td>
                                                 @else
-                                                        <td class="font-weight-bold text-danger">Pengguna ini belum menjawab angket</td>
+                                                        <td class="font-weight-bold text-danger">Calon peserta didik ini belum menjawab angket</td>
                                                     </tr>
                                                 @endif
                                             @endforeach

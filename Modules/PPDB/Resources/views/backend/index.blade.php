@@ -91,6 +91,19 @@
                 </div>
             </div>
             @endif
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <div class="text-center">
+                            <h4 class="mb-1">Silahkan mengisi form angket</h4>
+                            <p class="card-text m-auto w-75">
+                                Pengisian angket wajib dilakukan oleh orang tua atau wali dari calon peserta didik yang bersangkutan
+                            </p>
+                            <a href="{{ route('ppdb.show-angket-form') }}" class="btn btn-success mt-1"><i data-feather="file"></i> Angket </a>                                
+                        </div>
+                    </div>
+                </div>
+            </div>
         @elseif (Auth::user()->role == 'Lulus')
             <div class="col-lg-6 col-md-12 col-sm-12">
                 <div class="card card-congratulations">
@@ -138,19 +151,7 @@
                 </div>
             </div>
             @endif
-            <div class="col-lg-6 col-md-12 col-sm-12">
-                <div class="card">
-                    <div class="card-body text-center">
-                        <div class="text-center">
-                            <h4 class="mb-1">Silahkan mengisi form angket</h4>
-                            <p class="card-text m-auto w-75">
-                                Pengisian angket wajib dilakukan oleh orang tua atau wali dari calon murid yang bersangkutan dan telah ditetapkan kelulusan nya
-                            </p>
-                            <a href="{{ route('ppdb.show-angket-form') }}" class="btn btn-success mt-1"><i data-feather="file"></i> Angket </a>                                
-                        </div>
-                    </div>
-                </div>
-            </div>
+
         @elseif (Auth::user()->role == 'Tidak Lulus')
             <div class="col-lg-6 col-md-12 col-sm-12">
                 <div class="card">
@@ -231,9 +232,14 @@
                   <div class="card">
                       <div class="card-header">
                           <div>
-                            @if ($needVerifSMPIT == 0 AND $needVerifSMAIT == 0 AND $needVerifMA == 0)
+                            @if ($needVerifSDIT == 0 AND $needVerifSMPIT == 0 AND $needVerifSMAIT == 0 AND $needVerifMA == 0)
                                 <h2 class="font-weight-bolder mb-0">0</h2>                                                                                
                             @endif
+                            @if ($needVerifSDIT > 0)
+                            <a href="{{ url('ppdb/data-murid?jenjangDataMurid=SD-IT') }}">
+                                <h4 class="font-weight-bolder mb-0">{{$needVerifSDIT}} SD-IT</h4>                                        
+                            </a>
+                            @endif                            
                             @if ($needVerifSMPIT > 0)
                             <a href="{{ url('ppdb/data-murid?jenjangDataMurid=SMP-IT') }}">
                                 <h4 class="font-weight-bolder mb-0">{{$needVerifSMPIT}} SMP-IT</h4>                                        
@@ -282,8 +288,13 @@
                         <div class="card">
                             <div class="card-header">
                                 <div>
-                                    @if ($needConfirmPaymentSMPIT == 0 AND $needConfirmPaymentSMAIT == 0 AND $needConfirmPaymentMA == 0)
+                                    @if ($needConfirmPaymentSDIT == 0 AND $needConfirmPaymentSMPIT == 0 AND $needConfirmPaymentSMAIT == 0 AND $needConfirmPaymentMA == 0)
                                     <h2 class="font-weight-bolder mb-0">0</h2>                                                                                
+                                    @endif
+                                    @if ($needConfirmPaymentSDIT > 0)
+                                    <a href="{{ url('ppdb/data-murid?jenjangDataMurid=SD-IT') }}">
+                                        <h4 class="font-weight-bolder mb-0">{{$needConfirmPaymentSDIT}} SD-IT</h4>                                  
+                                    </a>
                                     @endif
                                     @if ($needConfirmPaymentSMPIT > 0)
                                     <a href="{{ url('ppdb/data-murid?jenjangDataMurid=SMP-IT') }}">

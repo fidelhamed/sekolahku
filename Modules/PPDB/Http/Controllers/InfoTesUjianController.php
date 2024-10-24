@@ -15,11 +15,16 @@ class InfoTesUjianController extends Controller
     {
         try {
             DB::beginTransaction();
+            $cekInfoSDIT = InfoTesUjian::where('jenjang', 'SD-IT')->count();
             $cekInfoSMPIT = InfoTesUjian::where('jenjang', 'SMP-IT')->count();
             $cekInfoSMAIT = InfoTesUjian::where('jenjang', 'SMA-IT')->count();
             $cekInfoMA = InfoTesUjian::where('jenjang', 'MA')->count();
 
-            if ($cekInfoSMPIT === 0) {
+            if ($cekInfoSDIT === 0) {
+                $info = new InfoTesUjian();
+                $info->jenjang = 'SD-IT';
+                $info->save();
+            } elseif ($cekInfoSMPIT === 0) {
                 $info = new InfoTesUjian();
                 $info->jenjang = 'SMP-IT';
                 $info->save();
@@ -32,10 +37,11 @@ class InfoTesUjianController extends Controller
                 $info->jenjang = 'MA';
                 $info->save();
             } else {
+                $infoSDIT = InfoTesUjian::where('jenjang', 'SD-IT')->first();
                 $infoSMPIT = InfoTesUjian::where('jenjang', 'SMP-IT')->first();
                 $infoSMAIT = InfoTesUjian::where('jenjang', 'SMA-IT')->first();
                 $infoMA = InfoTesUjian::where('jenjang', 'MA')->first();
-                return view('ppdb::backend.infoTesUjian.index', compact('infoSMPIT', 'infoSMAIT', 'infoMA'));          
+                return view('ppdb::backend.infoTesUjian.index', compact('infoSDIT', 'infoSMPIT', 'infoSMAIT', 'infoMA'));          
             }
             DB::commit();
             Session::flash('success', 'Sukses, Data Berhasil dikirim !');

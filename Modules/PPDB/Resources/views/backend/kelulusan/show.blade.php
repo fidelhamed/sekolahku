@@ -459,26 +459,49 @@
                             <div class="row">
                                 <div class="col-6">
                                     <ul>
-                                      <li>Kartu Keluarga
-                                        <a href="#" class="badge badge-info {{$murid->berkas->kartu_keluarga == NULL ? 'hidden' : ''}}" data-toggle="modal" data-target="#viewModal" data-berkas="{{asset('storage/images/berkas_murid/' .$murid->berkas->kartu_keluarga)}}" data-title="Kartu Keluarga">view</a>
-                                      </li>                                      
-                                      <li>ijazah
-                                        <a href="#" class="badge badge-info {{$murid->berkas->ijazah == NULL ? 'hidden' : ''}}" data-toggle="modal" data-target="#viewModal" data-berkas="{{asset('storage/images/berkas_murid/' .$murid->berkas->ijazah)}}" data-title="Ijazah">view</a>
-                                      </li>
-                                      <li>Pas Foto
-                                        <a href="#" class="badge badge-info {{$murid->berkas->foto == NULL ? 'hidden' : ''}}" data-toggle="modal" data-target="#viewModal" data-berkas="{{asset('storage/images/berkas_murid/' .$murid->berkas->foto)}}" data-title="Pas Foto">view</a>
-                                      </li>
+                                        <li>Kartu Keluarga
+                                            @if ($murid->berkas->kartu_keluarga && (Str::endsWith(strtolower($murid->berkas->kartu_keluarga), ['.jpg', '.jpeg'])))
+                                            <a href="{{ asset('storage/images/berkas_murid/' . $murid->berkas->kartu_keluarga) }}" class="badge badge-info openModalImg {{$murid->berkas->kartu_keluarga == NULL ? 'hidden' : ''}}" data-download-link="{{ asset('storage/images/berkas_murid/' . $murid->berkas->kartu_keluarga) }}" data-title="Kartu Keluarga">View</a>
+                                            @elseif ($murid->berkas->kartu_keluarga && (Str::endsWith(strtolower($murid->berkas->kartu_keluarga), '.pdf')))
+                                            <a href="#" class="badge badge-info openModalDoc {{$murid->berkas->kartu_keluarga == NULL ? 'hidden' : ''}}" data-toggle="modal" data-target="#viewModal" data-berkas="{{asset('storage/images/berkas_murid/' .$murid->berkas->kartu_keluarga)}}" data-title="Kartu Keluarga">view</a>
+                                            @endif
+                                        </li>                                      
+                                        <li>ijazah
+                                            @if ($murid->berkas->ijazah && (Str::endsWith(strtolower($murid->berkas->ijazah), ['.jpg', '.jpeg'])))
+                                            <a href="{{ asset('storage/images/berkas_murid/' . $murid->berkas->ijazah) }}" class="badge badge-info openModalImg {{$murid->berkas->ijazah == NULL ? 'hidden' : ''}}" data-download-link="{{ asset('storage/images/berkas_murid/' . $murid->berkas->ijazah) }}" data-title="Ijazah">View</a>
+                                            @elseif ($murid->berkas->ijazah && (Str::endsWith(strtolower($murid->berkas->ijazah), '.pdf')))
+                                            <a href="#" class="badge badge-info openModalDoc {{$murid->berkas->ijazah == NULL ? 'hidden' : ''}}" data-toggle="modal" data-target="#viewModal" data-berkas="{{asset('storage/images/berkas_murid/' .$murid->berkas->ijazah)}}" data-title="Ijazah">view</a>
+                                            @endif
+                                        </li>
+                                        <li>Pas Foto
+                                            <a href="{{ asset('storage/images/berkas_murid/' . $murid->berkas->foto) }}" class="badge badge-info openModalImg {{$murid->berkas->foto == NULL ? 'hidden' : ''}}" data-download-link="{{ asset('storage/images/berkas_murid/' . $murid->berkas->foto) }}" data-title="Pas Foto">View</a>
+                                        </li>
                                     </ul>
                                 </div>
                                 <div class="col-6">
-                                  <ul>
-                                    <li>Akte Kelahiran
-                                        <a href="#" class="badge badge-info {{$murid->berkas->akte_kelahiran == NULL ? 'hidden' : ''}}" data-toggle="modal" data-target="#viewModal" data-berkas="{{asset('storage/images/berkas_murid/' .$murid->berkas->akte_kelahiran)}}" data-title="Akta Kelahiran">view</a>
-                                    </li>
-                                    <li>Rapor
-                                        <a href="#" class="badge badge-info {{$murid->berkas->rapor == NULL ? 'hidden' : ''}}" data-toggle="modal" data-target="#viewModal" data-berkas="{{asset('storage/images/berkas_murid/' .$murid->berkas->rapor)}}" data-title="Rapor">view</a>
-                                    </li>
-                                  </ul>
+                                    <ul>
+                                        <li>Akte Kelahiran
+                                            @if ($murid->berkas->akte_kelahiran && (Str::endsWith(strtolower($murid->berkas->akte_kelahiran), ['.jpg', '.jpeg'])))
+                                            <a href="{{ asset('storage/images/berkas_murid/' . $murid->berkas->akte_kelahiran) }}" class="badge badge-info openModalImg {{$murid->berkas->akte_kelahiran == NULL ? 'hidden' : ''}}" data-download-link="{{ asset('storage/images/berkas_murid/' . $murid->berkas->akte_kelahiran) }}" data-title="Akta Kelahiran">View</a>
+                                            @elseif ($murid->berkas->akte_kelahiran && (Str::endsWith(strtolower($murid->berkas->akte_kelahiran), '.pdf')))
+                                            <a href="#" class="badge badge-info openModalDoc {{$murid->berkas->akte_kelahiran == NULL ? 'hidden' : ''}}" data-toggle="modal" data-target="#viewModal" data-berkas="{{asset('storage/images/berkas_murid/' .$murid->berkas->akte_kelahiran)}}" data-title="Akta Kelahiran">view</a>
+                                            @endif
+                                        </li>
+                                        <li>Rapor
+                                            @if ($murid->berkas->rapor && (Str::endsWith(strtolower($murid->berkas->rapor), ['.jpg', '.jpeg'])))
+                                            <a href="{{ asset('storage/images/berkas_murid/' . $murid->berkas->rapor) }}" class="badge badge-info openModalImg {{$murid->berkas->rapor == NULL ? 'hidden' : ''}}" data-download-link="{{ asset('storage/images/berkas_murid/' . $murid->berkas->rapor) }}" data-title="Rapor">View</a>
+                                            @elseif ($murid->berkas->rapor && (Str::endsWith(strtolower($murid->berkas->rapor), '.pdf')))
+                                            <a href="#" class="badge badge-info openModalDoc {{$murid->berkas->rapor == NULL ? 'hidden' : ''}}" data-toggle="modal" data-target="#viewModal" data-berkas="{{asset('storage/images/berkas_murid/' . $murid->berkas->rapor)}}" data-title="Rapor">view</a>
+                                            @endif
+                                        </li>
+                                        <li>Bukti Pembayaran
+                                            @if ($murid->paymentRegis->file && (Str::endsWith(strtolower($murid->paymentRegis->file), ['.jpg', '.jpeg', '.png'])))
+                                            <a href="{{ asset('storage/images/payment_pendaftaran/' .$murid->paymentRegis->file) }}" class="badge badge-info openModalImg {{$murid->paymentRegis->approve_date == null ? 'hidden' : ''}}" data-download-link="{{ asset('storage/images/payment_pendaftaran/' . $murid->paymentRegis->file) }}" data-title="Bukti Pembayaran">View</a>
+                                            @elseif ($murid->paymentRegis->file && (Str::endsWith(strtolower($murid->paymentRegis->file), '.pdf')))
+                                            <a href="#" class="badge badge-info openModalDoc {{$murid->paymentRegis->approve_date == null ? 'hidden' : ''}}" data-toggle="modal" data-target="#viewModal" data-berkas="{{asset('storage/images/payment_pendaftaran/' .$murid->paymentRegis->file)}}" data-title="Bukti Pembayaran">View</a>
+                                            @endif
+                                        </li>
+                                    </ul>
 
                                 </div>
                             </div>
@@ -527,6 +550,26 @@
               </div>
             </div>
         </div>
+
+        <div class="modal" tabindex="-1" role="dialog" id="imgModal">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="berkasTitle">View Doc</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <img id="docImage" src="" alt="Bukti Pembayaran" class="img-fluid">
+                </div>
+                <div class="modal-footer">
+                    <a id="downloadButton" class="btn btn-success" download>Download</a>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+        </div>
     </div>
 </div>
 @endsection
@@ -534,7 +577,7 @@
 <script>
     $(document).ready(function() {
       // Handle click event on the view button
-      $('.badge-info').on('click', function() {
+      $('.openModalDoc').on('click', function() {
         // Get the image source from the data-image attribute
         // var imageUrl = $(this).data('image');
         var berkas = $(this).data('berkas');
@@ -550,6 +593,28 @@
   
         // Open the modal
         $('#viewModal').modal('show');
+      });
+    });
+</script>
+<script>
+    $(document).ready(function() {
+      // Handle click event on the button to open the modal
+      $('.openModalImg').on('click', function() {
+        // Get the image source from the link's href attribute
+        var docImageSrc = $(this).attr('href');
+        var downloadLink = $(this).attr('data-download-link');
+        var berkasTitle = $(this).data('title');
+  
+        // Set the image source in the modal
+        $('#docImage').attr('src', docImageSrc);
+        $('#downloadButton').attr('href', downloadLink);
+        $('#berkasTitle').text(berkasTitle);
+  
+        // Open the modal
+        $('#imgModal').modal('show');
+  
+        // Prevent the default behavior of the link
+        return false;
       });
     });
 </script>

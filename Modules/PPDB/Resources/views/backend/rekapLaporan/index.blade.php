@@ -25,13 +25,14 @@
                     <div class="card-body">
                         <form action="{{ url('ppdb/rekap-laporan/cetak') }}" method="post" enctype="multipart/form-data">
                             @csrf
-                            @method('PUT')
+                            @method('POST')
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label class="form-label">Jenjang</label>
                                         <select name="jenjang" class="form-control">
                                             <option value="">-- Pilih --</option>
+                                            <option value="SD-IT">SD-IT</option>
                                             <option value="SMP-IT">SMP-IT</option>
                                             <option value="SMA-IT">SMA-IT</option>
                                             <option value="MA">MA</option>
@@ -66,7 +67,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 @endsection

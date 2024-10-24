@@ -43,7 +43,7 @@
                                     <div class="form-group">
                                         <label for="basicInput">Kartu Keluarga</label>
                                         <input type="file" class="form-control @error('kartu_keluarga') is-invalid @enderror" name="kartu_keluarga"/>
-                                        <small class="text-danger">Maks. Size 1MB</small>
+                                        <small class="text-danger">Upload file .jpg .jpeg .pdf Maks. Size 1MB</small>
                                         @error('kartu_keluarga')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
@@ -54,9 +54,9 @@
 
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <label for="basicInput">Akte Kelahiran</label>
+                                        <label for="basicInput">Akta Kelahiran</label>
                                         <input type="file" class="form-control @error('akte_kelahiran') is-invalid @enderror" name="akte_kelahiran"/>
-                                        <small class="text-danger">Maks. Size 1MB</small>
+                                        <small class="text-danger">Upload file .jpg .jpeg .pdf Maks. Size 1MB</small>
                                         @error('akte_kelahiran')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
@@ -108,8 +108,8 @@
                                     <div class="form-group">
                                         <label for="basicInput">Rapor</label>
                                         <input type="file" class="form-control @error('rapor') is-invalid @enderror" name="rapor"/>
-                                        <small class="text-danger">Rapor Semester Akhir, harap satukan pada 1 file .pdf</small>
-                                        <small class="text-danger">Maks. Size 1MB</small>
+                                        <small class="text-danger">Upload file .jpg .jpeg .pdf Maks. Size 1MB. </small><br>
+                                        <small class="text-danger">Jenjang SD-IT dapat dikosongkan</small>
                                         @error('rapor')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
@@ -122,7 +122,7 @@
                                     <div class="form-group">
                                         <label for="basicInput">Foto</label>
                                         <input type="file" class="form-control @error('foto') is-invalid @enderror" name="foto"/>
-                                        <small class="text-danger">Pas Foto ukuran 3x4 dengan latar belakang merah dan memakai baju sekolah.</small>
+                                        <small class="text-danger">Pas Foto .jpg .jpeg ukuran 3x4 dengan latar belakang merah.</small>
                                         <small class="text-danger">Maks. Size 1MB</small>
                                         @error('foto')
                                             <div class="invalid-feedback">
@@ -136,8 +136,8 @@
                                     <div class="form-group">
                                         <label for="basicInput">Ijazah</label>
                                         <input type="file" class="form-control @error('ijazah') is-invalid @enderror" name="ijazah"/>
-                                        <small class="text-danger">Dapat menyusul.</small>
-                                        <small class="text-danger">Maks. Size 1MB</small>
+                                        <small class="text-danger">Upload file .jpg .jpeg .pdf Maks. Size 1MB</small><br>
+                                        <small class="text-danger">Selain SD-IT dapat menyusul, Jenjang SD-IT dapat dikosongkan</small>
                                         @error('ijazah')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>

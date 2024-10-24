@@ -25,7 +25,7 @@
         <div class="content-header-left col-md-9 col-12 mb-2">
             <div class="row breadcrumbs-top">
                 <div class="col-12">
-                    <h2> Calon Murid</h2>
+                    <h2> Calon Peserta Didik</h2>
                 </div>
             </div>
         </div>
@@ -38,7 +38,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header border-bottom">
-                                    <h4 class="card-title">Calon Murid {{ $jenjang }}</h4>
+                                    <h4 class="card-title">Calon Peserta Didik {{ $jenjang }}</h4>
                                 </div>
                                 <div class="card-datatable">
                                     <table class="dt-responsive table">
@@ -65,7 +65,7 @@
                                                     <td>{{ $murid->email }}</td>
                                                     <td>{{ $murid->muridDetail->proses }}</td>
                                                     <td>{{ $murid->paymentRegis->status == 'Unpaid' ? 'Belum Bayar' : 'Berhasil'}}</td>
-                                                    <td>{{ $murid->role == 'Terverifikasi' ? 'Calon Murid' : 'Pendaftar' }}</td>
+                                                    <td>{{ $murid->role == 'Terverifikasi' ? 'Calon Peserta Didik' : 'Pendaftar' }}</td>
                                                     <td>
                                                         <a href="{{ route('data-murid.show', $murid->id) }}" class="btn btn-info btn-sm" style="display: {{$murid->paymentRegis->file == null || $murid->paymentRegis->approve_date != null ? '' : 'none'}}">Detail</a>
                                                         {{-- <a href="{{asset('storage/images/payment_pendaftaran/' .$murids->paymentRegis->file)}}" class="btn btn btn-secondary btn-sm" target="_blank" style="display: {{$murids->paymentRegis->file == null || $murids->paymentRegis->approve_date != null ? 'none' : ''}}">Bukti Pembayaran</a> --}}
@@ -104,7 +104,7 @@
                 </div>
               </div>
             </div>
-            </div>
+        </div>
     </div>
 </div>
 @endsection

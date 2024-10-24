@@ -114,7 +114,7 @@
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label class="form-label">No WhatApp Calon Murid</label>
+                                        <label class="form-label">No Whatsapp</label>
                                         <input class="form-control @error('whatsapp') is-invalid @enderror" type="number" name="whatsapp" value="{{old('whatsapp')}}" placeholder="Masukan No WhatsApp" autofocus="" tabindex="1" />
                                         @error('whatsapp')
                                             <span class="invalid-feedback" role="alert">
@@ -135,6 +135,9 @@
                                         <label class="form-label">Jenjang Pendaftaran</label>
                                         <select name="jenjang" class="form-control">
                                             <option>-- Pilih --</option>
+                                            @if ($periodeSDIT > 0)
+                                            <option value="SD-IT">SD-IT</option>                                                
+                                            @endif                                            
                                             @if ($periodeSMPIT > 0)
                                             <option value="SMP-IT">SMP-IT</option>                                                
                                             @endif

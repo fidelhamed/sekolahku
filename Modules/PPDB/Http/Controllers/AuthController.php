@@ -34,10 +34,11 @@ class AuthController extends Controller
     public function registerView()
     {
         $sekarang = now();
+        $periodeSDIT = PeriodeRegistrasi::where('jenjang', 'SD-IT')->where('tgl_buka', '<=', $sekarang)->where('tgl_tutup', '>=', $sekarang)->count();
         $periodeSMPIT = PeriodeRegistrasi::where('jenjang', 'SMP-IT')->where('tgl_buka', '<=', $sekarang)->where('tgl_tutup', '>=', $sekarang)->count();
         $periodeSMAIT = PeriodeRegistrasi::where('jenjang', 'SMA-IT')->where('tgl_buka', '<=', $sekarang)->where('tgl_tutup', '>=', $sekarang)->count();
         $periodeMA = PeriodeRegistrasi::where('jenjang', 'MA')->where('tgl_buka', '<=', $sekarang)->where('tgl_tutup', '>=', $sekarang)->count();
-        return view('ppdb::auth.register', compact('periodeSMPIT', 'periodeSMAIT', 'periodeMA'));
+        return view('ppdb::auth.register', compact('periodeSDIT', 'periodeSMPIT', 'periodeSMAIT', 'periodeMA'));
     }
 
     // Register Store

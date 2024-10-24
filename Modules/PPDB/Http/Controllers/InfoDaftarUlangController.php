@@ -15,11 +15,16 @@ class InfoDaftarUlangController extends Controller
     {
         try {
             DB::beginTransaction();
+            $cekInfoSDIT = InfoDaftarUlang::where('jenjang', 'SD-IT')->count();
             $cekInfoSMPIT = InfoDaftarUlang::where('jenjang', 'SMP-IT')->count();
             $cekInfoSMAIT = InfoDaftarUlang::where('jenjang', 'SMA-IT')->count();
             $cekInfoMA = InfoDaftarUlang::where('jenjang', 'MA')->count();
 
-            if ($cekInfoSMPIT === 0) {
+            if ($cekInfoSDIT === 0) {
+                $info = new InfoDaftarUlang();
+                $info->jenjang = 'SD-IT';
+                $info->save();
+            } elseif ($cekInfoSMPIT === 0) {
                 $info = new InfoDaftarUlang();
                 $info->jenjang = 'SMP-IT';
                 $info->save();
@@ -32,10 +37,11 @@ class InfoDaftarUlangController extends Controller
                 $info->jenjang = 'MA';
                 $info->save();
             } else {
+                $infoSDIT = InfoDaftarUlang::where('jenjang', 'SD-IT')->first();
                 $infoSMPIT = InfoDaftarUlang::where('jenjang', 'SMP-IT')->first();
                 $infoSMAIT = InfoDaftarUlang::where('jenjang', 'SMA-IT')->first();
                 $infoMA = InfoDaftarUlang::where('jenjang', 'MA')->first();
-                return view('ppdb::backend.infoDaftarUlang.index', compact('infoSMPIT', 'infoSMAIT', 'infoMA'));          
+                return view('ppdb::backend.infoDaftarUlang.index', compact('infoSDIT', 'infoSMPIT', 'infoSMAIT', 'infoMA'));          
             }
             DB::commit();
             Session::flash('success', 'Sukses, Data Berhasil dikirim !');

@@ -150,7 +150,7 @@ class PendaftaranController extends Controller
         $user = User::with('paymentRegis', 'muridDetail', 'dataOrtu')->where('status', 'Aktif')->where('id', Auth::id())->first();
         $berkas = BerkasMurid::where('user_id', Auth::id())->first();
         // Jika data berkas sudah terisi dan bukan proses perbaikan
-        if ($berkas->rapor !== null AND $user->muridDetail->proses !== 'Perbaikan') {
+        if ($berkas->akte_kelahiran !== null AND $user->muridDetail->proses !== 'Perbaikan') {
             Session::flash('error', 'Data kamu sudah lengkap, tunggu proses verifikasi data !');
             return redirect('/home');
         }
@@ -168,17 +168,19 @@ class PendaftaranController extends Controller
             $tujuan_upload = 'public/images/berkas_murid';
             $imageKk->storeAs($tujuan_upload, $kartuKeluarga);
 
-            $imageakte = $request->file('kartu_keluarga');
+            $imageakte = $request->file('akte_kelahiran');
             $akteKelahiran = time() . "_" . $imageakte->getClientOriginalName();
             // isi dengan nama folder tempat kemana file diupload
             $tujuan_upload = 'public/images/berkas_murid';
             $imageakte->storeAs($tujuan_upload, $akteKelahiran);
 
-            $imagerapor = $request->file('rapor');
-            $rapor = time() . "_" . $imagerapor->getClientOriginalName();
-            // isi dengan nama folder tempat kemana file diupload
-            $tujuan_upload = 'public/images/berkas_murid';
-            $imagerapor->storeAs($tujuan_upload, $rapor);
+            if ($request->rapor) {
+                $imagerapor = $request->file('rapor');
+                $rapor = time() . "_" . $imagerapor->getClientOriginalName();
+                // isi dengan nama folder tempat kemana file diupload
+                $tujuan_upload = 'public/images/berkas_murid';
+                $imagerapor->storeAs($tujuan_upload, $rapor);
+            }
 
             $imagefoto = $request->file('foto');
             $foto = time() . "_" . $imagefoto->getClientOriginalName();
@@ -197,7 +199,7 @@ class PendaftaranController extends Controller
             $berkas = BerkasMurid::find($id);
             $berkas->kartu_keluarga         = $kartuKeluarga;
             $berkas->akte_kelahiran         = $akteKelahiran;
-            $berkas->rapor                  = $rapor;
+            $berkas->rapor                  = $rapor ?? null;
             $berkas->foto                   = $foto;
             $berkas->ijazah                 = $ijazah ?? null;
             $berkas->save();

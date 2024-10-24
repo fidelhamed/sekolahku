@@ -72,7 +72,9 @@ class DataMuridController extends Controller
             ->find($id);
         if (!$murid->muridDetail->jenis_kelamin || !$murid->dataOrtu->nama_ayah || !$murid->berkas->kartu_keluarga) {
             Session::flash('error', 'Calon Siswa Belum Input Biodata Diri !');
-            if ($murid->muridDetail->jenjang == 'SMP-IT') {
+            if ($murid->muridDetail->jenjang == 'SD-IT') {
+                return redirect('/ppdb/data-murid?jenjangDataMurid=SD-IT');
+            } elseif ($murid->muridDetail->jenjang == 'SMP-IT') {
                 return redirect('/ppdb/data-murid?jenjangDataMurid=SMP-IT');
             } elseif ($murid->muridDetail->jenjang == 'SMA-IT') {
                 return redirect('/ppdb/data-murid?jenjangDataMurid=SMA-IT');

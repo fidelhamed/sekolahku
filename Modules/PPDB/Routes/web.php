@@ -48,6 +48,10 @@ Route::prefix('/ppdb')->middleware('role:Terverifikasi')->group(function () {
     
     /// CETAK \\\
     Route::get('cetak-kartu', 'CetakController@cetakKartu')->name('ppdb.cetak-kartu');
+
+    /// FORM ANGKET \\\
+    Route::get('show-angket-form', 'AngketController@showAngketForm')->name('ppdb.show-angket-form');
+    Route::post('submit-angket-form', 'AngketController@submitAngketForm')->name('ppdb.submit-angket-form');    
 });
 
 
@@ -56,10 +60,6 @@ Route::prefix('/ppdb')->middleware('role:Lulus')->group(function () {
     
     /// CETAK \\\
     Route::get('cetak-kelulusan', 'CetakController@cetakKelulusan')->name('ppdb.cetak-kelulusan');
-
-    /// FORM ANGKET \\\
-    Route::get('show-angket-form', 'AngketController@showAngketForm')->name('ppdb.show-angket-form');
-    Route::post('submit-angket-form', 'AngketController@submitAngketForm')->name('ppdb.submit-angket-form');
 
 });
 
@@ -92,6 +92,7 @@ Route::prefix('/ppdb')->middleware('role:PPDB')->group(function () {
 
     // DATA ANGKET \\
     Route::resource('angket-data', 'AngketDataController'); 
+    Route::post('rekap-angket/cetak', 'AngketDataController@Cetak');
 
     // REKAP LAPORAN \\
     Route::resource('rekap-laporan', 'RekapLaporanController');
