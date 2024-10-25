@@ -75,6 +75,7 @@
                             <div class="form-group">
                                 <label for="file">File Bukti Transfer</label>
                                 <input type="file" class="form-control @error('file') is-invalid @enderror" name="file">
+                                <small class="text-danger">Upload file .jpg .jpeg Maks. Size 1MB</small>
                                 @error('file')
                                 <div class="invalid-feedback">
                                     <strong>{{ $message }}</strong>

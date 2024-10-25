@@ -31,6 +31,9 @@ class CreateDataMuridsTable extends Migration
             $table->string('asal_sekolah')->nullable();
             $table->text('alamat_sekolah')->nullable();
             $table->text('prestasi')->nullable();
+            $table->unsignedBigInteger('approved_by')->nullable();
+
+            $table->foreign('approved_by')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

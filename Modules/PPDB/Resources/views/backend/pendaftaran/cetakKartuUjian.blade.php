@@ -94,7 +94,11 @@
             <div class="exam-info">
                 <strong>Tanggal:</strong> {{ Carbon\Carbon::parse($info->waktu_tgl)->format('d-m-Y') }}<br>
                 <strong>Waktu:</strong> {{ Carbon\Carbon::parse($info->jam_mulai)->format('H:i') . ' - ' . Carbon\Carbon::parse($info->jam_berakhir)->format('H:i') }}<br>
-                <strong>Lokasi:</strong> {{ $info->lokasi }}<br>
+                @if ($cetak->muridDetail->jenis_kelamin === 'Laki-laki')
+                <strong>Lokasi:</strong> {{ $info->lokasi_laki_laki }}<br>
+                @else
+                <strong>Lokasi:</strong> {{ $info->lokasi_perempuan }}<br>
+                @endif
             </div>
             <img src="../storage/app/public/images/berkas_murid/{{$cetak->berkas->foto}}" alt="Pas Foto" class="passport-photo">
             <div class="passport-photo"></div>

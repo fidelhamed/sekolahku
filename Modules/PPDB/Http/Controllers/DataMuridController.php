@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Modules\SPP\Entities\DetailPaymentSpp;
 use Illuminate\Contracts\Support\Renderable;
+use Illuminate\Support\Facades\Auth;
+use Modules\PPDB\Entities\BerkasMurid;
 use Modules\PPDB\Entities\PaymentRegistration;
 
 class DataMuridController extends Controller
@@ -113,7 +115,9 @@ class DataMuridController extends Controller
 
             if ($murid) {
                 $data = DataMurid::where('user_id', $id)->first();
+                
                 $data->proses   = 'Lulus Administrasi';
+                $data->approved_by = Auth::user()->id;
                 $data->update();
             }
 
@@ -145,7 +149,8 @@ class DataMuridController extends Controller
         $payment = PaymentRegistration::find($request->id);
         $payment->update([
             'status'        => 'Paid',
-            'approve_date'  => Carbon::now()
+            'approve_date'  => Carbon::now(),
+            'approved_by'    => Auth::user()->id
         ]);
         Session::flash('success', 'Sukses, Pembayaran diterima !');
         return back();
@@ -159,6 +164,7 @@ class DataMuridController extends Controller
 
             $data = DataMurid::where('user_id', $request->id)->first();
             $data->proses   = 'Perbaikan';
+            $data->approved_by = Auth::user()->id;
             $data->update();
 
             DB::commit();
@@ -183,6 +189,7 @@ class DataMuridController extends Controller
             if ($murid) {
                 $data = DataMurid::where('user_id', $request->id)->first();
                 $data->proses   = 'Selesai';
+                $data->approved_by = Auth::user()->id;
                 $data->update();
 
             }
@@ -212,6 +219,7 @@ class DataMuridController extends Controller
                 if ($murid) {
                     $data = DataMurid::where('user_id', $request->id)->first();
                     $data->proses   = 'Selesai';
+                    $data->approved_by = Auth::user()->id;
                     $data->update();
                 }
     

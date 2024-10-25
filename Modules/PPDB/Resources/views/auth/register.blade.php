@@ -31,6 +31,18 @@
     <link rel="stylesheet" type="text/css" href="{{asset('Assets/Backend/css/pages/page-auth.css')}}">
     <!-- END: Page CSS-->
 
+    <style>  
+        #countdown-container {  
+            background-color: #f8f9fa;  
+            border-radius: 8px;  
+            padding: 15px;  
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);  
+        }  
+        #countdown-container span {  
+            font-weight: bold;  
+            color: #28a745;  
+        }  
+    </style>
 </head>
 <!-- END: Head-->
 
@@ -93,102 +105,128 @@
                                 @endif
                                 <h2 class="card-title font-weight-bold mb-1">Registrasi PPDB Online</h2>
                                 <p class="card-text mb-2">Silahkan lakukan registrasi akun baru</p>
-                                <form class="auth-login-form mt-2" action="{{route('register.store')}}" method="POST">
-                                    @csrf
-                                    <div class="form-group">
-                                        <label class="form-label">Nama Lengkap</label>
-                                        <input class="form-control @error('name') is-invalid @enderror" type="text" name="name" value="{{old('name')}}" placeholder="Masukan Nama Lengkap" autofocus="" tabindex="1" />
-                                        @error('name')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Email</label>
-                                        <input class="form-control @error('email') is-invalid @enderror" type="email" name="email" value="{{old('email')}}" placeholder="Masukan Email" autofocus="" tabindex="1" />
-                                        @error('email')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">No Whatsapp</label>
-                                        <input class="form-control @error('whatsapp') is-invalid @enderror" type="number" name="whatsapp" value="{{old('whatsapp')}}" placeholder="Masukan No WhatsApp" autofocus="" tabindex="1" />
-                                        @error('whatsapp')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Asal Sekolah</label>
-                                        <input class="form-control @error('asal_sekolah') is-invalid @enderror" type="text" name="asal_sekolah" value="{{old('asal_sekolah')}}" placeholder="Masukan Asal Sekolah" autofocus="" tabindex="1" />
-                                        @error('asal_sekolah')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                     <div class="form-group">
-                                        <label class="form-label">Jenjang Pendaftaran</label>
-                                        <select name="jenjang" class="form-control">
-                                            <option>-- Pilih --</option>
-                                            @if ($periodeSDIT > 0)
-                                            <option value="SD-IT">SD-IT</option>                                                
-                                            @endif                                            
-                                            @if ($periodeSMPIT > 0)
-                                            <option value="SMP-IT">SMP-IT</option>                                                
-                                            @endif
-                                            @if ($periodeSMAIT > 0)
-                                            <option value="SMA-IT">SMA-IT</option>
-                                            @endif
-                                            @if ($periodeMA > 0)
-                                            <option value="MA">MA</option>
-                                            @endif
-                                        </select>
-                                        <small class="text-warning">Jika opsi tidak tersedia, maka periode telah ditutup.</small>
-                                        @error('jenjang')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="input-group input-group-merge form-password-toggle">
-                                            <input class="form-control form-control-merge @error('password') is-invalid @enderror" type="password" name="password" placeholder="············" tabindex="2" />
-                                            <div class="input-group-append"><span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span></div>
-                                            @error('password')
+                                
+                                <!-- Tambahkan div countdown -->  
+                                <div id="countdown-container" class="alert alert-info mb-2" style="display: none;">  
+                                    <h4 class="text-center mb-1">Pendaftaran akan dibuka dalam:</h4>  
+                                    <div class="d-flex justify-content-center">  
+                                        <div class="text-center mx-2">  
+                                            <span id="days" class="h3">00</span>  
+                                            <p class="mb-0">Hari</p>  
+                                        </div>  
+                                        <div class="text-center mx-2">  
+                                            <span id="hours" class="h3">00</span>  
+                                            <p class="mb-0">Jam</p>  
+                                        </div>  
+                                        <div class="text-center mx-2">  
+                                            <span id="minutes" class="h3">00</span>  
+                                            <p class="mb-0">Menit</p>  
+                                        </div>  
+                                        <div class="text-center mx-2">  
+                                            <span id="seconds" class="h3">00</span>  
+                                            <p class="mb-0">Detik</p>  
+                                        </div>  
+                                    </div>  
+                                </div>
+
+                                <div id="registration-form-container">
+                                    <form class="auth-login-form mt-2" action="{{route('register.store')}}" method="POST">
+                                        @csrf
+                                        <div class="form-group">
+                                            <label class="form-label">Nama Lengkap</label>
+                                            <input class="form-control @error('name') is-invalid @enderror" type="text" name="name" value="{{old('name')}}" placeholder="Masukan Nama Lengkap" autofocus="" tabindex="1" />
+                                            @error('name')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="input-group input-group-merge form-password-toggle">
-                                            <input class="form-control form-control-merge @error('confirm_password') is-invalid @enderror" type="password" name="confirm_password" placeholder="············" tabindex="2" />
-                                            <div class="input-group-append"><span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span></div>
-                                            @error('confirm_password')
+                                        <div class="form-group">
+                                            <label class="form-label">Email</label>
+                                            <input class="form-control @error('email') is-invalid @enderror" type="email" name="email" value="{{old('email')}}" placeholder="Masukan Email" autofocus="" tabindex="1" />
+                                            @error('email')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="custom-control custom-checkbox">
-                                            <input class="custom-control-input" id="remember-me" type="checkbox" tabindex="3" />
-                                            <label class="custom-control-label" for="remember-me"> Remember Me</label>
+                                        <div class="form-group">
+                                            <label class="form-label">No Whatsapp</label>
+                                            <input class="form-control @error('whatsapp') is-invalid @enderror" type="number" name="whatsapp" value="{{old('whatsapp')}}" placeholder="Masukan No WhatsApp" autofocus="" tabindex="1" />
+                                            @error('whatsapp')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
                                         </div>
-                                    </div>
-                                    <button class="btn btn-success btn-block" tabindex="4">Daftar</button>
-                                </form>
+                                        <div class="form-group">
+                                            <label class="form-label">Asal Sekolah</label>
+                                            <input class="form-control @error('asal_sekolah') is-invalid @enderror" type="text" name="asal_sekolah" value="{{old('asal_sekolah')}}" placeholder="Masukan Asal Sekolah" autofocus="" tabindex="1" />
+                                            @error('asal_sekolah')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Jenjang Pendaftaran</label>
+                                            <select name="jenjang" class="form-control">
+                                                <option>-- Pilih --</option>
+                                                @if ($periodeSDIT > 0)
+                                                <option value="SD-IT">SD-IT</option>                                                
+                                                @endif                                            
+                                                @if ($periodeSMPIT > 0)
+                                                <option value="SMP-IT">SMP-IT</option>                                                
+                                                @endif
+                                                @if ($periodeSMAIT > 0)
+                                                <option value="SMA-IT">SMA-IT</option>
+                                                @endif
+                                                @if ($periodeMA > 0)
+                                                <option value="MA">MA</option>
+                                                @endif
+                                            </select>
+                                            <small class="text-warning">Jika opsi tidak tersedia, maka periode telah ditutup.</small>
+                                            @error('jenjang')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="input-group input-group-merge form-password-toggle">
+                                                <input class="form-control form-control-merge @error('password') is-invalid @enderror" type="password" name="password" placeholder="············" tabindex="2" />
+                                                <div class="input-group-append"><span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span></div>
+                                                @error('password')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="input-group input-group-merge form-password-toggle">
+                                                <input class="form-control form-control-merge @error('confirm_password') is-invalid @enderror" type="password" name="confirm_password" placeholder="············" tabindex="2" />
+                                                <div class="input-group-append"><span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span></div>
+                                                @error('confirm_password')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="custom-control custom-checkbox">
+                                                <input class="custom-control-input" id="remember-me" type="checkbox" tabindex="3" />
+                                                <label class="custom-control-label" for="remember-me"> Remember Me</label>
+                                            </div>
+                                        </div>
+                                        <button class="btn btn-success btn-block" tabindex="4">Daftar</button>
+                                    </form>
                                     <div>
                                         <p class="card-text mt-1">Sudah punya akun? <a class="font-weight-bold" href="{{ url('login') }}">Login</a></p>
                                     </div>
                                 </div>
+                            </div>
                         </div>
                         <!-- /Login-->
                     </div>
@@ -225,6 +263,62 @@
                 });
             }
         })
+    </script>
+    <script>  
+    // Fungsi untuk menghitung countdown  
+    function updateCountdown(targetDate) {  
+        const now = new Date().getTime();  
+        const distance = targetDate - now;  
+    
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));  
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));  
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));  
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);  
+    
+        document.getElementById("days").innerHTML = days.toString().padStart(2, '0');  
+        document.getElementById("hours").innerHTML = hours.toString().padStart(2, '0');  
+        document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, '0');  
+        document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, '0');  
+    
+        return distance;  
+    }  
+    
+    // Fungsi untuk mengecek apakah ada jenjang yang tersedia  
+    function checkAvailableJenjang() {  
+        const periodeSDIT = {{ $periodeSDIT ?? 0 }};  
+        const periodeSMPIT = {{ $periodeSMPIT ?? 0 }};  
+        const periodeSMAIT = {{ $periodeSMAIT ?? 0 }};  
+        const periodeMA = {{ $periodeMA ?? 0 }};  
+    
+        // Jika semua periode 0, tampilkan countdown dan sembunyikan form
+        if (periodeSDIT === 0 && periodeSMPIT === 0 && periodeSMAIT === 0 && periodeMA === 0) {  
+            // Set tanggal target (sesuaikan dengan kebutuhan)  
+            const targetDate = new Date("2024-11-01T00:00:00").getTime(); // Contoh tanggal  
+            
+            // Sembunyikan form registrasi
+            document.getElementById("registration-form-container").style.display = "none";
+            // Tampilkan countdown
+            document.getElementById("countdown-container").style.display = "block";  
+            
+            // Update countdown setiap detik  
+            const countdownInterval = setInterval(() => {  
+                const distance = updateCountdown(targetDate);  
+                
+                // Jika countdown selesai  
+                if (distance < 0) {  
+                    clearInterval(countdownInterval);  
+                    document.getElementById("countdown-container").innerHTML =   
+                        '<h4 class="text-center">Pendaftaran telah dibuka!</h4>';  
+                    setTimeout(() => {  
+                        location.reload();  
+                    }, 2000);  
+                }  
+            }, 1000);  
+        }  
+    }  
+    
+    // Jalankan pengecekan saat halaman dimuat  
+    document.addEventListener('DOMContentLoaded', checkAvailableJenjang);  
     </script>
 </body>
 <!-- END: Body-->

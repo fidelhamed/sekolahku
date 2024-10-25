@@ -256,7 +256,13 @@
                 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                 <td>Lokasi</td>
                 <td>:</td>
-                <td>{{ $info->lokasi }}</td>
+                <td>
+                    @if ($cetak->muridDetail->jenis_kelamin === 'Laki-laki')
+                    {{ $info->lokasi_laki_laki }}
+                    @else
+                    {{ $info->lokasi_perempuan }}                     
+                    @endif
+                </td>
             </tr>
         </table>
         <br>

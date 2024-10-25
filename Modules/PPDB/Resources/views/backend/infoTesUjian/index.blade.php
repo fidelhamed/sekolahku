@@ -10,7 +10,7 @@
         <div class="content-header-left col-md-9 col-12 mb-2">
             <div class="row breadcrumbs-top">
                 <div class="col-12">
-                    <h2>Form Informasi Tes dan Ujian Calon Murid</h2>
+                    <h2>Informasi Tes dan Ujian Calon Murid</h2>
                 </div>
             </div>
         </div>
@@ -42,7 +42,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-4">
                                     <div class="form-group">
                                         <label for="basicInput">Tanggal</label>
                                         <input type="date" class="form-control flatpickr-basic @error('waktu_tgl') is-invalid @enderror" id="fp-default" name="waktu_tgl" value="{{ $infoSDIT->waktu_tgl }}"/>
@@ -53,18 +53,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-6">
-                                    <div class="form-group">
-                                        <label for="basicInput">Lokasi Tes dan Ujian</label>
-                                        <input type="text" class="form-control @error('lokasi') is-invalid @enderror" name="lokasi" value="{{ $infoSDIT->lokasi }}"/>
-                                        @error('lokasi')
-                                            <div class="invalid-feedback">
-                                            <strong>{{ $message }}</strong>
-                                            </div>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-6">
+                                <div class="col-4">
                                     <div class="form-group">
                                         <label for="basicInput">Jam Mulai</label>
                                         <input type="time" class="form-control @error('jam_mulai') is-invalid @enderror" name="jam_mulai" value="{{ $infoSDIT->jam_mulai }}" />
@@ -75,11 +64,33 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-4">
                                     <div class="form-group">
                                         <label for="basicInput">Jam Berakhir</label>
                                         <input type="time" class="form-control @error('jam_berakhir') is-invalid @enderror" name="jam_berakhir" value="{{ $infoSDIT->jam_berakhir }}" />
                                         @error('jam_berakhir')
+                                            <div class="invalid-feedback">
+                                            <strong>{{ $message }}</strong>
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="basicInput">Lokasi Tes dan Ujian Laki-Laki</label>
+                                        <input type="text" class="form-control @error('lokasi_laki_laki') is-invalid @enderror" name="lokasi_laki_laki" value="{{ $infoSDIT->lokasi_laki_laki }}"/>
+                                        @error('lokasi_laki_laki')
+                                            <div class="invalid-feedback">
+                                            <strong>{{ $message }}</strong>
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="basicInput">Lokasi Tes dan Ujian Perempuan</label>
+                                        <input type="text" class="form-control @error('lokasi_perempuan') is-invalid @enderror" name="lokasi_perempuan" value="{{ $infoSDIT->lokasi_perempuan }}"/>
+                                        @error('lokasi_perempuan')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
                                             </div>
@@ -127,7 +138,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-4">
                                     <div class="form-group">
                                         <label for="basicInput">Tanggal</label>
                                         <input type="date" class="form-control flatpickr-basic @error('waktu_tgl') is-invalid @enderror" id="fp-default" name="waktu_tgl" value="{{ $infoSMPIT->waktu_tgl }}"/>
@@ -138,18 +149,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-6">
-                                    <div class="form-group">
-                                        <label for="basicInput">Lokasi Tes dan Ujian</label>
-                                        <input type="text" class="form-control @error('lokasi') is-invalid @enderror" name="lokasi" value="{{ $infoSMPIT->lokasi }}"/>
-                                        @error('lokasi')
-                                            <div class="invalid-feedback">
-                                            <strong>{{ $message }}</strong>
-                                            </div>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-6">
+                                <div class="col-4">
                                     <div class="form-group">
                                         <label for="basicInput">Jam Mulai</label>
                                         <input type="time" class="form-control @error('jam_mulai') is-invalid @enderror" name="jam_mulai" value="{{ $infoSMPIT->jam_mulai }}" />
@@ -160,11 +160,33 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-4">
                                     <div class="form-group">
                                         <label for="basicInput">Jam Berakhir</label>
                                         <input type="time" class="form-control @error('jam_berakhir') is-invalid @enderror" name="jam_berakhir" value="{{ $infoSMPIT->jam_berakhir }}" />
                                         @error('jam_berakhir')
+                                            <div class="invalid-feedback">
+                                            <strong>{{ $message }}</strong>
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="basicInput">Lokasi Tes dan Ujian Laki-Laki</label>
+                                        <input type="text" class="form-control @error('lokasi_laki_laki') is-invalid @enderror" name="lokasi_laki_laki" value="{{ $infoSMPIT->lokasi_laki_laki }}"/>
+                                        @error('lokasi_laki_laki')
+                                            <div class="invalid-feedback">
+                                            <strong>{{ $message }}</strong>
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="basicInput">Lokasi Tes dan Ujian Perempuan</label>
+                                        <input type="text" class="form-control @error('lokasi_perempuan') is-invalid @enderror" name="lokasi_perempuan" value="{{ $infoSMPIT->lokasi_perempuan }}"/>
+                                        @error('lokasi_perempuan')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
                                             </div>
@@ -212,7 +234,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-4">
                                     <div class="form-group">
                                         <label for="basicInput">Tanggal</label>
                                         <input type="date" class="form-control flatpickr-basic @error('waktu_tgl') is-invalid @enderror" id="fp-default" name="waktu_tgl" value="{{ $infoSMAIT->waktu_tgl }}"/>
@@ -223,18 +245,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-6">
-                                    <div class="form-group">
-                                        <label for="basicInput">Lokasi Tes dan Ujian</label>
-                                        <input type="text" class="form-control @error('lokasi') is-invalid @enderror" name="lokasi" value="{{ $infoSMAIT->lokasi }}"/>
-                                        @error('lokasi')
-                                            <div class="invalid-feedback">
-                                            <strong>{{ $message }}</strong>
-                                            </div>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-6">
+                                <div class="col-4">
                                     <div class="form-group">
                                         <label for="basicInput">Jam Mulai</label>
                                         <input type="time" class="form-control @error('jam_mulai') is-invalid @enderror" name="jam_mulai" value="{{ $infoSMAIT->jam_mulai }}" />
@@ -245,11 +256,33 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-4">
                                     <div class="form-group">
                                         <label for="basicInput">Jam Berakhir</label>
                                         <input type="time" class="form-control @error('jam_berakhir') is-invalid @enderror" name="jam_berakhir" value="{{ $infoSMAIT->jam_berakhir }}" />
                                         @error('jam_berakhir')
+                                            <div class="invalid-feedback">
+                                            <strong>{{ $message }}</strong>
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="basicInput">Lokasi Tes dan Ujian Laki-Laki</label>
+                                        <input type="text" class="form-control @error('lokasi_laki_laki') is-invalid @enderror" name="lokasi_laki_laki" value="{{ $infoSMAIT->lokasi_laki_laki }}"/>
+                                        @error('lokasi_laki_laki')
+                                            <div class="invalid-feedback">
+                                            <strong>{{ $message }}</strong>
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="basicInput">Lokasi Tes dan Ujian Perempuan</label>
+                                        <input type="text" class="form-control @error('lokasi_perempuan') is-invalid @enderror" name="lokasi_perempuan" value="{{ $infoSMAIT->lokasi_perempuan }}"/>
+                                        @error('lokasi_perempuan')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
                                             </div>
@@ -297,7 +330,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-4">
                                     <div class="form-group">
                                         <label for="basicInput">Tanggal</label>
                                         <input type="date" class="form-control flatpickr-basic @error('waktu_tgl') is-invalid @enderror" id="fp-default" name="waktu_tgl" value="{{ $infoMA->waktu_tgl }}"/>
@@ -308,18 +341,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-6">
-                                    <div class="form-group">
-                                        <label for="basicInput">Lokasi Tes dan Ujian</label>
-                                        <input type="text" class="form-control @error('lokasi') is-invalid @enderror" name="lokasi" value="{{ $infoMA->lokasi }}"/>
-                                        @error('lokasi')
-                                            <div class="invalid-feedback">
-                                            <strong>{{ $message }}</strong>
-                                            </div>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-6">
+                                <div class="col-4">
                                     <div class="form-group">
                                         <label for="basicInput">Jam Mulai</label>
                                         <input type="time" class="form-control @error('jam_mulai') is-invalid @enderror" name="jam_mulai" value="{{ $infoMA->jam_mulai }}" />
@@ -330,11 +352,33 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-4">
                                     <div class="form-group">
                                         <label for="basicInput">Jam Berakhir</label>
                                         <input type="time" class="form-control @error('jam_berakhir') is-invalid @enderror" name="jam_berakhir" value="{{ $infoMA->jam_berakhir }}" />
                                         @error('jam_berakhir')
+                                            <div class="invalid-feedback">
+                                            <strong>{{ $message }}</strong>
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="basicInput">Lokasi Tes dan Ujian Laki-Laki</label>
+                                        <input type="text" class="form-control @error('lokasi_laki_laki') is-invalid @enderror" name="lokasi_laki_laki" value="{{ $infoMA->lokasi_laki_laki }}"/>
+                                        @error('lokasi_laki_laki')
+                                            <div class="invalid-feedback">
+                                            <strong>{{ $message }}</strong>
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="basicInput">Lokasi Tes dan Ujian Perempuan</label>
+                                        <input type="text" class="form-control @error('lokasi_perempuan') is-invalid @enderror" name="lokasi_perempuan" value="{{ $infoMA->lokasi_perempuan }}"/>
+                                        @error('lokasi_perempuan')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
                                             </div>

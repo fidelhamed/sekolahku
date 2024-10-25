@@ -61,7 +61,7 @@
                     </div>
                 </div>
             </div>
-            @if (isset($infoTesUjian->waktu_tgl, $infoTesUjian->jam_mulai, $infoTesUjian->jam_berakhir, $infoTesUjian->lokasi, $infoTesUjian->deskripsi))
+            @if (isset($infoTesUjian->waktu_tgl, $infoTesUjian->jam_mulai, $infoTesUjian->jam_berakhir, $infoTesUjian->lokasi_laki_laki, $infoTesUjian->lokasi_perempuan, $infoTesUjian->deskripsi))
             <div class="col-lg-6 col-md-12 col-sm-12">
                 <div class="card">
                     <div class="card-body text-center">
@@ -77,7 +77,11 @@
                                 Jam     :       {{ Carbon\Carbon::parse($infoTesUjian->jam_mulai)->format('H:i') . ' - ' . Carbon\Carbon::parse($infoTesUjian->jam_berakhir)->format('H:i')}}
                             </p>
                             <p class="card-text m-auto w-75">
-                                Tempat     :       {{ $infoTesUjian->lokasi }}
+                                @if (Auth::user()->muridDetail->jenis_kelamin === 'Laki-laki')
+                                Tempat     :       {{ $infoTesUjian->lokasi_laki_laki }}
+                                @else
+                                Tempat     :       {{ $infoTesUjian->lokasi_perempuan }}
+                                @endif
                             </p>
                             <p class="card-text m-auto w-75">
                                 {!! nl2br($infoTesUjian->deskripsi) !!}
@@ -124,7 +128,7 @@
                     </div>
                 </div>
             </div>
-            @if (isset($infoDaftarUlang->waktu_tgl, $infoDaftarUlang->jam_mulai, $infoDaftarUlang->jam_berakhir, $infoDaftarUlang->lokasi, $infoDaftarUlang->deskripsi))
+            @if (isset($infoDaftarUlang->waktu_tgl, $infoDaftarUlang->jam_mulai, $infoDaftarUlang->jam_berakhir, $infoDaftarUlang->lokasi_laki_laki, $infoDaftarUlang->lokasi_perempuan, $infoDaftarUlang->deskripsi))
             <div class="col-lg-6 col-md-12 col-sm-12">
                 <div class="card">
                     <div class="card-body text-center">
@@ -137,7 +141,11 @@
                                 Jam     :       {{ Carbon\Carbon::parse($infoDaftarUlang->jam_mulai)->format('H:i') . ' - ' . Carbon\Carbon::parse($infoDaftarUlang->jam_berakhir)->format('H:i')}}
                             </p>
                             <p class="card-text m-auto w-75">
-                                Tempat     :       {{ $infoDaftarUlang->lokasi }}
+                                @if (Auth::user()->muridDetail->jenis_kelamin === 'Laki-laki')
+                                Tempat     :       {{ $infoDaftarUlang->lokasi_laki_laki }}
+                                @else
+                                Tempat     :       {{ $infoDaftarUlang->lokasi_perempuan }}
+                                @endif
                             </p>
                             <p class="card-text m-auto w-75">
                                 {!! nl2br($infoDaftarUlang->deskripsi) !!}

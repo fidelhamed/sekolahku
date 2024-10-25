@@ -21,8 +21,11 @@ class CreatePaymentRegistrationsTable extends Migration
             $table->string('destination_bank')->nullable();
             $table->string('file')->nullable();
             $table->string('approve_date')->nullable();
+            $table->unsignedBigInteger('approved_by')->nullable();
             $table->string('amount');
             $table->enum('status', ['Paid', 'Unpaid'])->default('Unpaid');
+
+            $table->foreign('approved_by')->references('id')->on('users')->onDelete('cascade');
 
             $table->timestamps();
         });

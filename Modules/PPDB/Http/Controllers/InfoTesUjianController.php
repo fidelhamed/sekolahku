@@ -65,7 +65,8 @@ class InfoTesUjianController extends Controller
                 $info->waktu_tgl = $request->waktu_tgl;
                 $info->jam_mulai = $request->jam_mulai;
                 $info->jam_berakhir = $request->jam_berakhir;
-                $info->lokasi = $request->lokasi;
+                $info->lokasi_laki_laki = $request->lokasi_laki_laki;
+                $info->lokasi_perempuan = $request->lokasi_perempuan;
                 $info->deskripsi = $request->deskripsi;
                 $info->save();
             } else {
@@ -73,7 +74,8 @@ class InfoTesUjianController extends Controller
                 $info->waktu_tgl = $request->waktu_tgl;
                 $info->jam_mulai = $request->jam_mulai;
                 $info->jam_berakhir = $request->jam_berakhir;
-                $info->lokasi = $request->lokasi;
+                $info->lokasi_laki_laki = $request->lokasi_laki_laki;
+                $info->lokasi_perempuan = $request->lokasi_perempuan;
                 $info->deskripsi = $request->deskripsi;
                 $info->update();
             }

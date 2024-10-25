@@ -19,7 +19,8 @@ class CreateInfoDaftarUlangTable extends Migration
             $table->date('waktu_tgl')->nullable();
             $table->time('jam_mulai')->nullable();
             $table->time('jam_berakhir')->nullable();
-            $table->string('lokasi')->nullable();
+            $table->string('lokasi_laki_laki')->nullable();
+            $table->string('lokasi_perempuan')->nullable();
             $table->text('deskripsi')->nullable();
             $table->timestamps();
         });
