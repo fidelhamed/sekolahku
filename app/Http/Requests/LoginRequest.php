@@ -21,23 +21,36 @@ class LoginRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
-    {
-        return [
-            'email'     => 'required|email|exists:users,email',
-            // 'login'     => 'required',
-            'password'  => 'required'
-        ];
-    }
+    // public function rules()
+    // {
+    //     return [
+    //         'email'     => 'required|email|exists:users,email',
+    //         'password'  => 'required'
+    //     ];
+    // }
 
-     public function messages()
-    {
-        return [
-            'email.required'        => "Email tidak boleh kosong.",
-            "email.email"           => "Format email tidak valid.",
-            "email.exists"          => "Email tidak terdaftar pada sistem.",
-            // 'login.required'        => "Email atau username tidak boleh kosong.",
-            "password.required"     => "Password tidak boleh kosong.",
-        ];
-    }
+    //  public function messages()
+    // {
+    //     return [
+    //         'email.required'        => "Email tidak boleh kosong.",
+    //         "email.email"           => "Format email tidak valid.",
+    //         "email.exists"          => "Email tidak terdaftar pada sistem.",
+    //         "password.required"     => "Password tidak boleh kosong.",
+    //     ];
+    // }
+public function rules()
+{
+    return [
+        'identifier' => 'required|string',
+        'password'   => 'required'
+    ];
+}
+
+public function messages()
+{
+    return [
+        'identifier.required' => "Email atau Username tidak boleh kosong.",
+        'password.required'   => "Password tidak boleh kosong.",
+    ];
+}
 }

@@ -70,7 +70,6 @@
                                                         <a href="{{ route('data-murid.show', $murid->id) }}" 
                                                             class="btn btn-info btn-sm" 
                                                             style="display: {{$murid->paymentRegis->file == null || $murid->paymentRegis->approve_date != null ? '' : 'none'}}">Detail</a>
-                                                        {{-- <a href="{{asset('storage/images/payment_pendaftaran/' .$murids->paymentRegis->file)}}" class="btn btn btn-secondary btn-sm" target="_blank" style="display: {{$murids->paymentRegis->file == null || $murids->paymentRegis->approve_date != null ? 'none' : ''}}">Bukti Pembayaran</a> --}}
                                                         <a href="{{ asset('storage/images/payment_pendaftaran/' .$murid->paymentRegis->file) }}" 
                                                             data-download-link="{{ asset('storage/images/payment_pendaftaran/' . $murid->paymentRegis->file) }}" 
                                                             class="btn btn-secondary btn-sm" 

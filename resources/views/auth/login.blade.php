@@ -104,28 +104,20 @@
                                 <form class="auth-login-form mt-2" action="{{route('login')}}" method="POST">
                                     @csrf
                                     <div class="form-group">
-                                        <label class="form-label" for="login-email">Email</label>
+                                        {{-- <label class="form-label" for="login-email">Email</label>
                                         <input class="form-control @error('email') is-invalid @enderror" id="login-email" type="text" name="email" value="{{old('email')}}" placeholder="Masukan Email" aria-describedby="login-email" autofocus="" tabindex="1" />
                                         @error('email')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
-                                        @enderror
-                                        {{-- <label class="form-label" for="login-email">Email atau Username</label>
-                                        <input class="form-control @error('login') is-invalid @enderror" 
-                                               id="login-email" 
-                                               type="text" 
-                                               name="login" 
-                                               value="{{old('login')}}" 
-                                               placeholder="Masukan Email atau Username" 
-                                               aria-describedby="login-email" 
-                                               autofocus="" 
-                                               tabindex="1" />
-                                        @error('login')
+                                        @enderror --}}
+                                        <label class="form-label" for="login-identifier">Email atau Username</label>
+                                        <input class="form-control @error('identifier') is-invalid @enderror" id="login-identifier" type="text" name="identifier" value="{{ old('identifier') }}" placeholder="Masukan Email atau Username" aria-describedby="login-identifier" autofocus="" tabindex="1" />
+                                        @error('identifier')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
-                                        @enderror --}}
+                                        @enderror
                                     </div>
                                     <div class="form-group">
                                         <div class="d-flex justify-content-between">

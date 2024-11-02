@@ -103,6 +103,15 @@
                             <button class="btn btn-success" type="submit">Update</button>
                             <a href="{{route('backend-pengguna-murid.index')}}" class="btn btn-warning">Batal</a>
                         </form>
+                        <form action="{{ route('backend-pengguna-murid.resetPassword', $murid->id) }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-danger">Reset Password</button>
+                            @if ($errors->any())
+                            <div class="alert alert-danger">
+                                {{ $errors->first() }}
+                            </div>
+                            @endif                    
+                        </form>
                     </div>
                 </div>
             </div>

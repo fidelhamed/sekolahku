@@ -93,5 +93,8 @@ Route::middleware('auth')->group(function () {
             /// PPDB \\\
             'backend-pengguna-ppdb' => Backend\Pengguna\PPDBController::class,
         ]);
+
+        Route::post('backend-pengguna-murid/resetPassword/{user}',[App\Http\Controllers\Backend\Pengguna\MuridController::class, 'resetPassword'])->name('backend-pengguna-murid.resetPassword');
+        Route::post('backend-pengguna-ppdb/resetPassword/{user}',[App\Http\Controllers\Backend\Pengguna\PPDBController::class, 'resetPassword'])->name('backend-pengguna-ppdb.resetPassword');
     });
 });

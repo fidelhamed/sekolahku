@@ -41,6 +41,26 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    public function login(Request $request)
+    {
+        $this->validate($request, [
+            'identifier' => 'required|string',
+            'password'   => 'required'
+        ]);
+    
+        $field = filter_var($request->identifier, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+    
+        if (Auth::attempt([$field => $request->identifier, 'password' => $request->password])) {
+            // Login berhasil
+            return redirect()->intended('home');
+        }
+    
+        // Jika login gagal
+        return back()->withErrors([
+            'identifier' => 'Email atau Username dan Password tidak cocok.',
+        ]);
+    }
+
     protected function authenticated()
     {
         if(Auth::User()->status == 'Tidak Aktif') {
@@ -50,30 +70,4 @@ class LoginController extends Controller
         }
     }
 
-    // protected function authenticate(Request $request)
-    // {
-    //     // Determine if input is email or username
-    //     $loginField = filter_var($request->login, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
-        
-    //     $credentials = [
-    //         $loginField => $request->login,
-    //         'password' => $request->password
-    //     ];
-
-    //     // Attempt authentication
-    //     if (Auth::attempt($credentials)) {
-    //         // Check user status after successful login
-    //         if(Auth::user()->status == 'Tidak Aktif') {
-    //             Auth::logout();
-    //             Session::flash('error', "Akun yang kamu gunakan sudah Tidak Aktif !");
-    //             return redirect('login');
-    //         }
-    //         return redirect()->intended('dashboard');
-    //     }
-
-    //     // If authentication fails
-    //     return back()->withErrors([
-    //         'login' => 'Email/username atau password salah.'
-    //     ]);
-    // }
-}
+    }

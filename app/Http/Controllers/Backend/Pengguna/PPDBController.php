@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers\Backend\Pengguna;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use DB;
+use Session;
 use ErrorException;
 use App\Models\User;
 use App\Models\UsersDetail;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ppdbRequest;
-use DB;
-use Session;
+use App\Http\Controllers\Controller;
 
 class PPDBController extends Controller
 {
@@ -63,7 +65,7 @@ class PPDBController extends Controller
             $user->role             = 'PPDB';
             $user->status           = 'Aktif';
             $user->foto_profile     = $nama_img;
-            $user->password         = bcrypt('12345678');
+            $user->password         = bcrypt('Bismillah');
             $user->save();
 
             if ($user) {
@@ -166,6 +168,22 @@ class PPDBController extends Controller
             DB::rollback();
             throw new ErrorException($e->getMessage());
         }
+    }
+
+    public function resetPassword(User $user)
+    {
+        // Pastikan hanya superadmin yang dapat mengakses fungsi ini
+        if (!Auth::user()->role == 'Admin') {
+            return redirect()->back()->withErrors(['error' => 'Unauthorized action.']);
+        }
+
+        // Reset password
+        $user->password = Hash::make('Bismillah');
+        $user->save();
+
+        // Berikan feedback kepada superadmin
+        Session::flash('success', 'Password untuk ' . $user->name . ' telah direset menjadi "Bismillah".');
+        return redirect()->back();
     }
 
     /**
