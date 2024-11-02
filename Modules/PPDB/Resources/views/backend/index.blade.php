@@ -240,22 +240,37 @@
                   <div class="card">
                       <div class="card-header">
                           <div>
-                            @if ($needVerifSDIT == 0 AND $needVerifSMPIT == 0 AND $needVerifSMAIT == 0 AND $needVerifMA == 0)
+                            @if ($needVerifTKTQ == 0 AND $needVerifTKTQ2 == 0 AND $needVerifSDIT == 0 AND $needVerifSDIT2 == 0 AND $needVerifSMPIT == 0 AND $needVerifSMAIT == 0 AND $needVerifMA == 0)
                                 <h2 class="font-weight-bolder mb-0">0</h2>                                                                                
+                            @endif
+                            @if ($needVerifTKTQ > 0)
+                            <a href="{{ url('ppdb/data-murid?jenjangDataMurid=TKTQ') }}">
+                                <h4 class="font-weight-bolder mb-0">{{$needVerifTKTQ}} TKTQ</h4>                                        
+                            </a>
+                            @endif
+                            @if ($needVerifTKTQ2 > 0)
+                            <a href="{{ url('ppdb/data-murid?jenjangDataMurid=TKTQ-2') }}">
+                                <h4 class="font-weight-bolder mb-0">{{$needVerifTKTQ}} TKTQ 2</h4>                                        
+                            </a>
                             @endif
                             @if ($needVerifSDIT > 0)
                             <a href="{{ url('ppdb/data-murid?jenjangDataMurid=SD-IT') }}">
-                                <h4 class="font-weight-bolder mb-0">{{$needVerifSDIT}} SD-IT</h4>                                        
+                                <h4 class="font-weight-bolder mb-0">{{$needVerifSDIT}} SD IT</h4>                                        
                             </a>
-                            @endif                            
+                            @endif
+                            @if ($needVerifSDIT2 > 0)
+                            <a href="{{ url('ppdb/data-murid?jenjangDataMurid=SD-IT-2') }}">
+                                <h4 class="font-weight-bolder mb-0">{{$needVerifSDIT}} SD IT 2</h4>                                        
+                            </a>
+                            @endif
                             @if ($needVerifSMPIT > 0)
                             <a href="{{ url('ppdb/data-murid?jenjangDataMurid=SMP-IT') }}">
-                                <h4 class="font-weight-bolder mb-0">{{$needVerifSMPIT}} SMP-IT</h4>                                        
+                                <h4 class="font-weight-bolder mb-0">{{$needVerifSMPIT}} SMP IT</h4>                                        
                             </a>
                             @endif
                             @if ($needVerifSMAIT > 0)
                             <a href="{{ url('ppdb/data-murid?jenjangDataMurid=SMA-IT') }}">
-                                <h4 class="font-weight-bolder mb-0">{{$needVerifSMAIT}} SMA-IT</h4>
+                                <h4 class="font-weight-bolder mb-0">{{$needVerifSMAIT}} SMA IT</h4>
                             </a>
                             @endif
                             @if ($needVerifMA > 0)
@@ -296,22 +311,37 @@
                         <div class="card">
                             <div class="card-header">
                                 <div>
-                                    @if ($needConfirmPaymentSDIT == 0 AND $needConfirmPaymentSMPIT == 0 AND $needConfirmPaymentSMAIT == 0 AND $needConfirmPaymentMA == 0)
+                                    @if ($needConfirmPaymentTKTQ == 0 AND $needConfirmPaymentTKTQ2 == 0 AND $needConfirmPaymentSDIT == 0 AND $needConfirmPaymentSDIT2 == 0 AND $needConfirmPaymentSMPIT == 0 AND $needConfirmPaymentSMAIT == 0 AND $needConfirmPaymentMA == 0)
                                     <h2 class="font-weight-bolder mb-0">0</h2>                                                                                
+                                    @endif
+                                    @if ($needConfirmPaymentTKTQ > 0)
+                                    <a href="{{ url('ppdb/data-murid?jenjangDataMurid=TKTQ') }}">
+                                        <h4 class="font-weight-bolder mb-0">{{$needConfirmPaymentTKTQ}} TKTQ</h4>                                  
+                                    </a>
+                                    @endif
+                                    @if ($needConfirmPaymentTKTQ2 > 0)
+                                    <a href="{{ url('ppdb/data-murid?jenjangDataMurid=TKTQ-2') }}">
+                                        <h4 class="font-weight-bolder mb-0">{{$needConfirmPaymentTKTQ2}} TKTQ 2</h4>                                  
+                                    </a>
                                     @endif
                                     @if ($needConfirmPaymentSDIT > 0)
                                     <a href="{{ url('ppdb/data-murid?jenjangDataMurid=SD-IT') }}">
-                                        <h4 class="font-weight-bolder mb-0">{{$needConfirmPaymentSDIT}} SD-IT</h4>                                  
+                                        <h4 class="font-weight-bolder mb-0">{{$needConfirmPaymentSDIT}} SD IT</h4>                                  
+                                    </a>
+                                    @endif
+                                    @if ($needConfirmPaymentSDIT2 > 0)
+                                    <a href="{{ url('ppdb/data-murid?jenjangDataMurid=SD-IT-2') }}">
+                                        <h4 class="font-weight-bolder mb-0">{{$needConfirmPaymentSDIT2}} SD IT 2</h4>                                  
                                     </a>
                                     @endif
                                     @if ($needConfirmPaymentSMPIT > 0)
                                     <a href="{{ url('ppdb/data-murid?jenjangDataMurid=SMP-IT') }}">
-                                        <h4 class="font-weight-bolder mb-0">{{$needConfirmPaymentSMPIT}} SMP-IT</h4>                                  
+                                        <h4 class="font-weight-bolder mb-0">{{$needConfirmPaymentSMPIT}} SMP IT</h4>                                  
                                     </a>
                                     @endif
                                     @if ($needConfirmPaymentSMAIT > 0)
                                     <a href="{{ url('ppdb/data-murid?jenjangDataMurid=SMA-IT') }}">
-                                        <h4 class="font-weight-bolder mb-0">{{$needConfirmPaymentSMAIT}} SMA-IT</h4>
+                                        <h4 class="font-weight-bolder mb-0">{{$needConfirmPaymentSMAIT}} SMA IT</h4>
                                     </a>
                                     @endif
                                     @if ($needConfirmPaymentMA > 0)
@@ -365,7 +395,7 @@
         <div class="row">
             <div class="col-lg-6 col-12">
                 <div class="card py-1">
-                    <canvas id="myChart" width="400" height="200"></canvas>
+                    <canvas id="myChart_pendaftar" width="400" height="200"></canvas>
                 </div>
             </div>
             <div class="col-lg-6 col-12">
@@ -404,8 +434,16 @@
     @if (isset($pendaftar, $pendaftar_jk))
     
     // Chart pendaftar
-    var ctx = document.getElementById('myChart').getContext('2d');
+    var ctx = document.getElementById('myChart_pendaftar').getContext('2d');
     var data = @json($pendaftar);
+
+    // Tentukan urutan jenjang yang diinginkan
+    var order = ['TKTQ', 'TKTQ-2', 'SD-IT', 'SD-IT-2', 'SMP-IT', 'SMA-IT', 'MA']; // Sesuaikan dengan jenjang yang ada
+
+    // Urutkan data berdasarkan jenjang
+    data.sort(function(a, b) {
+        return order.indexOf(a.jenjang) - order.indexOf(b.jenjang);
+    });
 
     var labels = data.map(function(item) {
         return item.jenjang;
@@ -416,16 +454,24 @@
     });
 
     var backgroundColors = [
-        'rgba(20, 174, 92, 1)',
-        'rgba(40, 48, 70, 1)',
-        'rgba(72, 218, 137, 1)',
+        'rgba(20, 174, 92, 1)',    // Original green
+        'rgba(255, 99, 71, 1)',    // Tomato red
+        'rgba(75, 192, 255, 1)',   // Sky blue
+        'rgba(255, 206, 86, 1)',   // Warm yellow
+        'rgba(153, 102, 255, 1)',  // Purple
+        'rgba(255, 159, 64, 1)',   // Orange
+        'rgba(66, 66, 66, 1)'      // Dark grey
         // ...Tambahkan warna lain sesuai kebutuhan
     ];
 
     var borderColors = [
-        'rgba(20, 174, 92, 1)',
-        'rgba(40, 48, 70, 1)',
-        'rgba(72, 218, 137, 1)',
+        'rgba(20, 174, 92, 1)',    // Original green
+        'rgba(255, 99, 71, 1)',    // Tomato red
+        'rgba(75, 192, 255, 1)',   // Sky blue
+        'rgba(255, 206, 86, 1)',   // Warm yellow
+        'rgba(153, 102, 255, 1)',  // Purple
+        'rgba(255, 159, 64, 1)',   // Orange
+        'rgba(66, 66, 66, 1)'      // Dark grey
         // ...Tambahkan warna lain sesuai kebutuhan
     ];
 
@@ -437,7 +483,7 @@
     }];
 
     var myChart = new Chart(ctx, {
-        type: 'doughnut', // Mengganti type menjadi 'pie' untuk pie chart
+        type: 'pie', // Mengganti type menjadi 'pie' untuk pie chart
         data: {
             labels: labels,
             datasets: datasets
@@ -446,7 +492,7 @@
             plugins: {
                 legend: {
                     display: true,
-                    position: 'left',
+                    position: 'bottom',
                     labels: {
                         generateLabels: function(chart) {
                             return labels.map(function(label, index) {
@@ -470,10 +516,17 @@
         }
     });
 
-
     // Chart pendaftar berdasarkan jenis kelamin
     var ctx = document.getElementById('myChart_jk').getContext('2d');
     var data = @json($pendaftar_jk);
+
+    // Tentukan urutan jenjang yang diinginkan
+    var order = ['TKTQ', 'TKTQ-2', 'SD-IT', 'SD-IT-2', 'SMP-IT', 'SMA-IT', 'MA']; // Sesuaikan dengan jenjang yang ada
+
+    // Urutkan data berdasarkan jenjang
+    data.sort(function(a, b) {
+        return order.indexOf(a.jenjang) - order.indexOf(b.jenjang);
+    });    
 
     var labels_jk = data.map(function(item) {
         return item.jenjang;
@@ -531,9 +584,16 @@
         }
     });
 
-
     // Chart pemasukan biaya registrasi
     var data = @json($biaya);
+
+    // Tentukan urutan jenjang yang diinginkan
+    var order = ['TKTQ', 'TKTQ-2', 'SD-IT', 'SD-IT-2', 'SMP-IT', 'SMA-IT', 'MA']; // Sesuaikan dengan jenjang yang ada
+
+    // Urutkan data berdasarkan jenjang
+    data.sort(function(a, b) {
+        return order.indexOf(a.jenjang) - order.indexOf(b.jenjang);
+    });
 
     var labels_biaya = data.map(function(item) {
         return item.jenjang;
@@ -544,16 +604,24 @@
     });
 
     var backgroundColors = [
-        'rgba(20, 174, 92, 0.7)',
-        'rgba(40, 48, 70, 0.7)',
-        'rgba(72, 218, 137, 0.7)',
+        'rgba(20, 174, 92, 1)',    // Original green
+        'rgba(255, 99, 71, 1)',    // Tomato red
+        'rgba(75, 192, 255, 1)',   // Sky blue
+        'rgba(255, 206, 86, 1)',   // Warm yellow
+        'rgba(153, 102, 255, 1)',  // Purple
+        'rgba(255, 159, 64, 1)',   // Orange
+        'rgba(66, 66, 66, 1)'      // Dark grey
         // ...Tambahkan warna lain sesuai kebutuhan
     ];
 
     var borderColors = [
-        'rgba(20, 174, 92, 1)',
-        'rgba(40, 48, 70, 1)',
-        'rgba(72, 218, 137, 1)',
+        'rgba(20, 174, 92, 1)',    // Original green
+        'rgba(255, 99, 71, 1)',    // Tomato red
+        'rgba(75, 192, 255, 1)',   // Sky blue
+        'rgba(255, 206, 86, 1)',   // Warm yellow
+        'rgba(153, 102, 255, 1)',  // Purple
+        'rgba(255, 159, 64, 1)',   // Orange
+        'rgba(66, 66, 66, 1)'      // Dark grey
         // ...Tambahkan warna lain sesuai kebutuhan
     ];
 

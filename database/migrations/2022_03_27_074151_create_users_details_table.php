@@ -17,7 +17,6 @@ class CreateUsersDetailsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->enum('role',['Admin','Murid','Guest']);
-            $table->string('mengajar')->nullable();
             $table->bigInteger('nip')->nullable();
             $table->string('email')->nullable();
             $table->string('linkidln')->nullable();

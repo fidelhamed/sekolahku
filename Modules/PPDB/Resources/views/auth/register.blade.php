@@ -172,14 +172,23 @@
                                             <label class="form-label">Jenjang Pendaftaran</label>
                                             <select name="jenjang" class="form-control">
                                                 <option>-- Pilih --</option>
+                                                @if ($periodeTKTQ > 0)
+                                                <option value="TKTQ">TKTQ</option>                                                
+                                                @endif                                            
+                                                @if ($periodeTKTQ2 > 0)
+                                                <option value="TKTQ-2">TKTQ 2</option>                                                
+                                                @endif                                            
                                                 @if ($periodeSDIT > 0)
-                                                <option value="SD-IT">SD-IT</option>                                                
+                                                <option value="SD-IT">SD IT</option>                                                
+                                                @endif                                            
+                                                @if ($periodeSDIT2 > 0)
+                                                <option value="SD-IT-2">SD IT 2</option>                                                
                                                 @endif                                            
                                                 @if ($periodeSMPIT > 0)
-                                                <option value="SMP-IT">SMP-IT</option>                                                
+                                                <option value="SMP-IT">SMP IT</option>                                                
                                                 @endif
                                                 @if ($periodeSMAIT > 0)
-                                                <option value="SMA-IT">SMA-IT</option>
+                                                <option value="SMA-IT">SMA IT</option>
                                                 @endif
                                                 @if ($periodeMA > 0)
                                                 <option value="MA">MA</option>
@@ -285,13 +294,16 @@
     
     // Fungsi untuk mengecek apakah ada jenjang yang tersedia  
     function checkAvailableJenjang() {  
+        const periodeTKTQ = {{ $periodeTKTQ ?? 0 }};  
+        const periodeTKTQ2 = {{ $periodeTKTQ2 ?? 0 }};
         const periodeSDIT = {{ $periodeSDIT ?? 0 }};  
+        const periodeSDIT2 = {{ $periodeSDIT2 ?? 0 }};
         const periodeSMPIT = {{ $periodeSMPIT ?? 0 }};  
         const periodeSMAIT = {{ $periodeSMAIT ?? 0 }};  
         const periodeMA = {{ $periodeMA ?? 0 }};  
     
         // Jika semua periode 0, tampilkan countdown dan sembunyikan form
-        if (periodeSDIT === 0 && periodeSMPIT === 0 && periodeSMAIT === 0 && periodeMA === 0) {  
+        if (periodeTKTQ === 0 && periodeTKTQ2 === 0 && periodeSDIT === 0 && periodeSDIT2 === 0 && periodeSMPIT === 0 && periodeSMAIT === 0 && periodeMA === 0) {  
             // Set tanggal target (sesuaikan dengan kebutuhan)  
             const targetDate = new Date("2024-11-01T00:00:00").getTime(); // Contoh tanggal  
             

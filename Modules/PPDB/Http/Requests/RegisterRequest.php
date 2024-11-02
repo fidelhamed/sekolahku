@@ -16,7 +16,7 @@ class RegisterRequest extends FormRequest
         return [
             'name'                  => 'required',
             'email'                 => 'required|email|unique:users',
-            'password'              => 'required',
+            'password'              => 'required|min:8',
             'confirm_password'      => 'required|same:password',
             'whatsapp'              => 'required|numeric|unique:data_murids',
             'asal_sekolah'          => 'required'
@@ -31,6 +31,7 @@ class RegisterRequest extends FormRequest
             'email.email'           => 'Email yang digunakan tidak valid.',
             'email.unique'          => 'Email sudah pernah digunakan.',
             'password.required'     => 'Password tidak boleh kosong.',
+            'password.min'          => 'Password minimal 8 karakter',
             'confirm_password.required' => 'Konfirmasi Password tidak sesuai.',
             'whatsapp.required'     => 'Nomor WhatasApp tidak boleh kosong.',
             'whatsapp.numeric'      => 'Nomor WhatsApp tidak valid.',

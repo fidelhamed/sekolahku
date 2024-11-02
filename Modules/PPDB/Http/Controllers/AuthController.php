@@ -34,11 +34,14 @@ class AuthController extends Controller
     public function registerView()
     {
         $sekarang = now();
+        $periodeTKTQ = PeriodeRegistrasi::where('jenjang', 'TKTQ')->where('tgl_buka', '<=', $sekarang)->where('tgl_tutup', '>=', $sekarang)->count();
+        $periodeTKTQ2 = PeriodeRegistrasi::where('jenjang', 'TKTQ-2')->where('tgl_buka', '<=', $sekarang)->where('tgl_tutup', '>=', $sekarang)->count();
         $periodeSDIT = PeriodeRegistrasi::where('jenjang', 'SD-IT')->where('tgl_buka', '<=', $sekarang)->where('tgl_tutup', '>=', $sekarang)->count();
+        $periodeSDIT2 = PeriodeRegistrasi::where('jenjang', 'SD-IT-2')->where('tgl_buka', '<=', $sekarang)->where('tgl_tutup', '>=', $sekarang)->count();
         $periodeSMPIT = PeriodeRegistrasi::where('jenjang', 'SMP-IT')->where('tgl_buka', '<=', $sekarang)->where('tgl_tutup', '>=', $sekarang)->count();
         $periodeSMAIT = PeriodeRegistrasi::where('jenjang', 'SMA-IT')->where('tgl_buka', '<=', $sekarang)->where('tgl_tutup', '>=', $sekarang)->count();
         $periodeMA = PeriodeRegistrasi::where('jenjang', 'MA')->where('tgl_buka', '<=', $sekarang)->where('tgl_tutup', '>=', $sekarang)->count();
-        return view('ppdb::auth.register', compact('periodeSDIT', 'periodeSMPIT', 'periodeSMAIT', 'periodeMA'));
+        return view('ppdb::auth.register', compact('periodeTKTQ', 'periodeTKTQ2', 'periodeSDIT', 'periodeSDIT2', 'periodeSMPIT', 'periodeSMAIT', 'periodeMA'));
     }
 
     // Register Store
@@ -49,11 +52,12 @@ class AuthController extends Controller
 
             // Pilih kalimat
             $kalimatKe  = "1";
-            $username   = implode(" ", array_slice(explode(" ", $request->name), 0, $kalimatKe)); // ambil kalimat
+            $randomNumber = rand(1, 9999);
+            $username   = implode(" ", array_slice(explode(" ", $request->name), 0, $kalimatKe)) . $randomNumber; // ambil kalimat
 
             $register = new User();
             $register->name      = $request->name;
-            $register->username  = $username;
+            $register->username  = strtolower($username);
             $register->email     = $request->email;
             $register->role      = 'Guest';
             $register->password  = bcrypt($request->password);
@@ -96,6 +100,7 @@ class AuthController extends Controller
         // Contoh: RR-2023-001 (RR untuk "Registrasi", tahun, dan nomor urut)
         $tahun = date('Y');
         $lastRegistrasi = DataMurid::whereYear('created_at', $tahun)
+            ->where('jenjang', $jenjang)
             ->orderBy('id', 'desc')
             ->first();
 

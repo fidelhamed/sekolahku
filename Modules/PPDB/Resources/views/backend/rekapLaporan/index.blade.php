@@ -32,9 +32,12 @@
                                         <label class="form-label">Jenjang</label>
                                         <select name="jenjang" class="form-control">
                                             <option value="">-- Pilih --</option>
-                                            <option value="SD-IT">SD-IT</option>
-                                            <option value="SMP-IT">SMP-IT</option>
-                                            <option value="SMA-IT">SMA-IT</option>
+                                            <option value="TKTQ">TKTQ</option>
+                                            <option value="TKTQ-2">TKTQ 2</option>
+                                            <option value="SD-IT">SD IT</option>
+                                            <option value="SD-IT-2">SD IT 2</option>
+                                            <option value="SMP-IT">SMP IT</option>
+                                            <option value="SMA-IT">SMA IT</option>
                                             <option value="MA">MA</option>
                                          </select>
                                         @error('jenjang')

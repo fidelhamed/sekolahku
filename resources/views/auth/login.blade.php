@@ -111,6 +111,21 @@
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
+                                        {{-- <label class="form-label" for="login-email">Email atau Username</label>
+                                        <input class="form-control @error('login') is-invalid @enderror" 
+                                               id="login-email" 
+                                               type="text" 
+                                               name="login" 
+                                               value="{{old('login')}}" 
+                                               placeholder="Masukan Email atau Username" 
+                                               aria-describedby="login-email" 
+                                               autofocus="" 
+                                               tabindex="1" />
+                                        @error('login')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror --}}
                                     </div>
                                     <div class="form-group">
                                         <div class="d-flex justify-content-between">

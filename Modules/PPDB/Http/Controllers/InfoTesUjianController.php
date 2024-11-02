@@ -15,14 +15,29 @@ class InfoTesUjianController extends Controller
     {
         try {
             DB::beginTransaction();
+            $cekInfoTKTQ = InfoTesUjian::where('jenjang', 'TKTQ')->count();
+            $cekInfoTKTQ2 = InfoTesUjian::where('jenjang', 'TKTQ-2')->count();
             $cekInfoSDIT = InfoTesUjian::where('jenjang', 'SD-IT')->count();
+            $cekInfoSDIT2 = InfoTesUjian::where('jenjang', 'SD-IT-2')->count();
             $cekInfoSMPIT = InfoTesUjian::where('jenjang', 'SMP-IT')->count();
             $cekInfoSMAIT = InfoTesUjian::where('jenjang', 'SMA-IT')->count();
             $cekInfoMA = InfoTesUjian::where('jenjang', 'MA')->count();
 
-            if ($cekInfoSDIT === 0) {
+            if ($cekInfoTKTQ === 0) {
+                $info = new InfoTesUjian();
+                $info->jenjang = 'TKTQ';
+                $info->save();
+            } elseif ($cekInfoTKTQ2 === 0) {
+                $info = new InfoTesUjian();
+                $info->jenjang = 'TKTQ-2';
+                $info->save();
+            } elseif ($cekInfoSDIT === 0) {
                 $info = new InfoTesUjian();
                 $info->jenjang = 'SD-IT';
+                $info->save();
+            } elseif ($cekInfoSDIT2 === 0) {
+                $info = new InfoTesUjian();
+                $info->jenjang = 'SD-IT-2';
                 $info->save();
             } elseif ($cekInfoSMPIT === 0) {
                 $info = new InfoTesUjian();
@@ -37,11 +52,14 @@ class InfoTesUjianController extends Controller
                 $info->jenjang = 'MA';
                 $info->save();
             } else {
+                $infoTKTQ = InfoTesUjian::where('jenjang', 'TKTQ')->first();
+                $infoTKTQ2 = InfoTesUjian::where('jenjang', 'TKTQ-2')->first();
                 $infoSDIT = InfoTesUjian::where('jenjang', 'SD-IT')->first();
+                $infoSDIT2 = InfoTesUjian::where('jenjang', 'SD-IT-2')->first();
                 $infoSMPIT = InfoTesUjian::where('jenjang', 'SMP-IT')->first();
                 $infoSMAIT = InfoTesUjian::where('jenjang', 'SMA-IT')->first();
                 $infoMA = InfoTesUjian::where('jenjang', 'MA')->first();
-                return view('ppdb::backend.infoTesUjian.index', compact('infoSDIT', 'infoSMPIT', 'infoSMAIT', 'infoMA'));          
+                return view('ppdb::backend.infoTesUjian.index', compact('infoTKTQ', 'infoTKTQ2', 'infoSDIT', 'infoSDIT2', 'infoSMPIT', 'infoSMAIT', 'infoMA'));          
             }
             DB::commit();
             Session::flash('success', 'Sukses, Data Berhasil dikirim !');

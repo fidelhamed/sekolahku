@@ -151,19 +151,34 @@
                     <span class="menu-title text-truncate" data-i18n="Card">Calon Peserta Didik</span>
                 </a>
                 <ul class="menu-content">
+                    <li class="nav-item {{ (request()->has('jenjangDataMurid') && request()->input('jenjangDataMurid') == 'TKTQ') ? 'active' : '' }}">
+                        <a class="d-flex align-items-center" href="{{ url('ppdb/data-murid?jenjangDataMurid=TKTQ') }}"><i data-feather="circle"></i>
+                            <span class="menu-item text-truncate" data-i18n="Basic">TKTQ</span>
+                        </a>
+                    </li>
+                    <li class="nav-item {{ (request()->has('jenjangDataMurid') && request()->input('jenjangDataMurid') == 'TKTQ-2') ? 'active' : '' }}">
+                        <a class="d-flex align-items-center" href="{{ url('ppdb/data-murid?jenjangDataMurid=TKTQ-2') }}"><i data-feather="circle"></i>
+                            <span class="menu-item text-truncate" data-i18n="Basic">TKTQ 2</span>
+                        </a>
+                    </li>
                     <li class="nav-item {{ (request()->has('jenjangDataMurid') && request()->input('jenjangDataMurid') == 'SD-IT') ? 'active' : '' }}">
                         <a class="d-flex align-items-center" href="{{ url('ppdb/data-murid?jenjangDataMurid=SD-IT') }}"><i data-feather="circle"></i>
-                            <span class="menu-item text-truncate" data-i18n="Basic">SD-IT</span>
+                            <span class="menu-item text-truncate" data-i18n="Basic">SD IT</span>
+                        </a>
+                    </li>
+                    <li class="nav-item {{ (request()->has('jenjangDataMurid') && request()->input('jenjangDataMurid') == 'SD-IT-2') ? 'active' : '' }}">
+                        <a class="d-flex align-items-center" href="{{ url('ppdb/data-murid?jenjangDataMurid=SD-IT-2') }}"><i data-feather="circle"></i>
+                            <span class="menu-item text-truncate" data-i18n="Basic">SD IT 2</span>
                         </a>
                     </li>
                     <li class="nav-item {{ (request()->has('jenjangDataMurid') && request()->input('jenjangDataMurid') == 'SMP-IT') ? 'active' : '' }}">
                         <a class="d-flex align-items-center" href="{{ url('ppdb/data-murid?jenjangDataMurid=SMP-IT') }}"><i data-feather="circle"></i>
-                            <span class="menu-item text-truncate" data-i18n="Basic">SMP-IT</span>
+                            <span class="menu-item text-truncate" data-i18n="Basic">SMP IT</span>
                         </a>
                     </li>
                     <li class="nav-item {{ (request()->has('jenjangDataMurid') && request()->input('jenjangDataMurid') == 'SMA-IT') ? 'active' : '' }}">
                         <a class="d-flex align-items-center" href="{{ url('ppdb/data-murid?jenjangDataMurid=SMA-IT') }}"><i data-feather="circle"></i>
-                            <span class="menu-item text-truncate" data-i18n="Basic">SMA-IT</span>
+                            <span class="menu-item text-truncate" data-i18n="Basic">SMA IT</span>
                         </a>
                     </li>
                     <li class="nav-item {{ (request()->has('jenjangDataMurid') && request()->input('jenjangDataMurid') == 'MA') ? 'active' : '' }}">
@@ -195,19 +210,33 @@
                     <span class="menu-title text-truncate" data-i18n="Card">Kelulusan</span>
                 </a>
                 <ul class="menu-content">
-                    <li class="nav-item {{ (request()->has('jenjangKelulusan') && request()->input('jenjangKelulusan') == 'SD-IT') ? 'active' : '' }}">
+                    <li class="nav-item {{ (request()->has('jenjangKelulusan') && request()->input('jenjangKelulusan') == 'TKTQ') ? 'active' : '' }}">
+                        <a class="d-flex align-items-center" href="{{ url('ppdb/data-kelulusan?jenjangKelulusan=TKTQ') }}"><i data-feather="circle"></i>
+                            <span class="menu-item text-truncate" data-i18n="Basic">TKTQ</span>
+                        </a>
+                    </li>
+                    <li class="nav-item {{ (request()->has('jenjangKelulusan') && request()->input('jenjangKelulusan') == 'TKTQ-2') ? 'active' : '' }}">
+                        <a class="d-flex align-items-center" href="{{ url('ppdb/data-kelulusan?jenjangKelulusan=TKTQ-2') }}"><i data-feather="circle"></i>
+                            <span class="menu-item text-truncate" data-i18n="Basic">TKTQ 2</span>
+                        </a>
+                    </li>                    <li class="nav-item {{ (request()->has('jenjangKelulusan') && request()->input('jenjangKelulusan') == 'SD-IT') ? 'active' : '' }}">
                         <a class="d-flex align-items-center" href="{{ url('ppdb/data-kelulusan?jenjangKelulusan=SD-IT') }}"><i data-feather="circle"></i>
-                            <span class="menu-item text-truncate" data-i18n="Basic">SD-IT</span>
+                            <span class="menu-item text-truncate" data-i18n="Basic">SD IT</span>
+                        </a>
+                    </li>
+                    <li class="nav-item {{ (request()->has('jenjangKelulusan') && request()->input('jenjangKelulusan') == 'SD-IT-2') ? 'active' : '' }}">
+                        <a class="d-flex align-items-center" href="{{ url('ppdb/data-kelulusan?jenjangKelulusan=SD-IT-2') }}"><i data-feather="circle"></i>
+                            <span class="menu-item text-truncate" data-i18n="Basic">SD IT 2</span>
                         </a>
                     </li>
                     <li class="nav-item {{ (request()->has('jenjangKelulusan') && request()->input('jenjangKelulusan') == 'SMP-IT') ? 'active' : '' }}">
                         <a class="d-flex align-items-center" href="{{ url('ppdb/data-kelulusan?jenjangKelulusan=SMP-IT') }}"><i data-feather="circle"></i>
-                            <span class="menu-item text-truncate" data-i18n="Basic">SMP-IT</span>
+                            <span class="menu-item text-truncate" data-i18n="Basic">SMP IT</span>
                         </a>
                     </li>
                     <li class="nav-item {{ (request()->has('jenjangKelulusan') && request()->input('jenjangKelulusan') == 'SMA-IT') ? 'active' : '' }}">
                         <a class="d-flex align-items-center" href="{{ url('ppdb/data-kelulusan?jenjangKelulusan=SMA-IT') }}"><i data-feather="circle"></i>
-                            <span class="menu-item text-truncate" data-i18n="Basic">SMA-IT</span>
+                            <span class="menu-item text-truncate" data-i18n="Basic">SMA IT</span>
                         </a>
                     </li>
                     <li class="nav-item {{ (request()->has('jenjangKelulusan') && request()->input('jenjangKelulusan') == 'MA') ? 'active' : '' }}">

@@ -109,7 +109,7 @@
                                         <label for="basicInput">Rapor</label>
                                         <input type="file" class="form-control @error('rapor') is-invalid @enderror" name="rapor"/>
                                         <small class="text-danger">Upload file .jpg .jpeg .pdf Maks. Size 1MB. </small><br>
-                                        <small class="text-danger">Jenjang SD-IT dapat dikosongkan</small>
+                                        <small class="text-danger">Dikosongkan jika tidak ada</small>
                                         @error('rapor')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
@@ -137,7 +137,7 @@
                                         <label for="basicInput">Ijazah</label>
                                         <input type="file" class="form-control @error('ijazah') is-invalid @enderror" name="ijazah"/>
                                         <small class="text-danger">Upload file .jpg .jpeg .pdf Maks. Size 1MB</small><br>
-                                        <small class="text-danger">Selain SD-IT dapat menyusul, Jenjang SD-IT dapat dikosongkan</small>
+                                        <small class="text-danger">Dikosongkan jika tidak ada</small>
                                         @error('ijazah')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>

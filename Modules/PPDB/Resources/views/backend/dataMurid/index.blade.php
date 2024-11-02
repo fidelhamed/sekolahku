@@ -67,13 +67,32 @@
                                                     <td>{{ $murid->paymentRegis->status == 'Unpaid' ? 'Belum Bayar' : 'Berhasil'}}</td>
                                                     <td>{{ $murid->role == 'Terverifikasi' ? 'Calon Peserta Didik' : 'Pendaftar' }}</td>
                                                     <td>
-                                                        <a href="{{ route('data-murid.show', $murid->id) }}" class="btn btn-info btn-sm" style="display: {{$murid->paymentRegis->file == null || $murid->paymentRegis->approve_date != null ? '' : 'none'}}">Detail</a>
+                                                        <a href="{{ route('data-murid.show', $murid->id) }}" 
+                                                            class="btn btn-info btn-sm" 
+                                                            style="display: {{$murid->paymentRegis->file == null || $murid->paymentRegis->approve_date != null ? '' : 'none'}}">Detail</a>
                                                         {{-- <a href="{{asset('storage/images/payment_pendaftaran/' .$murids->paymentRegis->file)}}" class="btn btn btn-secondary btn-sm" target="_blank" style="display: {{$murids->paymentRegis->file == null || $murids->paymentRegis->approve_date != null ? 'none' : ''}}">Bukti Pembayaran</a> --}}
-                                                        <a href="{{ asset('storage/images/payment_pendaftaran/' .$murid->paymentRegis->file) }}" data-download-link="{{ asset('storage/images/payment_pendaftaran/' . $murid->paymentRegis->file) }}" class="btn btn-secondary btn-sm" id="openModalBtn" style="display: {{$murid->paymentRegis->file == null || $murid->paymentRegis->approve_date != null ? 'none' : ''}}">Bukti Pembayaran</a>
-                                                        <a data-id="{{ $murid->paymentRegis->id }}" id="updatePayment" class="btn btn btn-success btn-sm" style="display: {{$murid->paymentRegis->file == null || $murid->paymentRegis->approve_date != null ? 'none' : ''}}">konfirmasi Pembayaran</a>
-                                                        <a data-id="{{ $murid->id }}" id="updatePerbaikan" class="btn btn-warning btn-sm" style="display: {{ $murid->role !== 'Guest' || $murid->berkas == null || $murid->muridDetail->proses == 'Perbaikan' ? 'none' : ''}}">Perbaikan</a>
-                                                        <a data-id="{{ $murid->id }}" id="updateLulus" class="btn btn-success btn-sm" style="display: {{ $murid->role !== 'Terverifikasi' ? 'none' : '' }}">Lulus</a>
-                                                        <a data-id="{{ $murid->id }}" id="updateTidakLulus" class="btn btn-danger btn-sm" style="display: {{ $murid->role !== 'Terverifikasi' ? 'none' : '' }}">Tidak Lulus</a>
+                                                        <a href="{{ asset('storage/images/payment_pendaftaran/' .$murid->paymentRegis->file) }}" 
+                                                            data-download-link="{{ asset('storage/images/payment_pendaftaran/' . $murid->paymentRegis->file) }}" 
+                                                            class="btn btn-secondary btn-sm" 
+                                                            id="openModalBtn" 
+                                                            style="display: {{$murid->paymentRegis->file == null || $murid->paymentRegis->approve_date != null ? 'none' : ''}}">Bukti Pembayaran</a>
+                                                        <a data-id="{{ $murid->paymentRegis->id }}" 
+                                                            id="updatePayment" class="btn btn btn-success btn-sm" 
+                                                            style="display: {{$murid->paymentRegis->file == null || $murid->paymentRegis->approve_date != null ? 'none' : ''}}">konfirmasi Pembayaran</a>
+                                                        <a data-id="{{ $murid->id }}" 
+                                                            id="updatePerbaikan" 
+                                                            class="btn btn-warning btn-sm" 
+                                                            style="display: {{ $murid->role !== 'Guest' || $murid->berkas == null || $murid->muridDetail->proses == 'Perbaikan' ? 'none' : ''}}">Perbaikan</a>
+                                                        {{-- <a data-id="{{ $murid->id }}" id="updateLulus" class="btn btn-success btn-sm" style="display: {{ $murid->role !== 'Terverifikasi' ? 'none' : '' }}">Lulus</a>
+                                                        <a data-id="{{ $murid->id }}" id="updateTidakLulus" class="btn btn-danger btn-sm" style="display: {{ $murid->role !== 'Terverifikasi' ? 'none' : '' }}">Tidak Lulus</a> --}}
+                                                        <a data-id="{{ $murid->id }}" 
+                                                            id="updateLulus" 
+                                                            class="btn btn-success btn-sm" 
+                                                            style="display: {{ ($murid->role !== 'Terverifikasi' || !$showButton) ? 'none' : '' }}">Lulus</a>  
+                                                         <a data-id="{{ $murid->id }}" 
+                                                            id="updateTidakLulus" 
+                                                            class="btn btn-danger btn-sm" 
+                                                            style="display: {{ ($murid->role !== 'Terverifikasi' || !$showButton) ? 'none' : '' }}">Tidak Lulus</a>
                                                     </td>
                                                 </tr>
                                             @endforeach

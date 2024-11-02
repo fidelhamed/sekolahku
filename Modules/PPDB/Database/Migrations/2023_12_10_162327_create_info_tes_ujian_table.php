@@ -15,7 +15,7 @@ class CreateInfoTesUjianTable extends Migration
     {
         Schema::create('info_tes_ujian', function (Blueprint $table) {
             $table->id();
-            $table->enum('jenjang', ['SD-IT', 'SMP-IT', 'SMA-IT', 'MA'])->nullable();
+            $table->enum('jenjang', ['TKTQ', 'TKTQ-2', 'SD-IT', 'SD-IT-2', 'SMP-IT', 'SMA-IT', 'MA'])->nullable();
             $table->date('waktu_tgl')->nullable();
             $table->time('jam_mulai')->nullable();
             $table->time('jam_berakhir')->nullable();

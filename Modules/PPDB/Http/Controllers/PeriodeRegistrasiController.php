@@ -16,14 +16,29 @@ class PeriodeRegistrasiController extends Controller
     {
         try {
             DB::beginTransaction();
+            $cekperiodeTKTQ = PeriodeRegistrasi::where('jenjang', 'TKTQ')->count();
+            $cekperiodeTKTQ2 = PeriodeRegistrasi::where('jenjang', 'TKTQ-2')->count();
             $cekperiodeSDIT = PeriodeRegistrasi::where('jenjang', 'SD-IT')->count();
+            $cekperiodeSDIT2 = PeriodeRegistrasi::where('jenjang', 'SD-IT-2')->count();
             $cekperiodeSMPIT = PeriodeRegistrasi::where('jenjang', 'SMP-IT')->count();
             $cekperiodeSMAIT = PeriodeRegistrasi::where('jenjang', 'SMA-IT')->count();
             $cekperiodeMA = PeriodeRegistrasi::where('jenjang', 'MA')->count();
 
-            if ($cekperiodeSDIT === 0) {
+            if ($cekperiodeTKTQ === 0) {
+                $periode = new PeriodeRegistrasi();
+                $periode->jenjang = 'TKTQ';
+                $periode->save();
+            } elseif ($cekperiodeTKTQ2 === 0) {
+                $periode = new PeriodeRegistrasi();
+                $periode->jenjang = 'TKTQ-2';
+                $periode->save();
+            } elseif ($cekperiodeSDIT === 0) {
                 $periode = new PeriodeRegistrasi();
                 $periode->jenjang = 'SD-IT';
+                $periode->save();
+            } elseif ($cekperiodeSDIT2 === 0) {
+                $periode = new PeriodeRegistrasi();
+                $periode->jenjang = 'SD-IT-2';
                 $periode->save();
             } elseif ($cekperiodeSMPIT === 0) {
                 $periode = new PeriodeRegistrasi();
@@ -38,11 +53,14 @@ class PeriodeRegistrasiController extends Controller
                 $periode->jenjang = 'MA';
                 $periode->save();
             } else {
+                $periodeTKTQ = PeriodeRegistrasi::where('jenjang', 'TKTQ')->first();
+                $periodeTKTQ2 = PeriodeRegistrasi::where('jenjang', 'TKTQ-2')->first();
                 $periodeSDIT = PeriodeRegistrasi::where('jenjang', 'SD-IT')->first();
+                $periodeSDIT2 = PeriodeRegistrasi::where('jenjang', 'SD-IT-2')->first();
                 $periodeSMPIT = PeriodeRegistrasi::where('jenjang', 'SMP-IT')->first();
                 $periodeSMAIT = PeriodeRegistrasi::where('jenjang', 'SMA-IT')->first();
                 $periodeMA = PeriodeRegistrasi::where('jenjang', 'MA')->first();
-                return view('ppdb::backend.periodeRegistrasi.index', compact('periodeSDIT', 'periodeSMPIT', 'periodeSMAIT', 'periodeMA'));          
+                return view('ppdb::backend.periodeRegistrasi.index', compact('periodeTKTQ', 'periodeTKTQ2', 'periodeSDIT', 'periodeSDIT2', 'periodeSMPIT', 'periodeSMAIT', 'periodeMA'));          
             }
             DB::commit();
             Session::flash('success', 'Sukses, Data Berhasil dikirim !');

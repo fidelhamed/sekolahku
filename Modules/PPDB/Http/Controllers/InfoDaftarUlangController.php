@@ -15,14 +15,29 @@ class InfoDaftarUlangController extends Controller
     {
         try {
             DB::beginTransaction();
+            $cekInfoTKTQ = InfoDaftarUlang::where('jenjang', 'TKTQ')->count();
+            $cekInfoTKTQ2 = InfoDaftarUlang::where('jenjang', 'TKTQ-2')->count();
             $cekInfoSDIT = InfoDaftarUlang::where('jenjang', 'SD-IT')->count();
+            $cekInfoSDIT2 = InfoDaftarUlang::where('jenjang', 'SD-IT-2')->count();
             $cekInfoSMPIT = InfoDaftarUlang::where('jenjang', 'SMP-IT')->count();
             $cekInfoSMAIT = InfoDaftarUlang::where('jenjang', 'SMA-IT')->count();
             $cekInfoMA = InfoDaftarUlang::where('jenjang', 'MA')->count();
 
-            if ($cekInfoSDIT === 0) {
+            if ($cekInfoTKTQ === 0) {
+                $info = new InfoDaftarUlang();
+                $info->jenjang = 'TKTQ';
+                $info->save();
+            } elseif ($cekInfoTKTQ2 === 0) {
+                $info = new InfoDaftarUlang();
+                $info->jenjang = 'TKTQ-2';
+                $info->save();
+            } elseif ($cekInfoSDIT === 0) {
                 $info = new InfoDaftarUlang();
                 $info->jenjang = 'SD-IT';
+                $info->save();
+            } elseif ($cekInfoSDIT2 === 0) {
+                $info = new InfoDaftarUlang();
+                $info->jenjang = 'SD-IT-2';
                 $info->save();
             } elseif ($cekInfoSMPIT === 0) {
                 $info = new InfoDaftarUlang();
@@ -37,11 +52,14 @@ class InfoDaftarUlangController extends Controller
                 $info->jenjang = 'MA';
                 $info->save();
             } else {
+                $infoTKTQ = InfoDaftarUlang::where('jenjang', 'TKTQ')->first();
+                $infoTKTQ2 = InfoDaftarUlang::where('jenjang', 'TKTQ-2')->first();
                 $infoSDIT = InfoDaftarUlang::where('jenjang', 'SD-IT')->first();
+                $infoSDIT2 = InfoDaftarUlang::where('jenjang', 'SD-IT-2')->first();
                 $infoSMPIT = InfoDaftarUlang::where('jenjang', 'SMP-IT')->first();
                 $infoSMAIT = InfoDaftarUlang::where('jenjang', 'SMA-IT')->first();
                 $infoMA = InfoDaftarUlang::where('jenjang', 'MA')->first();
-                return view('ppdb::backend.infoDaftarUlang.index', compact('infoSDIT', 'infoSMPIT', 'infoSMAIT', 'infoMA'));          
+                return view('ppdb::backend.infoDaftarUlang.index', compact('infoTKTQ', 'infoTKTQ2', 'infoSDIT', 'infoSDIT2', 'infoSMPIT', 'infoSMAIT', 'infoMA'));          
             }
             DB::commit();
             Session::flash('success', 'Sukses, Data Berhasil dikirim !');

@@ -26,7 +26,7 @@ class DataMuridController extends Controller
      */
     public function index(Request $request)
     {
-        $jenjang    = $request['jenjangDataMurid'];
+        $jenjang = $request['jenjangDataMurid'];
         $murids = User::has('muridDetail')
             ->whereHas('muridDetail', function ($a) use ($jenjang) {
                 $a->where('jenjang', $jenjang);
@@ -37,7 +37,13 @@ class DataMuridController extends Controller
                     ->orWhere('role', 'Terverifikasi');
             })
             ->get();
-        return view('ppdb::backend.dataMurid.index', compact('murids','jenjang'));
+
+        $currentDate = \Carbon\Carbon::now();
+        $startDate = \Carbon\Carbon::create(2024, 11, 1);
+        $endDate = \Carbon\Carbon::create(2025, 2, 28);
+        $showButton = $currentDate->between($startDate, $endDate);
+
+        return view('ppdb::backend.dataMurid.index', compact('murids','jenjang','showButton'));
     }
 
     /**
@@ -74,8 +80,14 @@ class DataMuridController extends Controller
             ->find($id);
         if (!$murid->muridDetail->jenis_kelamin || !$murid->dataOrtu->nama_ayah || !$murid->berkas->kartu_keluarga) {
             Session::flash('error', 'Calon Siswa Belum Input Biodata Diri !');
-            if ($murid->muridDetail->jenjang == 'SD-IT') {
+            if ($murid->muridDetail->jenjang == 'TKTQ') {
+                return redirect('/ppdb/data-murid?jenjangDataMurid=TKTQ');
+            } elseif ($murid->muridDetail->jenjang == 'TKTQ-2') {
+                return redirect('/ppdb/data-murid?jenjangDataMurid=TKTQ-2');
+            } elseif ($murid->muridDetail->jenjang == 'SD-IT') {
                 return redirect('/ppdb/data-murid?jenjangDataMurid=SD-IT');
+            } elseif ($murid->muridDetail->jenjang == 'SD-IT-2') {
+                return redirect('/ppdb/data-murid?jenjangDataMurid=SD-IT-2');
             } elseif ($murid->muridDetail->jenjang == 'SMP-IT') {
                 return redirect('/ppdb/data-murid?jenjangDataMurid=SMP-IT');
             } elseif ($murid->muridDetail->jenjang == 'SMA-IT') {

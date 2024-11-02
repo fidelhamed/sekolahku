@@ -202,10 +202,10 @@
                     <th>No</th>
                     <th>Noreg</th>
                     <th>Nama</th>
-                    <th>Email</th>
                     <th>Jenis Kelamin</th>
                     <th>Tempat, Tanggal Lahir</th>
                     <th>Asal Sekolah</th>
+                    <th>No Telp/WA</th>
                 </tr>
             </thead>
             <tbody>
@@ -220,15 +220,15 @@
                     <td></td>
                 </tr>
                 @endfor --}}
-                @foreach ($cetak as $key => $murids)
+                @foreach ($cetak as $key => $murid)
                     <tr>
                         <td>{{$key+1}}</td>
-                        <td>{{ $murids->muridDetail->noreg }}</td>
-                        <td>{{$murids->name}}</td>
-                        <td>{{$murids->email}}</td>
-                        <td>{{ $murids->muridDetail->jenis_kelamin }}</td>
-                        <td>{{ $murids->muridDetail->tempat_lahir }}, {{ Carbon\Carbon::parse($murids->muridDetail->tgl_lahir)->format('d-m-Y') }}</td>
-                        <td>{{ $murids->muridDetail->asal_sekolah }}</td>
+                        <td>{{ $murid->muridDetail->noreg }}</td>
+                        <td>{{$murid->name}}</td>
+                        <td>{{ $murid->muridDetail->jenis_kelamin }}</td>
+                        <td>{{ $murid->muridDetail->tempat_lahir }}, {{ Carbon\Carbon::parse($murid->muridDetail->tgl_lahir)->format('d-m-Y') }}</td>
+                        <td>{{ $murid->muridDetail->asal_sekolah }}</td>
+                        <td>{{ $murid->muridDetail->telp }}</td>
                     </tr>
                 @endforeach
             </tbody>

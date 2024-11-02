@@ -53,12 +53,13 @@ class PPDBController extends Controller
 
             // Pilih kalimat
             $kalimatKe  = "1";
-            $username   = implode(" ", array_slice(explode(" ", $request->name), 0, $kalimatKe)); // ambil kalimat
+            $randomNumber = rand(1, 9999);
+            $username   = implode(" ", array_slice(explode(" ", $request->name), 0, $kalimatKe)) . $randomNumber; // ambil kalimat
 
             $user = new User();
             $user->name             = $request->name;
             $user->email            = $request->email;
-            $user->username         = strtolower($username).date("s");
+            $user->username         = strtolower($username);
             $user->role             = 'PPDB';
             $user->status           = 'Aktif';
             $user->foto_profile     = $nama_img;

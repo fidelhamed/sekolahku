@@ -72,7 +72,15 @@ class KelulusanController extends Controller
             ->find($id);
         if (!$murid->muridDetail->jenis_kelamin || !$murid->dataOrtu->nama_ayah || !$murid->berkas->kartu_keluarga) {
             Session::flash('error', 'Calon Siswa Belum Input Biodata Diri !');
-            if ($murid->muridDetail->jenjang == 'SMP-IT') {
+            if ($murid->muridDetail->jenjang == 'TKTQ') {
+                return redirect('/ppdb/data-kelulusan?jenjang=TKTQ');
+            } elseif ($murid->muridDetail->jenjang == 'TKTQ-2') {
+                return redirect('/ppdb/data-kelulusan?jenjang=TKTQ-2');
+            } elseif ($murid->muridDetail->jenjang == 'SD-IT') {
+                return redirect('/ppdb/data-kelulusan?jenjang=SD-IT');
+            } elseif ($murid->muridDetail->jenjang == 'SD-IT-2') {
+                return redirect('/ppdb/data-kelulusan?jenjang=SD-IT-2');
+            } elseif ($murid->muridDetail->jenjang == 'SMP-IT') {
                 return redirect('/ppdb/data-kelulusan?jenjang=SMP-IT');
             } elseif ($murid->muridDetail->jenjang == 'SMA-IT') {
                 return redirect('/ppdb/data-kelulusan?jenjang=SMA-IT');

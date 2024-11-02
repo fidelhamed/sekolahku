@@ -17,10 +17,10 @@
     </div>
     <div class="content-body">
         <div class="row">
-            <div class="col-12">
+            <div class="col-lg-6 col-md-12">
                 <div class="card">
                     <div class="card-header header-bottom">
-                        <h4>Informasi Daftar Ulang SD-IT</h4>
+                        <h4>Informasi Daftar Ulang TKTQ</h4>
                     </div>
                     <div class="card-body">
                         <form action="{{ url('ppdb/info-daftar-ulang/update') }}" method="post" enctype="multipart/form-data">
@@ -30,9 +30,214 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <select name="jenjang" class="form-control" style="display: none;">
-                                            <option value="SD-IT" selected>SD-IT</option>
-                                            <option value="SMP-IT">SMP-IT</option>
-                                            <option value="SMA-IT">SMA-IT</option>
+                                            <option value="TKTQ" selected>TKTQ</option>
+                                            <option value="TKTQ-2">TKTQ 2</option>
+                                            <option value="SD-IT">SD IT</option>
+                                            <option value="SD-IT-2">SD IT 2</option>
+                                            <option value="SMP-IT">SMP IT</option>
+                                            <option value="SMA-IT">SMA IT</option>
+                                            <option value="MA">MA</option>
+                                         </select>
+                                        @error('jenjang')
+                                            <div class="invalid-feedback">
+                                            <strong>{{ $message }}</strong>
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label for="basicInput">Tanggal</label>
+                                        <input type="date" class="form-control flatpickr-basic @error('waktu_tgl') is-invalid @enderror" id="fp-default" name="waktu_tgl" value="{{ $infoTKTQ->waktu_tgl }}"/>
+                                        @error('waktu_tgl')
+                                            <div class="invalid-feedback">
+                                            <strong>{{ $message }}</strong>
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label for="basicInput">Jam Mulai</label>
+                                        <input type="time" class="form-control @error('jam_mulai') is-invalid @enderror" name="jam_mulai" value="{{ $infoTKTQ->jam_mulai }}" />
+                                        @error('jam_mulai')
+                                            <div class="invalid-feedback">
+                                            <strong>{{ $message }}</strong>
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label for="basicInput">Jam Berakhir</label>
+                                        <input type="time" class="form-control @error('jam_berakhir') is-invalid @enderror" name="jam_berakhir" value="{{ $infoTKTQ->jam_berakhir }}" />
+                                        @error('jam_berakhir')
+                                            <div class="invalid-feedback">
+                                            <strong>{{ $message }}</strong>
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="basicInput">Lokasi Daftar Ulang Laki-laki</label>
+                                        <input type="text" class="form-control @error('lokasi_laki_laki') is-invalid @enderror" name="lokasi_laki_laki" value="{{ $infoTKTQ->lokasi_laki_laki }}"/>
+                                        @error('lokasi_laki_laki')
+                                            <div class="invalid-feedback">
+                                            <strong>{{ $message }}</strong>
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="basicInput">Lokasi Daftar Ulang Perempuan</label>
+                                        <input type="text" class="form-control @error('lokasi_perempuan') is-invalid @enderror" name="lokasi_perempuan" value="{{ $infoTKTQ->lokasi_perempuan }}"/>
+                                        @error('lokasi_perempuan')
+                                            <div class="invalid-feedback">
+                                            <strong>{{ $message }}</strong>
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="basicInput">Deskripsi</label>
+                                        <textarea name="deskripsi" class="form-control @error('deskripsi') is-invalid @enderror" cols="30" rows="3">{{ $infoTKTQ->deskripsi }}</textarea>
+                                        @error('deskripsi')
+                                            <div class="invalid-feedback">
+                                            <strong>{{ $message }}</strong>
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button class="btn btn-success" type="submit">Simpan</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <div class="card">
+                    <div class="card-header header-bottom">
+                        <h4>Informasi Daftar Ulang TKTQ 2</h4>
+                    </div>
+                    <div class="card-body">
+                        <form action="{{ url('ppdb/info-daftar-ulang/update') }}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            @method('PUT')
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <select name="jenjang" class="form-control" style="display: none;">
+                                            <option value="TKTQ">TKTQ</option>
+                                            <option value="TKTQ-2" selected>TKTQ 2</option>
+                                            <option value="SD-IT">SD IT</option>
+                                            <option value="SD-IT-2">SD IT 2</option>
+                                            <option value="SMP-IT">SMP IT</option>
+                                            <option value="SMA-IT">SMA IT</option>
+                                            <option value="MA">MA</option>
+                                         </select>
+                                        @error('jenjang')
+                                            <div class="invalid-feedback">
+                                            <strong>{{ $message }}</strong>
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label for="basicInput">Tanggal</label>
+                                        <input type="date" class="form-control flatpickr-basic @error('waktu_tgl') is-invalid @enderror" id="fp-default" name="waktu_tgl" value="{{ $infoTKTQ2->waktu_tgl }}"/>
+                                        @error('waktu_tgl')
+                                            <div class="invalid-feedback">
+                                            <strong>{{ $message }}</strong>
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label for="basicInput">Jam Mulai</label>
+                                        <input type="time" class="form-control @error('jam_mulai') is-invalid @enderror" name="jam_mulai" value="{{ $infoTKTQ2->jam_mulai }}" />
+                                        @error('jam_mulai')
+                                            <div class="invalid-feedback">
+                                            <strong>{{ $message }}</strong>
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label for="basicInput">Jam Berakhir</label>
+                                        <input type="time" class="form-control @error('jam_berakhir') is-invalid @enderror" name="jam_berakhir" value="{{ $infoTKTQ2->jam_berakhir }}" />
+                                        @error('jam_berakhir')
+                                            <div class="invalid-feedback">
+                                            <strong>{{ $message }}</strong>
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="basicInput">Lokasi Daftar Ulang Laki-laki</label>
+                                        <input type="text" class="form-control @error('lokasi_laki_laki') is-invalid @enderror" name="lokasi_laki_laki" value="{{ $infoTKTQ2->lokasi_laki_laki }}"/>
+                                        @error('lokasi_laki_laki')
+                                            <div class="invalid-feedback">
+                                            <strong>{{ $message }}</strong>
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="basicInput">Lokasi Daftar Ulang Perempuan</label>
+                                        <input type="text" class="form-control @error('lokasi_perempuan') is-invalid @enderror" name="lokasi_perempuan" value="{{ $infoTKTQ2->lokasi_perempuan }}"/>
+                                        @error('lokasi_perempuan')
+                                            <div class="invalid-feedback">
+                                            <strong>{{ $message }}</strong>
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="basicInput">Deskripsi</label>
+                                        <textarea name="deskripsi" class="form-control @error('deskripsi') is-invalid @enderror" cols="30" rows="3">{{ $infoTKTQ2->deskripsi }}</textarea>
+                                        @error('deskripsi')
+                                            <div class="invalid-feedback">
+                                            <strong>{{ $message }}</strong>
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button class="btn btn-success" type="submit">Simpan</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <div class="card">
+                    <div class="card-header header-bottom">
+                        <h4>Informasi Daftar Ulang SD IT</h4>
+                    </div>
+                    <div class="card-body">
+                        <form action="{{ url('ppdb/info-daftar-ulang/update') }}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            @method('PUT')
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <select name="jenjang" class="form-control" style="display: none;">
+                                            <option value="TKTQ">TKTQ</option>
+                                            <option value="TKTQ-2">TKTQ 2</option>
+                                            <option value="SD-IT" selected>SD IT</option>
+                                            <option value="SD-IT-2">SD IT 2</option>
+                                            <option value="SMP-IT">SMP IT</option>
+                                            <option value="SMA-IT">SMA IT</option>
                                             <option value="MA">MA</option>
                                          </select>
                                         @error('jenjang')
@@ -114,9 +319,11 @@
                         </form>
                     </div>
                 </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
                 <div class="card">
                     <div class="card-header header-bottom">
-                        <h4>Informasi Daftar Ulang SMP-IT</h4>
+                        <h4>Informasi Daftar Ulang SD IT 2</h4>
                     </div>
                     <div class="card-body">
                         <form action="{{ url('ppdb/info-daftar-ulang/update') }}" method="post" enctype="multipart/form-data">
@@ -126,9 +333,113 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <select name="jenjang" class="form-control" style="display: none;">
-                                            <option value="SD-IT">SD-IT</option>
-                                            <option value="SMP-IT" selected>SMP-IT</option>
-                                            <option value="SMA-IT">SMA-IT</option>
+                                            <option value="TKTQ">TKTQ</option>
+                                            <option value="TKTQ-2">TKTQ 2</option>
+                                            <option value="SD-IT">SD IT</option>
+                                            <option value="SD-IT-2" selected>SD IT 2</option>
+                                            <option value="SMP-IT">SMP IT</option>
+                                            <option value="SMA-IT">SMA IT</option>
+                                            <option value="MA">MA</option>
+                                         </select>
+                                        @error('jenjang')
+                                            <div class="invalid-feedback">
+                                            <strong>{{ $message }}</strong>
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label for="basicInput">Tanggal</label>
+                                        <input type="date" class="form-control flatpickr-basic @error('waktu_tgl') is-invalid @enderror" id="fp-default" name="waktu_tgl" value="{{ $infoSDIT2->waktu_tgl }}"/>
+                                        @error('waktu_tgl')
+                                            <div class="invalid-feedback">
+                                            <strong>{{ $message }}</strong>
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label for="basicInput">Jam Mulai</label>
+                                        <input type="time" class="form-control @error('jam_mulai') is-invalid @enderror" name="jam_mulai" value="{{ $infoSDIT2->jam_mulai }}" />
+                                        @error('jam_mulai')
+                                            <div class="invalid-feedback">
+                                            <strong>{{ $message }}</strong>
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label for="basicInput">Jam Berakhir</label>
+                                        <input type="time" class="form-control @error('jam_berakhir') is-invalid @enderror" name="jam_berakhir" value="{{ $infoSDIT2->jam_berakhir }}" />
+                                        @error('jam_berakhir')
+                                            <div class="invalid-feedback">
+                                            <strong>{{ $message }}</strong>
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="basicInput">Lokasi Daftar Ulang Laki-laki</label>
+                                        <input type="text" class="form-control @error('lokasi_laki_laki') is-invalid @enderror" name="lokasi_laki_laki" value="{{ $infoSDIT2->lokasi_laki_laki }}"/>
+                                        @error('lokasi_laki_laki')
+                                            <div class="invalid-feedback">
+                                            <strong>{{ $message }}</strong>
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="basicInput">Lokasi Daftar Ulang Perempuan</label>
+                                        <input type="text" class="form-control @error('lokasi_perempuan') is-invalid @enderror" name="lokasi_perempuan" value="{{ $infoSDIT2->lokasi_perempuan }}"/>
+                                        @error('lokasi_perempuan')
+                                            <div class="invalid-feedback">
+                                            <strong>{{ $message }}</strong>
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="basicInput">Deskripsi</label>
+                                        <textarea name="deskripsi" class="form-control @error('deskripsi') is-invalid @enderror" cols="30" rows="3">{{ $infoSDIT2->deskripsi }}</textarea>
+                                        @error('deskripsi')
+                                            <div class="invalid-feedback">
+                                            <strong>{{ $message }}</strong>
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button class="btn btn-success" type="submit">Simpan</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <div class="card">
+                    <div class="card-header header-bottom">
+                        <h4>Informasi Daftar Ulang SMP IT</h4>
+                    </div>
+                    <div class="card-body">
+                        <form action="{{ url('ppdb/info-daftar-ulang/update') }}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            @method('PUT')
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <select name="jenjang" class="form-control" style="display: none;">
+                                            <option value="TKTQ">TKTQ</option>
+                                            <option value="TKTQ-2">TKTQ 2</option>
+                                            <option value="SD-IT">SD IT</option>
+                                            <option value="SD-IT-2">SD IT 2</option>
+                                            <option value="SMP-IT" selected>SMP IT</option>
+                                            <option value="SMA-IT">SMA IT</option>
                                             <option value="MA">MA</option>
                                          </select>
                                         @error('jenjang')
@@ -210,9 +521,11 @@
                         </form>
                     </div>
                 </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
                 <div class="card">
                     <div class="card-header header-bottom">
-                        <h4>Informasi Daftar Ulang SMA-IT</h4>
+                        <h4>Informasi Daftar Ulang SMA IT</h4>
                     </div>
                     <div class="card-body">
                         <form action="{{ url('ppdb/info-daftar-ulang/update') }}" method="post" enctype="multipart/form-data">
@@ -222,9 +535,12 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <select name="jenjang" class="form-control" style="display: none;">
-                                            <option value="SD-IT">SD-IT</option>
-                                            <option value="SMP-IT">SMP-IT</option>
-                                            <option value="SMA-IT" selected>SMA-IT</option>
+                                            <option value="TKTQ">TKTQ</option>
+                                            <option value="TKTQ-2">TKTQ 2</option>
+                                            <option value="SD-IT">SD IT</option>
+                                            <option value="SD-IT-2">SD IT 2</option>
+                                            <option value="SMP-IT">SMP IT</option>
+                                            <option value="SMA-IT" selected>SMA IT</option>
                                             <option value="MA">MA</option>
                                          </select>
                                         @error('jenjang')
@@ -306,6 +622,8 @@
                         </form>
                     </div>
                 </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
                 <div class="card">
                     <div class="card-header header-bottom">
                         <h4>Informasi Daftar Ulang MA</h4>
@@ -318,9 +636,12 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <select name="jenjang" class="form-control" style="display: none;">
-                                            <option value="SD-IT">SD-IT</option>
-                                            <option value="SMP-IT">SMP-IT</option>
-                                            <option value="SMA-IT">SMA-IT</option>
+                                            <option value="TKTQ">TKTQ</option>
+                                            <option value="TKTQ-2">TKTQ 2</option>
+                                            <option value="SD-IT">SD IT</option>
+                                            <option value="SD-IT-2">SD IT 2</option>
+                                            <option value="SMP-IT">SMP IT</option>
+                                            <option value="SMA-IT">SMA IT</option>
                                             <option value="MA" selected>MA</option>
                                          </select>
                                         @error('jenjang')

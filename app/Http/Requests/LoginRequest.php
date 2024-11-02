@@ -24,8 +24,9 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-          'email'     => 'required|email|exists:users,email',
-          'password'  => 'required'
+            'email'     => 'required|email|exists:users,email',
+            // 'login'     => 'required',
+            'password'  => 'required'
         ];
     }
 
@@ -35,6 +36,7 @@ class LoginRequest extends FormRequest
             'email.required'        => "Email tidak boleh kosong.",
             "email.email"           => "Format email tidak valid.",
             "email.exists"          => "Email tidak terdaftar pada sistem.",
+            // 'login.required'        => "Email atau username tidak boleh kosong.",
             "password.required"     => "Password tidak boleh kosong.",
         ];
     }
