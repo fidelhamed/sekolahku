@@ -245,37 +245,37 @@
                             @endif
                             @if ($needVerifTKTQ > 0)
                             <a href="{{ url('ppdb/data-murid?jenjangDataMurid=TKTQ') }}">
-                                <h4 class="font-weight-bolder mb-0">{{$needVerifTKTQ}} TKTQ</h4>                                        
+                                <h4 class="font-weight-bolder mb-0">{{$needVerifTKTQ}} (TKTQ)</h4>                                        
                             </a>
                             @endif
                             @if ($needVerifTKTQ2 > 0)
                             <a href="{{ url('ppdb/data-murid?jenjangDataMurid=TKTQ-2') }}">
-                                <h4 class="font-weight-bolder mb-0">{{$needVerifTKTQ2}} TKTQ 2</h4>                                        
+                                <h4 class="font-weight-bolder mb-0">{{$needVerifTKTQ2}} (TKTQ 2)</h4>                                        
                             </a>
                             @endif
                             @if ($needVerifSDIT > 0)
                             <a href="{{ url('ppdb/data-murid?jenjangDataMurid=SD-IT') }}">
-                                <h4 class="font-weight-bolder mb-0">{{$needVerifSDIT}} SD IT</h4>                                        
+                                <h4 class="font-weight-bolder mb-0">{{$needVerifSDIT}} (SD IT)</h4>                                        
                             </a>
                             @endif
                             @if ($needVerifSDIT2 > 0)
                             <a href="{{ url('ppdb/data-murid?jenjangDataMurid=SD-IT-2') }}">
-                                <h4 class="font-weight-bolder mb-0">{{$needVerifSDIT2}} SD IT 2</h4>                                        
+                                <h4 class="font-weight-bolder mb-0">{{$needVerifSDIT2}} (SD IT 2)</h4>                                        
                             </a>
                             @endif
                             @if ($needVerifSMPIT > 0)
                             <a href="{{ url('ppdb/data-murid?jenjangDataMurid=SMP-IT') }}">
-                                <h4 class="font-weight-bolder mb-0">{{$needVerifSMPIT}} SMP IT</h4>                                        
+                                <h4 class="font-weight-bolder mb-0">{{$needVerifSMPIT}} (SMP IT)</h4>                                        
                             </a>
                             @endif
                             @if ($needVerifSMAIT > 0)
                             <a href="{{ url('ppdb/data-murid?jenjangDataMurid=SMA-IT') }}">
-                                <h4 class="font-weight-bolder mb-0">{{$needVerifSMAIT}} SMA IT</h4>
+                                <h4 class="font-weight-bolder mb-0">{{$needVerifSMAIT}} (SMA IT)</h4>
                             </a>
                             @endif
                             @if ($needVerifMA > 0)
                             <a href="{{ url('ppdb/data-murid?jenjangDataMurid=MA') }}">
-                                <h4 class="font-weight-bolder mb-0">{{$needVerifMA}} MA</h4>
+                                <h4 class="font-weight-bolder mb-0">{{$needVerifMA}} (MA)</h4>
                             </a>
                             @endif
                             <p class="card-text">Perlu Verifikasi Data Murid</p>
@@ -316,37 +316,37 @@
                                     @endif
                                     @if ($needConfirmPaymentTKTQ > 0)
                                     <a href="{{ url('ppdb/data-murid?jenjangDataMurid=TKTQ') }}">
-                                        <h4 class="font-weight-bolder mb-0">{{$needConfirmPaymentTKTQ}} TKTQ</h4>                                  
+                                        <h4 class="font-weight-bolder mb-0">{{$needConfirmPaymentTKTQ}} (TKTQ)</h4>                                  
                                     </a>
                                     @endif
                                     @if ($needConfirmPaymentTKTQ2 > 0)
                                     <a href="{{ url('ppdb/data-murid?jenjangDataMurid=TKTQ-2') }}">
-                                        <h4 class="font-weight-bolder mb-0">{{$needConfirmPaymentTKTQ2}} TKTQ 2</h4>                                  
+                                        <h4 class="font-weight-bolder mb-0">{{$needConfirmPaymentTKTQ2}} (TKTQ 2)</h4>                                  
                                     </a>
                                     @endif
                                     @if ($needConfirmPaymentSDIT > 0)
                                     <a href="{{ url('ppdb/data-murid?jenjangDataMurid=SD-IT') }}">
-                                        <h4 class="font-weight-bolder mb-0">{{$needConfirmPaymentSDIT}} SD IT</h4>                                  
+                                        <h4 class="font-weight-bolder mb-0">{{$needConfirmPaymentSDIT}} (SD IT)</h4>                                  
                                     </a>
                                     @endif
                                     @if ($needConfirmPaymentSDIT2 > 0)
                                     <a href="{{ url('ppdb/data-murid?jenjangDataMurid=SD-IT-2') }}">
-                                        <h4 class="font-weight-bolder mb-0">{{$needConfirmPaymentSDIT2}} SD IT 2</h4>                                  
+                                        <h4 class="font-weight-bolder mb-0">{{$needConfirmPaymentSDIT2}} (SD IT 2)</h4>                                  
                                     </a>
                                     @endif
                                     @if ($needConfirmPaymentSMPIT > 0)
                                     <a href="{{ url('ppdb/data-murid?jenjangDataMurid=SMP-IT') }}">
-                                        <h4 class="font-weight-bolder mb-0">{{$needConfirmPaymentSMPIT}} SMP IT</h4>                                  
+                                        <h4 class="font-weight-bolder mb-0">{{$needConfirmPaymentSMPIT}} (SMP IT)</h4>                                  
                                     </a>
                                     @endif
                                     @if ($needConfirmPaymentSMAIT > 0)
                                     <a href="{{ url('ppdb/data-murid?jenjangDataMurid=SMA-IT') }}">
-                                        <h4 class="font-weight-bolder mb-0">{{$needConfirmPaymentSMAIT}} SMA IT</h4>
+                                        <h4 class="font-weight-bolder mb-0">{{$needConfirmPaymentSMAIT}} (SMA IT)</h4>
                                     </a>
                                     @endif
                                     @if ($needConfirmPaymentMA > 0)
                                     <a href="{{ url('ppdb/data-murid?jenjangDataMurid=MA') }}">
-                                        <h4 class="font-weight-bolder mb-0">{{$needConfirmPaymentMA}} MA</h4>
+                                        <h4 class="font-weight-bolder mb-0">{{$needConfirmPaymentMA}} (MA)</h4>
                                     </a>
                                     @endif
                                     <p class="card-text">Cek Pembayaran</p>

@@ -76,10 +76,19 @@ class AuthController extends Controller
                 $murid->save();
             }
 
+            $jenjang = $request->jenjang;
+            if ($jenjang == 'TKTQ' || $jenjang == 'TKTQ-2') {
+                $amount = 150000;
+            } elseif ($jenjang == 'SD-IT' || $jenjang == 'SD-IT-2') {
+                $amount = 250000;
+            } elseif ($jenjang == 'SMP-IT' || $jenjang == 'SMA-IT' || $jenjang == 'MA') {
+                $amount = 350000;
+            }
+
             $payment = new PaymentRegistration();
             $payment->user_id   = $register->id;
             $payment->jenjang   = $request->jenjang;
-            $payment->amount    = 350000;
+            $payment->amount    = $amount;
             $payment->save();
 
             $register->assignRole($register->role);

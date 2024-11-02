@@ -173,28 +173,49 @@
                                             <select name="jenjang" class="form-control">
                                                 <option>-- Pilih --</option>
                                                 @if ($periodeTKTQ > 0)
-                                                <option value="TKTQ">TKTQ</option>                                                
-                                                @endif                                            
+                                                <option value="TKTQ">TKTQ</option>
+                                                @else
+                                                <option value="" disabled style="color: red;">TKTQ (Pendaftaran Ditutup)</option>
+                                                @endif    
+
                                                 @if ($periodeTKTQ2 > 0)
                                                 <option value="TKTQ-2">TKTQ 2</option>                                                
-                                                @endif                                            
+                                                @else
+                                                <option value=""  disabled style="color: red;">TKTQ 2 (Pendaftaran Ditutup)</option>                                                
+                                                @endif      
+
                                                 @if ($periodeSDIT > 0)
                                                 <option value="SD-IT">SD IT</option>                                                
-                                                @endif                                            
+                                                @else
+                                                <option value="" disabled style="color: red;">SD IT (Pendaftaran Ditutup)</option>
+                                                @endif     
+
                                                 @if ($periodeSDIT2 > 0)
                                                 <option value="SD-IT-2">SD IT 2</option>                                                
-                                                @endif                                            
+                                                @else
+                                                <option value="" disabled style="color: red;">SD IT 2 (Pendaftaran Ditutup)</option>
+                                                @endif   
+
                                                 @if ($periodeSMPIT > 0)
                                                 <option value="SMP-IT">SMP IT</option>                                                
+                                                @else
+                                                <option value="" disabled style="color: red;">SMP IT (Pendaftaran Ditutup)</option>
                                                 @endif
+
                                                 @if ($periodeSMAIT > 0)
                                                 <option value="SMA-IT">SMA IT</option>
+                                                @else
+                                                <option value="" disabled style="color: red;">SMA IT (Pendaftaran Ditutup)</option>
                                                 @endif
+
                                                 @if ($periodeMA > 0)
                                                 <option value="MA">MA</option>
+                                                @else
+                                                <option value="" disabled style="color: red;">MA (Pendaftaran Ditutup)</option>
                                                 @endif
+                                                
                                             </select>
-                                            <small class="text-warning">Jika opsi tidak tersedia, maka periode telah ditutup.</small>
+                                            {{-- <small class="text-warning">Jika opsi tidak tersedia, maka periode telah ditutup.</small> --}}
                                             @error('jenjang')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>

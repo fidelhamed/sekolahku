@@ -208,7 +208,7 @@
                                 </div>
 
                             </div>
-                            <button class="btn btn-success" type="submit">Simpan</button>
+                            <button class="btn btn-success" type="submit" id="submitData">Simpan</button>
                             <a href="/home" class="btn btn-secondary">Batal</a>
                         </form>
                     </div>
@@ -218,4 +218,29 @@
 
     </div>
 </div>
+@endsection
+@section('scripts')
+<script>
+$(document).on('click', '#submitData', function (e) {
+    // Mencegah form submit secara langsung
+    e.preventDefault();
+
+    // Menampilkan alert konfirmasi
+    Swal.fire({
+        title: 'Submit Data',
+        text: "Pastikan terlebih dahulu data yang akan disubmit sudah benar. Lanjutkan submit data diri?",
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#28a745', // Warna Success
+        cancelButtonColor: '#dc3545', // Warna Danger
+        confirmButtonText: 'Ya, Submit',
+        cancelButtonText: 'Batal'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Jika pengguna mengkonfirmasi, submit form
+            $(this).closest('form').submit();
+        }
+    });
+});
+</script>
 @endsection

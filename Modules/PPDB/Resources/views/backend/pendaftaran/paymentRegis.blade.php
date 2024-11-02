@@ -129,7 +129,7 @@
                     <hr>
                     <div class="d-flex justify-content-between">
                     <span>
-                        Pembayaran Registrasi {{@$payment->month}}
+                        Pembayaran Registrasi
                     </span>
                     </div>
                 </div>

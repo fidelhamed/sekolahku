@@ -68,9 +68,13 @@
                                                     <td>{{$murid->role}}</td>
                                                     <td>
                                                     @if ($murid->muridDetail->nis == null || $murid->muridDetail->nisn == null)
-                                                        <a href="{{route('data-kelulusan.show', $murid->id)}}" class="btn btn-warning btn-sm" >Input NIS dan NISN</a>                                                    
-                                                    @else
+                                                        @if ($murid->role == 'Lulus')
+                                                        <a href="{{route('data-kelulusan.show', $murid->id)}}" class="btn btn-warning btn-sm" >Input NIS dan NISN</a>                                                                                                                
+                                                        @else
                                                         <a href="{{route('data-kelulusan.show', $murid->id)}}" class="btn btn-info btn-sm" >Detail</a>
+                                                        @endif
+                                                    @else
+                                                    <a href="{{route('data-kelulusan.show', $murid->id)}}" class="btn btn-info btn-sm" >Detail</a>
                                                     @endif
                                                     </td>
                                                 </tr>

@@ -29,6 +29,8 @@
 <script src="{{asset('Assets/Backend/js/scripts/components/components-modals.js')}}"></script>
 <!-- END: Page JS-->
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script>
     $(window).on('load', function() {
         if (feather) {

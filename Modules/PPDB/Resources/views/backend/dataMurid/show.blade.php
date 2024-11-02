@@ -491,7 +491,7 @@
                                     </ul>
                                 </div>
                             </div>
-                            <button class="btn btn-success" type="submit" {{$murid->berkas->kartu_keluarga == NULL ? 'disabled' : ''}} style="display: {{ $murid->role !== 'Guest' || $murid->muridDetail->proses == 'Perbaikan' ? 'none' : '' }}">Verifikasi Data</button>
+                            <button class="btn btn-success" type="submit" id="verifikasiData" {{$murid->berkas->kartu_keluarga == NULL ? 'disabled' : ''}} style="display: {{ $murid->role !== 'Guest' || $murid->muridDetail->proses == 'Perbaikan' ? 'none' : '' }}">Verifikasi Data</button>
                             <a href="{{url('ppdb/data-murid?jenjangDataMurid='. $murid->muridDetail->jenjang)}}" class="btn btn-secondary">Batal</a>
                         </form>
                     </div>
@@ -527,7 +527,7 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                  <img id="docImage" src="" alt="Bukti Pembayaran" class="img-fluid">
+                  <img id="docImage" src="" alt="View Doc Image" class="img-fluid">
                 </div>
                 <div class="modal-footer">
                     <a id="downloadButton" class="btn btn-success" download>Download</a>
@@ -584,6 +584,29 @@
         // Prevent the default behavior of the link
         return false;
       });
+    });
+</script>
+<script>
+        $(document).on('click', '#verifikasiData', function (e) {
+        // Mencegah form submit secara langsung
+        e.preventDefault();
+
+        // Menampilkan alert konfirmasi
+        Swal.fire({
+            title: 'Konfirmasi Verifikasi Data',
+            text: "Apakah Anda yakin ingin memverifikasi data dari calon peserta didik ini?",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#28a745', // Warna Success
+            cancelButtonColor: '#dc3545', // Warna Danger
+            confirmButtonText: 'Ya, Verifikasi',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Jika pengguna mengkonfirmasi, submit form
+                $(this).closest('form').submit();
+            }
+        });
     });
 </script>
 @endsection

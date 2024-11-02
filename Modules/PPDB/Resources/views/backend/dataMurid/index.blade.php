@@ -70,13 +70,20 @@
                                                         <a href="{{ route('data-murid.show', $murid->id) }}" 
                                                             class="btn btn-info btn-sm" 
                                                             style="display: {{$murid->paymentRegis->file == null || $murid->paymentRegis->approve_date != null ? '' : 'none'}}">Detail</a>
-                                                        <a href="{{ asset('storage/images/payment_pendaftaran/' .$murid->paymentRegis->file) }}" 
+                                                        {{-- <a href="{{ asset('storage/images/payment_pendaftaran/' .$murid->paymentRegis->file) }}" 
                                                             data-download-link="{{ asset('storage/images/payment_pendaftaran/' . $murid->paymentRegis->file) }}" 
                                                             class="btn btn-secondary btn-sm" 
                                                             id="openModalBtn" 
-                                                            style="display: {{$murid->paymentRegis->file == null || $murid->paymentRegis->approve_date != null ? 'none' : ''}}">Bukti Pembayaran</a>
+                                                            style="display: {{$murid->paymentRegis->file == null || $murid->paymentRegis->approve_date != null ? 'none' : ''}}">Bukti Pembayaran</a> --}}
+                                                        <a href="{{ asset('storage/images/payment_pendaftaran/' .$murid->paymentRegis->file) }}" 
+                                                            class="btn btn-secondary btn-sm openModalImg"
+                                                            style="display: {{$murid->paymentRegis->file == null || $murid->paymentRegis->approve_date != null ? 'none' : ''}}"
+                                                            data-download-link="{{ asset('storage/images/payment_pendaftaran/' . $murid->paymentRegis->file) }}" 
+                                                            data-title="Bukti Pembayaran">Bukti Pembayaran</a>
+                                                    
                                                         <a data-id="{{ $murid->paymentRegis->id }}" 
-                                                            id="updatePayment" class="btn btn btn-success btn-sm" 
+                                                            id="updatePayment" 
+                                                            class="btn btn-success btn-sm" 
                                                             style="display: {{$murid->paymentRegis->file == null || $murid->paymentRegis->approve_date != null ? 'none' : ''}}">konfirmasi Pembayaran</a>
                                                         <a data-id="{{ $murid->id }}" 
                                                             id="updatePerbaikan" 
@@ -104,7 +111,7 @@
                 </section>
             </div>
         </div>
-        <div class="modal" tabindex="-1" role="dialog" id="paymentModal">
+        {{-- <div class="modal" tabindex="-1" role="dialog" id="paymentModal">
             <div class="modal-dialog modal-lg" role="document">
               <div class="modal-content">
                 <div class="modal-header">
@@ -122,7 +129,28 @@
                 </div>
               </div>
             </div>
+        </div> --}}
+        {{-- Modal bukti pembayaran --}}
+        <div class="modal" tabindex="-1" role="dialog" id="imgModal">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="berkasTitle">View Doc</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <img id="docImage" src="" alt="Bukti Pembayaran" class="img-fluid">
+                </div>
+                <div class="modal-footer">
+                    <a id="downloadButton" class="btn btn-success" download>Download</a>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
         </div>
+
     </div>
 </div>
 @endsection
@@ -130,30 +158,140 @@
 <script type="text/javascript">
     $(document).on('click', '#updatePayment', function () {
         var id = $(this).attr('data-id');
-        $.get('konfirm-payment-regis', {'_token' : $('meta[name=csrf-token]').attr('content'),id:id}, function(_resp){
-            location.reload()
+        
+        Swal.fire({
+            title: 'Konfirmasi Pembayaran',
+            text: "Apakah Anda yakin ingin melanjutkan konfirmasi pembayaran?",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#28a745',
+            cancelButtonColor: '#dc3545',
+            confirmButtonText: 'Ya, Konfirmasi',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.get('konfirm-payment-regis', {
+                    '_token': $('meta[name=csrf-token]').attr('content'),
+                    id: id
+                }, function(_resp) {
+                    Swal.fire(
+                        'Berhasil!',
+                        'Pembayaran telah dikonfirmasi.',
+                        'success',
+                        {
+                            confirmButtonColor: '#28a745' // Warna tombol Oke menjadi Success
+                        }
+                    ).then(() => {
+                        location.reload();
+                    });
+                });
+            }
         });
     });
+
     $(document).on('click', '#updatePerbaikan', function () {
         var id = $(this).attr('data-id');
-        $.get('update-murid-perbaikan', {'_token' : $('meta[name=csrf-token]').attr('content'),id:id}, function(_resp){
-            location.reload()
+        
+        Swal.fire({
+            title: 'Konfirmasi Update Perbaikan',
+            text: "Apakah Anda yakin ingin memberikan akses PERBAIKAN formulir pendaftaran?",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#28a745', // Warna Success
+            cancelButtonColor: '#dc3545', // Warna Danger
+            confirmButtonText: 'Ya, Perbaikan',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.get('update-murid-perbaikan', {
+                    '_token': $('meta[name=csrf-token]').attr('content'),
+                    id: id
+                }, function(_resp) {
+                    Swal.fire('Berhasil!', 'Akses perbaikan formulir pendaftaran telah diberikan.', 'success', {
+                        confirmButtonColor: '#28a745'
+                    }).then(() => {
+                        location.reload();
+                    });
+                });
+            }
         });
     });
+
     $(document).on('click', '#updateLulus', function () {
         var id = $(this).attr('data-id');
-        $.get('update-murid-lulus', {'_token' : $('meta[name=csrf-token]').attr('content'),id:id}, function(_resp){
-            location.reload()
+        
+        Swal.fire({
+            title: 'Konfirmasi Update Lulus',
+            text: "Apakah Anda yakin ingin memperbarui status LULUS?",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#28a745', // Warna Success
+            cancelButtonColor: '#dc3545', // Warna Danger
+            confirmButtonText: 'Ya, Lulus',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.get('update-murid-lulus', {
+                    '_token': $('meta[name=csrf-token]').attr('content'),
+                    id: id
+                }, function(_resp) {
+                    Swal.fire('Berhasil!', 'Status lulus telah dikirimkan.', 'success', {
+                        confirmButtonColor: '#28a745'
+                    }).then(() => {
+                        location.reload();
+                    });
+                });
+            }
         });
     });
+
     $(document).on('click', '#updateTidakLulus', function () {
         var id = $(this).attr('data-id');
-        $.get('update-murid-tidak-lulus', {'_token' : $('meta[name=csrf-token]').attr('content'),id:id}, function(_resp){
-            location.reload()
+        
+        Swal.fire({
+            title: 'Konfirmasi Update Tidak Lulus',
+            text: "Apakah Anda yakin ingin memperbarui status TIDAK LULUS?",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#28a745', // Warna Success
+            cancelButtonColor: '#dc3545', // Warna Danger
+            confirmButtonText: 'Ya, Tidak Lulus',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.get('update-murid-tidak-lulus', {
+                    '_token': $('meta[name=csrf-token]').attr('content'),
+                    id: id
+                }, function(_resp) {
+                    Swal.fire('Berhasil!', 'Status tidak lulus telah dikirimkan.', 'success', {
+                        confirmButtonColor: '#28a745'
+                    }).then(() => {
+                        location.reload();
+                    });
+                });
+            }
         });
     });
+    // $(document).on('click', '#updatePerbaikan', function () {
+    //     var id = $(this).attr('data-id');
+    //     $.get('update-murid-perbaikan', {'_token' : $('meta[name=csrf-token]').attr('content'),id:id}, function(_resp){
+    //         location.reload()
+    //     });
+    // });
+    // $(document).on('click', '#updateLulus', function () {
+    //     var id = $(this).attr('data-id');
+    //     $.get('update-murid-lulus', {'_token' : $('meta[name=csrf-token]').attr('content'),id:id}, function(_resp){
+    //         location.reload()
+    //     });
+    // });
+    // $(document).on('click', '#updateTidakLulus', function () {
+    //     var id = $(this).attr('data-id');
+    //     $.get('update-murid-tidak-lulus', {'_token' : $('meta[name=csrf-token]').attr('content'),id:id}, function(_resp){
+    //         location.reload()
+    //     });
+    // });
 </script>
-<script>
+{{-- <script>
     $(document).ready(function() {
       // Handle click event on the button to open the modal
       $('#openModalBtn').on('click', function() {
@@ -167,6 +305,28 @@
   
         // Open the modal
         $('#paymentModal').modal('show');
+  
+        // Prevent the default behavior of the link
+        return false;
+      });
+    });
+</script> --}}
+<script>
+    $(document).ready(function() {
+      // Handle click event on the button to open the modal
+      $('.openModalImg').on('click', function() {
+        // Get the image source from the link's href attribute
+        var docImageSrc = $(this).attr('href');
+        var downloadLink = $(this).attr('data-download-link');
+        var berkasTitle = $(this).data('title');
+  
+        // Set the image source in the modal
+        $('#docImage').attr('src', docImageSrc);
+        $('#downloadButton').attr('href', downloadLink);
+        $('#berkasTitle').text(berkasTitle);
+  
+        // Open the modal
+        $('#imgModal').modal('show');
   
         // Prevent the default behavior of the link
         return false;
