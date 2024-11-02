@@ -250,7 +250,7 @@
                             @endif
                             @if ($needVerifTKTQ2 > 0)
                             <a href="{{ url('ppdb/data-murid?jenjangDataMurid=TKTQ-2') }}">
-                                <h4 class="font-weight-bolder mb-0">{{$needVerifTKTQ}} TKTQ 2</h4>                                        
+                                <h4 class="font-weight-bolder mb-0">{{$needVerifTKTQ2}} TKTQ 2</h4>                                        
                             </a>
                             @endif
                             @if ($needVerifSDIT > 0)
@@ -260,7 +260,7 @@
                             @endif
                             @if ($needVerifSDIT2 > 0)
                             <a href="{{ url('ppdb/data-murid?jenjangDataMurid=SD-IT-2') }}">
-                                <h4 class="font-weight-bolder mb-0">{{$needVerifSDIT}} SD IT 2</h4>                                        
+                                <h4 class="font-weight-bolder mb-0">{{$needVerifSDIT2}} SD IT 2</h4>                                        
                             </a>
                             @endif
                             @if ($needVerifSMPIT > 0)
@@ -492,7 +492,7 @@
             plugins: {
                 legend: {
                     display: true,
-                    position: 'bottom',
+                    position: 'left',
                     labels: {
                         generateLabels: function(chart) {
                             return labels.map(function(label, index) {
@@ -578,7 +578,11 @@
             },
             scales: {
                 y: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    ticks: {
+                        stepSize: 1,
+                        precision: 0  // Memastikan tidak ada desimal
+                    }
                 }
             }
         }

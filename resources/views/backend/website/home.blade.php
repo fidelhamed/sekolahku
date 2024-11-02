@@ -145,7 +145,7 @@
         <div class="row">
             <div class="col-lg-6 col-12">
                 <div class="card py-1">
-                    <canvas id="myChart" width="400" height="200"></canvas>
+                    <canvas id="myChart_pendaftar" width="400" height="200"></canvas>
                 </div>
             </div>
             <div class="col-lg-6 col-12">
@@ -169,10 +169,19 @@
 </script> --}}
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
+    @if (isset($pendaftar, $pendaftar_jk))
+    
     // Chart pendaftar
-    var ctx = document.getElementById('myChart').getContext('2d');
-    var ctx = document.getElementById('myChart').getContext('2d');
+    var ctx = document.getElementById('myChart_pendaftar').getContext('2d');
     var data = @json($pendaftar);
+
+    // Tentukan urutan jenjang yang diinginkan
+    var order = ['TKTQ', 'TKTQ-2', 'SD-IT', 'SD-IT-2', 'SMP-IT', 'SMA-IT', 'MA']; // Sesuaikan dengan jenjang yang ada
+
+    // Urutkan data berdasarkan jenjang
+    data.sort(function(a, b) {
+        return order.indexOf(a.jenjang) - order.indexOf(b.jenjang);
+    });
 
     var labels = data.map(function(item) {
         return item.jenjang;
@@ -183,16 +192,24 @@
     });
 
     var backgroundColors = [
-        'rgba(20, 174, 92, 1)',
-        'rgba(40, 48, 70, 1)',
-        'rgba(72, 218, 137, 1)',
+        'rgba(20, 174, 92, 1)',    // Original green
+        'rgba(255, 99, 71, 1)',    // Tomato red
+        'rgba(75, 192, 255, 1)',   // Sky blue
+        'rgba(255, 206, 86, 1)',   // Warm yellow
+        'rgba(153, 102, 255, 1)',  // Purple
+        'rgba(255, 159, 64, 1)',   // Orange
+        'rgba(66, 66, 66, 1)'      // Dark grey
         // ...Tambahkan warna lain sesuai kebutuhan
     ];
 
     var borderColors = [
-        'rgba(20, 174, 92, 1)',
-        'rgba(40, 48, 70, 1)',
-        'rgba(72, 218, 137, 1)',
+        'rgba(20, 174, 92, 1)',    // Original green
+        'rgba(255, 99, 71, 1)',    // Tomato red
+        'rgba(75, 192, 255, 1)',   // Sky blue
+        'rgba(255, 206, 86, 1)',   // Warm yellow
+        'rgba(153, 102, 255, 1)',  // Purple
+        'rgba(255, 159, 64, 1)',   // Orange
+        'rgba(66, 66, 66, 1)'      // Dark grey
         // ...Tambahkan warna lain sesuai kebutuhan
     ];
 
@@ -204,7 +221,7 @@
     }];
 
     var myChart = new Chart(ctx, {
-        type: 'doughnut', // Mengganti type menjadi 'pie' untuk pie chart
+        type: 'pie', // Mengganti type menjadi 'pie' untuk pie chart
         data: {
             labels: labels,
             datasets: datasets
@@ -213,7 +230,7 @@
             plugins: {
                 legend: {
                     display: true,
-                    position: 'top',
+                    position: 'left',
                     labels: {
                         generateLabels: function(chart) {
                             return labels.map(function(label, index) {
@@ -237,10 +254,17 @@
         }
     });
 
-
     // Chart pendaftar berdasarkan jenis kelamin
     var ctx = document.getElementById('myChart_jk').getContext('2d');
     var data = @json($pendaftar_jk);
+
+    // Tentukan urutan jenjang yang diinginkan
+    var order = ['TKTQ', 'TKTQ-2', 'SD-IT', 'SD-IT-2', 'SMP-IT', 'SMA-IT', 'MA']; // Sesuaikan dengan jenjang yang ada
+
+    // Urutkan data berdasarkan jenjang
+    data.sort(function(a, b) {
+        return order.indexOf(a.jenjang) - order.indexOf(b.jenjang);
+    });    
 
     var labels_jk = data.map(function(item) {
         return item.jenjang;
@@ -254,10 +278,10 @@
         return item.jumlah_pendaftar_perempuan;
     });
 
-    var backgroundColorsMale = 'rgba(40, 48, 70, 1)';
+    var backgroundColorsMale = 'rgba(40, 48, 70, 0.7)';
     var borderColorsMale = 'rgba(40, 48, 70, 1)';
 
-    var backgroundColorsFemale = 'rgba(20, 174, 92, 1)';
+    var backgroundColorsFemale = 'rgba(20, 174, 92, 0.7)';
     var borderColorsFemale = 'rgba(20, 174, 92, 1)';
 
     var datasets_jk = [
@@ -292,80 +316,101 @@
             },
             scales: {
                 y: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    ticks: {
+                        stepSize: 1,
+                        precision: 0  // Memastikan tidak ada desimal
+                    }
                 }
             }
         }
     });
 
-
     // Chart pemasukan biaya registrasi
-        var data = @json($biaya);
+    var data = @json($biaya);
 
-        var labels_biaya = data.map(function(item) {
-            return item.jenjang;
-        });
+    // Tentukan urutan jenjang yang diinginkan
+    var order = ['TKTQ', 'TKTQ-2', 'SD-IT', 'SD-IT-2', 'SMP-IT', 'SMA-IT', 'MA']; // Sesuaikan dengan jenjang yang ada
 
-        var amounts = data.map(function(item) {
-            return item.total_amount;
-        });
+    // Urutkan data berdasarkan jenjang
+    data.sort(function(a, b) {
+        return order.indexOf(a.jenjang) - order.indexOf(b.jenjang);
+    });
 
-        var backgroundColors = [
-            'rgba(20, 174, 92, 1)',
-            'rgba(40, 48, 70, 1)',
-            'rgba(72, 218, 137, 1)',
-            // ...Tambahkan warna lain sesuai kebutuhan
-        ];
+    var labels_biaya = data.map(function(item) {
+        return item.jenjang;
+    });
 
-        var borderColors = [
-            'rgba(20, 174, 92, 1)',
-            'rgba(40, 48, 70, 1)',
-            'rgba(72, 218, 137, 1)',
-            // ...Tambahkan warna lain sesuai kebutuhan
-        ];
+    var amounts = data.map(function(item) {
+        return item.total_amount;
+    });
 
-        var datasets_biaya = [
-            {
-                data: amounts,
-                backgroundColor: backgroundColors,
-                borderColor: borderColors,
-                borderWidth: 1
-            }
-        ];
+    var backgroundColors = [
+        'rgba(20, 174, 92, 1)',    // Original green
+        'rgba(255, 99, 71, 1)',    // Tomato red
+        'rgba(75, 192, 255, 1)',   // Sky blue
+        'rgba(255, 206, 86, 1)',   // Warm yellow
+        'rgba(153, 102, 255, 1)',  // Purple
+        'rgba(255, 159, 64, 1)',   // Orange
+        'rgba(66, 66, 66, 1)'      // Dark grey
+        // ...Tambahkan warna lain sesuai kebutuhan
+    ];
 
-        var ctx = document.getElementById('myChart_biaya').getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: labels_biaya,
-                datasets: datasets_biaya
-            },
-            options: {
-                plugins: {
-                    legend: {
-                        display: true,
-                        position: 'top',
-                        labels: {
-                            generateLabels: function(chart) {
-                                return labels_biaya.map(function(label, index) {
-                                    return {
-                                        text: label,
-                                        fillStyle: datasets_biaya[0].backgroundColor[index],
-                                        strokeStyle: datasets_biaya[0].borderColor[index],
-                                        lineWidth: datasets_biaya[0].borderWidth
-                                    };
-                                });
-                            }
+    var borderColors = [
+        'rgba(20, 174, 92, 1)',    // Original green
+        'rgba(255, 99, 71, 1)',    // Tomato red
+        'rgba(75, 192, 255, 1)',   // Sky blue
+        'rgba(255, 206, 86, 1)',   // Warm yellow
+        'rgba(153, 102, 255, 1)',  // Purple
+        'rgba(255, 159, 64, 1)',   // Orange
+        'rgba(66, 66, 66, 1)'      // Dark grey
+        // ...Tambahkan warna lain sesuai kebutuhan
+    ];
+
+    var datasets_biaya = [
+        {
+            data: amounts,
+            backgroundColor: backgroundColors,
+            borderColor: borderColors,
+            borderWidth: 1
+        }
+    ];
+
+    var ctx = document.getElementById('myChart_biaya').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels_biaya,
+            datasets: datasets_biaya
+        },
+        options: {
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top',
+                    labels: {
+                        generateLabels: function(chart) {
+                            return labels_biaya.map(function(label, index) {
+                                return {
+                                    text: label,
+                                    fillStyle: datasets_biaya[0].backgroundColor[index],
+                                    strokeStyle: datasets_biaya[0].borderColor[index],
+                                    lineWidth: datasets_biaya[0].borderWidth
+                                };
+                            });
                         }
-                    },
-                    title: {  // Tambahkan properti title di sini
-                        display: true,
-                        text: 'Jumlah Biaya Registrasi Berdasarkan Jenjang'
                     }
                 },
-                maintainAspectRatio: false,
-                responsive: true
-            }
-        });
+                title: {  // Tambahkan properti title di sini
+                    display: true,
+                    text: 'Jumlah Biaya Pendaftaran Berdasarkan Jenjang'
+                }
+            },
+            maintainAspectRatio: false,
+            responsive: true
+        }
+    });
+
+    @endif
 </script>
 @endpush

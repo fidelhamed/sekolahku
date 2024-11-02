@@ -61,7 +61,7 @@ class HomeController extends Controller
               $biaya = DB::table('payment_registrations')
                 ->select('jenjang', DB::raw('SUM(amount) as total_amount'))
                 ->whereNotNull('approve_date')
-                ->whereIn('jenjang', ['SD-IT', 'SMP-IT', 'SMA-IT', 'MA'])
+                ->whereIn('jenjang', ['TKTQ', 'TKTQ-2', 'SD-IT', 'SD-IT-2', 'SMP-IT', 'SMA-IT', 'MA'])
                 ->groupBy('jenjang')
                 ->get();
 
