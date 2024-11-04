@@ -50,13 +50,19 @@
                                                     <label class="form-label">Jenjang</label>
                                                     <select name="jenjang" class="form-control">
                                                         <option value="">-- Pilih --</option>
+                                                        @if (Auth::user()->userDetail->pj_jenjang == 'TKTQ')
                                                         <option value="TKTQ">TKTQ</option>
                                                         <option value="TKTQ-2">TKTQ 2</option>
+                                                        @elseif (Auth::user()->userDetail->pj_jenjang == 'SD-IT')
                                                         <option value="SD-IT">SD IT</option>
                                                         <option value="SD-IT-2">SD IT 2</option>
-                                                        <option value="SMP-IT">SMP IT</option>
-                                                        <option value="SMA-IT">SMA IT</option>
-                                                        <option value="MA">MA</option>
+                                                        @elseif (Auth::user()->userDetail->pj_jenjang == 'SMP-IT')
+                                                        <option value="SMP-IT" selected>SMP IT</option>
+                                                        @elseif (Auth::user()->userDetail->pj_jenjang == 'SMA-IT')
+                                                        <option value="SMA-IT" selected>SMA IT</option>
+                                                        @elseif (Auth::user()->userDetail->pj_jenjang == 'MA')
+                                                        <option value="MA" selected>MA</option>
+                                                        @endif            
                                                      </select>
                                                     @error('jenjang')
                                                         <div class="invalid-feedback">

@@ -22,8 +22,8 @@ class PPDBController extends Controller
      */
     public function index()
     {
-        $user = User::with('userDetail')->where('role','PPDB')->get();
-        return view('backend.pengguna.ppdb.index', compact('user'));
+        $users = User::with('userDetail')->where('role','PPDB')->get();
+        return view('backend.pengguna.ppdb.index', compact('users'));
     }
 
     /**
@@ -74,6 +74,7 @@ class PPDBController extends Controller
                 $userDetail->role         = $user->role;
                 $userDetail->nip          = $request->nip;
                 $userDetail->email        = $request->email;
+                $userDetail->pj_jenjang   = $request->pj_jenjang;
                 $userDetail->linkidln     = $request->linkidln;
                 $userDetail->instagram    = $request->instagram;
                 $userDetail->website      = $request->website;
@@ -151,6 +152,7 @@ class PPDBController extends Controller
                 $userDetail->nip          = $request->nip;
                 $userDetail->is_active    = $user->status == 'Aktif' ? '0' : '1';
                 $userDetail->email        = $request->email;
+                $userDetail->pj_jenjang   = $request->pj_jenjang;
                 $userDetail->linkidln     = $request->linkidln;
                 $userDetail->instagram    = $request->instagram;
                 $userDetail->website      = $request->website;

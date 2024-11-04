@@ -91,6 +91,25 @@
                                     </div>
                                 </div>
 
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Admin PJ Jenjang</label>
+                                        <select name="pj_jenjang" class="form-control">
+                                            <option value="">-- Pilih --</option>
+                                            <option value="TKTQ">TKTQ</option>
+                                            <option value="SD-IT">SD IT</option>                                                
+                                            <option value="SMP-IT">SMP IT</option>                                                
+                                            <option value="SMA-IT">SMA IT</option>
+                                            <option value="MA">MA</option>
+                                        </select>                                    
+                                        @error('pj_jenjang')
+                                            <div class="text-danger" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+
                                 <div class="col-3">
                                     <div class="form-group">
                                         <label for="basicInput">Website</label>

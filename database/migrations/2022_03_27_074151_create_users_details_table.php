@@ -19,7 +19,8 @@ class CreateUsersDetailsTable extends Migration
             $table->enum('role',['Admin','Murid','Guest']);
             $table->bigInteger('nip')->nullable();
             $table->string('email')->nullable();
-            $table->string('linkidln')->nullable();
+            $table->enum('pj_jenjang', ['TKTQ', 'SD-IT', 'SMP-IT', 'SMA-IT', 'MA']);
+            $table->string('linkedln')->nullable();
             $table->string('instagram')->nullable();
             $table->string('twitter')->nullable();
             $table->string('facebook')->nullable();

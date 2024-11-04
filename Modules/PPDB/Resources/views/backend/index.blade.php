@@ -226,7 +226,7 @@
                       <div class="card-header">
                           <div>
                               <h2 class="font-weight-bolder mb-0">{{$register}}</h2>
-                              <p class="card-text">Pendaftar</p>
+                              <p class="card-text">Pendaftar pada {{ Auth::user()->userDetail->pj_jenjang }}</p>
                           </div>
                           <div class="avatar bg-light-primary p-50 m-0">
                               <div class="avatar-content">
@@ -240,43 +240,44 @@
                   <div class="card">
                       <div class="card-header">
                           <div>
-                            @if ($needVerifTKTQ == 0 AND $needVerifTKTQ2 == 0 AND $needVerifSDIT == 0 AND $needVerifSDIT2 == 0 AND $needVerifSMPIT == 0 AND $needVerifSMAIT == 0 AND $needVerifMA == 0)
-                                <h2 class="font-weight-bolder mb-0">0</h2>                                                                                
-                            @endif
-                            @if ($needVerifTKTQ > 0)
+                            {{-- @if ($needVerifTKTQ == 0 AND $needVerifTKTQ2 == 0 AND $needVerifSDIT == 0 AND $needVerifSDIT2 == 0 AND $needVerifSMPIT == 0 AND $needVerifSMAIT == 0 AND $needVerifMA == 0)
+                                <h2 class="font-weight-bolder mb-0">0</h2>                                                                                 --}}
+                            @if (Auth::user()->userDetail->pj_jenjang == 'TKTQ')
+
                             <a href="{{ url('ppdb/data-murid?jenjangDataMurid=TKTQ') }}">
                                 <h4 class="font-weight-bolder mb-0">{{$needVerifTKTQ}} (TKTQ)</h4>                                        
                             </a>
-                            @endif
-                            @if ($needVerifTKTQ2 > 0)
                             <a href="{{ url('ppdb/data-murid?jenjangDataMurid=TKTQ-2') }}">
                                 <h4 class="font-weight-bolder mb-0">{{$needVerifTKTQ2}} (TKTQ 2)</h4>                                        
                             </a>
-                            @endif
-                            @if ($needVerifSDIT > 0)
+
+                            @elseif (Auth::user()->userDetail->pj_jenjang == 'SD-IT')
+
                             <a href="{{ url('ppdb/data-murid?jenjangDataMurid=SD-IT') }}">
                                 <h4 class="font-weight-bolder mb-0">{{$needVerifSDIT}} (SD IT)</h4>                                        
                             </a>
-                            @endif
-                            @if ($needVerifSDIT2 > 0)
                             <a href="{{ url('ppdb/data-murid?jenjangDataMurid=SD-IT-2') }}">
                                 <h4 class="font-weight-bolder mb-0">{{$needVerifSDIT2}} (SD IT 2)</h4>                                        
                             </a>
-                            @endif
-                            @if ($needVerifSMPIT > 0)
+
+                            @elseif (Auth::user()->userDetail->pj_jenjang == 'SMP-IT')
+                            
                             <a href="{{ url('ppdb/data-murid?jenjangDataMurid=SMP-IT') }}">
                                 <h4 class="font-weight-bolder mb-0">{{$needVerifSMPIT}} (SMP IT)</h4>                                        
                             </a>
-                            @endif
-                            @if ($needVerifSMAIT > 0)
+                            
+                            @elseif (Auth::user()->userDetail->pj_jenjang == 'SMA-IT')
+                            
                             <a href="{{ url('ppdb/data-murid?jenjangDataMurid=SMA-IT') }}">
                                 <h4 class="font-weight-bolder mb-0">{{$needVerifSMAIT}} (SMA IT)</h4>
                             </a>
-                            @endif
-                            @if ($needVerifMA > 0)
+                            
+                            @elseif (Auth::user()->userDetail->pj_jenjang == 'MA')
+                            
                             <a href="{{ url('ppdb/data-murid?jenjangDataMurid=MA') }}">
                                 <h4 class="font-weight-bolder mb-0">{{$needVerifMA}} (MA)</h4>
                             </a>
+                            
                             @endif
                             <p class="card-text">Perlu Verifikasi Data Murid</p>
                           </div>
@@ -311,43 +312,44 @@
                         <div class="card">
                             <div class="card-header">
                                 <div>
-                                    @if ($needConfirmPaymentTKTQ == 0 AND $needConfirmPaymentTKTQ2 == 0 AND $needConfirmPaymentSDIT == 0 AND $needConfirmPaymentSDIT2 == 0 AND $needConfirmPaymentSMPIT == 0 AND $needConfirmPaymentSMAIT == 0 AND $needConfirmPaymentMA == 0)
-                                    <h2 class="font-weight-bolder mb-0">0</h2>                                                                                
-                                    @endif
-                                    @if ($needConfirmPaymentTKTQ > 0)
+                                    {{-- @if ($needConfirmPaymentTKTQ == 0 AND $needConfirmPaymentTKTQ2 == 0 AND $needConfirmPaymentSDIT == 0 AND $needConfirmPaymentSDIT2 == 0 AND $needConfirmPaymentSMPIT == 0 AND $needConfirmPaymentSMAIT == 0 AND $needConfirmPaymentMA == 0)
+                                    <h2 class="font-weight-bolder mb-0">0</h2>                                                                                 --}}
+                                    @if (Auth::user()->userDetail->pj_jenjang == 'TKTQ')
+                                    
                                     <a href="{{ url('ppdb/data-murid?jenjangDataMurid=TKTQ') }}">
                                         <h4 class="font-weight-bolder mb-0">{{$needConfirmPaymentTKTQ}} (TKTQ)</h4>                                  
                                     </a>
-                                    @endif
-                                    @if ($needConfirmPaymentTKTQ2 > 0)
                                     <a href="{{ url('ppdb/data-murid?jenjangDataMurid=TKTQ-2') }}">
                                         <h4 class="font-weight-bolder mb-0">{{$needConfirmPaymentTKTQ2}} (TKTQ 2)</h4>                                  
                                     </a>
-                                    @endif
-                                    @if ($needConfirmPaymentSDIT > 0)
+                                    
+                                    @elseif (Auth::user()->userDetail->pj_jenjang == 'SD-IT')
+                                    
                                     <a href="{{ url('ppdb/data-murid?jenjangDataMurid=SD-IT') }}">
                                         <h4 class="font-weight-bolder mb-0">{{$needConfirmPaymentSDIT}} (SD IT)</h4>                                  
                                     </a>
-                                    @endif
-                                    @if ($needConfirmPaymentSDIT2 > 0)
                                     <a href="{{ url('ppdb/data-murid?jenjangDataMurid=SD-IT-2') }}">
                                         <h4 class="font-weight-bolder mb-0">{{$needConfirmPaymentSDIT2}} (SD IT 2)</h4>                                  
                                     </a>
-                                    @endif
-                                    @if ($needConfirmPaymentSMPIT > 0)
+
+                                    @elseif (Auth::user()->userDetail->pj_jenjang == 'SMP-IT')
+                                    
                                     <a href="{{ url('ppdb/data-murid?jenjangDataMurid=SMP-IT') }}">
                                         <h4 class="font-weight-bolder mb-0">{{$needConfirmPaymentSMPIT}} (SMP IT)</h4>                                  
                                     </a>
-                                    @endif
-                                    @if ($needConfirmPaymentSMAIT > 0)
+                                    
+                                    @elseif (Auth::user()->userDetail->pj_jenjang == 'SMA-IT')
+                                    
                                     <a href="{{ url('ppdb/data-murid?jenjangDataMurid=SMA-IT') }}">
                                         <h4 class="font-weight-bolder mb-0">{{$needConfirmPaymentSMAIT}} (SMA IT)</h4>
                                     </a>
-                                    @endif
-                                    @if ($needConfirmPaymentMA > 0)
+                                    
+                                    @elseif (Auth::user()->userDetail->pj_jenjang == 'MA')
+                                    
                                     <a href="{{ url('ppdb/data-murid?jenjangDataMurid=MA') }}">
                                         <h4 class="font-weight-bolder mb-0">{{$needConfirmPaymentMA}} (MA)</h4>
                                     </a>
+                                    
                                     @endif
                                     <p class="card-text">Cek Pembayaran</p>
                                 </div>

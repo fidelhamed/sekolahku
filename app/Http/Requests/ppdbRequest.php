@@ -29,6 +29,7 @@ class ppdbRequest extends FormRequest
                 'email'         => ['required','unique:users','email'],
                 'foto_profile'  => ['required','image','max:1024'],
                 'nip'           => ['required','numeric'],
+                'pj_jenjang'    => ['required', 'in:TKTQ,SD-IT,SMP-IT,SMA-IT,MA'],
             ];
         }
 
@@ -37,6 +38,7 @@ class ppdbRequest extends FormRequest
             'email'         => ['required','email'],
             'foto_profile'  => ['image','max:1024'],
             'nip'           => ['required','numeric'],
+            'pj_jenjang'    => ['required', 'in:TKTQ,SD-IT,SMP-IT,SMA-IT,MA'],
         ];
     }
 
@@ -51,9 +53,10 @@ class ppdbRequest extends FormRequest
             'foto_profile.required' => 'Foto Profile tidak boleh kosong.',
             'foto_profile.image'    => 'Foto yang dimasukan tidak valid.',
             'foto_profile.max'      => 'Maksimal ukuran foto adalah 1MB.',
-            'mengajar.required'     => 'Mengajar tidak boleh kosong.',
             'nip.required'          => 'NIP tidak boleh kosong.',
-            'nip.numeric'           => 'NIP yang dimasukan tidak valid.'
+            'nip.numeric'           => 'NIP yang dimasukan tidak valid.',
+            'pj_jenjang.required'   => 'Admin PJ Jenjang tidak boleh kosong.',
+            'pj_jenjang.in'         => 'Pilihan jenjang tidak valid.'
         ];
     }
 }

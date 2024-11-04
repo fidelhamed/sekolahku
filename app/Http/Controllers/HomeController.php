@@ -115,8 +115,36 @@ class HomeController extends Controller
             // DASHBOARD PPDB & PENDAFTAR \\
             elseif($role == 'PPDB') {
 
-              $register = dataMurid::whereYear('created_at', Carbon::now())->count();
-              $profit = dataPayment::whereNotNull('approve_date')->sum('amount');
+              $startDate = \Carbon\Carbon::create(2024, 11, 1);
+              $endDate = \Carbon\Carbon::create(2025, 3, 1);
+      
+              if (Auth::user()->userDetail->pj_jenjang == 'TKTQ') {
+                $register = dataMurid::whereBetween('created_at', [$startDate, $endDate])
+                  ->whereIn('jenjang', ['TKTQ', 'TKTQ-2'])      
+                  ->count();
+              } elseif (Auth::user()->userDetail->pj_jenjang == 'SD-IT') {
+                $register = dataMurid::whereBetween('created_at', [$startDate, $endDate])
+                  ->whereIn('jenjang', ['SD-IT', 'SD-IT-2'])      
+                  ->count();
+              } else {
+                $register = dataMurid::whereBetween('created_at', [$startDate, $endDate])
+                  ->where('jenjang', Auth::user()->userDetail->pj_jenjang)      
+                  ->count();
+              }
+
+              if (Auth::user()->userDetail->pj_jenjang == 'TKTQ') {
+                $profit = dataPayment::whereNotNull('approve_date')
+                  ->whereIn('jenjang', ['TKTQ', 'TKTQ-2'])
+                  ->sum('amount');
+              } elseif (Auth::user()->userDetail->pj_jenjang == 'SD-IT') {
+                $profit = dataPayment::whereNotNull('approve_date')
+                  ->whereIn('jenjang', ['SD-IT', 'SD-IT-2'])
+                  ->sum('amount');
+              } else {
+                $profit = dataPayment::whereNotNull('approve_date')
+                  ->where('jenjang', Auth::user()->userDetail->pj_jenjang)
+                  ->sum('amount');
+              }
               // TKTQ
               $needConfirmPaymentTKTQ = dataPayment::whereNotNull(['sender','destination_bank','file'])->whereNull('approve_date')->where('jenjang', 'TKTQ')->count();
               $confirmedPaymentTKTQ = dataPayment::where('status','Paid')->where('jenjang', 'TKTQ')->count();

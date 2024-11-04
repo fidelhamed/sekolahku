@@ -50,21 +50,23 @@
                                                 <th>Nama</th>
                                                 <th>NIP</th>
                                                 <th>Email</th>
+                                                <th>Admin Jenjang</th>
                                                 <th>Status</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>    
                                         <tbody>
-                                            @foreach ($user as $key => $users)
+                                            @foreach ($users as $key => $user)
                                                 <tr>
                                                     <td></td>
-                                                    <td> {{$key+1}} </td>
-                                                    <td> {{$users->name}} </td>
-                                                    <td> {{$users->userDetail->nip}} </td>
-                                                    <td> {{$users->email}} </td>
-                                                    <td> {{$users->status}} </td>
+                                                    <td> {{ $key+1 }} </td>
+                                                    <td> {{ $user->name }} </td>
+                                                    <td> {{ $user->userDetail->nip }} </td>
+                                                    <td> {{ $user->email }} </td>
+                                                    <td> {{ $user->userDetail->pj_jenjang }} </td>
+                                                    <td> {{ $user->status }} </td>
                                                     <td>
-                                                        <a href="{{route('backend-pengguna-ppdb.edit', $users->id)}}" class="btn btn-success btn-sm">Edit</a>
+                                                        <a href="{{route('backend-pengguna-ppdb.edit', $user->id)}}" class="btn btn-success btn-sm">Edit</a>
                                                     </td>
                                                 </tr>
                                             @endforeach

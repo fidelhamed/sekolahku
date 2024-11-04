@@ -171,7 +171,7 @@
                                         <div class="form-group">
                                             <label class="form-label">Jenjang Pendaftaran</label>
                                             <select name="jenjang" class="form-control">
-                                                <option>-- Pilih --</option>
+                                                <option value="">-- Pilih --</option>
                                                 @if ($periodeTKTQ > 0)
                                                 <option value="TKTQ">TKTQ</option>
                                                 @else
@@ -217,7 +217,7 @@
                                             </select>
                                             {{-- <small class="text-warning">Jika opsi tidak tersedia, maka periode telah ditutup.</small> --}}
                                             @error('jenjang')
-                                                <span class="invalid-feedback" role="alert">
+                                                <span class="text-danger" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
