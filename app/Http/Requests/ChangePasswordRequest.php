@@ -23,8 +23,8 @@ class ChangePasswordRequest extends FormRequest
     {
         return [
             'current_password'      => 'required|password',
-            'password'              => 'required|min:8|max:255',
-            'password_confirmation' => 'required_with:password|same:password|min:8|max:255',
+            'password'              => 'required|min:8|max:255|regex:/[a-zA-Z]/|regex:/[0-9]/',
+            'password_confirmation' => 'required|same:password',
         ];
     }
 
@@ -36,10 +36,9 @@ class ChangePasswordRequest extends FormRequest
             'password.required'                 => 'Password Baru tidak boleh kososng.',
             'password.min'                      => 'Password minimal 8 karakter.',
             'password.max'                      => 'password maksimal 255 karakter.',
+            'password.regex'                    => 'Password harus mengandung setidaknya satu huruf dan satu angka.',
             'password_confirmation.required'    => 'Password Konfirmasi tidak boleh kosong.',
-            'password_confirmation.password'    => 'Password Konfirmasi yang dimasukan tidak cocok.',
-            'password_confirmation.min'         => 'Password Konfirmasi minimal 8 karakter.',
-            'password_confirmation.max'         => 'Password Konfirmasi maksimal 8 karakter.'
+            'password_confirmation.same'        => 'Password Konfirmasi tidak cocok.',
 
         ];
     }

@@ -22,8 +22,8 @@ class DataMuridRequest extends FormRequest
             'tgl_lahir'     => 'required',
             'anak_ke'       => 'required',
             'alamat'        => 'required',
-            'telp'          => 'required|numeric',
-            'whatsapp'      => 'required|numeric',
+            'telp'          => 'required|numeric|digits_between:10,15',
+            'whatsapp'      => 'required|numeric|digits_between:10,15',
             'sakit'         => 'nullable',
             'asal_sekolah'  => 'required',
             'alamat_sekolah'=> 'required',
@@ -45,8 +45,10 @@ class DataMuridRequest extends FormRequest
             'alamat.required'           => 'Alamat tidak boleh kosong.',
             'telp.required'             => 'No Telp tidak boleh kosong.',
             'telp.numeric'              => 'No Telp hanya mendukung angka.',
+            'telp.digits_between'       => 'No Telp harus terdiri dari 10-15 digit',
             'whatsapp.required'         => 'No WhatsApp tidak boleh kosong.',
             'whatsapp.numeric'          => 'No WhatsApp hanya mendukung angka.',
+            'whatsapp.digits_between'       => 'No WhatsApp harus terdiri dari 10-15 digit',
             'asal_sekolah.required'     => 'Asal Sekolah tidak boleh kosong.',
             'alamat_sekolah.required'     => 'Alamat Asal Sekolah tidak boleh kosong.'
         ];
