@@ -16,51 +16,62 @@ class PeriodeRegistrasiController extends Controller
     {
         try {
             DB::beginTransaction();
-            $cekperiodeTKTQ = PeriodeRegistrasi::where('jenjang', 'TKTQ')->count();
-            $cekperiodeTKTQ2 = PeriodeRegistrasi::where('jenjang', 'TKTQ-2')->count();
-            $cekperiodeSDIT = PeriodeRegistrasi::where('jenjang', 'SD-IT')->count();
-            $cekperiodeSDIT2 = PeriodeRegistrasi::where('jenjang', 'SD-IT-2')->count();
-            $cekperiodeSMPIT = PeriodeRegistrasi::where('jenjang', 'SMP-IT')->count();
-            $cekperiodeSMAIT = PeriodeRegistrasi::where('jenjang', 'SMA-IT')->count();
-            $cekperiodeMA = PeriodeRegistrasi::where('jenjang', 'MA')->count();
+            $cekPeriode = PeriodeRegistrasi::whereIn('jenjang', ['TKTQ', 'TKTQ-2', 'SD-IT', 'SD-IT-2', 'SMP-IT', 'SMA-IT', 'MA'])->count();
+            $jalurs = ['Reguler', 'Prestasi'];
+            $jenjangs = ['TKTQ', 'TKTQ-2', 'SD-IT', 'SD-IT-2', 'SMP-IT', 'SMA-IT', 'MA'];
 
-            if ($cekperiodeTKTQ === 0) {
-                $periode = new PeriodeRegistrasi();
-                $periode->jenjang = 'TKTQ';
-                $periode->save();
-            } elseif ($cekperiodeTKTQ2 === 0) {
-                $periode = new PeriodeRegistrasi();
-                $periode->jenjang = 'TKTQ-2';
-                $periode->save();
-            } elseif ($cekperiodeSDIT === 0) {
-                $periode = new PeriodeRegistrasi();
-                $periode->jenjang = 'SD-IT';
-                $periode->save();
-            } elseif ($cekperiodeSDIT2 === 0) {
-                $periode = new PeriodeRegistrasi();
-                $periode->jenjang = 'SD-IT-2';
-                $periode->save();
-            } elseif ($cekperiodeSMPIT === 0) {
-                $periode = new PeriodeRegistrasi();
-                $periode->jenjang = 'SMP-IT';
-                $periode->save();
-            } elseif ($cekperiodeSMAIT === 0) {
-                $periode = new PeriodeRegistrasi();
-                $periode->jenjang = 'SMA-IT';
-                $periode->save();
-            } elseif ($cekperiodeMA === 0) {
-                $periode = new PeriodeRegistrasi();
-                $periode->jenjang = 'MA';
-                $periode->save();
+            if ($cekPeriode === 0) {
+
+                foreach ($jenjangs as $jnjg) {
+                    foreach ($jalurs as $jlr) {
+                        $info = new PeriodeRegistrasi();
+                        $info->jalur = $jlr;
+                        $info->jenjang = $jnjg;
+                        $info->save();
+                    }
+                }
+
             } else {
-                $periodeTKTQ = PeriodeRegistrasi::where('jenjang', 'TKTQ')->first();
-                $periodeTKTQ2 = PeriodeRegistrasi::where('jenjang', 'TKTQ-2')->first();
-                $periodeSDIT = PeriodeRegistrasi::where('jenjang', 'SD-IT')->first();
-                $periodeSDIT2 = PeriodeRegistrasi::where('jenjang', 'SD-IT-2')->first();
-                $periodeSMPIT = PeriodeRegistrasi::where('jenjang', 'SMP-IT')->first();
-                $periodeSMAIT = PeriodeRegistrasi::where('jenjang', 'SMA-IT')->first();
-                $periodeMA = PeriodeRegistrasi::where('jenjang', 'MA')->first();
-                return view('ppdb::backend.periodeRegistrasi.index', compact('periodeTKTQ', 'periodeTKTQ2', 'periodeSDIT', 'periodeSDIT2', 'periodeSMPIT', 'periodeSMAIT', 'periodeMA'));          
+                $periodeData = [];
+                
+                foreach ($jenjangs as $jnjg) {
+                    foreach ($jalurs as $jlr) {
+                        $cleanjnjg = str_replace('-', '', $jnjg);
+                        $periodeData["periode{$cleanjnjg}{$jlr}"] = PeriodeRegistrasi::where('jenjang', $jnjg)
+                                                                 ->where('jalur', $jlr)
+                                                                 ->first();
+                    }
+                }
+                
+                return view('ppdb::backend.periodeRegistrasi.index', $periodeData);
+                // $periodeTKTQReguler = PeriodeRegistrasi::where('jenjang', 'TKTQ')->where('jalur', 'Reguler')->first();
+                // $periodeTKTQPrestasi = PeriodeRegistrasi::where('jenjang', 'TKTQ')->where('jalur', 'Prestasi')->first();
+                // $periodeTKTQ2Reguler = PeriodeRegistrasi::where('jenjang', 'TKTQ-2')->where('jalur', 'Reguler')->first();
+                // $periodeTKTQ2Prestasi = PeriodeRegistrasi::where('jenjang', 'TKTQ-2')->where('jalur', 'Prestasi')->first();
+                // $periodeSDITReguler = PeriodeRegistrasi::where('jenjang', 'SD-IT')->where('jalur', 'Reguler')->first();
+                // $periodeSDITPrestasi = PeriodeRegistrasi::where('jenjang', 'SD-IT')->where('jalur', 'Prestasi')->first();
+                // $periodeSDIT2Reguler = PeriodeRegistrasi::where('jenjang', 'SD-IT-2')->where('jalur', 'Reguler')->first();
+                // $periodeSDIT2Prestasi = PeriodeRegistrasi::where('jenjang', 'SD-IT-2')->where('jalur', 'Prestasi')->first();
+                // $periodeSMPITReguler = PeriodeRegistrasi::where('jenjang', 'SMP-IT')->where('jalur', 'Reguler')->first();
+                // $periodeSMPITPrestasi = PeriodeRegistrasi::where('jenjang', 'SMP-IT')->where('jalur', 'Prestasi')->first();
+                // $periodeSMAITReguler = PeriodeRegistrasi::where('jenjang', 'SMA-IT')->where('jalur', 'Reguler')->first();
+                // $periodeSMAITPrestasi = PeriodeRegistrasi::where('jenjang', 'SMA-IT')->where('jalur', 'Prestasi')->first();
+                // $periodeMAReguler = PeriodeRegistrasi::where('jenjang', 'MA')->where('jalur', 'Reguler')->first();
+                // $periodeMAPrestasi = PeriodeRegistrasi::where('jenjang', 'MA')->where('jalur', 'Prestasi')->first();
+                // return view('ppdb::backend.periodeRegistrasi.index', compact('periodeTKTQReguler',
+                //                                                                 'periodeTKTQPrestasi',
+                //                                                                 'periodeTKTQ2Reguler', 
+                //                                                                 'periodeTKTQ2Prestasi', 
+                //                                                                 'periodeSDITReguler', 
+                //                                                                 'periodeSDITPrestasi', 
+                //                                                                 'periodeSDIT2Reguler', 
+                //                                                                 'periodeSDIT2Prestasi', 
+                //                                                                 'periodeSMPITReguler', 
+                //                                                                 'periodeSMPITPrestasi', 
+                //                                                                 'periodeSMAITReguler', 
+                //                                                                 'periodeSMAITPrestasi', 
+                //                                                                 'periodeMAReguler',
+                //                                                                 'periodeMAPrestasi'));          
             }
             DB::commit();
             Session::flash('success', 'Sukses, Data Berhasil dikirim !');
@@ -75,17 +86,19 @@ class PeriodeRegistrasiController extends Controller
     {
         try {
             DB::beginTransaction();
+            $jalur = $request->jalur;
             $jenjang = $request->jenjang;
-            $cekPeriode = PeriodeRegistrasi::where('jenjang', $jenjang)->count();
+            $cekPeriode = PeriodeRegistrasi::where('jenjang', $jenjang)->where('jalur', $jalur)->count();
 
             if ($cekPeriode === 0) {
                 $periode = new PeriodeRegistrasi();
+                $periode->jalur = $jalur;
                 $periode->jenjang = $jenjang;
                 $periode->tgl_buka = $request->tgl_buka;
                 $periode->tgl_tutup = $request->tgl_tutup;
                 $periode->save();
             } else {
-                $periode = PeriodeRegistrasi::where('jenjang', $jenjang)->first();
+                $periode = PeriodeRegistrasi::where('jenjang', $jenjang)->where('jalur', $jalur)->first();
                 $periode->tgl_buka = $request->tgl_buka;
                 $periode->tgl_tutup = $request->tgl_tutup;
                 $periode->update();

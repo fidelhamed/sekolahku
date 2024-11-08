@@ -41,22 +41,35 @@ class PendaftaranController extends Controller
             DB::beginTransaction();
             $user = User::with('muridDetail')->where('id', $id)->first();
             $user->name     = $request->name;
-            $user->email     = $request->email;
             $user->update();
 
             if ($user) {
                 $murid = DataMurid::where('user_id', $id)->first();
+                $murid->nik             = $request->nik;
                 $murid->nama_panggilan  = $request->nama_panggilan;
+                $murid->nisn            = $request->nisn;
                 $murid->jenis_kelamin   = $request->jenis_kelamin;
                 $murid->tempat_lahir    = $request->tempat_lahir;
                 $murid->tgl_lahir       = $request->tgl_lahir;
                 $murid->anak_ke         = $request->anak_ke;
+                $murid->jumlah_saudara  = $request->jumlah_saudara;
+                $murid->telp            = "+62" . $request->telp;
+                $murid->whatsapp        = "+62" . $request->whatsapp;
                 $murid->alamat          = $request->alamat;
-                $murid->telp            = $request->telp;
-                $murid->whatsapp        = $request->whatsapp;
+                $murid->kelurahan       = $request->kelurahan;
+                $murid->kecamatan       = $request->kecamatan;
+                $murid->kabupaten       = $request->kabupaten;
+                $murid->provinsi        = $request->provinsi;
+                $murid->kode_pos        = $request->kode_pos;
+                $murid->nama_sekolah_asal = $request->nama_sekolah_asal;
+                $murid->npsn_sekolah_asal   = $request->npsn_sekolah_asal;
+                $murid->kecamatan_sekolah_asal = $request->kecamatan_sekolah_asal;
+                $murid->kabupaten_sekolah_asal = $request->kabupaten_sekolah_asal;
+                $murid->lingkar_kepala  = $request->lingkar_kepala;
+                $murid->tinggi_badan    = $request->tinggi_badan;
+                $murid->berat_badan     = $request->berat_badan;
+                $murid->gol_darah       = $request->gol_darah;
                 $murid->sakit           = $request->sakit;
-                $murid->asal_sekolah    = $request->asal_sekolah;
-                $murid->alamat_sekolah  = $request->alamat_sekolah;
                 $murid->prestasi        = $request->prestasi;
                 $murid->update();
 
@@ -106,23 +119,27 @@ class PendaftaranController extends Controller
             $ortu = DataOrangTua::where('user_id', $id)->first();
             // Data Ayah
             $ortu->nama_ayah        = $request->nama_ayah;
+            $ortu->nik_ayah         = $request->nik_ayah;
             $ortu->pekerjaan_ayah   = $request->pekerjaan_ayah;
+            $ortu->instansi_ayah    = $request->instansi_ayah;
             $ortu->pendidikan_ayah  = $request->pendidikan_ayah;
             $ortu->penghasilan_ayah = $request->penghasilan_ayah;
-            $ortu->telp_ayah        = $request->telp_ayah;
-            $ortu->alamat_ayah      = $request->nama_ayah;
+            $ortu->telp_ayah        = "+62" . $request->telp_ayah;
+            $ortu->alamat_ayah      = $request->alamat_ayah;
 
             // Data Ibu
             $ortu->nama_ibu         = $request->nama_ibu;
+            $ortu->nik_ibu          = $request->nik_ibu;
             $ortu->pekerjaan_ibu    = $request->pekerjaan_ibu;
+            $ortu->instansi_ibu     = $request->instansi_ibu;
             $ortu->pendidikan_ibu   = $request->pendidikan_ibu;
             $ortu->penghasilan_ibu  = $request->penghasilan_ibu;
-            $ortu->telp_ibu         = $request->telp_ibu;
-            $ortu->alamat_ibu       = $request->nama_ibu;
+            $ortu->telp_ibu         = "+62" . $request->telp_ibu;
+            $ortu->alamat_ibu       = $request->alamat_ibu;
 
             // Data Wali
             $ortu->nama_wali        = $request->nama_wali;
-            $ortu->telp_wali        = $request->telp_wali;
+            $ortu->telp_wali        = "+62" . $request->telp_wali;
             $ortu->alamat_wali      = $request->alamat_wali;
             $ortu->update();
 
@@ -150,7 +167,7 @@ class PendaftaranController extends Controller
         $user = User::with('paymentRegis', 'muridDetail', 'dataOrtu')->where('status', 'Aktif')->where('id', Auth::id())->first();
         $berkas = BerkasMurid::where('user_id', Auth::id())->first();
         // Jika data berkas sudah terisi dan bukan proses perbaikan
-        if ($berkas->akte_kelahiran !== null AND $user->muridDetail->proses !== 'Perbaikan') {
+        if ($berkas->foto !== null AND $user->muridDetail->proses !== 'Perbaikan') {
             Session::flash('error', 'Data kamu sudah lengkap, tunggu proses verifikasi data !');
             return redirect('/home');
         }
@@ -162,17 +179,22 @@ class PendaftaranController extends Controller
     {
         try {
             DB::beginTransaction();
-            $imageKk = $request->file('kartu_keluarga');
-            $kartuKeluarga = time() . "_" . $imageKk->getClientOriginalName();
-            // isi dengan nama folder tempat kemana file diupload
-            $tujuan_upload = 'public/images/berkas_murid';
-            $imageKk->storeAs($tujuan_upload, $kartuKeluarga);
 
-            $imageakte = $request->file('akte_kelahiran');
-            $akteKelahiran = time() . "_" . $imageakte->getClientOriginalName();
-            // isi dengan nama folder tempat kemana file diupload
-            $tujuan_upload = 'public/images/berkas_murid';
-            $imageakte->storeAs($tujuan_upload, $akteKelahiran);
+            if ($request->kartu_keluarga) {
+                $imageKk = $request->file('kartu_keluarga');
+                $kartuKeluarga = time() . "_" . $imageKk->getClientOriginalName();
+                // isi dengan nama folder tempat kemana file diupload
+                $tujuan_upload = 'public/images/berkas_murid';
+                $imageKk->storeAs($tujuan_upload, $kartuKeluarga);    
+            }
+
+            if ($request->akte_kelahiran) {
+                $imageakte = $request->file('akte_kelahiran');
+                $akteKelahiran = time() . "_" . $imageakte->getClientOriginalName();
+                // isi dengan nama folder tempat kemana file diupload
+                $tujuan_upload = 'public/images/berkas_murid';
+                $imageakte->storeAs($tujuan_upload, $akteKelahiran);    
+            }
 
             if ($request->rapor) {
                 $imagerapor = $request->file('rapor');
@@ -197,8 +219,8 @@ class PendaftaranController extends Controller
             }
 
             $berkas = BerkasMurid::find($id);
-            $berkas->kartu_keluarga         = $kartuKeluarga;
-            $berkas->akte_kelahiran         = $akteKelahiran;
+            $berkas->kartu_keluarga         = $kartuKeluarga ?? null;
+            $berkas->akte_kelahiran         = $akteKelahiran ?? null;
             $berkas->rapor                  = $rapor ?? null;
             $berkas->foto                   = $foto;
             $berkas->ijazah                 = $ijazah ?? null;
@@ -224,7 +246,7 @@ class PendaftaranController extends Controller
         $accountbanks = User::with('banks')->first();
         $user = User::with('paymentRegis')->where('status', 'Aktif')->where('id', Auth::id())->first();
         if ($user->paymentRegis->file != null) {
-            Session::flash('error', 'Pembayaran kamu sedang di proses.');
+            Session::flash('error', 'Bukti pembayaran(Jalur Reguler) atau bukti prestasi(Jalur Prestasi) kamu sedang di proses.');
             return redirect('/home');
         }
         return view('ppdb::backend.pendaftaran.paymentRegis', compact('accountbanks', 'user'));
@@ -240,11 +262,11 @@ class PendaftaranController extends Controller
 
         $payment = PaymentRegistration::whereId($request->id)->first();
         $payment->sender            = $request->sender;
-        $payment->destination_bank  = $request->destination_bank;
+        $payment->destination_bank  = $request->destination_bank ? $request->destination_bank : null;
         $payment->file              = $payments;
         $payment->update();
 
-        Session::flash('success', 'Bukti pembayaran registrasi berhasil dikirim, tunggu proses konfirmasi oleh admin  !');
+        Session::flash('success', 'Bukti pembayaran(Jalur Reguler) atau bukti prestasi(Jalur Prestasi) berhasil dikirim, tunggu proses konfirmasi oleh admin  !');
         return redirect('/home');
     }
 }

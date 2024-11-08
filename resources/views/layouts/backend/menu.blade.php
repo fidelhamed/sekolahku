@@ -123,8 +123,13 @@
             <li class="nav-item {{ (request()->is('ppdb/payment-pendaftaran/'. Auth::user()->paymentRegis->id,'ppdb/form-pendaftaran','ppdb/form-data-orangtua','ppdb/form-berkas')) ? 'active' : '' }}">
                 <a class="d-flex align-items-center" href="{{route('ppdb.form-pendaftaran')}}">
                     @if (Auth::user()->paymentRegis->status == 'Unpaid')
-                    <i data-feather="dollar-sign"></i>
-                    <span class="menu-title text-truncate" data-i18n="Pendaftaran">Pembayaran</span>
+                        @if (Auth::user()->muridDetail->jalur == 'Reguler' || Auth::user()->muridDetail->jalur == 'Internal')
+                        <i data-feather="dollar-sign"></i>
+                        <span class="menu-title text-truncate" data-i18n="Pendaftaran">Pembayaran</span>
+                        @else
+                        <i data-feather="award"></i>
+                        <span class="menu-title text-truncate" data-i18n="Pendaftaran">Upload Prestasi</span>
+                        @endif
                     @else
                     <i data-feather="clipboard"></i>
                     <span class="menu-title text-truncate" data-i18n="Pendaftaran">Pendaftaran</span>
@@ -211,7 +216,7 @@
                 <ul class="menu-content">
                     <li class="nav-item {{ (request()->is('ppdb/info-tes-ujian')) ? 'active' : '' }}">
                         <a class="d-flex align-items-center" href=" {{url('ppdb/info-tes-ujian')}} "><i data-feather="circle"></i>
-                            <span class="menu-item text-truncate" data-i18n="Basic">Tes dan Ujian</span>
+                            <span class="menu-item text-truncate" data-i18n="Basic">Observasi dan Wawancara</span>
                         </a>
                     </li>
                     <li class="nav-item {{ (request()->is('ppdb/info-daftar-ulang')) ? 'active' : '' }}">

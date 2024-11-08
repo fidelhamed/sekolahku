@@ -10,7 +10,7 @@
         <div class="content-header-left col-md-9 col-12 mb-2">
             <div class="row breadcrumbs-top">
                 <div class="col-12">
-                    <h2>Form Pendaftaran PPDB IBS Ash-Shiddiiqi Jambi</h2>
+                    <h2>Form Pendaftaran PPDB SIT Ash-Shiddiiqi Jambi</h2>
                 </div>
             </div>
         </div>
@@ -120,7 +120,7 @@
 
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <label for="basicInput">Foto</label>
+                                        <label for="basicInput">Foto</label><span class="text-danger">*</span>
                                         <input type="file" class="form-control @error('foto') is-invalid @enderror" name="foto"/>
                                         <small class="text-danger">Pas Foto .jpg .jpeg ukuran 3x4 dengan latar belakang merah.</small>
                                         <small class="text-danger">Maks. Size 1MB</small>

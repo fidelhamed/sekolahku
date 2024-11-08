@@ -146,33 +146,33 @@ class HomeController extends Controller
                   ->sum('amount');
               }
               // TKTQ
-              $needConfirmPaymentTKTQ = dataPayment::whereNotNull(['sender','destination_bank','file'])->whereNull('approve_date')->where('jenjang', 'TKTQ')->count();
+              $needConfirmPaymentTKTQ = dataPayment::whereNotNull('file')->whereNull('approve_date')->where('jenjang', 'TKTQ')->count();
               $confirmedPaymentTKTQ = dataPayment::where('status','Paid')->where('jenjang', 'TKTQ')->count();
-              $needVerifTKTQ = dataMurid::whereNotNull(['tempat_lahir','tgl_lahir'])->whereNull('nisn')->where('proses', 'Input Data')->where('jenjang', 'TKTQ')->count();
+              $needVerifTKTQ = dataMurid::whereNotNull(['tempat_lahir','tgl_lahir'])->where('proses', 'Input Data')->where('jenjang', 'TKTQ')->count();
               // TKTQ 2
-              $needConfirmPaymentTKTQ2 = dataPayment::whereNotNull(['sender','destination_bank','file'])->whereNull('approve_date')->where('jenjang', 'TKTQ-2')->count();
+              $needConfirmPaymentTKTQ2 = dataPayment::whereNotNull('file')->whereNull('approve_date')->where('jenjang', 'TKTQ-2')->count();
               $confirmedPaymentTKTQ2 = dataPayment::where('status','Paid')->where('jenjang', 'TKTQ-2')->count();
-              $needVerifTKTQ2 = dataMurid::whereNotNull(['tempat_lahir','tgl_lahir'])->whereNull('nisn')->where('proses', 'Input Data')->where('jenjang', 'TKTQ-2')->count();
+              $needVerifTKTQ2 = dataMurid::whereNotNull(['tempat_lahir','tgl_lahir'])->where('proses', 'Input Data')->where('jenjang', 'TKTQ-2')->count();
               // SDIT
-              $needConfirmPaymentSDIT = dataPayment::whereNotNull(['sender','destination_bank','file'])->whereNull('approve_date')->where('jenjang', 'SD-IT')->count();
+              $needConfirmPaymentSDIT = dataPayment::whereNotNull('file')->whereNull('approve_date')->where('jenjang', 'SD-IT')->count();
               $confirmedPaymentSDIT = dataPayment::where('status','Paid')->where('jenjang', 'SD-IT')->count();
-              $needVerifSDIT = dataMurid::whereNotNull(['tempat_lahir','tgl_lahir'])->whereNull('nisn')->where('proses', 'Input Data')->where('jenjang', 'SD-IT')->count();
+              $needVerifSDIT = dataMurid::whereNotNull(['tempat_lahir','tgl_lahir'])->where('proses', 'Input Data')->where('jenjang', 'SD-IT')->count();
               // SDIT 2
-              $needConfirmPaymentSDIT2 = dataPayment::whereNotNull(['sender','destination_bank','file'])->whereNull('approve_date')->where('jenjang', 'SD-IT-2')->count();
+              $needConfirmPaymentSDIT2 = dataPayment::whereNotNull('file')->whereNull('approve_date')->where('jenjang', 'SD-IT-2')->count();
               $confirmedPaymentSDIT2 = dataPayment::where('status','Paid')->where('jenjang', 'SD-IT-2')->count();
-              $needVerifSDIT2 = dataMurid::whereNotNull(['tempat_lahir','tgl_lahir'])->whereNull('nisn')->where('proses', 'Input Data')->where('jenjang', 'SD-IT-2')->count();
+              $needVerifSDIT2 = dataMurid::whereNotNull(['tempat_lahir','tgl_lahir'])->where('proses', 'Input Data')->where('jenjang', 'SD-IT-2')->count();
               // SMP IT
-              $needConfirmPaymentSMPIT = dataPayment::whereNotNull(['sender','destination_bank','file'])->whereNull('approve_date')->where('jenjang', 'SMP-IT')->count();
+              $needConfirmPaymentSMPIT = dataPayment::whereNotNull('file')->whereNull('approve_date')->where('jenjang', 'SMP-IT')->count();
               $confirmedPaymentSMPIT = dataPayment::where('status','Paid')->where('jenjang', 'SMP-IT')->count();
-              $needVerifSMPIT = dataMurid::whereNotNull(['tempat_lahir','tgl_lahir'])->whereNull('nisn')->where('proses', 'Input Data')->where('jenjang', 'SMP-IT')->count();
+              $needVerifSMPIT = dataMurid::whereNotNull(['tempat_lahir','tgl_lahir'])->where('proses', 'Input Data')->where('jenjang', 'SMP-IT')->count();
               // SMA IT
-              $needConfirmPaymentSMAIT = dataPayment::whereNotNull(['sender','destination_bank','file'])->whereNull('approve_date')->where('jenjang', 'SMA-IT')->count();
+              $needConfirmPaymentSMAIT = dataPayment::whereNotNull('file')->whereNull('approve_date')->where('jenjang', 'SMA-IT')->count();
               $confirmedPaymentSMAIT = dataPayment::where('status','Paid')->where('jenjang', 'SMA-IT')->count();
-              $needVerifSMAIT = dataMurid::whereNotNull(['tempat_lahir','tgl_lahir'])->whereNull('nisn')->where('proses', 'Input Data')->where('jenjang', 'SMA-IT')->count();
+              $needVerifSMAIT = dataMurid::whereNotNull(['tempat_lahir','tgl_lahir'])->where('proses', 'Input Data')->where('jenjang', 'SMA-IT')->count();
               // MA
-              $needConfirmPaymentMA = dataPayment::whereNotNull(['sender','destination_bank','file'])->whereNull('approve_date')->where('jenjang', 'MA')->count();
+              $needConfirmPaymentMA = dataPayment::whereNotNull('file')->whereNull('approve_date')->where('jenjang', 'MA')->count();
               $confirmedPaymentMA = dataPayment::where('status','Paid')->where('jenjang', 'MA')->count();
-              $needVerifMA = dataMurid::whereNotNull(['tempat_lahir','tgl_lahir'])->whereNull('nisn')->where('proses', 'Input Data')->where('jenjang', 'MA')->count();              
+              $needVerifMA = dataMurid::whereNotNull(['tempat_lahir','tgl_lahir'])->where('proses', 'Input Data')->where('jenjang', 'MA')->count();              
               
               $pendaftar = DB::table('data_murids')
                 ->select('jenjang', DB::raw('COUNT(*) as jumlah_pendaftar'))
@@ -223,8 +223,11 @@ class HomeController extends Controller
 
 
             } elseif ($role == 'Guest' || $role == 'Terverifikasi' ||  $role == 'Lulus' || $role == 'Tidak Lulus') {
-              $infoTesUjian = InfoTesUjian::where('jenjang', Auth::user()->muridDetail->jenjang)->first();
-              $infoDaftarUlang = InfoDaftarUlang::where('jenjang', Auth::user()->muridDetail->jenjang)->first();
+              $infoTesUjian = InfoTesUjian::where('jenjang', Auth::user()->muridDetail->jenjang)
+                              ->where('jalur', Auth::user()->muridDetail->jalur)
+                              ->first();
+              $infoDaftarUlang = InfoDaftarUlang::where('jenjang', Auth::user()->muridDetail->jenjang)
+                                ->first();
 
               return view('ppdb::backend.index', compact('infoTesUjian', 'infoDaftarUlang'));
             }

@@ -34,14 +34,34 @@ class AuthController extends Controller
     public function registerView()
     {
         $sekarang = now();
-        $periodeTKTQ = PeriodeRegistrasi::where('jenjang', 'TKTQ')->where('tgl_buka', '<=', $sekarang)->where('tgl_tutup', '>=', $sekarang)->count();
-        $periodeTKTQ2 = PeriodeRegistrasi::where('jenjang', 'TKTQ-2')->where('tgl_buka', '<=', $sekarang)->where('tgl_tutup', '>=', $sekarang)->count();
-        $periodeSDIT = PeriodeRegistrasi::where('jenjang', 'SD-IT')->where('tgl_buka', '<=', $sekarang)->where('tgl_tutup', '>=', $sekarang)->count();
-        $periodeSDIT2 = PeriodeRegistrasi::where('jenjang', 'SD-IT-2')->where('tgl_buka', '<=', $sekarang)->where('tgl_tutup', '>=', $sekarang)->count();
-        $periodeSMPIT = PeriodeRegistrasi::where('jenjang', 'SMP-IT')->where('tgl_buka', '<=', $sekarang)->where('tgl_tutup', '>=', $sekarang)->count();
-        $periodeSMAIT = PeriodeRegistrasi::where('jenjang', 'SMA-IT')->where('tgl_buka', '<=', $sekarang)->where('tgl_tutup', '>=', $sekarang)->count();
-        $periodeMA = PeriodeRegistrasi::where('jenjang', 'MA')->where('tgl_buka', '<=', $sekarang)->where('tgl_tutup', '>=', $sekarang)->count();
-        return view('ppdb::auth.register', compact('periodeTKTQ', 'periodeTKTQ2', 'periodeSDIT', 'periodeSDIT2', 'periodeSMPIT', 'periodeSMAIT', 'periodeMA'));
+        $periodeTKTQReguler = PeriodeRegistrasi::where('jenjang', 'TKTQ')->where('jalur', 'Reguler')->where('tgl_buka', '<=', $sekarang)->where('tgl_tutup', '>=', $sekarang)->count();
+        $periodeTKTQPrestasi = PeriodeRegistrasi::where('jenjang', 'TKTQ')->where('jalur', 'Prestasi')->where('tgl_buka', '<=', $sekarang)->where('tgl_tutup', '>=', $sekarang)->count();
+        $periodeTKTQ2Reguler = PeriodeRegistrasi::where('jenjang', 'TKTQ-2')->where('jalur', 'Reguler')->where('tgl_buka', '<=', $sekarang)->where('tgl_tutup', '>=', $sekarang)->count();
+        $periodeTKTQ2Prestasi = PeriodeRegistrasi::where('jenjang', 'TKTQ-2')->where('jalur', 'Prestasi')->where('tgl_buka', '<=', $sekarang)->where('tgl_tutup', '>=', $sekarang)->count();
+        $periodeSDITReguler = PeriodeRegistrasi::where('jenjang', 'SD-IT')->where('jalur', 'Reguler')->where('tgl_buka', '<=', $sekarang)->where('tgl_tutup', '>=', $sekarang)->count();
+        $periodeSDITPrestasi = PeriodeRegistrasi::where('jenjang', 'SD-IT')->where('jalur', 'Prestasi')->where('tgl_buka', '<=', $sekarang)->where('tgl_tutup', '>=', $sekarang)->count();
+        $periodeSDIT2Reguler = PeriodeRegistrasi::where('jenjang', 'SD-IT-2')->where('jalur', 'Reguler')->where('tgl_buka', '<=', $sekarang)->where('tgl_tutup', '>=', $sekarang)->count();
+        $periodeSDIT2Prestasi = PeriodeRegistrasi::where('jenjang', 'SD-IT-2')->where('jalur', 'Prestasi')->where('tgl_buka', '<=', $sekarang)->where('tgl_tutup', '>=', $sekarang)->count();
+        $periodeSMPITReguler = PeriodeRegistrasi::where('jenjang', 'SMP-IT')->where('jalur', 'Reguler')->where('tgl_buka', '<=', $sekarang)->where('tgl_tutup', '>=', $sekarang)->count();
+        $periodeSMPITPrestasi = PeriodeRegistrasi::where('jenjang', 'SMP-IT')->where('jalur', 'Prestasi')->where('tgl_buka', '<=', $sekarang)->where('tgl_tutup', '>=', $sekarang)->count();
+        $periodeSMAITReguler = PeriodeRegistrasi::where('jenjang', 'SMA-IT')->where('jalur', 'Reguler')->where('tgl_buka', '<=', $sekarang)->where('tgl_tutup', '>=', $sekarang)->count();
+        $periodeSMAITPrestasi = PeriodeRegistrasi::where('jenjang', 'SMA-IT')->where('jalur', 'Prestasi')->where('tgl_buka', '<=', $sekarang)->where('tgl_tutup', '>=', $sekarang)->count();
+        $periodeMAReguler = PeriodeRegistrasi::where('jenjang', 'MA')->where('jalur', 'Reguler')->where('tgl_buka', '<=', $sekarang)->where('tgl_tutup', '>=', $sekarang)->count();
+        $periodeMAPrestasi = PeriodeRegistrasi::where('jenjang', 'MA')->where('jalur', 'Prestasi')->where('tgl_buka', '<=', $sekarang)->where('tgl_tutup', '>=', $sekarang)->count();
+        return view('ppdb::auth.register', compact('periodeTKTQReguler',
+                                                    'periodeTKTQPrestasi',
+                                                    'periodeTKTQ2Reguler',
+                                                    'periodeTKTQ2Prestasi',
+                                                    'periodeSDITReguler',
+                                                    'periodeSDITPrestasi',
+                                                    'periodeSDIT2Reguler',
+                                                    'periodeSDIT2Prestasi',
+                                                    'periodeSMPITReguler',
+                                                    'periodeSMPITPrestasi',
+                                                    'periodeSMAITReguler',
+                                                    'periodeSMAITPrestasi',
+                                                    'periodeMAReguler',
+                                                    'periodeMAPrestasi'));
     }
 
     // Register Store
@@ -64,30 +84,53 @@ class AuthController extends Controller
             $register->save();
 
             if ($register) {
+                //Ambil nilai jenjangJalur
+                $jenjangJalurValue = $request->jenjangJalur;
+                
+                //Memisahkan nilai jenjang dan jalur
+                $pisah = explode(';', $jenjangJalurValue);
+                $jenjangValue = $pisah[0];
+                $jalurValue = $pisah[1];
+
                 $murid = new DataMurid();
-                $murid->user_id         =   $register->id;
-                $murid->jenjang         =   $request->jenjang;
-                $murid->whatsapp        =   $request->whatsapp;
-                $murid->asal_sekolah    =   $request->asal_sekolah;
+                $murid->user_id             =   $register->id;
+                $murid->nik                 =   $request->nik;
+                $murid->jalur               =   $jalurValue;
+                $murid->jenjang             =   $jenjangValue;
+                $murid->whatsapp            =   '+62' . $request->whatsapp;
+                $murid->nama_sekolah_asal   =   $request->nama_sekolah_asal;
 
                 // Generate dan simpan nomor registrasi di dataMurid
-                $murid->noreg = $this->generateNomorRegistrasi($request->jenjang);
+                $murid->noreg = $this->generateNomorRegistrasi($jenjangValue, $jalurValue);
                 
                 $murid->save();
             }
 
-            $jenjang = $request->jenjang;
-            if ($jenjang == 'TKTQ' || $jenjang == 'TKTQ-2') {
+            if ($jenjangValue == 'TKTQ' AND $jalurValue == 'Reguler') {
                 $amount = 150000;
-            } elseif ($jenjang == 'SD-IT' || $jenjang == 'SD-IT-2') {
+            } elseif ($jenjangValue == 'TKTQ' AND $jalurValue == 'Prestasi') {
+                $amount = 0;
+            } elseif ($jenjangValue == 'TKTQ-2' AND $jalurValue == 'Reguler') {
+                $amount = 150000;
+            } elseif ($jenjangValue == 'TKTQ-2' AND $jalurValue == 'Prestasi') {
+                $amount = 0;
+            } elseif ($jenjangValue == 'SD-IT' AND $jalurValue == 'Reguler') {
                 $amount = 250000;
-            } elseif ($jenjang == 'SMP-IT' || $jenjang == 'SMA-IT' || $jenjang == 'MA') {
+            } elseif ($jenjangValue == 'SD-IT' AND $jalurValue == 'Prestasi') {
+                $amount = 0;
+            } elseif ($jenjangValue == 'SD-IT-2' AND $jalurValue == 'Reguler') {
+                $amount = 250000;
+            } elseif ($jenjangValue == 'SD-IT-2' AND $jalurValue == 'Prestasi') {
+                $amount = 0;
+            } elseif (($jenjangValue == 'SMP-IT' AND $jalurValue == 'Reguler') || ($jenjangValue == 'SMA-IT' AND $jalurValue == 'Reguler') || ($jenjangValue == 'MA' AND $jalurValue == 'Reguler')) {
                 $amount = 350000;
+            } elseif (($jenjangValue == 'SMP-IT' AND $jalurValue == 'Prestasi') || ($jenjangValue == 'SMA-IT' AND $jalurValue == 'Prestasi') || ($jenjangValue == 'MA' AND $jalurValue == 'Prestasi')) {
+                $amount = 0;
             }
 
             $payment = new PaymentRegistration();
             $payment->user_id   = $register->id;
-            $payment->jenjang   = $request->jenjang;
+            $payment->jenjang   = $jenjangValue;
             $payment->amount    = $amount;
             $payment->save();
 
@@ -103,13 +146,14 @@ class AuthController extends Controller
     }
 
     // Fungsi untuk menghasilkan nomor registrasi baru
-    protected function generateNomorRegistrasi($jenjang)
+    protected function generateNomorRegistrasi($jenjang, $jalur)
     {
         // Sesuaikan logika penomoran sesuai kebutuhan
         // Contoh: RR-2023-001 (RR untuk "Registrasi", tahun, dan nomor urut)
         $tahun = date('Y');
         $lastRegistrasi = DataMurid::whereYear('created_at', $tahun)
             ->where('jenjang', $jenjang)
+            ->where('jalur', $jalur)
             ->orderBy('id', 'desc')
             ->first();
 
@@ -120,6 +164,6 @@ class AuthController extends Controller
             $newNumber = 1;
         }
 
-        return $tahun . '-' . $jenjang . '-' . str_pad($newNumber, 4, '0', STR_PAD_LEFT);
+        return $tahun . '-' . $jenjang . '-' . $jalur[0] . str_pad($newNumber, 4, '0', STR_PAD_LEFT);
     }
 }

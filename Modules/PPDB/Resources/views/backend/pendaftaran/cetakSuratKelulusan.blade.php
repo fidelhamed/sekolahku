@@ -202,11 +202,6 @@
                 <td>{{ $cetak->muridDetail->alamat }}</td>
             </tr>
             <tr>
-                <td>NIS</td>
-                <td>:</td>
-                <td>{{ $cetak->muridDetail->nis }}</td>
-            </tr>
-            <tr>
                 <td>NISN</td>
                 <td>:</td>
                 <td>{{ $cetak->muridDetail->nisn }}</td>
@@ -242,15 +237,15 @@
         <table>
             <tr>
                 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                <td>Tanggal</td>
+                <td>Dari Tanggal</td>
                 <td>:</td>
-                <td>{{ Carbon\Carbon::parse($info->waktu_tgl)->format('d-m-Y') }}</td>
+                <td>{{ Carbon\Carbon::parse($info->tgl_buka)->format('d-m-Y') }}</td>
             </tr>
             <tr>
                 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                <td>Waktu</td>
+                <td>Sampai Tanggal</td>
                 <td>:</td>
-                <td>{{ Carbon\Carbon::parse($info->jam_mulai)->format('H:i') . ' - ' . Carbon\Carbon::parse($info->jam_berakhir)->format('H:i') }}</td>
+                <td>{{ Carbon\Carbon::parse($info->tgl_tutup)->format('d-m-Y') }}</td>
             </tr>
             <tr>
                 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>

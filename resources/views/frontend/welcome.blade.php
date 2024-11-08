@@ -1,6 +1,6 @@
 @extends('layouts.Frontend.app')
 @section('title')
-    PPDB Online Ash Shiddiiqi Jambi
+    PPDB Online SIT Ash Shiddiiqi Jambi
 @endsection
 
 @section('content')

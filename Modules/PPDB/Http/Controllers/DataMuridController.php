@@ -78,8 +78,8 @@ class DataMuridController extends Controller
                     ->orWhere('role', 'Terverifikasi');
             })
             ->find($id);
-        if (!$murid->muridDetail->jenis_kelamin || !$murid->dataOrtu->nama_ayah || !$murid->berkas->kartu_keluarga) {
-            Session::flash('error', 'Calon Siswa Belum Input Biodata Diri !');
+        if (!$murid->muridDetail->jenis_kelamin || !$murid->dataOrtu->nama_ayah || !$murid->berkas->foto) {
+            Session::flash('error', 'Calon Peserta Didik Belum Submit Formulir Pendaftaran !');
             if ($murid->muridDetail->jenjang == 'TKTQ') {
                 return redirect('/ppdb/data-murid?jenjangDataMurid=TKTQ');
             } elseif ($murid->muridDetail->jenjang == 'TKTQ-2') {
@@ -164,7 +164,7 @@ class DataMuridController extends Controller
             'approve_date'  => Carbon::now(),
             'approved_by'    => Auth::user()->id
         ]);
-        Session::flash('success', 'Sukses, Pembayaran diterima !');
+        Session::flash('success', 'Sukses, Pembayaran/Prestasi diterima !');
         return back();
     }
 

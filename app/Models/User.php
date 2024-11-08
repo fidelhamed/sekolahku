@@ -61,7 +61,7 @@ class User extends Authenticatable
 
     public function muridDetail()
     {
-        return $this->belongsTo(dataMurid::class, 'id', 'user_id');
+        return $this->belongsTo(DataMurid::class, 'id', 'user_id');
     }
 
     public function dataOrtu()
@@ -95,7 +95,7 @@ class User extends Authenticatable
 
     public function paymentRegis()
     {
-        return $this->belongsTo(paymentRegistration::class, 'id', 'user_id');
+        return $this->belongsTo(PaymentRegistration::class, 'id', 'user_id');
     }
 
     public function angketResponses()  

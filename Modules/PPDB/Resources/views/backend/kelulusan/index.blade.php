@@ -48,10 +48,9 @@
                                                 <th>No</th>
                                                 <th>Noreg</th>
                                                 <th>Nama</th>
+                                                <th>Jalur</th>
                                                 <th>Email</th>
                                                 <th>Status</th>
-                                                <th>Pembayaran</th>
-                                                <th>Hak Akses</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
@@ -62,12 +61,11 @@
                                                     <td>{{$key+1}}</td>
                                                     <td>{{$murid->muridDetail->noreg}}</td>
                                                     <td>{{$murid->name}}</td>
+                                                    <td>{{ $murid->muridDetail->jalur }}</td>
                                                     <td>{{$murid->email}}</td>
                                                     <td>{{$murid->muridDetail->proses}}</td>
-                                                    <td>{{$murid->paymentRegis->status  == 'Unpaid' ? 'Belum Bayar' : 'Berhasil'}}</td>
-                                                    <td>{{$murid->role}}</td>
                                                     <td>
-                                                    @if ($murid->muridDetail->nis == null || $murid->muridDetail->nisn == null)
+                                                    @if ($murid->muridDetail->nisn == null)
                                                         @if ($murid->role == 'Lulus')
                                                         <a href="{{route('data-kelulusan.show', $murid->id)}}" class="btn btn-warning btn-sm" >Input NIS dan NISN</a>                                                                                                                
                                                         @else

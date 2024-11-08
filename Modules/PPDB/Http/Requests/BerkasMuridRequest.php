@@ -14,8 +14,8 @@ class BerkasMuridRequest extends FormRequest
     public function rules()
     {
         return [
-          'kartu_keluarga'          => 'required|mimes:jpg,jpeg,pdf|max:1024',
-          'akte_kelahiran'          => 'required|mimes:jpg,jpeg,pdf|max:1024',
+          'kartu_keluarga'          => 'mimes:jpg,jpeg,pdf|max:1024',
+          'akte_kelahiran'          => 'mimes:jpg,jpeg,pdf|max:1024',
           // 'surat_kelakuan_baik'     => 'required|mimes:jpg,jpeg,png,pdf|max:2048',
           // 'surat_sehat'             => 'required|mimes:jpg,jpeg,png,pdf|max:2048',
           // 'surat_tidak_buta_warna'  => 'required|mimes:jpg,jpeg,png,pdf|max:2048',
@@ -28,10 +28,10 @@ class BerkasMuridRequest extends FormRequest
     public function messages()
     {
       return [
-        'kartu_keluarga.required'         => 'File Kartu Keluarga tidak boleh kosong.',
+        // 'kartu_keluarga.required'         => 'File Kartu Keluarga tidak boleh kosong.',
         'kartu_keluarga.mimes'            => 'Kartu Keluarga hanya mendukung .jpg .jpeg .pdf.',
         'kartu_keluarga.max'              => 'Ukuran file tidak boleh lebih dari 1MB.',
-        'akte_kelahiran.required'         => 'File Akte Kelahiran tidak boleh kosong.',
+        // 'akte_kelahiran.required'         => 'File Akte Kelahiran tidak boleh kosong.',
         'akte_kelahiran.mimes'            => 'Akte Kelahiran hanya mendukung .jpg .jpeg .pdf.',
         'akte_kelahiran.max'              => 'Ukuran file tidak boleh lebih dari 1MB.',
         // 'surat_kelakuan_baik.required'    => 'Surat Kelakuan Baik tidak boleh kosong.',

@@ -10,13 +10,22 @@
         <div class="content-header-left col-md-9 col-12 mb-2">
             <div class="row breadcrumbs-top">
                 <div class="col-12">
-                    <h2>Rekap Laporan Pendaftar</h2>
+                    <h2>Rekap Laporan</h2>
                 </div>
             </div>
         </div>
     </div>
+    @if ($message = Session::get('error'))
+        <div class="alert alert-danger" role="alert">
+            <div class="alert-body">
+                <strong>{{ $message }}</strong>
+                <button type="button" class="close" data-dismiss="alert">×</button>
+            </div>
+        </div>
+    @endif
     <div class="content-body">
         <div class="row">
+            <!-- form rekap laporan pdf -->
             <div class="col-6">
                 <div class="card">
                     <div class="card-header header-bottom">
@@ -71,6 +80,92 @@
                                 </div>
                             </div>
                             <button class="btn btn-success" type="submit"><i data-feather="printer"></i> Cetak</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- form download excel data murid -->
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header header-bottom">
+                        <h4>Download Rekapan Data Pendaftar</h4>
+                    </div>
+                    <div class="card-body">
+                        <form action="{{ url('ppdb/rekap-laporan/download-data-murids') }}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            @method('POST')
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label class="form-label">Jenjang</label>
+                                        <select name="jenjang" class="form-control">
+                                            <option value="">-- Pilih --</option>
+                                            @if (Auth::user()->userDetail->pj_jenjang == 'TKTQ')
+                                            <option value="TKTQ">TKTQ</option>
+                                            <option value="TKTQ-2">TKTQ 2</option>
+                                            @elseif (Auth::user()->userDetail->pj_jenjang == 'SD-IT')
+                                            <option value="SD-IT">SD IT</option>
+                                            <option value="SD-IT-2">SD IT 2</option>
+                                            @elseif (Auth::user()->userDetail->pj_jenjang == 'SMP-IT')
+                                            <option value="SMP-IT" selected>SMP IT</option>
+                                            @elseif (Auth::user()->userDetail->pj_jenjang == 'SMA-IT')
+                                            <option value="SMA-IT" selected>SMA IT</option>
+                                            @elseif (Auth::user()->userDetail->pj_jenjang == 'MA')
+                                            <option value="MA" selected>MA</option>
+                                            @endif
+                                         </select>
+                                        @error('jenjang')
+                                            <div class="invalid-feedback">
+                                            <strong>{{ $message }}</strong>
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn btn-success" type="submit"><i data-feather="download"></i> Download Excel </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- form download berkas  -->
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header header-bottom">
+                        <h4>Rekap Berkas Pendaftar</h4>
+                    </div>
+                    <div class="card-body">
+                        <form action="{{ url('ppdb/rekap-laporan/download-berkas') }}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            @method('POST')
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label class="form-label">Jenjang</label>
+                                        <select name="jenjang" class="form-control">
+                                            <option value="">-- Pilih --</option>
+                                            @if (Auth::user()->userDetail->pj_jenjang == 'TKTQ')
+                                            <option value="TKTQ">TKTQ</option>
+                                            <option value="TKTQ-2">TKTQ 2</option>
+                                            @elseif (Auth::user()->userDetail->pj_jenjang == 'SD-IT')
+                                            <option value="SD-IT">SD IT</option>
+                                            <option value="SD-IT-2">SD IT 2</option>
+                                            @elseif (Auth::user()->userDetail->pj_jenjang == 'SMP-IT')
+                                            <option value="SMP-IT" selected>SMP IT</option>
+                                            @elseif (Auth::user()->userDetail->pj_jenjang == 'SMA-IT')
+                                            <option value="SMA-IT" selected>SMA IT</option>
+                                            @elseif (Auth::user()->userDetail->pj_jenjang == 'MA')
+                                            <option value="MA" selected>MA</option>
+                                            @endif
+                                         </select>
+                                        @error('jenjang')
+                                            <div class="invalid-feedback">
+                                            <strong>{{ $message }}</strong>
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn btn-success" type="submit"><i data-feather="download"></i> Download</button>
                         </form>
                     </div>
                 </div>

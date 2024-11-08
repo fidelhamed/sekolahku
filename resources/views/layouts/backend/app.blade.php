@@ -11,6 +11,7 @@
     <meta name="author" content="Fidel Hamed">
     <title>@yield('title')</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('Assets/Frontend/img/logo-ibs-a.png') }}">
 
     @include('layouts.backend.style')
 

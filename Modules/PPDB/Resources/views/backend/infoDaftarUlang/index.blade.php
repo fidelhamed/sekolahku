@@ -47,33 +47,22 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-6">
                                     <div class="form-group">
-                                        <label for="basicInput">Tanggal</label>
-                                        <input type="date" class="form-control flatpickr-basic @error('waktu_tgl') is-invalid @enderror" id="fp-default" name="waktu_tgl" value="{{ $infoTKTQ->waktu_tgl }}"/>
-                                        @error('waktu_tgl')
+                                        <label for="basicInput">Tanggal Buka</label>
+                                        <input type="date" class="form-control flatpickr-basic @error('tgl_buka') is-invalid @enderror" id="fp-default" name="tgl_buka" value="{{ $infoTKTQ->tgl_buka }}"/>
+                                        @error('tgl_buka')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
                                             </div>
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-6">
                                     <div class="form-group">
-                                        <label for="basicInput">Jam Mulai</label>
-                                        <input type="time" class="form-control @error('jam_mulai') is-invalid @enderror" name="jam_mulai" value="{{ $infoTKTQ->jam_mulai }}" />
-                                        @error('jam_mulai')
-                                            <div class="invalid-feedback">
-                                            <strong>{{ $message }}</strong>
-                                            </div>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="form-group">
-                                        <label for="basicInput">Jam Berakhir</label>
-                                        <input type="time" class="form-control @error('jam_berakhir') is-invalid @enderror" name="jam_berakhir" value="{{ $infoTKTQ->jam_berakhir }}" />
-                                        @error('jam_berakhir')
+                                        <label for="basicInput">Tanggal Tutup</label>
+                                        <input type="date" class="form-control flatpickr-basic @error('tgl_tutup') is-invalid @enderror" id="fp-default" name="tgl_tutup" value="{{ $infoTKTQ->tgl_tutup }}"/>
+                                        @error('tgl_tutup')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
                                             </div>
@@ -148,33 +137,22 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-6">
                                     <div class="form-group">
-                                        <label for="basicInput">Tanggal</label>
-                                        <input type="date" class="form-control flatpickr-basic @error('waktu_tgl') is-invalid @enderror" id="fp-default" name="waktu_tgl" value="{{ $infoTKTQ2->waktu_tgl }}"/>
-                                        @error('waktu_tgl')
+                                        <label for="basicInput">Tanggal Buka</label>
+                                        <input type="date" class="form-control flatpickr-basic @error('tgl_buka') is-invalid @enderror" id="fp-default" name="tgl_buka" value="{{ $infoTKTQ2->tgl_buka }}"/>
+                                        @error('tgl_buka')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
                                             </div>
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-6">
                                     <div class="form-group">
-                                        <label for="basicInput">Jam Mulai</label>
-                                        <input type="time" class="form-control @error('jam_mulai') is-invalid @enderror" name="jam_mulai" value="{{ $infoTKTQ2->jam_mulai }}" />
-                                        @error('jam_mulai')
-                                            <div class="invalid-feedback">
-                                            <strong>{{ $message }}</strong>
-                                            </div>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="form-group">
-                                        <label for="basicInput">Jam Berakhir</label>
-                                        <input type="time" class="form-control @error('jam_berakhir') is-invalid @enderror" name="jam_berakhir" value="{{ $infoTKTQ2->jam_berakhir }}" />
-                                        @error('jam_berakhir')
+                                        <label for="basicInput">Tanggal Tutup</label>
+                                        <input type="date" class="form-control flatpickr-basic @error('tgl_tutup') is-invalid @enderror" id="fp-default" name="tgl_tutup" value="{{ $infoTKTQ2->tgl_tutup }}"/>
+                                        @error('tgl_tutup')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
                                             </div>
@@ -251,33 +229,22 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-6">
                                     <div class="form-group">
-                                        <label for="basicInput">Tanggal</label>
-                                        <input type="date" class="form-control flatpickr-basic @error('waktu_tgl') is-invalid @enderror" id="fp-default" name="waktu_tgl" value="{{ $infoSDIT->waktu_tgl }}"/>
-                                        @error('waktu_tgl')
+                                        <label for="basicInput">Tanggal Buka</label>
+                                        <input type="date" class="form-control flatpickr-basic @error('tgl_buka') is-invalid @enderror" id="fp-default" name="tgl_buka" value="{{ $infoSDIT->tgl_buka }}"/>
+                                        @error('tgl_buka')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
                                             </div>
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-6">
                                     <div class="form-group">
-                                        <label for="basicInput">Jam Mulai</label>
-                                        <input type="time" class="form-control @error('jam_mulai') is-invalid @enderror" name="jam_mulai" value="{{ $infoSDIT->jam_mulai }}" />
-                                        @error('jam_mulai')
-                                            <div class="invalid-feedback">
-                                            <strong>{{ $message }}</strong>
-                                            </div>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="form-group">
-                                        <label for="basicInput">Jam Berakhir</label>
-                                        <input type="time" class="form-control @error('jam_berakhir') is-invalid @enderror" name="jam_berakhir" value="{{ $infoSDIT->jam_berakhir }}" />
-                                        @error('jam_berakhir')
+                                        <label for="basicInput">Tanggal Tutup</label>
+                                        <input type="date" class="form-control flatpickr-basic @error('tgl_tutup') is-invalid @enderror" id="fp-default" name="tgl_tutup" value="{{ $infoSDIT->tgl_tutup }}"/>
+                                        @error('tgl_tutup')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
                                             </div>
@@ -352,33 +319,22 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-6">
                                     <div class="form-group">
-                                        <label for="basicInput">Tanggal</label>
-                                        <input type="date" class="form-control flatpickr-basic @error('waktu_tgl') is-invalid @enderror" id="fp-default" name="waktu_tgl" value="{{ $infoSDIT2->waktu_tgl }}"/>
-                                        @error('waktu_tgl')
+                                        <label for="basicInput">Tanggal Buka</label>
+                                        <input type="date" class="form-control flatpickr-basic @error('tgl_buka') is-invalid @enderror" id="fp-default" name="tgl_buka" value="{{ $infoSDIT2->tgl_buka }}"/>
+                                        @error('tgl_buka')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
                                             </div>
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-6">
                                     <div class="form-group">
-                                        <label for="basicInput">Jam Mulai</label>
-                                        <input type="time" class="form-control @error('jam_mulai') is-invalid @enderror" name="jam_mulai" value="{{ $infoSDIT2->jam_mulai }}" />
-                                        @error('jam_mulai')
-                                            <div class="invalid-feedback">
-                                            <strong>{{ $message }}</strong>
-                                            </div>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="form-group">
-                                        <label for="basicInput">Jam Berakhir</label>
-                                        <input type="time" class="form-control @error('jam_berakhir') is-invalid @enderror" name="jam_berakhir" value="{{ $infoSDIT2->jam_berakhir }}" />
-                                        @error('jam_berakhir')
+                                        <label for="basicInput">Tanggal Tutup</label>
+                                        <input type="date" class="form-control flatpickr-basic @error('tgl_tutup') is-invalid @enderror" id="fp-default" name="tgl_tutup" value="{{ $infoSDIT2->tgl_tutup }}"/>
+                                        @error('tgl_tutup')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
                                             </div>
@@ -429,7 +385,7 @@
         
                 <div class="card">
                     <div class="card-header header-bottom">
-                        <h4>Informasi Daftar Ulang SMP-IT</h4>
+                        <h4>Informasi Daftar Ulang SMP IT</h4>
                     </div>
                     <div class="card-body">
                         <form action="{{ url('ppdb/info-daftar-ulang/update') }}" method="post" enctype="multipart/form-data">
@@ -454,33 +410,22 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-6">
                                     <div class="form-group">
-                                        <label for="basicInput">Tanggal</label>
-                                        <input type="date" class="form-control flatpickr-basic @error('waktu_tgl') is-invalid @enderror" id="fp-default" name="waktu_tgl" value="{{ $infoSMPIT->waktu_tgl }}"/>
-                                        @error('waktu_tgl')
+                                        <label for="basicInput">Tanggal Buka</label>
+                                        <input type="date" class="form-control flatpickr-basic @error('tgl_buka') is-invalid @enderror" id="fp-default" name="tgl_buka" value="{{ $infoSMPIT->tgl_buka }}"/>
+                                        @error('tgl_buka')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
                                             </div>
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-6">
                                     <div class="form-group">
-                                        <label for="basicInput">Jam Mulai</label>
-                                        <input type="time" class="form-control @error('jam_mulai') is-invalid @enderror" name="jam_mulai" value="{{ $infoSMPIT->jam_mulai }}" />
-                                        @error('jam_mulai')
-                                            <div class="invalid-feedback">
-                                            <strong>{{ $message }}</strong>
-                                            </div>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="form-group">
-                                        <label for="basicInput">Jam Berakhir</label>
-                                        <input type="time" class="form-control @error('jam_berakhir') is-invalid @enderror" name="jam_berakhir" value="{{ $infoSMPIT->jam_berakhir }}" />
-                                        @error('jam_berakhir')
+                                        <label for="basicInput">Tanggal Tutup</label>
+                                        <input type="date" class="form-control flatpickr-basic @error('tgl_tutup') is-invalid @enderror" id="fp-default" name="tgl_tutup" value="{{ $infoSMPIT->tgl_tutup }}"/>
+                                        @error('tgl_tutup')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
                                             </div>
@@ -531,7 +476,7 @@
  
                 <div class="card">
                     <div class="card-header header-bottom">
-                        <h4>Informasi Daftar Ulang SMA-IT</h4>
+                        <h4>Informasi Daftar Ulang SMA IT</h4>
                     </div>
                     <div class="card-body">
                         <form action="{{ url('ppdb/info-daftar-ulang/update') }}" method="post" enctype="multipart/form-data">
@@ -556,33 +501,22 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-6">
                                     <div class="form-group">
-                                        <label for="basicInput">Tanggal</label>
-                                        <input type="date" class="form-control flatpickr-basic @error('waktu_tgl') is-invalid @enderror" id="fp-default" name="waktu_tgl" value="{{ $infoSMAIT->waktu_tgl }}"/>
-                                        @error('waktu_tgl')
+                                        <label for="basicInput">Tanggal Buka</label>
+                                        <input type="date" class="form-control flatpickr-basic @error('tgl_buka') is-invalid @enderror" id="fp-default" name="tgl_buka" value="{{ $infoSMAIT->tgl_buka }}"/>
+                                        @error('tgl_buka')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
                                             </div>
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-6">
                                     <div class="form-group">
-                                        <label for="basicInput">Jam Mulai</label>
-                                        <input type="time" class="form-control @error('jam_mulai') is-invalid @enderror" name="jam_mulai" value="{{ $infoSMAIT->jam_mulai }}" />
-                                        @error('jam_mulai')
-                                            <div class="invalid-feedback">
-                                            <strong>{{ $message }}</strong>
-                                            </div>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="form-group">
-                                        <label for="basicInput">Jam Berakhir</label>
-                                        <input type="time" class="form-control @error('jam_berakhir') is-invalid @enderror" name="jam_berakhir" value="{{ $infoSMAIT->jam_berakhir }}" />
-                                        @error('jam_berakhir')
+                                        <label for="basicInput">Tanggal Tutup</label>
+                                        <input type="date" class="form-control flatpickr-basic @error('tgl_tutup') is-invalid @enderror" id="fp-default" name="tgl_tutup" value="{{ $infoSMAIT->tgl_tutup }}"/>
+                                        @error('tgl_tutup')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
                                             </div>
@@ -658,33 +592,22 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-6">
                                     <div class="form-group">
-                                        <label for="basicInput">Tanggal</label>
-                                        <input type="date" class="form-control flatpickr-basic @error('waktu_tgl') is-invalid @enderror" id="fp-default" name="waktu_tgl" value="{{ $infoMA->waktu_tgl }}"/>
-                                        @error('waktu_tgl')
+                                        <label for="basicInput">Tanggal Buka</label>
+                                        <input type="date" class="form-control flatpickr-basic @error('tgl_buka') is-invalid @enderror" id="fp-default" name="tgl_buka" value="{{ $infoMA->tgl_buka }}"/>
+                                        @error('tgl_buka')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
                                             </div>
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-6">
                                     <div class="form-group">
-                                        <label for="basicInput">Jam Mulai</label>
-                                        <input type="time" class="form-control @error('jam_mulai') is-invalid @enderror" name="jam_mulai" value="{{ $infoMA->jam_mulai }}" />
-                                        @error('jam_mulai')
-                                            <div class="invalid-feedback">
-                                            <strong>{{ $message }}</strong>
-                                            </div>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="form-group">
-                                        <label for="basicInput">Jam Berakhir</label>
-                                        <input type="time" class="form-control @error('jam_berakhir') is-invalid @enderror" name="jam_berakhir" value="{{ $infoMA->jam_berakhir }}" />
-                                        @error('jam_berakhir')
+                                        <label for="basicInput">Tanggal Tutup</label>
+                                        <input type="date" class="form-control flatpickr-basic @error('tgl_tutup') is-invalid @enderror" id="fp-default" name="tgl_tutup" value="{{ $infoMA->tgl_tutup }}"/>
+                                        @error('tgl_tutup')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
                                             </div>
@@ -1443,7 +1366,6 @@
                 </div>
             </div> --}}
         </div>
-
     </div>
 </div>
 @endsection

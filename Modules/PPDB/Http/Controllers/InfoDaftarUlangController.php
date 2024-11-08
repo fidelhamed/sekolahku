@@ -15,51 +15,35 @@ class InfoDaftarUlangController extends Controller
     {
         try {
             DB::beginTransaction();
-            $cekInfoTKTQ = InfoDaftarUlang::where('jenjang', 'TKTQ')->count();
-            $cekInfoTKTQ2 = InfoDaftarUlang::where('jenjang', 'TKTQ-2')->count();
-            $cekInfoSDIT = InfoDaftarUlang::where('jenjang', 'SD-IT')->count();
-            $cekInfoSDIT2 = InfoDaftarUlang::where('jenjang', 'SD-IT-2')->count();
-            $cekInfoSMPIT = InfoDaftarUlang::where('jenjang', 'SMP-IT')->count();
-            $cekInfoSMAIT = InfoDaftarUlang::where('jenjang', 'SMA-IT')->count();
-            $cekInfoMA = InfoDaftarUlang::where('jenjang', 'MA')->count();
+            $cekInfo = InfoDaftarUlang::whereIn('jenjang', ['TKTQ', 'TKTQ-2', 'SD-IT', 'SD-IT-2', 'SMP-IT', 'SMA-IT', 'MA'])->count();
+            $jenjangs = ['TKTQ', 'TKTQ-2', 'SD-IT', 'SD-IT-2', 'SMP-IT', 'SMA-IT', 'MA'];
 
-            if ($cekInfoTKTQ === 0) {
-                $info = new InfoDaftarUlang();
-                $info->jenjang = 'TKTQ';
-                $info->save();
-            } elseif ($cekInfoTKTQ2 === 0) {
-                $info = new InfoDaftarUlang();
-                $info->jenjang = 'TKTQ-2';
-                $info->save();
-            } elseif ($cekInfoSDIT === 0) {
-                $info = new InfoDaftarUlang();
-                $info->jenjang = 'SD-IT';
-                $info->save();
-            } elseif ($cekInfoSDIT2 === 0) {
-                $info = new InfoDaftarUlang();
-                $info->jenjang = 'SD-IT-2';
-                $info->save();
-            } elseif ($cekInfoSMPIT === 0) {
-                $info = new InfoDaftarUlang();
-                $info->jenjang = 'SMP-IT';
-                $info->save();
-            } elseif ($cekInfoSMAIT === 0) {
-                $info = new InfoDaftarUlang();
-                $info->jenjang = 'SMA-IT';
-                $info->save();
-            } elseif ($cekInfoMA === 0) {
-                $info = new InfoDaftarUlang();
-                $info->jenjang = 'MA';
-                $info->save();
+            if ($cekInfo === 0) {
+
+                foreach ($jenjangs as $jnjg) {
+                    $info = new InfoDaftarUlang();
+                    $info->jenjang = $jnjg;
+                    $info->save();
+                }
+
             } else {
-                $infoTKTQ = InfoDaftarUlang::where('jenjang', 'TKTQ')->first();
-                $infoTKTQ2 = InfoDaftarUlang::where('jenjang', 'TKTQ-2')->first();
-                $infoSDIT = InfoDaftarUlang::where('jenjang', 'SD-IT')->first();
-                $infoSDIT2 = InfoDaftarUlang::where('jenjang', 'SD-IT-2')->first();
-                $infoSMPIT = InfoDaftarUlang::where('jenjang', 'SMP-IT')->first();
-                $infoSMAIT = InfoDaftarUlang::where('jenjang', 'SMA-IT')->first();
-                $infoMA = InfoDaftarUlang::where('jenjang', 'MA')->first();
-                return view('ppdb::backend.infoDaftarUlang.index', compact('infoTKTQ', 'infoTKTQ2', 'infoSDIT', 'infoSDIT2', 'infoSMPIT', 'infoSMAIT', 'infoMA'));          
+                $infoData = [];
+                
+                foreach ($jenjangs as $jnjg) {
+                        $cleanjnjg = str_replace('-', '', $jnjg);
+                        $infoData["info{$cleanjnjg}"] = InfoDaftarUlang::where('jenjang', $jnjg)->first();
+                }
+
+                return view('ppdb::backend.infoDaftarUlang.index', $infoData);
+
+                // $infoTKTQ = InfoDaftarUlang::where('jenjang', 'TKTQ')->first();
+                // $infoTKTQ2 = InfoDaftarUlang::where('jenjang', 'TKTQ-2')->first();
+                // $infoSDIT = InfoDaftarUlang::where('jenjang', 'SD-IT')->first();
+                // $infoSDIT2 = InfoDaftarUlang::where('jenjang', 'SD-IT-2')->first();
+                // $infoSMPIT = InfoDaftarUlang::where('jenjang', 'SMP-IT')->first();
+                // $infoSMAIT = InfoDaftarUlang::where('jenjang', 'SMA-IT')->first();
+                // $infoMA = InfoDaftarUlang::where('jenjang', 'MA')->first();
+                // return view('ppdb::backend.infoDaftarUlang.index', compact('infoTKTQ', 'infoTKTQ2', 'infoSDIT', 'infoSDIT2', 'infoSMPIT', 'infoSMAIT', 'infoMA'));          
             }
             DB::commit();
             Session::flash('success', 'Sukses, Data Berhasil dikirim !');
@@ -80,18 +64,16 @@ class InfoDaftarUlangController extends Controller
             if ($cekInfo === 0) {
                 $info = new InfoDaftarUlang();
                 $info->jenjang = $jenjang;
-                $info->waktu_tgl = $request->waktu_tgl;
-                $info->jam_mulai = $request->jam_mulai;
-                $info->jam_berakhir = $request->jam_berakhir;
+                $info->tgl_buka = $request->tgl_buka;
+                $info->tgl_tutup = $request->tgl_tutup;
                 $info->lokasi_laki_laki = $request->lokasi_laki_laki;
                 $info->lokasi_perempuan = $request->lokasi_perempuan;
                 $info->deskripsi = $request->deskripsi;
                 $info->save();
             } else {
                 $info = InfoDaftarUlang::where('jenjang', $jenjang)->first();
-                $info->waktu_tgl = $request->waktu_tgl;
-                $info->jam_mulai = $request->jam_mulai;
-                $info->jam_berakhir = $request->jam_berakhir;
+                $info->tgl_buka = $request->tgl_buka;
+                $info->tgl_tutup = $request->tgl_tutup;
                 $info->lokasi_laki_laki = $request->lokasi_laki_laki;
                 $info->lokasi_perempuan = $request->lokasi_perempuan;
                 $info->deskripsi = $request->deskripsi;

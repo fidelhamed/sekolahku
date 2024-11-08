@@ -18,7 +18,9 @@ class CetakController extends Controller
     {
         // // Ambil data murid
         $murid = User::with('muridDetail','berkas')->where('id', Auth::id())->first();
-        $info = InfoTesUjian::where('jenjang', Auth::user()->muridDetail->jenjang)->first();
+        $info = InfoTesUjian::where('jenjang', Auth::user()->muridDetail->jenjang)
+                ->where('jalur', Auth::user()->muridDetail->jalur)
+                ->first();
 
         $pdf = PDF::loadView('ppdb::backend.pendaftaran.cetakKartuUjian', [
             'cetak' => $murid,

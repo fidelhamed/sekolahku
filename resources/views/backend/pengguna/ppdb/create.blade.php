@@ -93,7 +93,7 @@
 
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <label class="form-label">Admin PJ Jenjang</label>
+                                        <label class="form-label">Admin PJ Jenjang</label> <span class="text-danger">*</span>
                                         <select name="pj_jenjang" class="form-control">
                                             <option value="">-- Pilih --</option>
                                             <option value="TKTQ">TKTQ</option>
@@ -125,7 +125,7 @@
                                 <div class="col-3">
                                     <div class="form-group">
                                         <label for="basicInput">Linkedln</label>
-                                        <input type="text" class="form-control @error('linkedln') is-invalid @enderror" name="linkedln" value="{{old('linkidln')}}" placeholder="Linkedln" />
+                                        <input type="text" class="form-control @error('linkedln') is-invalid @enderror" name="linkedln" value="{{old('linkiden')}}" placeholder="Linkedln" />
                                         @error('linkedln')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>

@@ -75,7 +75,7 @@ class PPDBController extends Controller
                 $userDetail->nip          = $request->nip;
                 $userDetail->email        = $request->email;
                 $userDetail->pj_jenjang   = $request->pj_jenjang;
-                $userDetail->linkidln     = $request->linkidln;
+                $userDetail->linkedln     = $request->linkedln;
                 $userDetail->instagram    = $request->instagram;
                 $userDetail->website      = $request->website;
                 $userDetail->facebook     = $request->facebook;
@@ -153,7 +153,7 @@ class PPDBController extends Controller
                 $userDetail->is_active    = $user->status == 'Aktif' ? '0' : '1';
                 $userDetail->email        = $request->email;
                 $userDetail->pj_jenjang   = $request->pj_jenjang;
-                $userDetail->linkidln     = $request->linkidln;
+                $userDetail->linkedln     = $request->linkedln;
                 $userDetail->instagram    = $request->instagram;
                 $userDetail->website      = $request->website;
                 $userDetail->facebook     = $request->facebook;

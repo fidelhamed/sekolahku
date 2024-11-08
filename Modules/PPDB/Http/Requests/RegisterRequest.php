@@ -18,9 +18,9 @@ class RegisterRequest extends FormRequest
             'email'                 => 'required|email|unique:users',
             'password'              => 'required|min:8|max:255|regex:/[a-zA-Z]/|regex:/[0-9]/',
             'confirm_password'      => 'required|same:password',
+            'nik'                   => 'required|numeric|digits:16|unique:data_murids',
             'whatsapp'              => 'required|numeric|unique:data_murids|digits_between:10,15',
-            'asal_sekolah'          => 'required',
-            'jenjang'               => 'required|in:TKTQ,TKTQ-2,SD-IT,SD-IT-2,SMP-IT,SMA-IT,MA'
+            'nama_sekolah_asal'     => 'required',
         ];
     }
 
@@ -37,14 +37,15 @@ class RegisterRequest extends FormRequest
             'password.regex'            => 'Password harus mengandung setidaknya satu huruf dan satu angka.',
             'confirm_password.required' => 'Password konfirmasi tidak boleh kosong.',
             'confirm_password.same'     => 'Password konfirmasi tidak cocok.',
+            'nik.required'              => 'NIK tidak boleh kosong.',
+            'nik.numeric'               => 'NIK hanya boleh angka.',
+            'nik.digits'                => 'NIK harus terdiri dari 16 digit.',
+            'nik.unique'                => 'NIK sudah pernah digunakan.',
             'whatsapp.required'         => 'Nomor WhatasApp tidak boleh kosong.',
-            'whatsapp.numeric'          => 'Nomor WhatsApp tidak valid.',
+            'whatsapp.numeric'          => 'Nomor WhatsApp hanya boleh angka.',
             'whatsapp.unique'           => 'Nomor WhatsApp sudah pernah digunakan.',
             'whatsapp.digits_between'   => 'Nomor Whatsapp harus terdiri dari 10-15 digit.',
-            'asal_sekolah.required'     => 'Asal Sekolah tidak boleh kosong.',
-            'jenjang.required'          => 'Pilih salah satu jenjang.',
-            'jenjang.in'                => 'Pilihan jenjang tidak valid.'
-
+            'nama_sekolah_asal.required'=> 'Asal Sekolah tidak boleh kosong.',
         ];
     }
 

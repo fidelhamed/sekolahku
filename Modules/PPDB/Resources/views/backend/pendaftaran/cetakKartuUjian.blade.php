@@ -89,6 +89,7 @@
             <div class="student-info">
                 <strong>No Registrasi:</strong> {{ $cetak->muridDetail->noreg }}<br>
                 <strong>Nama Siswa:</strong> {{ $cetak->name }}<br>
+                <strong>Jalur:</strong> {{ $cetak->muridDetail->jalur }}<br>
                 <strong>Jenjang:</strong> {{ $cetak->muridDetail->jenjang }}<br>
             </div>
             <div class="exam-info">

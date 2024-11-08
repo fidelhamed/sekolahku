@@ -66,7 +66,7 @@
                 <div class="card">
                     <div class="card-body text-center">
                         <div class="text-center">
-                            <h4 class="mb-1">Berikut Informasi Tes dan ujian anda:</h4>
+                            <h4 class="mb-1">Berikut Informasi Observasi dan Wawancara anda:</h4>
                             <p class="card-text m-auto w-75">
                                 Dilaksanakan pada
                             </p>
@@ -122,23 +122,23 @@
                         <div class="text-center">
                             <h1 class="mb-1 text-white">اَلْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ {{Auth::user()->name}},</h1>
                             <p class="card-text m-auto w-75">
-                                Selamat anda lulus menjadi murid IBS Ash-Shiddiiqi Jambi
+                                Selamat anda lulus menjadi murid SIT Ash-Shiddiiqi Jambi
                             </p>
                         </div>
                     </div>
                 </div>
             </div>
-            @if (isset($infoDaftarUlang->waktu_tgl, $infoDaftarUlang->jam_mulai, $infoDaftarUlang->jam_berakhir, $infoDaftarUlang->lokasi_laki_laki, $infoDaftarUlang->lokasi_perempuan, $infoDaftarUlang->deskripsi))
+            @if (isset($infoDaftarUlang->tgl_buka, $infoDaftarUlang->tgl_tutup, $infoDaftarUlang->lokasi_laki_laki, $infoDaftarUlang->lokasi_perempuan, $infoDaftarUlang->deskripsi))
             <div class="col-lg-6 col-md-12 col-sm-12">
                 <div class="card">
                     <div class="card-body text-center">
                         <div class="text-center">
                             <h4 class="mb-1">Silahkan lakukan daftar ulang pada</h4>
                             <p class="card-text m-auto w-75">
-                                Tanggal     :       {{ Carbon\Carbon::parse($infoDaftarUlang->waktu_tgl)->format('d-m-Y') }} 
+                                Tanggal Buka     :       {{ Carbon\Carbon::parse($infoDaftarUlang->tgl_buka)->format('d-m-Y') }} 
                             </p>
                             <p class="card-text m-auto w-75">
-                                Jam     :       {{ Carbon\Carbon::parse($infoDaftarUlang->jam_mulai)->format('H:i') . ' - ' . Carbon\Carbon::parse($infoDaftarUlang->jam_berakhir)->format('H:i')}}
+                                Tanggal Tutup     :       {{ Carbon\Carbon::parse($infoDaftarUlang->tgl_tutup)->format('d-m-Y') }} 
                             </p>
                             <p class="card-text m-auto w-75">
                                 @if (Auth::user()->muridDetail->jenis_kelamin === 'Laki-laki')
@@ -373,8 +373,8 @@
                                 <th>Noreg</th>
                                 <th>Nama</th>
                                 <th>Waktu Daftar</th>
-                                <th>Jenjang</th>
-                                <th>Pembayaran</th>
+                                <th>Jenjang - Jalur</th>
+                                <th>Pembayaran/Prestasi</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
@@ -383,8 +383,8 @@
                                 <td>{{ Auth::user()->muridDetail->noreg }}</td>
                                 <td>{{ Auth::user()->name }}</td>
                                 <td>{{ Auth::user()->created_at->format('d F Y') }}</td>
-                                <td>{{ Auth::user()->muridDetail->jenjang }}</td>
-                                <td>{{ Auth::user()->paymentRegis->status == 'Paid' ? 'Berhasil' : 'Belum Bayar' }}</td>
+                                <td>{{ Auth::user()->muridDetail->jenjang }} - {{ Auth::user()->muridDetail->jalur }}</td>
+                                <td>{{ Auth::user()->paymentRegis->status == 'Paid' ? 'Berhasil' : 'Belum Dikonfirmasi' }}</td>
                                 <td>{{ Auth::user()->muridDetail->proses }}</td>
                             </tr>
                         </tbody>

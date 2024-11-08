@@ -41,7 +41,7 @@
         #countdown-container span {  
             font-weight: bold;  
             color: #28a745;  
-        }  
+        }
     </style>
 </head>
 <!-- END: Head-->
@@ -130,12 +130,45 @@
                                 </div>
 
                                 <div id="registration-form-container">
+                                    <?php
+                                    // Variabel untuk mengatur mode maintenance
+                                    $maintenance_mode = false; // Ubah menjadi false untuk menonaktifkan mode maintenance
+
+                                    // Jika mode maintenance aktif, tampilkan pesan dan tutup form registrasi
+                                    if ($maintenance_mode) {
+                                    ?>
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <div class="avatar avatar-xl bg-danger shadow mb-1">
+                                                <div class="avatar-content">
+                                                    <i data-feather="alert-octagon" class="font-large-1"></i>
+                                                </div>
+                                            </div>
+                                            <div class="text-center">
+                                                <h1 class="text-danger">Under Maintenance</h1>
+                                                <p>Maaf, saat ini sistem sedang dalam pemeliharaan.</p>
+                                                <p>Silakan coba beberapa saat lagi.</p>
+                                            </div>
+                                        </div>
+                                    </div>                                    
+                                    <?php
+                                    } else {
+                                    ?>
                                     <form class="auth-login-form mt-2" action="{{route('register.store')}}" method="POST">
                                         @csrf
                                         <div class="form-group">
-                                            <label class="form-label">Nama Lengkap</label>
-                                            <input class="form-control @error('name') is-invalid @enderror" type="text" name="name" value="{{old('name')}}" placeholder="Masukan Nama Lengkap" autofocus="" tabindex="1" />
+                                            <label class="form-label">Nama Lengkap Calon Pesrta Didik</label>
+                                            <input class="form-control @error('name') is-invalid @enderror" type="text" name="name" value="{{old('name')}}" placeholder="Masukan Nama Lengkap Calon Peserta Didik" autofocus="" tabindex="1" />
                                             @error('name')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Nomor Induk Kependudukan</label>
+                                            <input class="form-control @error('nik') is-invalid @enderror" type="number" name="nik" value="{{old('nik')}}" placeholder="Masukan NIK" autofocus="" tabindex="1" />
+                                            @error('nik')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
@@ -152,7 +185,8 @@
                                         </div>
                                         <div class="form-group">
                                             <label class="form-label">No Whatsapp</label>
-                                            <input class="form-control @error('whatsapp') is-invalid @enderror" type="number" name="whatsapp" value="{{old('whatsapp')}}" placeholder="Masukan No WhatsApp" autofocus="" tabindex="1" />
+                                            <span class="input-group-text" id="basic-addon1">+62</span>
+                                            <input class="form-control @error('whatsapp') is-invalid @enderror" type="number" name="whatsapp" value="{{old('whatsapp')}}" placeholder="8xxxxxxxxx" autofocus="" tabindex="1" />
                                             @error('whatsapp')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -160,9 +194,9 @@
                                             @enderror
                                         </div>
                                         <div class="form-group">
-                                            <label class="form-label">Asal Sekolah</label>
-                                            <input class="form-control @error('asal_sekolah') is-invalid @enderror" type="text" name="asal_sekolah" value="{{old('asal_sekolah')}}" placeholder="Masukan Asal Sekolah" autofocus="" tabindex="1" />
-                                            @error('asal_sekolah')
+                                            <label class="form-label">Nama Sekolah Asal</label>
+                                            <input class="form-control @error('nama_sekolah_asal') is-invalid @enderror" type="text" name="nama_sekolah_asal" value="{{old('nama_sekolah_asal')}}" placeholder="Masukan Nama Asal Sekolah" autofocus="" tabindex="1" />
+                                            @error('nama_sekolah_asal')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
@@ -170,50 +204,92 @@
                                         </div>
                                         <div class="form-group">
                                             <label class="form-label">Jenjang Pendaftaran</label>
-                                            <select name="jenjang" class="form-control">
+                                            <select name="jenjangJalur" class="form-control">
                                                 <option value="">-- Pilih --</option>
-                                                @if ($periodeTKTQ > 0)
-                                                <option value="TKTQ">TKTQ</option>
+                                                @if ($periodeTKTQReguler > 0)
+                                                <option value="TKTQ;Reguler">TKTQ - Reguler</option>
                                                 @else
-                                                <option value="" disabled style="color: red;">TKTQ (Pendaftaran Ditutup)</option>
-                                                @endif    
+                                                <option value="" disabled style="color: red;">TKTQ - Reguler(Pendaftaran Ditutup)</option>
+                                                @endif
 
-                                                @if ($periodeTKTQ2 > 0)
-                                                <option value="TKTQ-2">TKTQ 2</option>                                                
+                                                @if ($periodeTKTQPrestasi > 0)
+                                                <option value="TKTQ;Prestasi">TKTQ - Prestasi</option>
                                                 @else
-                                                <option value=""  disabled style="color: red;">TKTQ 2 (Pendaftaran Ditutup)</option>                                                
+                                                <option value="" disabled style="color: red;">TKTQ - Prestasi(Pendaftaran Ditutup)</option>
+                                                @endif
+
+                                                @if ($periodeTKTQ2Reguler > 0)
+                                                <option value="TKTQ-2;Reguler">TKTQ 2 - Reguler</option>                                                
+                                                @else
+                                                <option value=""  disabled style="color: red;">TKTQ 2 - Reguler(Pendaftaran Ditutup)</option>                                                
                                                 @endif      
 
-                                                @if ($periodeSDIT > 0)
-                                                <option value="SD-IT">SD IT</option>                                                
+                                                @if ($periodeTKTQ2Prestasi > 0)
+                                                <option value="TKTQ-2;Prestasi">TKTQ 2 - Prestasi</option>                                                
                                                 @else
-                                                <option value="" disabled style="color: red;">SD IT (Pendaftaran Ditutup)</option>
+                                                <option value=""  disabled style="color: red;">TKTQ 2 - Prestasi(Pendaftaran Ditutup)</option>                                                
+                                                @endif      
+
+                                                @if ($periodeSDITReguler > 0)
+                                                <option value="SD-IT;Reguler">SD IT - Reguler</option>                                                
+                                                @else
+                                                <option value="" disabled style="color: red;">SD IT - Reguler(Pendaftaran Ditutup)</option>
                                                 @endif     
 
-                                                @if ($periodeSDIT2 > 0)
-                                                <option value="SD-IT-2">SD IT 2</option>                                                
+                                                @if ($periodeSDITPrestasi > 0)
+                                                <option value="SD-IT;Prestasi">SD IT - Prestasi</option>                                                
                                                 @else
-                                                <option value="" disabled style="color: red;">SD IT 2 (Pendaftaran Ditutup)</option>
-                                                @endif   
+                                                <option value="" disabled style="color: red;">SD IT - Prestasi(Pendaftaran Ditutup)</option>
+                                                @endif     
 
-                                                @if ($periodeSMPIT > 0)
-                                                <option value="SMP-IT">SMP IT</option>                                                
+                                                @if ($periodeSDIT2Reguler > 0)
+                                                <option value="SD-IT-2;Reguler">SD IT 2 - Reguler</option>                                                
                                                 @else
-                                                <option value="" disabled style="color: red;">SMP IT (Pendaftaran Ditutup)</option>
+                                                <option value="" disabled style="color: red;">SD IT 2 - Reguler(Pendaftaran Ditutup)</option>
                                                 @endif
 
-                                                @if ($periodeSMAIT > 0)
-                                                <option value="SMA-IT">SMA IT</option>
+                                                @if ($periodeSDIT2Prestasi > 0)
+                                                <option value="SD-IT-2;Prestasi">SD IT 2 - Prestasi</option>                                                
                                                 @else
-                                                <option value="" disabled style="color: red;">SMA IT (Pendaftaran Ditutup)</option>
+                                                <option value="" disabled style="color: red;">SD IT 2 - Prestasi(Pendaftaran Ditutup)</option>
                                                 @endif
 
-                                                @if ($periodeMA > 0)
-                                                <option value="MA">MA</option>
+                                                @if ($periodeSMPITReguler > 0)
+                                                <option value="SMP-IT;Reguler">SMP IT - Reguler</option>                                                
                                                 @else
-                                                <option value="" disabled style="color: red;">MA (Pendaftaran Ditutup)</option>
+                                                <option value="" disabled style="color: red;">SMP IT - Reguler(Pendaftaran Ditutup)</option>
                                                 @endif
-                                                
+
+                                                @if ($periodeSMPITPrestasi > 0)
+                                                <option value="SMP-IT;Prestasi">SMP IT - Prestasi</option>                                                
+                                                @else
+                                                <option value="" disabled style="color: red;">SMP IT - Prestasi(Pendaftaran Ditutup)</option>
+                                                @endif
+
+                                                @if ($periodeSMAITReguler > 0)
+                                                <option value="SMA-IT;Reguler">SMA IT - Reguler</option>
+                                                @else
+                                                <option value="" disabled style="color: red;">SMA IT - Reguler(Pendaftaran Ditutup)</option>
+                                                @endif
+
+                                                @if ($periodeSMAITPrestasi > 0)
+                                                <option value="SMA-IT;Prestasi">SMA IT - Prestasi</option>
+                                                @else
+                                                <option value="" disabled style="color: red;">SMA IT - Prestasi (Pendaftaran Ditutup)</option>
+                                                @endif
+
+                                                @if ($periodeMAReguler > 0)
+                                                <option value="MA;Reguler">MA - Reguler</option>
+                                                @else
+                                                <option value="" disabled style="color: red;">MA - Reguler (Pendaftaran Ditutup)</option>
+                                                @endif
+
+                                                @if ($periodeMAPrestasi > 0)
+                                                <option value="MA;Prestasi">MA - Prestasi</option>
+                                                @else
+                                                <option value="" disabled style="color: red;">MA - Prestasi (Pendaftaran Ditutup)</option>
+                                                @endif
+
                                             </select>
                                             {{-- <small class="text-warning">Jika opsi tidak tersedia, maka periode telah ditutup.</small> --}}
                                             @error('jenjang')
@@ -223,6 +299,7 @@
                                             @enderror
                                         </div>
                                         <div class="form-group">
+                                            <label class="form-label">Password</label>
                                             <div class="input-group input-group-merge form-password-toggle">
                                                 <input class="form-control form-control-merge @error('password') is-invalid @enderror" type="password" name="password" placeholder="············" tabindex="2" />
                                                 <div class="input-group-append"><span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span></div>
@@ -234,6 +311,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
+                                            <label class="form-label">Password Konfirmasi</label>
                                             <div class="input-group input-group-merge form-password-toggle">
                                                 <input class="form-control form-control-merge @error('confirm_password') is-invalid @enderror" type="password" name="confirm_password" placeholder="············" tabindex="2" />
                                                 <div class="input-group-append"><span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span></div>
@@ -255,6 +333,9 @@
                                     <div>
                                         <p class="card-text mt-1">Sudah punya akun? <a class="font-weight-bold" href="{{ url('login') }}">Login</a></p>
                                     </div>
+                                    <?php
+                                    }
+                                    ?>
                                 </div>
                             </div>
                         </div>
@@ -265,7 +346,6 @@
         </div>
     </div>
     <!-- END: Content-->
-
 
     <!-- BEGIN: Vendor JS-->
     <script src="{{asset('Assets/Backend/vendors/js/vendors.min.js')}}"></script>
@@ -315,16 +395,23 @@
     
     // Fungsi untuk mengecek apakah ada jenjang yang tersedia  
     function checkAvailableJenjang() {  
-        const periodeTKTQ = {{ $periodeTKTQ ?? 0 }};  
-        const periodeTKTQ2 = {{ $periodeTKTQ2 ?? 0 }};
-        const periodeSDIT = {{ $periodeSDIT ?? 0 }};  
-        const periodeSDIT2 = {{ $periodeSDIT2 ?? 0 }};
-        const periodeSMPIT = {{ $periodeSMPIT ?? 0 }};  
-        const periodeSMAIT = {{ $periodeSMAIT ?? 0 }};  
-        const periodeMA = {{ $periodeMA ?? 0 }};  
+        const periodeTKTQReguler = {{ $periodeTKTQReguler ?? 0 }};  
+        const periodeTKTQ2Reguler = {{ $periodeTKTQ2Reguler ?? 0 }};
+        const periodeSDITReguler = {{ $periodeSDITReguler ?? 0 }};  
+        const periodeSDIT2Reguler = {{ $periodeSDIT2Reguler ?? 0 }};
+        const periodeSMPITReguler = {{ $periodeSMPITReguler ?? 0 }};  
+        const periodeSMAITReguler = {{ $periodeSMAITReguler ?? 0 }};  
+        const periodeMAReguler = {{ $periodeMAReguler ?? 0 }};  
+        const periodeTKTQPrestasi = {{ $periodeTKTQPrestasi ?? 0 }};  
+        const periodeTKTQ2Prestasi = {{ $periodeTKTQ2Prestasi ?? 0 }};
+        const periodeSDITPrestasi = {{ $periodeSDITPrestasi ?? 0 }};  
+        const periodeSDIT2Prestasi = {{ $periodeSDIT2Prestasi ?? 0 }};
+        const periodeSMPITPrestasi = {{ $periodeSMPITPrestasi ?? 0 }};  
+        const periodeSMAITPrestasi = {{ $periodeSMAITPrestasi ?? 0 }};  
+        const periodeMAPrestasi = {{ $periodeMAPrestasi ?? 0 }};  
     
         // Jika semua periode 0, tampilkan countdown dan sembunyikan form
-        if (periodeTKTQ === 0 && periodeTKTQ2 === 0 && periodeSDIT === 0 && periodeSDIT2 === 0 && periodeSMPIT === 0 && periodeSMAIT === 0 && periodeMA === 0) {  
+        if (periodeTKTQReguler === 0 && periodeTKTQ2Reguler === 0 && periodeSDITReguler === 0 && periodeSDIT2Reguler === 0 && periodeSMPITReguler === 0 && periodeSMAITReguler === 0 && periodeMAReguler === 0 && periodeTKTQPrestasi === 0 && periodeTKTQ2Prestasi === 0 && periodeSDITPrestasi === 0 && periodeSDIT2Prestasi === 0 && periodeSMPITPrestasi === 0 && periodeSMAITPrestasi === 0 && periodeMAPrestasi === 0) {  
             // Set tanggal target (sesuaikan dengan kebutuhan)  
             const targetDate = new Date("2024-11-01T00:00:00").getTime(); // Contoh tanggal  
             

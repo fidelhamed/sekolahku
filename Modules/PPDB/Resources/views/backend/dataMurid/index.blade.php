@@ -48,10 +48,11 @@
                                                 <th>No</th>
                                                 <th>Noreg</th>
                                                 <th>Nama</th>
+                                                <th>Jalur</th>
                                                 <th>Email</th>
                                                 <th>Status</th>
-                                                <th>Pembayaran</th>
-                                                <th>Hak Akses</th>
+                                                <th>Pembayaran/Prestasi</th>
+                                                {{-- <th>Hak Akses</th> --}}
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
@@ -62,29 +63,41 @@
                                                     <td>{{ $key+1 }}</td>
                                                     <td>{{ $murid->muridDetail->noreg }}</td>
                                                     <td>{{ $murid->name }}</td>
+                                                    <td>{{ $murid->muridDetail->jalur }}</td>
                                                     <td>{{ $murid->email }}</td>
                                                     <td>{{ $murid->muridDetail->proses }}</td>
-                                                    <td>{{ $murid->paymentRegis->status == 'Unpaid' ? 'Belum Bayar' : 'Berhasil'}}</td>
-                                                    <td>{{ $murid->role == 'Terverifikasi' ? 'Calon Peserta Didik' : 'Pendaftar' }}</td>
+                                                    <td>{{ $murid->paymentRegis->status == 'Unpaid' ? 'Belum Dikonfirmasi' : 'Berhasil'}}</td>
+                                                    {{-- <td>{{ $murid->role == 'Terverifikasi' ? 'Calon Peserta Didik' : 'Pendaftar' }}</td> --}}
                                                     <td>
                                                         <a href="{{ route('data-murid.show', $murid->id) }}" 
                                                             class="btn btn-info btn-sm" 
-                                                            style="display: {{$murid->paymentRegis->file == null || $murid->paymentRegis->approve_date != null ? '' : 'none'}}">Detail</a>
-                                                        {{-- <a href="{{ asset('storage/images/payment_pendaftaran/' .$murid->paymentRegis->file) }}" 
-                                                            data-download-link="{{ asset('storage/images/payment_pendaftaran/' . $murid->paymentRegis->file) }}" 
-                                                            class="btn btn-secondary btn-sm" 
-                                                            id="openModalBtn" 
-                                                            style="display: {{$murid->paymentRegis->file == null || $murid->paymentRegis->approve_date != null ? 'none' : ''}}">Bukti Pembayaran</a> --}}
-                                                        <a href="{{ asset('storage/images/payment_pendaftaran/' .$murid->paymentRegis->file) }}" 
+                                                            style="display: {{$murid->paymentRegis->file == null || $murid->paymentRegis->approve_date != null ? '' : 'none'}}">Detail</a>                                                        
+                                                        @if ($murid->paymentRegis->file && (Str::endsWith(strtolower($murid->paymentRegis->file), ['.jpg', '.jpeg', '.png'])))
+                                                            <a href="{{ asset('storage/images/payment_pendaftaran/' .$murid->paymentRegis->file) }}"
+                                                                class="btn btn-info btn-sm openModalImg" 
+                                                                style="display: {{$murid->paymentRegis->file == null || $murid->paymentRegis->approve_date != null ? 'none' : ''}}"
+                                                                data-download-link="{{ asset('storage/images/payment_pendaftaran/' . $murid->paymentRegis->file) }}" 
+                                                                data-title="Bukti Pembayaran/Prestasi">Bukti Pembayaran/Prestasi</a>
+                                                        @elseif ($murid->paymentRegis->file && (Str::endsWith(strtolower($murid->paymentRegis->file), '.pdf')))
+                                                            <a href="#" 
+                                                                class="btn btn-info btn-sm openModalDoc" 
+                                                                style="display: {{$murid->paymentRegis->file == null || $murid->paymentRegis->approve_date != null ? 'none' : ''}}"
+                                                                data-toggle="modal" 
+                                                                data-target="#viewModal" 
+                                                                data-berkas="{{asset('storage/images/payment_pendaftaran/' .$murid->paymentRegis->file)}}" 
+                                                                data-title="Bukti Pembayaran/Prestasi">Bukti Pembayaran/Prestasi</a>
+                                                        @endif
+
+                                                            {{-- <a href="{{ asset('storage/images/payment_pendaftaran/' .$murid->paymentRegis->file) }}" 
                                                             class="btn btn-secondary btn-sm openModalImg"
                                                             style="display: {{$murid->paymentRegis->file == null || $murid->paymentRegis->approve_date != null ? 'none' : ''}}"
                                                             data-download-link="{{ asset('storage/images/payment_pendaftaran/' . $murid->paymentRegis->file) }}" 
-                                                            data-title="Bukti Pembayaran">Bukti Pembayaran</a>
+                                                            data-title="Bukti Pembayaran">Bukti Pembayaran/Prestasi</a> --}}
                                                     
                                                         <a data-id="{{ $murid->paymentRegis->id }}" 
                                                             id="updatePayment" 
                                                             class="btn btn-success btn-sm" 
-                                                            style="display: {{$murid->paymentRegis->file == null || $murid->paymentRegis->approve_date != null ? 'none' : ''}}">konfirmasi Pembayaran</a>
+                                                            style="display: {{$murid->paymentRegis->file == null || $murid->paymentRegis->approve_date != null ? 'none' : ''}}">konfirmasi Pembayaran/Prestasi</a>
                                                         <a data-id="{{ $murid->id }}" 
                                                             id="updatePerbaikan" 
                                                             class="btn btn-warning btn-sm" 
@@ -130,7 +143,28 @@
               </div>
             </div>
         </div> --}}
-        {{-- Modal bukti pembayaran --}}
+
+        {{-- Modal pdf --}}
+        <div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">View Doc</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="height: 500px">
+                    <iframe id="viewBerkas" width="100%" height="100%" src=""></iframe>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                </div>
+              </div>
+            </div>
+        </div>
+
+        {{-- Modal gambar --}}
         <div class="modal" tabindex="-1" role="dialog" id="imgModal">
             <div class="modal-dialog modal-lg" role="document">
               <div class="modal-content">
@@ -141,7 +175,7 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                  <img id="docImage" src="" alt="Bukti Pembayaran" class="img-fluid">
+                  <img id="docImage" src="" alt="View Doc Image" class="img-fluid">
                 </div>
                 <div class="modal-footer">
                     <a id="downloadButton" class="btn btn-success" download>Download</a>
@@ -311,6 +345,28 @@
       });
     });
 </script> --}}
+<script>
+    $(document).ready(function() {
+      // Handle click event on the view button
+      $('.openModalDoc').on('click', function() {
+        // Get the image source from the data-image attribute
+        // var imageUrl = $(this).data('image');
+        var berkas = $(this).data('berkas');
+        var berkasTitle = $(this).data('title');
+
+        // Set the image source in the modal
+        // $('#viewImage').attr('src', imageUrl);
+        $('#viewBerkas').attr('src', berkas);
+        $('#exampleModalLabel').text(berkasTitle);
+
+        // Set the download button link
+        $('#downloadButton').attr('href', berkas);
+  
+        // Open the modal
+        $('#viewModal').modal('show');
+      });
+    });
+</script>
 <script>
     $(document).ready(function() {
       // Handle click event on the button to open the modal

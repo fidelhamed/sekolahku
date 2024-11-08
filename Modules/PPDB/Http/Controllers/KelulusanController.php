@@ -115,14 +115,10 @@ class KelulusanController extends Controller
             $validator = Validator::make(
                 $request->all(),
                 [
-                    'nis'   => 'required|numeric|unique:data_murids',
                     'nisn'  => 'required|numeric|unique:data_murids',
                 ],
                 [
-                    'nis.required'      => 'NIS tidak boleh kosong.',
                     'nisn.required'     => 'NISN tidak boleh kosong.',
-                    'nis.numeric'       => 'NIS hanya mendukung angka.',
-                    'nis.unique'        => 'NIS sudah pernah digunakan.',
                     'nisn.numeric'      => 'NISN hanya mendukung angka.',
                     'nisn.unique'       => 'NISN sudah pernah digunakan.',
                 ]
@@ -138,7 +134,6 @@ class KelulusanController extends Controller
 
             if ($murid) {
                 $data = DataMurid::where('user_id', $id)->first();
-                $data->nis      = $request->nis;
                 $data->nisn     = $request->nisn;
                 $data->update();
 
