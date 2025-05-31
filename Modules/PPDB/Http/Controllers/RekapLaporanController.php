@@ -2,15 +2,16 @@
 
 namespace Modules\PPDB\Http\Controllers;
 
-use PDF;
-use Carbon\Carbon;
 use App\Models\User;
 use App\Models\DataMurid;
-use Illuminate\Http\Request;
 use App\Exports\DataMuridsExport;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Carbon\Carbon;
+use PDF;
 use Maatwebsite\Excel\Facades\Excel;
 use Modules\PPDB\Entities\BerkasMurid;
+use Modules\PPDB\Entities\PaymentRegistration;
 
 class RekapLaporanController extends Controller
 {
@@ -40,11 +41,12 @@ class RekapLaporanController extends Controller
 
         return $pdf->stream(Carbon::now()->format('Ymd') . '_Rekap_Laporan_' . $jenjang . '_' . $status . '.pdf', array('Content-Type' => 'application/pdf'));
     }
-
+    
     public function downloadBerkas(Request $request)
     {
         $murids = DataMurid::where('jenjang', $request->jenjang)->pluck('user_id');
         $berkasMurids = BerkasMurid::whereIn('user_id', $murids)->get();
+        $paymentMurids = PaymentRegistration::whereIn('user_id', $murids)->get();
 
         $zip = new \ZipArchive();
         $zipFileName = 'rekap_berkas_' . $request->jenjang . '.zip';
@@ -53,17 +55,22 @@ class RekapLaporanController extends Controller
             // $berkasMurids = BerkasMurid::all();
             foreach ($berkasMurids as $berkas) {
                 if ($berkas->kartu_keluarga && file_exists(public_path('storage/images/berkas_murid/' . $berkas->kartu_keluarga))) {
-                    $zip->addFile(public_path('storage/images/berkas_murid/' . $berkas->kartu_keluarga), 'kartu_keluarga/' . basename($berkas->kartu_keluarga));
+                    $zip->addFile(public_path('storage/images/berkas_murid/' . $berkas->kartu_keluarga), 'kartu_keluarga/' . basename('ID' . $berkas->user_id . '_' . $berkas->kartu_keluarga));
                 }if ($berkas->akte_kelahiran && file_exists(public_path('storage/images/berkas_murid/' . $berkas->akte_kelahiran))) {
-                    $zip->addFile(public_path('storage/images/berkas_murid/' . $berkas->akte_kelahiran), 'akte_kelahiran/' . basename($berkas->akte_kelahiran));
+                    $zip->addFile(public_path('storage/images/berkas_murid/' . $berkas->akte_kelahiran), 'akte_kelahiran/' . basename('ID' . $berkas->user_id . '_' . $berkas->akte_kelahiran));
                 }if ($berkas->rapor && file_exists(public_path('storage/images/berkas_murid/' . $berkas->rapor))) {
-                    $zip->addFile(public_path('storage/images/berkas_murid/' . $berkas->rapor), 'rapor/' . basename($berkas->rapor));
+                    $zip->addFile(public_path('storage/images/berkas_murid/' . $berkas->rapor), 'rapor/' . basename('ID' . $berkas->user_id . '_' . $berkas->rapor));
                 }if ($berkas->foto && file_exists(public_path('storage/images/berkas_murid/' . $berkas->foto))) {
-                    $zip->addFile(public_path('storage/images/berkas_murid/' . $berkas->foto), 'foto/' . basename($berkas->foto));
+                    $zip->addFile(public_path('storage/images/berkas_murid/' . $berkas->foto), 'foto/' . basename('ID' . $berkas->user_id . '_' . $berkas->foto));
                 }if ($berkas->ijazah && file_exists(public_path('storage/images/berkas_murid/' . $berkas->ijazah))) {
-                    $zip->addFile(public_path('storage/images/berkas_murid/' . $berkas->ijazah), 'ijazah/' . basename($berkas->ijazah));
+                    $zip->addFile(public_path('storage/images/berkas_murid/' . $berkas->ijazah), 'ijazah/' . basename('ID' . $berkas->user_id . '_' . $berkas->ijazah));
                 }
                 // Tambahkan berkas lainnya sesuai kebutuhan
+            }
+            foreach ($paymentMurids as $payment) {
+                if ($payment->file && file_exists(public_path('storage/images/payment_pendaftaran/' . $payment->file))) {
+                    $zip->addFile(public_path('storage/images/payment_pendaftaran/' . $payment->file), 'payment_pendaftaran/' . basename('ID' . $payment->user_id . '_' . $payment->file));
+                }                
             }
             $zip->close();
         } else {

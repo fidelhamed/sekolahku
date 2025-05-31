@@ -13,11 +13,14 @@ class DataMuridRequest extends FormRequest
      */
     public function rules()
     {
+        
+        $userId = $this->route('id');
+        
         return [
             'name'          => 'required',
-            'nik'           => 'required|numeric|digits:16',
+            'nik'           => 'required|numeric|digits:16|unique:data_murids,nik,' . $userId . ',user_id',
             'nama_panggilan'=> 'required',
-            'nisn'          => 'numeric',
+            'nisn'          => 'numeric|unique:data_murids,nisn,' . $userId . ',user_id',
             'jenis_kelamin' => 'required',
             'tempat_lahir'  => 'required',
             'tgl_lahir'     => 'required',
@@ -30,7 +33,7 @@ class DataMuridRequest extends FormRequest
             'kecamatan'     => 'required',
             'kabupaten'     => 'required',
             'provinsi'      => 'required',
-            'kode_pos'      => 'required',
+            'kode_pos'      => 'required|numeric|digits:5',
             'nama_sekolah_asal' => 'nullable',
             'npsn_sekolah_asal' => 'nullable',
             'kecamatan_sekolah_asal' => 'nullable',
@@ -51,8 +54,10 @@ class DataMuridRequest extends FormRequest
             'nik.required'              => 'NIK tidak boleh kosong.',
             'nik.numeric'               => 'NIK harus terdiri dari angka.',
             'nik.digits'                => 'NIK harus terdiri dari 16 digit.',
+            'nik.unique'                => 'NIK sudah terdaftar.',
             'nama_panggilan.required'   => 'Nama Panggilan tidak boleh kosong',
             'nisn.numeric'              => 'NISN harus terdiri dari angka.',
+            'nisn.unique'               => 'NISN sudah terdaftar.',
             'jenis_kelamin.required'    => 'Jenis Kelamin tidak boleh kosong',
             'tempat_lahir.required'     => 'Tempat Lahir tidak boleh kosong.',
             'tgl_lahir.required'        => 'Tanggal Lahir tidak boleh kosong.',
@@ -70,9 +75,12 @@ class DataMuridRequest extends FormRequest
             'kabupaten.required'        => 'Kabupaten/Kota tidak boleh kosong.',
             'provinsi.required'         => 'Provinsi tidak boleh kosong.',
             'kode_pos.required'         => 'Kode Pos tidak boleh kosong.',
+            'kode_pos.numeric'          => 'Kode Pos harus terdiri dari angka.',
+            'kode_pos.digits'           => 'Kode Pos harus terdiri dari 5 digit.',
             'lingkar_kepala.numeric'    => 'Lingkar Kepala harus terdiri dari angka.',
             'tinggi_badan.numeric'      => 'Tinggi Badan harus terdiri dari angka.',
             'berat_badan.numeric'       => 'Berat Badan harus terdiri dari angka.',
+            // 'gol_darah.digits_between'  => 'Golongan Darah tidak valid',
         ];
     }
 

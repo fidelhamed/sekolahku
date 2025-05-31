@@ -24,8 +24,8 @@ class ImageSliderRequest extends FormRequest
     public function rules()
     {
         return [
-            'desc'      => ['required'],
-            'title'     => ['required'],
+            // 'desc'      => ['required'],
+            // 'title'     => ['required'],
             'image'     => ['required'],
             'urutan'    => ['required','unique:image_sliders']
         ];
@@ -34,8 +34,8 @@ class ImageSliderRequest extends FormRequest
     public function messages()
     {
         return [
-            'desc.required'      => 'Deskripsi tidak boleh kosong.',
-            'title.required'     => 'Title tidak boleh kosong.',
+            // 'desc.required'      => 'Deskripsi tidak boleh kosong.',
+            // 'title.required'     => 'Title tidak boleh kosong.',
             'image.required'     => 'Gambar Slider tidak boleh kosong.',
             'urutan.required'    => 'Urutan Gambar tidak boleh kosong.',
             'urutan.unique'      => 'Urutan Gambar sudah digunakan.'

@@ -27,20 +27,42 @@ class DataMuridController extends Controller
     public function index(Request $request)
     {
         $jenjang = $request['jenjangDataMurid'];
+        // $murids = User::has('muridDetail')
+        //     ->whereHas('muridDetail', function ($a) use ($jenjang) {
+        //         $a->where('jenjang', $jenjang);
+        //     })
+        //     ->with('muridDetail')
+        //     ->where(function($query){
+        //         $query->where('role', 'Guest')
+        //             ->orWhere('role', 'Terverifikasi');
+        //     })
+        //     ->get();
+            
         $murids = User::has('muridDetail')
             ->whereHas('muridDetail', function ($a) use ($jenjang) {
                 $a->where('jenjang', $jenjang);
             })
-            ->with('muridDetail')
+            ->with(['muridDetail' => function ($query) {
+                $query->orderByRaw("FIELD(proses, 'Input Data') DESC");
+            }])
             ->where(function($query){
                 $query->where('role', 'Guest')
-                    ->orWhere('role', 'Terverifikasi');
+                      ->orWhere('role', 'Terverifikasi');
             })
+            ->leftJoin('payment_registrations', 'users.id', '=', 'payment_registrations.user_id')
+            ->select('users.*')
+            ->addSelect(\DB::raw("CASE 
+                WHEN payment_registrations.file IS NOT NULL AND payment_registrations.status = 'unpaid' THEN 1 
+                ELSE 2 
+            END as payment_priority"))
+            ->orderByRaw("FIELD((SELECT proses FROM data_murids WHERE data_murids.user_id = users.id LIMIT 1), 'Input Data') DESC")
+            ->orderBy('payment_priority')
+            ->orderBy('users.name', 'ASC')
             ->get();
 
         $currentDate = \Carbon\Carbon::now();
-        $startDate = \Carbon\Carbon::create(2024, 11, 1);
-        $endDate = \Carbon\Carbon::create(2025, 2, 28);
+        $startDate = \Carbon\Carbon::create(2025, 1, 25);
+        $endDate = \Carbon\Carbon::create(2025, 6, 30);
         $showButton = $currentDate->between($startDate, $endDate);
 
         return view('ppdb::backend.dataMurid.index', compact('murids','jenjang','showButton'));
@@ -150,9 +172,17 @@ class DataMuridController extends Controller
      * @param int $id
      * @return Renderable
      */
+
     public function destroy($id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        try {
+            $user->delete(); // Akan otomatis menghapus relasi jika foreign key pakai onDelete('cascade')
+            return back()->with('success', 'User berhasil dihapus.');
+        } catch (\Exception $e) {
+            return back()->with('error', 'Gagal menghapus user: ' . $e->getMessage());
+        }
     }
 
     // Konfirm Payment Regis Page
@@ -164,7 +194,7 @@ class DataMuridController extends Controller
             'approve_date'  => Carbon::now(),
             'approved_by'    => Auth::user()->id
         ]);
-        Session::flash('success', 'Sukses, Pembayaran/Prestasi diterima !');
+        Session::flash('success', 'Sukses, Pembayaran/Bukti Prestasi diterima !');
         return back();
     }
 

@@ -1,4 +1,4 @@
-<div class="video-area overlay-video bg-common-style" style="background-image: url('{{asset('Assets/Frontend/img/banner/1.jpg')}}');">
+<div id="video-section" class="video-area overlay-video bg-common-style" style="background-image: url('{{asset('Assets/Frontend/img/banner/Screenshot (717).png')}}');">
     @if ($video != NULL)
         <div class="container">
             <div class="video-content">

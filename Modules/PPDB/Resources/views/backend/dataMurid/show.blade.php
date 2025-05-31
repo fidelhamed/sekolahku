@@ -84,6 +84,7 @@
                                         @enderror
                                     </div>
                                 </div>
+                              
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="basicInput">NIK</label>
@@ -402,6 +403,8 @@
                                 </div>
 
                             </div> <br>
+                            
+                            <!--Data Ayah-->
                             <h4>Data Ayah</h4>
                             <hr>
                             <div class="row">
@@ -435,7 +438,8 @@
                                             <option value="SD" {{$murid->dataOrtu->pendidikan_ayah == 'SD' ? 'selected' : ''}} >SD</option>
                                             <option value="SMP" {{$murid->dataOrtu->pendidikan_ayah == 'SMP' ? 'selected' : ''}}>SMP</option>
                                             <option value="SMA/SMK" {{$murid->dataOrtu->pendidikan_ayah == 'SMA/SMK' ? 'selected' : ''}}>SMA/SMK</option>
-                                            <option value="SI" {{$murid->dataOrtu->pendidikan_ayah == 'S1' ? 'selected' : ''}}>SI</option>
+                                            <option value="D3" {{$murid->dataOrtu->pendidikan_ayah == 'D3' ? 'selected' : ''}}>D3</option>
+                                            <option value="S1" {{$murid->dataOrtu->pendidikan_ayah == 'S1' ? 'selected' : ''}}>S1</option>
                                             <option value="S2" {{$murid->dataOrtu->pendidikan_ayah == 'S2' ? 'selected' : ''}}>S2</option>
                                             <option value="S3" {{$murid->dataOrtu->pendidikan_ayah == 'S3' ? 'selected' : ''}}>S3</option>
                                         </select>
@@ -506,7 +510,8 @@
                                     </div>
                                 </div>
                             </div> <br>
-                            {{-- Data Ibu --}}
+                            
+                            <!--Data Ibu-->
                             <h4>Data Ibu</h4>
                             <hr>
                             <div class="row">
@@ -540,7 +545,8 @@
                                             <option value="SD" {{$murid->dataOrtu->pendidikan_ibu == 'SD' ? 'selected' : ''}} >SD</option>
                                             <option value="SMP" {{$murid->dataOrtu->pendidikan_ibu == 'SMP' ? 'selected' : ''}}>SMP</option>
                                             <option value="SMA/SMK" {{$murid->dataOrtu->pendidikan_ibu == 'SMA/SMK' ? 'selected' : ''}}>SMA/SMK</option>
-                                            <option value="SI" {{$murid->dataOrtu->pendidikan_ibu == 'S1' ? 'selected' : ''}}>SI</option>
+                                            <option value="D3" {{$murid->dataOrtu->pendidikan_ibu == 'D3' ? 'selected' : ''}}>D3</option>
+                                            <option value="S1" {{$murid->dataOrtu->pendidikan_ibu == 'S1' ? 'selected' : ''}}>S1</option>
                                             <option value="S2" {{$murid->dataOrtu->pendidikan_ibu == 'S2' ? 'selected' : ''}}>S2</option>
                                             <option value="S3" {{$murid->dataOrtu->pendidikan_ibu == 'S3' ? 'selected' : ''}}>S3</option>
                                         </select>
@@ -612,6 +618,8 @@
                                     </div>
                                 </div>
                             </div> <br>
+                            
+                            <!--Data Wali-->
                             <h4>Data Wali</h4>
                             <hr>
                             <div class="row">
@@ -691,9 +699,9 @@
                                         </li>
                                         <li>Bukti Pembayaran/Prestasi
                                             @if ($murid->paymentRegis->file && (Str::endsWith(strtolower($murid->paymentRegis->file), ['.jpg', '.jpeg', '.png'])))
-                                            <a href="{{ asset('storage/images/payment_pendaftaran/' .$murid->paymentRegis->file) }}" class="badge badge-info openModalImg {{$murid->paymentRegis->approve_date == null ? 'hidden' : ''}}" data-download-link="{{ asset('storage/images/payment_pendaftaran/' . $murid->paymentRegis->file) }}" data-title="Bukti Pembayaran">View</a>
+                                            <a href="{{ asset('storage/images/payment_pendaftaran/' .$murid->paymentRegis->file) }}" class="badge badge-info openModalImg {{$murid->paymentRegis->approve_date == null ? 'hidden' : ''}}" data-download-link="{{ asset('storage/images/payment_pendaftaran/' . $murid->paymentRegis->file) }}" data-title="Bukti Pembayaran/Prestasi">View</a>
                                             @elseif ($murid->paymentRegis->file && (Str::endsWith(strtolower($murid->paymentRegis->file), '.pdf')))
-                                            <a href="#" class="badge badge-info openModalDoc {{$murid->paymentRegis->approve_date == null ? 'hidden' : ''}}" data-toggle="modal" data-target="#viewModal" data-berkas="{{asset('storage/images/payment_pendaftaran/' .$murid->paymentRegis->file)}}" data-title="Bukti Pembayaran">View</a>
+                                            <a href="#" class="badge badge-info openModalDoc {{$murid->paymentRegis->approve_date == null ? 'hidden' : ''}}" data-toggle="modal" data-target="#viewModal" data-berkas="{{asset('storage/images/payment_pendaftaran/' .$murid->paymentRegis->file)}}" data-title="Bukti Pembayaran/Prestasi">View</a>
                                             @endif
                                         </li>
                                     </ul>
@@ -706,8 +714,8 @@
                 </div>
             </div>
         </div>
-
-        {{-- Modal pdf --}}
+        
+        <!--Modal PDF-->
         <div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
               <div class="modal-content">
@@ -727,7 +735,7 @@
             </div>
         </div>
 
-        {{-- Modal gambar --}}
+        <!--Modal Gambar-->
         <div class="modal" tabindex="-1" role="dialog" id="imgModal">
             <div class="modal-dialog modal-lg" role="document">
               <div class="modal-content">
@@ -746,53 +754,69 @@
                 </div>
               </div>
             </div>
-        </div>            
+        </div>
     </div>
 </div>
 @endsection
 @section('scripts')
 <script>
     $(document).ready(function() {
-      // Handle click event on the view button
-      $('.openModalDoc').on('click', function() {
-        // Get the image source from the data-image attribute
-        // var imageUrl = $(this).data('image');
-        var berkas = $(this).data('berkas');
-        var berkasTitle = $(this).data('title');
+        // Handle click event on the view button
+        $('.openModalDoc').on('click', function() {
+            // Get the image file URL and title from the data attributes
+            var berkas = $(this).data('berkas');
+            var berkasTitle = $(this).data('title');
 
-        // Set the image source in the modal
-        // $('#viewImage').attr('src', imageUrl);
-        $('#viewBerkas').attr('src', berkas);
-        $('#exampleModalLabel').text(berkasTitle);
+            // Add timestamp to URL to prevent caching (force reload)
+            var uniqueUrl = berkas + '?t=' + new Date().getTime();
 
-        // Set the download button link
-        $('#downloadButton').attr('href', berkas);
-  
-        // Open the modal
-        $('#viewModal').modal('show');
-      });
+            // Set the iframe source to the file URL with the unique timestamp
+            $('#viewBerkas').attr('src', uniqueUrl);
+
+            // Set the modal title dynamically
+            $('#exampleModalLabel').text(berkasTitle);
+
+            // Open the modal
+            $('#viewModal').modal('show');
+        });
+
+        // Reset iframe content and modal title when modal is hidden
+        $('#viewModal').on('hidden.bs.modal', function() {
+            $('#viewBerkas').attr('src', '');  // Clear iframe content
+            $('#exampleModalLabel').text('');  // Reset modal title
+        });
     });
 </script>
 <script>
     $(document).ready(function() {
-      // Handle click event on the button to open the modal
-      $('.openModalImg').on('click', function() {
-        // Get the image source from the link's href attribute
-        var docImageSrc = $(this).attr('href');
-        var downloadLink = $(this).attr('data-download-link');
-        var berkasTitle = $(this).data('title');
-  
-        // Set the image source in the modal
-        $('#docImage').attr('src', docImageSrc);
-        $('#downloadButton').attr('href', downloadLink);
-        $('#berkasTitle').text(berkasTitle);
-  
-        // Open the modal
-        $('#imgModal').modal('show');
-  
-        // Prevent the default behavior of the link
-        return false;
-      });
+        // Handle click event on the button to open the modal
+        $('.openModalImg').on('click', function(e) {
+            // Prevent default link behavior (don't navigate to href)
+            e.preventDefault();
+
+            // Get the image source from the link's href attribute
+            var docImageSrc = $(this).attr('href');
+            var downloadLink = $(this).attr('data-download-link');
+            var berkasTitle = $(this).data('title');
+
+            // Add timestamp to the image URL to avoid caching
+            var uniqueImgUrl = docImageSrc + '?t=' + new Date().getTime();
+
+            // Set the image source in the modal
+            $('#docImage').attr('src', uniqueImgUrl);
+            $('#downloadButton').attr('href', downloadLink);
+            $('#berkasTitle').text(berkasTitle);
+
+            // Open the modal
+            $('#imgModal').modal('show');
+        });
+
+        // Reset modal content when modal is hidden (close/reset)
+        $('#imgModal').on('hidden.bs.modal', function() {
+            // Clear the image src to reset the modal
+            $('#docImage').attr('src', '');
+            $('#berkasTitle').text('');
+        });
     });
 </script>
 <script>

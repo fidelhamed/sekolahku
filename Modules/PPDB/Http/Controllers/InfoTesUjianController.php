@@ -43,34 +43,6 @@ class InfoTesUjianController extends Controller
                 }
                 
                 return view('ppdb::backend.infoTesUjian.index', $infoData);
-                // $infoTKTQReguler = InfoTesUjian::where('jenjang', 'TKTQ')->where('jalur', 'Reguler')->first();
-                // $infoTKTQPrestasi = InfoTesUjian::where('jenjang', 'TKTQ')->where('jalur', 'Prestasi')->first();
-                // $infoTKTQ2Reguler = InfoTesUjian::where('jenjang', 'TKTQ-2')->where('jalur', 'Reguler')->first();
-                // $infoTKTQ2Prestasi = InfoTesUjian::where('jenjang', 'TKTQ-2')->where('jalur', 'Prestasi')->first();
-                // $infoSDITReguler = InfoTesUjian::where('jenjang', 'SD-IT')->where('jalur', 'Reguler')->first();
-                // $infoSDITPrestasi = InfoTesUjian::where('jenjang', 'SD-IT')->where('jalur', 'Prestasi')->first();
-                // $infoSDIT2Reguler = InfoTesUjian::where('jenjang', 'SD-IT-2')->where('jalur', 'Reguler')->first();
-                // $infoSDIT2Prestasi = InfoTesUjian::where('jenjang', 'SD-IT-2')->where('jalur', 'Prestasi')->first();
-                // $infoSMPITReguler = InfoTesUjian::where('jenjang', 'SMP-IT')->where('jalur', 'Reguler')->first();
-                // $infoSMPITPrestasi = InfoTesUjian::where('jenjang', 'SMP-IT')->where('jalur', 'Prestasi')->first();
-                // $infoSMAITReguler = InfoTesUjian::where('jenjang', 'SMA-IT')->where('jalur', 'Reguler')->first();
-                // $infoSMAITPrestasi = InfoTesUjian::where('jenjang', 'SMA-IT')->where('jalur', 'Prestasi')->first();
-                // $infoMAReguler = InfoTesUjian::where('jenjang', 'MA')->where('jalur', 'Reguler')->first();
-                // $infoMAPrestasi = InfoTesUjian::where('jenjang', 'MA')->where('jalur', 'Prestasi')->first();
-                // return view('ppdb::backend.infoTesUjian.index', compact('infoTKTQReguler', 
-                //                                                         'infoTKTQPrestasi',
-                //                                                         'infoTKTQ2Reguler', 
-                //                                                         'infoTKTQ2Prestasi', 
-                //                                                         'infoSDITReguler', 
-                //                                                         'infoSDITPrestasi', 
-                //                                                         'infoSDIT2Reguler', 
-                //                                                         'infoSDIT2Prestasi', 
-                //                                                         'infoSMPITReguler', 
-                //                                                         'infoSMPITPrestasi', 
-                //                                                         'infoSMAITReguler', 
-                //                                                         'infoSMAITPrestasi', 
-                //                                                         'infoMAReguler', 
-                //                                                         'infoMAPrestasi'));
             }
             DB::commit();
             Session::flash('success', 'Sukses, Data Berhasil dikirim !');
@@ -88,7 +60,7 @@ class InfoTesUjianController extends Controller
             $jalur = $request->jalur;
             $jenjang = $request->jenjang;
             $cekInfo = InfoTesUjian::where('jenjang', $jenjang)->where('jalur', $jalur)->count();
-
+            
             if ($cekInfo === 0) {
                 $info = new InfoTesUjian();
                 $info->jalur = $jalur;

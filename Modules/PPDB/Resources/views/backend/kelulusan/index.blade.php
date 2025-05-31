@@ -67,13 +67,19 @@
                                                     <td>
                                                     @if ($murid->muridDetail->nisn == null)
                                                         @if ($murid->role == 'Lulus')
-                                                        <a href="{{route('data-kelulusan.show', $murid->id)}}" class="btn btn-warning btn-sm" >Input NIS dan NISN</a>                                                                                                                
+                                                        <a href="{{route('data-kelulusan.show', $murid->id)}}" class="btn btn-warning btn-sm" >Input NISN</a>                                                                                                                
                                                         @else
                                                         <a href="{{route('data-kelulusan.show', $murid->id)}}" class="btn btn-info btn-sm" >Detail</a>
                                                         @endif
                                                     @else
                                                     <a href="{{route('data-kelulusan.show', $murid->id)}}" class="btn btn-info btn-sm" >Detail</a>
                                                     @endif
+
+                                                    <form action="{{ route('data-murid.destroy', $murid->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('Yakin ingin menghapus data ini?')">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger btn-sm"><i data-feather="trash-2"></i></button>
+                                                    </form>
                                                     </td>
                                                 </tr>
                                             @endforeach

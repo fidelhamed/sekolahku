@@ -24,40 +24,18 @@
     <div class="content-body">
         <div class="row">
             <div class="col-lg-6 col-md-12 col-sm-12">
-                <div class="card card-congratulations">
-                    <div class="card-body text-center">
-                        <div class="avatar avatar-xl bg-primary shadow">
-                            <div class="avatar-content">
-                                <i data-feather="smile" class="font-large-1"></i>
-                            </div>
-                        </div>
-                        <div class="text-center">
-                            <h1 class="mb-1 text-white">ٱلسَّلَامُ عَلَيْكُمْ وَرَحْمَةُ ٱللَّٰهِ وَبَرَكَاتُهُ {{Auth::user()->name}},</h1>
-                            <p class="card-text m-auto w-75">
-                                بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم
-                            </p>
-                        </div>
+                <div class="card" style="background-image: url('{{ asset('Assets/Backend/images/banner_welcome.jpeg') }}'); background-size: cover; background-position: center; background-repeat: no-repeat; aspect-ratio: 2/1;">
+                    <div class="card-body text-center" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                        <h2 class="text-black" style="margin-top: 60%;">{{Auth::user()->name}}</h2>
                     </div>
                 </div>
             </div>
         
         @if (Auth::user()->role == 'Terverifikasi')
             <div class="col-lg-6 col-md-12 col-sm-12">
-                <div class="card card-congratulations">
-                    <div class="card-body text-center">
-                        <img src="{{asset('Assets/Backend/images/pages/decore-left.png')}}" class="congratulations-img-left" alt="card-img-left" />
-                        <img src="{{asset('Assets/Backend/images/pages/decore-right.png')}}" class="congratulations-img-right" alt="card-img-right" />
-                        <div class="avatar avatar-xl bg-primary shadow">
-                            <div class="avatar-content">
-                                <i data-feather="award" class="font-large-1"></i>
-                            </div>
-                        </div>
-                        <div class="text-center">
-                            <h1 class="mb-1 text-white">اَلْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ {{Auth::user()->name}},</h1>
-                            <p class="card-text m-auto w-75">
-                                Selamat kamu lulus administrasi
-                            </p>
-                        </div>
+                <div class="card" style="background-image: url('{{ asset('Assets/Backend/images/banner_verified.jpeg') }}'); background-size: cover; background-position: center; background-repeat: no-repeat; aspect-ratio: 2/1;">
+                    <div class="card-body text-center" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                        <h4 class="text-black" style="margin-top: 20%;">{{Auth::user()->name}}</h4>
                     </div>
                 </div>
             </div>
@@ -110,21 +88,9 @@
             </div>
         @elseif (Auth::user()->role == 'Lulus')
             <div class="col-lg-6 col-md-12 col-sm-12">
-                <div class="card card-congratulations">
-                    <div class="card-body text-center">
-                        <img src="{{asset('Assets/Backend/images/pages/decore-left.png')}}" class="congratulations-img-left" alt="card-img-left" />
-                        <img src="{{asset('Assets/Backend/images/pages/decore-right.png')}}" class="congratulations-img-right" alt="card-img-right" />
-                        <div class="avatar avatar-xl bg-success shadow">
-                            <div class="avatar-content">
-                                <i data-feather="award" class="font-large-1"></i>
-                            </div>
-                        </div>
-                        <div class="text-center">
-                            <h1 class="mb-1 text-white">اَلْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ {{Auth::user()->name}},</h1>
-                            <p class="card-text m-auto w-75">
-                                Selamat anda lulus menjadi murid SIT Ash-Shiddiiqi Jambi
-                            </p>
-                        </div>
+                <div class="card" style="background-image: url('{{ asset('Assets/Backend/images/banner_lulus.jpeg') }}'); background-size: cover; background-position: center; background-repeat: no-repeat; aspect-ratio: 2/1;">
+                    <div class="card-body text-center" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                        <h4 class="text-black" style="margin-top: 20%;">{{Auth::user()->name}}</h4>
                     </div>
                 </div>
             </div>
@@ -135,10 +101,10 @@
                         <div class="text-center">
                             <h4 class="mb-1">Silahkan lakukan daftar ulang pada</h4>
                             <p class="card-text m-auto w-75">
-                                Tanggal Buka     :       {{ Carbon\Carbon::parse($infoDaftarUlang->tgl_buka)->format('d-m-Y') }} 
+                                Tanggal Buka     :       {{ Carbon\Carbon::parse($infoDaftarUlang->tgl_buka)->format('d-m-Y') }}
                             </p>
                             <p class="card-text m-auto w-75">
-                                Tanggal Tutup     :       {{ Carbon\Carbon::parse($infoDaftarUlang->tgl_tutup)->format('d-m-Y') }} 
+                                Tanggal Tutup     :       {{ Carbon\Carbon::parse($infoDaftarUlang->tgl_tutup)->format('d-m-Y') }}
                             </p>
                             <p class="card-text m-auto w-75">
                                 @if (Auth::user()->muridDetail->jenis_kelamin === 'Laki-laki')
@@ -178,6 +144,52 @@
                     </div>
                 </div>
             </div>
+        @elseif (Auth::user()->role == 'Guest' AND Auth::user()->paymentRegis->status == 'Unpaid')
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <div class="text-center">
+                            <p class="card-text m-auto w-75 font-weight-bold">
+                                Silahkan lanjutkan melakukan proses upload
+                                @if (Auth::user()->muridDetail->jalur == 'Reguler' || Auth::user()->muridDetail->jalur == 'Internal')
+                                bukti pembayaran
+                                @else
+                                prestasi
+                                @endif
+                            </p>
+                            <a class="btn btn-success mt-1" href="{{route('ppdb.form-pendaftaran')}}">
+                                @if (Auth::user()->muridDetail->jalur == 'Reguler' || Auth::user()->muridDetail->jalur == 'Internal')
+                                Upload Bukti Pembayaran
+                                @else
+                                Upload Prestasi
+                                @endif
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @elseif (Auth::user()->role == 'Guest' AND Auth::user()->paymentRegis->status == 'Paid' AND Auth::user()->muridDetail->proses == 'Pendaftaran')
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="card" style="background-image: url('{{ asset('Assets/Backend/images/banner_confirmed.jpeg') }}'); background-size: cover; background-position: center; background-repeat: no-repeat; aspect-ratio: 2/1;">
+                    <div class="card-body text-center" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                        <h4 class="text-black" style="margin-top: 50%;">{{Auth::user()->name}}</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <div class="text-center">
+                            <p class="card-text m-auto w-75 font-weight-bold">
+                                Silahkan lanjutkan proses pengisian formulir pendaftaran
+                            </p>
+                            <a class="btn btn-success mt-1" href="{{route('ppdb.form-pendaftaran')}}">
+                                Form Pendaftaran
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         @elseif (Auth::user()->role == 'Guest' AND Auth::user()->muridDetail->proses == 'Perbaikan')
             <div class="col-lg-6 col-md-12 col-sm-12">
                 <div class="card">
@@ -190,32 +202,15 @@
                         <div class="text-center">
                             <h4 class="mb-1">Mohon maaf {{ Auth::user()->name }}</h4>
                             <p class="card-text m-auto w-75 text-danger font-weight-bold">
-                                Silahkan lakukan perbaikan dengan mengisi ulang data kamu di menu pendaftaran
+                                Silahkan lakukan perbaikan dengan mengisi ulang formulir pendaftaran
                             </p>
+                            <a class="btn btn-danger mt-1" href="{{route('ppdb.form-pendaftaran')}}">
+                                Form Pendaftaran
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
-        @elseif (Auth::user()->role == 'Guest' AND Auth::user()->paymentRegis->status == 'Paid' AND Auth::user()->muridDetail->proses == 'Pendaftaran')
-        <div class="col-lg-6 col-md-12 col-sm-12">
-            <div class="card card-congratulations">
-                <div class="card-body text-center">
-                    <img src="{{asset('Assets/Backend/images/pages/decore-left.png')}}" class="congratulations-img-left" alt="card-img-left" />
-                    <img src="{{asset('Assets/Backend/images/pages/decore-right.png')}}" class="congratulations-img-right" alt="card-img-right" />
-                    <div class="avatar avatar-xl bg-primary shadow">
-                        <div class="avatar-content">
-                            <i data-feather="award" class="font-large-1"></i>
-                        </div>
-                    </div>
-                    <div class="text-center">
-                        <h1 class="mb-1 text-white">اَلْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ {{Auth::user()->name}},</h1>
-                        <p class="card-text m-auto w-75">
-                            Pembayaran kamu berhasil dikonfirmasi, silahkan lanjutkan mengisi formulir pendaftaran di menu pendaftaran
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
         @endif
         
            @if (Auth::user()->role == 'PPDB')
@@ -240,42 +235,40 @@
                   <div class="card">
                       <div class="card-header">
                           <div>
-                            {{-- @if ($needVerifTKTQ == 0 AND $needVerifTKTQ2 == 0 AND $needVerifSDIT == 0 AND $needVerifSDIT2 == 0 AND $needVerifSMPIT == 0 AND $needVerifSMAIT == 0 AND $needVerifMA == 0)
-                                <h2 class="font-weight-bolder mb-0">0</h2>                                                                                 --}}
                             @if (Auth::user()->userDetail->pj_jenjang == 'TKTQ')
 
                             <a href="{{ url('ppdb/data-murid?jenjangDataMurid=TKTQ') }}">
-                                <h4 class="font-weight-bolder mb-0">{{$needVerifTKTQ}} (TKTQ)</h4>                                        
+                                <h4 class="{{ $needVerifTKTQ > 0 ? 'text-success font-weight-bolder' : '' }} mb-0">{{$needVerifTKTQ}} (TKTQ)</h4>                                        
                             </a>
                             <a href="{{ url('ppdb/data-murid?jenjangDataMurid=TKTQ-2') }}">
-                                <h4 class="font-weight-bolder mb-0">{{$needVerifTKTQ2}} (TKTQ 2)</h4>                                        
+                                <h4 class="{{ $needVerifTKTQ2 > 0 ? 'text-success font-weight-bolder' : '' }} mb-0">{{$needVerifTKTQ2}} (TKTQ 2)</h4>                                        
                             </a>
 
                             @elseif (Auth::user()->userDetail->pj_jenjang == 'SD-IT')
 
                             <a href="{{ url('ppdb/data-murid?jenjangDataMurid=SD-IT') }}">
-                                <h4 class="font-weight-bolder mb-0">{{$needVerifSDIT}} (SD IT)</h4>                                        
+                                <h4 class="{{ $needVerifSDIT > 0 ? 'text-success font-weight-bolder' : '' }} mb-0">{{$needVerifSDIT}} (SD IT)</h4>
                             </a>
                             <a href="{{ url('ppdb/data-murid?jenjangDataMurid=SD-IT-2') }}">
-                                <h4 class="font-weight-bolder mb-0">{{$needVerifSDIT2}} (SD IT 2)</h4>                                        
+                                <h4 class="{{ $needVerifSDIT2 > 0 ? 'text-success font-weight-bolder' : '' }} mb-0">{{$needVerifSDIT2}} (SD IT 2)</h4>                                        
                             </a>
 
                             @elseif (Auth::user()->userDetail->pj_jenjang == 'SMP-IT')
                             
                             <a href="{{ url('ppdb/data-murid?jenjangDataMurid=SMP-IT') }}">
-                                <h4 class="font-weight-bolder mb-0">{{$needVerifSMPIT}} (SMP IT)</h4>                                        
+                                <h4 class="{{ $needVerifSMPIT > 0 ? 'text-success font-weight-bolder' : '' }} mb-0">{{$needVerifSMPIT}} (SMP IT)</h4>                                        
                             </a>
                             
                             @elseif (Auth::user()->userDetail->pj_jenjang == 'SMA-IT')
                             
                             <a href="{{ url('ppdb/data-murid?jenjangDataMurid=SMA-IT') }}">
-                                <h4 class="font-weight-bolder mb-0">{{$needVerifSMAIT}} (SMA IT)</h4>
+                                <h4 class="{{ $needVerifSMAIT > 0 ? 'text-success font-weight-bolder' : '' }} mb-0">{{$needVerifSMAIT}} (SMA IT)</h4>
                             </a>
                             
                             @elseif (Auth::user()->userDetail->pj_jenjang == 'MA')
                             
                             <a href="{{ url('ppdb/data-murid?jenjangDataMurid=MA') }}">
-                                <h4 class="font-weight-bolder mb-0">{{$needVerifMA}} (MA)</h4>
+                                <h4 class="{{ $needVerifMA > 0 ? 'text-success font-weight-bolder' : '' }} mb-0">{{$needVerifMA}} (MA)</h4>
                             </a>
                             
                             @endif
@@ -312,46 +305,44 @@
                         <div class="card">
                             <div class="card-header">
                                 <div>
-                                    {{-- @if ($needConfirmPaymentTKTQ == 0 AND $needConfirmPaymentTKTQ2 == 0 AND $needConfirmPaymentSDIT == 0 AND $needConfirmPaymentSDIT2 == 0 AND $needConfirmPaymentSMPIT == 0 AND $needConfirmPaymentSMAIT == 0 AND $needConfirmPaymentMA == 0)
-                                    <h2 class="font-weight-bolder mb-0">0</h2>                                                                                 --}}
                                     @if (Auth::user()->userDetail->pj_jenjang == 'TKTQ')
                                     
                                     <a href="{{ url('ppdb/data-murid?jenjangDataMurid=TKTQ') }}">
-                                        <h4 class="font-weight-bolder mb-0">{{$needConfirmPaymentTKTQ}} (TKTQ)</h4>                                  
+                                        <h4 class="{{ $needConfirmPaymentTKTQ > 0 ? 'text-success font-weight-bolder' : '' }} mb-0">{{$needConfirmPaymentTKTQ}} (TKTQ)</h4>                                  
                                     </a>
                                     <a href="{{ url('ppdb/data-murid?jenjangDataMurid=TKTQ-2') }}">
-                                        <h4 class="font-weight-bolder mb-0">{{$needConfirmPaymentTKTQ2}} (TKTQ 2)</h4>                                  
+                                        <h4 class="{{ $needConfirmPaymentTKTQ2 > 0 ? 'text-success font-weight-bolder' : '' }} mb-0">{{$needConfirmPaymentTKTQ2}} (TKTQ 2)</h4>                                  
                                     </a>
                                     
                                     @elseif (Auth::user()->userDetail->pj_jenjang == 'SD-IT')
                                     
                                     <a href="{{ url('ppdb/data-murid?jenjangDataMurid=SD-IT') }}">
-                                        <h4 class="font-weight-bolder mb-0">{{$needConfirmPaymentSDIT}} (SD IT)</h4>                                  
+                                        <h4 class="{{ $needConfirmPaymentSDIT > 0 ? 'text-success font-weight-bolder' : '' }} mb-0">{{$needConfirmPaymentSDIT}} (SD IT)</h4>                                  
                                     </a>
                                     <a href="{{ url('ppdb/data-murid?jenjangDataMurid=SD-IT-2') }}">
-                                        <h4 class="font-weight-bolder mb-0">{{$needConfirmPaymentSDIT2}} (SD IT 2)</h4>                                  
+                                        <h4 class="{{ $needConfirmPaymentSDIT2 > 0 ? 'text-success font-weight-bolder' : '' }} mb-0">{{$needConfirmPaymentSDIT2}} (SD IT 2)</h4>                                  
                                     </a>
 
                                     @elseif (Auth::user()->userDetail->pj_jenjang == 'SMP-IT')
                                     
                                     <a href="{{ url('ppdb/data-murid?jenjangDataMurid=SMP-IT') }}">
-                                        <h4 class="font-weight-bolder mb-0">{{$needConfirmPaymentSMPIT}} (SMP IT)</h4>                                  
+                                        <h4 class="{{ $needConfirmPaymentSMPIT > 0 ? 'text-success font-weight-bolder' : '' }} mb-0">{{$needConfirmPaymentSMPIT}} (SMP IT)</h4>                                  
                                     </a>
                                     
                                     @elseif (Auth::user()->userDetail->pj_jenjang == 'SMA-IT')
                                     
                                     <a href="{{ url('ppdb/data-murid?jenjangDataMurid=SMA-IT') }}">
-                                        <h4 class="font-weight-bolder mb-0">{{$needConfirmPaymentSMAIT}} (SMA IT)</h4>
+                                        <h4 class="{{ $needConfirmPaymentSMAIT > 0 ? 'text-success font-weight-bolder' : '' }} mb-0">{{$needConfirmPaymentSMAIT}} (SMA IT)</h4>
                                     </a>
                                     
                                     @elseif (Auth::user()->userDetail->pj_jenjang == 'MA')
                                     
                                     <a href="{{ url('ppdb/data-murid?jenjangDataMurid=MA') }}">
-                                        <h4 class="font-weight-bolder mb-0">{{$needConfirmPaymentMA}} (MA)</h4>
+                                        <h4 class="{{ $needConfirmPaymentMA > 0 ? 'text-success font-weight-bolder' : '' }} mb-0">{{$needConfirmPaymentMA}} (MA)</h4>
                                     </a>
                                     
                                     @endif
-                                    <p class="card-text">Cek Pembayaran</p>
+                                    <p class="card-text">Cek Pembayaran/Prestasi</p>
                                 </div>
                                 <div class="avatar bg-light-warning p-50 m-0">
                                     <div class="avatar-content">
@@ -391,6 +382,16 @@
                     </table>
                 </div>
             </div>
+            <div class="col-6">
+                <div class="mt-2">
+                    <p>Jika ada kendala ataupun pertanyaan lebih lanjut dapat menghubungi admin :</p>
+                    @foreach ($admins as $admin)
+                    <ul class="list-group">
+                        <li class="list-group-item">+62{{ $admin->nip }} (<span class="font-weight-bold">{{ $admin->pj_jenjang }}</span>)</li>
+                    </ul>
+                    @endforeach
+                </div>
+            </div>
            @endif
         </div>
         @if (Auth::user()->role == 'PPDB' || Auth::user()->role == 'Admin')
@@ -411,7 +412,12 @@
                 <div class="card py-1">
                     <canvas id="myChart_biaya" width="400" height="200"></canvas>
                 </div>
-            </div>            
+            </div>
+            <div class="col-lg-6 col-12">
+                <div class="card py-1">
+                    <canvas id="myChart_jlr" width="400" height="200"></canvas>
+                </div>
+            </div>
         </div>            
         @endif
     </div>
@@ -542,8 +548,8 @@
         return item.jumlah_pendaftar_perempuan;
     });
 
-    var backgroundColorsMale = 'rgba(40, 48, 70, 0.7)';
-    var borderColorsMale = 'rgba(40, 48, 70, 1)';
+    var backgroundColorsMale = 'rgba(42, 180, 255, 0.7)';
+    var borderColorsMale = 'rgba(42, 180, 255, 1)';
 
     var backgroundColorsFemale = 'rgba(20, 174, 92, 0.7)';
     var borderColorsFemale = 'rgba(20, 174, 92, 1)';
@@ -672,6 +678,78 @@
             },
             maintainAspectRatio: false,
             responsive: true
+        }
+    });
+    
+    // Chart pendaftar berdasarkan jalur
+    var ctx = document.getElementById('myChart_jlr').getContext('2d');
+    var data = @json($pendaftar_jlr);
+
+    // Tentukan urutan jenjang yang diinginkan
+    var order = ['TKTQ', 'TKTQ-2', 'SD-IT', 'SD-IT-2', 'SMP-IT', 'SMA-IT', 'MA']; // Sesuaikan dengan jenjang yang ada
+
+    // Urutkan data berdasarkan jenjang
+    data.sort(function(a, b) {
+        return order.indexOf(a.jenjang) - order.indexOf(b.jenjang);
+    });    
+
+    var labels_jlr = data.map(function(item) {
+        return item.jenjang;
+    });
+
+    var valuesReguler = data.map(function(item) {
+        return item.jumlah_pendaftar_reguler;
+    });
+
+    var valuesPrestasi = data.map(function(item) {
+        return item.jumlah_pendaftar_prestasi;
+    });
+
+    var backgroundColorsReguler = 'rgba(42, 180, 255, 0.7)';
+    var borderColorsReguler = 'rgba(42, 180, 255, 1)';
+
+    var backgroundColorsPrestasi = 'rgba(20, 174, 92, 0.7)';
+    var borderColorsPrestasi = 'rgba(20, 174, 92, 1)';
+
+    var datasets_jlr = [
+        {
+            label: 'Reguler',
+            data: valuesReguler,
+            backgroundColor: backgroundColorsReguler,
+            borderColor: borderColorsReguler,
+            borderWidth: 1,
+        },
+        {
+            label: 'Prestasi',
+            data: valuesPrestasi,
+            backgroundColor: backgroundColorsPrestasi,
+            borderColor: borderColorsPrestasi,
+            borderWidth: 1,
+        }
+    ];
+
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels_jlr,
+            datasets: datasets_jlr
+        },
+        options: {
+            plugins: {
+                title: {  // Tambahkan properti title di sini
+                    display: true,
+                    text: 'Jumlah Pendaftar Berdasarkan Jalur Pendaftaran Per Jenjang'
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        stepSize: 1,
+                        precision: 0  // Memastikan tidak ada desimal
+                    }
+                }
+            }
         }
     });
 

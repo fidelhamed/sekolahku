@@ -11,7 +11,7 @@ use Illuminate\Notifications\Notifiable;
 use Modules\Perpustakaan\Entities\Member;
 use Modules\PPDB\Entities\AngketResponse;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Modules\PPDB\Entities\paymentRegistration;
+use Modules\PPDB\Entities\PaymentRegistration;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;

@@ -48,10 +48,10 @@ class VideoController extends Controller
             }
 
             $video = new Video;
-            $video->title       = $request->title;
-            $video->desc        = $request->desc;
-            $video->url         = $request->url;
-            $video->is_active   = $request->is_active;
+            $video->title = $request->title;
+            $video->desc = $request->desc;
+            $video->url = $this->formatYoutubeUrl($request->url);
+            $video->is_active = $request->is_active;
             $video->save();
 
             Session::flash('success','Video Berhasil ditambah !');
@@ -61,6 +61,18 @@ class VideoController extends Controller
         }
     }
 
+    private function formatYoutubeUrl($url) 
+    {
+        // Pattern untuk mencocokkan berbagai format URL YouTube
+        $pattern = '/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/';
+        
+        if (preg_match($pattern, $url, $matches)) {
+            $videoId = $matches[1];
+            return 'https://www.youtube.com/watch?v=' . $videoId;
+        }
+        
+        return $url; // Kembalikan URL asli jika tidak cocok dengan pattern
+    }
     /**
      * Display the specified resource.
      *
@@ -103,7 +115,7 @@ class VideoController extends Controller
             $video = Video::find($id);
             $video->title       = $request->title ?? $video->title;
             $video->desc        = $request->desc ?? $video->desc;
-            $video->url         = $request->url ?? $video->url;
+            $video->url         = $this->formatYoutubeUrl($request->url) ?? $video->url;
             $video->is_active   = $request->is_active;
             $video->save();
 

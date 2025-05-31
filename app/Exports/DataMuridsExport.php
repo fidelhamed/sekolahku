@@ -48,8 +48,8 @@ class DataMuridsExport implements FromCollection, WithHeadings
                     'Kabupaten' => $murid->muridDetail ? $murid->muridDetail->kabupaten : null,
                     'Provinsi' => $murid->muridDetail ? $murid->muridDetail->provinsi : null,
                     'Kode Pos' => $murid->muridDetail ? $murid->muridDetail->kode_pos : null,
-                    'Telepon' => $murid->muridDetail ? $murid->muridDetail->telp : null,
-                    'WhatsApp' => $murid->muridDetail ? $murid->muridDetail->whatsapp : null,
+                    'Telepon' => $murid->muridDetail ? "'" . $murid->muridDetail->telp : null,
+                    'WhatsApp' => $murid->muridDetail ? "'" . $murid->muridDetail->whatsapp : null,
                     'Nama Sekolah Asal' => $murid->muridDetail ? $murid->muridDetail->nama_sekolah_asal : null,
                     'NPSN Sekolah Asal' => $murid->muridDetail ? $murid->muridDetail->npsn_sekolah_asal : null,
                     'Kecamatan Sekolah Asal' => $murid->muridDetail ? $murid->muridDetail->kecamatan_sekolah_asal : null,
@@ -64,23 +64,20 @@ class DataMuridsExport implements FromCollection, WithHeadings
                     'Nama Ayah' => $murid->dataOrtu ? $murid->dataOrtu->nama_ayah : null,
                     'NIK Ayah' => $murid->dataOrtu ? "'" . $murid->dataOrtu->nik_ayah : null,
                     'Pendidikan Ayah' => $murid->dataOrtu ? $murid->dataOrtu->pendidikan_ayah : null,
-                    'No Telp Ayah' => $murid->dataOrtu ? $murid->dataOrtu->telp_ayah : null,
+                    'No Telp Ayah' => $murid->dataOrtu ? "'" . $murid->dataOrtu->telp_ayah : null,
                     'Pekerjaan Ayah' => $murid->dataOrtu ? $murid->dataOrtu->pekerjaan_ayah : null,
                     'Penghasilan Ayah' => $murid->dataOrtu ? $murid->dataOrtu->penghasilan_ayah : null,
                     'Alamat Ayah' => $murid->dataOrtu ? $murid->dataOrtu->alamat_ayah : null,
                     'Nama Ibu' => $murid->dataOrtu ? $murid->dataOrtu->nama_ibu : null,
                     'NIK Ibu' => $murid->dataOrtu ? "'" . $murid->dataOrtu->nik_ibu : null,
                     'Pendidikan Ibu' => $murid->dataOrtu ? $murid->dataOrtu->pendidikan_ibu : null,
-                    'No Telp Ibu' => $murid->dataOrtu ? $murid->dataOrtu->telp_ibu : null,
+                    'No Telp Ibu' => $murid->dataOrtu ? "'" . $murid->dataOrtu->telp_ibu : null,
                     'Pekerjaan Ibu' => $murid->dataOrtu ? $murid->dataOrtu->pekerjaan_ibu : null,
                     'Penghasilan Ibu' => $murid->dataOrtu ? $murid->dataOrtu->penghasilan_ibu : null,
                     'Alamat Ibu' => $murid->dataOrtu ? $murid->dataOrtu->alamat_ibu : null,
                     'Nama Wali' => $murid->dataOrtu ? $murid->dataOrtu->nama_wali : null,
-                    'No Telp Wali' => $murid->dataOrtu ? $murid->dataOrtu->telp_wali : null,
+                    'No Telp Wali' => $murid->dataOrtu ? "'" . $murid->dataOrtu->telp_wali : null,
                     'Alamat Wali' => $murid->dataOrtu ? $murid->dataOrtu->alamat_wali : null,
-                    'Approved By' => $murid->approved_by,
-                    'Created At' => $murid->created_at,
-                    'Updated At' => $murid->updated_at,
                 ];
             });
     }
@@ -138,9 +135,6 @@ class DataMuridsExport implements FromCollection, WithHeadings
             'Nama Wali',
             'No Telp Wali',
             'Alamat Wali',
-            'Approved By',
-            'Created At',
-            'Updated At',
         ];
     }
 }

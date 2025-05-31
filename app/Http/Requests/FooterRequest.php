@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Rules\MaxCharacters;
 
 class FooterRequest extends FormRequest
 {
@@ -34,7 +33,7 @@ class FooterRequest extends FormRequest
                 'whatsapp'      => ['required','numeric'],
                 'telp'          => ['required','numeric'],
                 'email'         => ['required','email'],
-                'desc'          => [new MaxCharacters(200), 'required'],
+                'desc'          => ['required','string','max:200'],
             ];
         }
     }
@@ -56,6 +55,8 @@ class FooterRequest extends FormRequest
             'email.required'        => 'Email tidak boleh kosong',
             'email.email'           => 'Email yang dimasukan tidak valid.',
             'desc.required'         => 'Deskripsi Sekolah tidak boleh kosong',
+            'desc.string'           => 'Deskripsi harus berupa teks.',
+            'desc.max'              => 'Deskripsi tidak boleh lebih dari :max karakter.',
         ];
     }
 }

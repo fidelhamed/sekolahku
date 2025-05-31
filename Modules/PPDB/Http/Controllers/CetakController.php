@@ -21,7 +21,7 @@ class CetakController extends Controller
         $info = InfoTesUjian::where('jenjang', Auth::user()->muridDetail->jenjang)
                 ->where('jalur', Auth::user()->muridDetail->jalur)
                 ->first();
-
+                
         $pdf = PDF::loadView('ppdb::backend.pendaftaran.cetakKartuUjian', [
             'cetak' => $murid,
             'info' => $info

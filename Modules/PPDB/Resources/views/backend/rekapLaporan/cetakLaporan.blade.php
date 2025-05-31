@@ -172,7 +172,7 @@
 
     <div class="cop-container">
         <div class="cop-left">
-            <img class="logo" src="D:\Project\sekolahku\public\Assets\Frontend\img\logo-ibs-a.png" alt="logo">
+            <img class="logo" src="{{ asset('Assets/Frontend/img/logo-ibs-a.png') }}" alt="logo">
         </div>
         <div class="cop-right">
             <div class="school-detail">
@@ -204,6 +204,7 @@
                     <th>Nama</th>
                     <th>Jenis Kelamin</th>
                     <th>Tempat, Tanggal Lahir</th>
+                    <th>Jalur</th>
                     <th>Asal Sekolah</th>
                     <th>No Telp/WA</th>
                 </tr>
@@ -227,7 +228,8 @@
                         <td>{{$murid->name}}</td>
                         <td>{{ $murid->muridDetail->jenis_kelamin }}</td>
                         <td>{{ $murid->muridDetail->tempat_lahir }}, {{ Carbon\Carbon::parse($murid->muridDetail->tgl_lahir)->format('d-m-Y') }}</td>
-                        <td>{{ $murid->muridDetail->asal_sekolah }}</td>
+                        <td>{{ $murid->muridDetail->jalur }}</td>
+                        <td>{{ $murid->muridDetail->nama_sekolah_asal }}</td>
                         <td>{{ $murid->muridDetail->telp }}</td>
                     </tr>
                 @endforeach

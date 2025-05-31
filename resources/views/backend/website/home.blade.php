@@ -36,7 +36,7 @@
                             <div class="card-header">
                                 <div>
                                     <h2 class="font-weight-bolder mb-0">{{$lulus}}</h2>
-                                    <p class="card-text">Pendaftar yang Lulus</p>
+                                    <p class="card-text">Pendaftar Lulus</p>
                                 </div>
                                 <div class="avatar bg-light-success p-50 m-0">
                                     <div class="avatar-content">
@@ -50,12 +50,12 @@
                         <div class="card">
                             <div class="card-header">
                                 <div>
-                                    <h2 class="font-weight-bolder mb-0">{{$tidakLulus}}</h2>
-                                    <p class="card-text">Pendaftar yang Tidak Lulus</p>
+                                    <h2 class="font-weight-bolder mb-0">{{$lulusAdm}}</h2>
+                                    <p class="card-text">Lulus Administrasi</p>
                                 </div>
-                                <div class="avatar bg-light-danger p-50 m-0">
+                                <div class="avatar bg-light-warning p-50 m-0">
                                     <div class="avatar-content">
-                                        <i data-feather="user-x" class="font-medium-5"></i>
+                                        <i data-feather="file-text" class="font-medium-5"></i>
                                     </div>
                                 </div>
                             </div>
@@ -69,10 +69,10 @@
                     <div class="card">
                         <div class="card-header">
                             <div>
-                                <h2 class="font-weight-bolder mb-0">{{$murid}}</h2>
+                                <h2 class="font-weight-bolder mb-0">{{$totalPendaftar}}</h2>
                                 <p class="card-text">Pendaftar</p>
                             </div>
-                            <div class="avatar bg-light-warning p-50 m-0">
+                            <div class="avatar bg-light-info p-50 m-0">
                                 <div class="avatar-content">
                                     <i data-feather="user" class="font-medium-5"></i>
                                 </div>
@@ -159,7 +159,12 @@
                 <div class="card py-1">
                     <canvas id="myChart_biaya" width="400" height="200"></canvas>
                 </div>
-            </div>            
+            </div>
+            <div class="col-lg-6 col-12">
+                <div class="card py-1">
+                    <canvas id="myChart_jlr" width="400" height="200"></canvas>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -169,7 +174,7 @@
 </script> --}}
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    @if (isset($pendaftar, $pendaftar_jk))
+    @if (isset($pendaftar, $pendaftar_jk, $pendaftar_jlr))
     
     // Chart pendaftar
     var ctx = document.getElementById('myChart_pendaftar').getContext('2d');
@@ -278,8 +283,8 @@
         return item.jumlah_pendaftar_perempuan;
     });
 
-    var backgroundColorsMale = 'rgba(40, 48, 70, 0.7)';
-    var borderColorsMale = 'rgba(40, 48, 70, 1)';
+    var backgroundColorsMale = 'rgba(42, 180, 255, 0.7)';
+    var borderColorsMale = 'rgba(42, 180, 255, 1)';
 
     var backgroundColorsFemale = 'rgba(20, 174, 92, 0.7)';
     var borderColorsFemale = 'rgba(20, 174, 92, 1)';
@@ -408,6 +413,78 @@
             },
             maintainAspectRatio: false,
             responsive: true
+        }
+    });
+    
+    // Chart pendaftar berdasarkan jalur
+    var ctx = document.getElementById('myChart_jlr').getContext('2d');
+    var data = @json($pendaftar_jlr);
+
+    // Tentukan urutan jenjang yang diinginkan
+    var order = ['TKTQ', 'TKTQ-2', 'SD-IT', 'SD-IT-2', 'SMP-IT', 'SMA-IT', 'MA']; // Sesuaikan dengan jenjang yang ada
+
+    // Urutkan data berdasarkan jenjang
+    data.sort(function(a, b) {
+        return order.indexOf(a.jenjang) - order.indexOf(b.jenjang);
+    });    
+
+    var labels_jlr = data.map(function(item) {
+        return item.jenjang;
+    });
+
+    var valuesReguler = data.map(function(item) {
+        return item.jumlah_pendaftar_reguler;
+    });
+
+    var valuesPrestasi = data.map(function(item) {
+        return item.jumlah_pendaftar_prestasi;
+    });
+
+    var backgroundColorsReguler = 'rgba(42, 180, 255, 0.7)';
+    var borderColorsReguler = 'rgba(42, 180, 255, 1)';
+
+    var backgroundColorsPrestasi = 'rgba(20, 174, 92, 0.7)';
+    var borderColorsPrestasi = 'rgba(20, 174, 92, 1)';
+
+    var datasets_jlr = [
+        {
+            label: 'Reguler',
+            data: valuesReguler,
+            backgroundColor: backgroundColorsReguler,
+            borderColor: borderColorsReguler,
+            borderWidth: 1,
+        },
+        {
+            label: 'Prestasi',
+            data: valuesPrestasi,
+            backgroundColor: backgroundColorsPrestasi,
+            borderColor: borderColorsPrestasi,
+            borderWidth: 1,
+        }
+    ];
+
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels_jlr,
+            datasets: datasets_jlr
+        },
+        options: {
+            plugins: {
+                title: {  // Tambahkan properti title di sini
+                    display: true,
+                    text: 'Jumlah Pendaftar Berdasarkan Jalur Pendaftaran Per Jenjang'
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        stepSize: 1,
+                        precision: 0  // Memastikan tidak ada desimal
+                    }
+                }
+            }
         }
     });
 

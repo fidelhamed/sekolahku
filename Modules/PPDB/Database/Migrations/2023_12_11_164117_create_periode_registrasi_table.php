@@ -16,7 +16,7 @@ class CreatePeriodeRegistrasiTable extends Migration
         Schema::create('periode_registrasi', function (Blueprint $table) {
             $table->id();
             $table->enum('jenjang', ['TKTQ', 'TKTQ-2', 'SD-IT', 'SD-IT-2', 'SMP-IT', 'SMA-IT', 'MA'])->nullable();
-            $table->enum('jalur', ['Reguler', 'Prestasi' ,'Internal']);
+            $table->enum('jalur', ['Reguler', 'Prestasi', 'Internal'])->nullable();
             $table->date('tgl_buka')->nullable();
             $table->date('tgl_tutup')->nullable();
             $table->timestamps();

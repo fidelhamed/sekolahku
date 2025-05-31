@@ -5,6 +5,7 @@ namespace Modules\PPDB\Http\Controllers;
 use ErrorException;
 use App\Models\User;
 use App\Models\DataMurid;
+use App\Models\UsersDetail;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use App\Providers\RouteServiceProvider;
@@ -33,6 +34,7 @@ class AuthController extends Controller
     // Register View
     public function registerView()
     {
+        $admins = UsersDetail::all();
         $sekarang = now();
         $periodeTKTQReguler = PeriodeRegistrasi::where('jenjang', 'TKTQ')->where('jalur', 'Reguler')->where('tgl_buka', '<=', $sekarang)->where('tgl_tutup', '>=', $sekarang)->count();
         $periodeTKTQPrestasi = PeriodeRegistrasi::where('jenjang', 'TKTQ')->where('jalur', 'Prestasi')->where('tgl_buka', '<=', $sekarang)->where('tgl_tutup', '>=', $sekarang)->count();
@@ -61,9 +63,10 @@ class AuthController extends Controller
                                                     'periodeSMAITReguler',
                                                     'periodeSMAITPrestasi',
                                                     'periodeMAReguler',
-                                                    'periodeMAPrestasi'));
+                                                    'periodeMAPrestasi',
+                                                    'admins'));
     }
-
+    
     // Register Store
     public function registerStore(RegisterRequest $request)
     {
@@ -84,28 +87,29 @@ class AuthController extends Controller
             $register->save();
 
             if ($register) {
-                //Ambil nilai jenjangJalur
+                 //Ambil nilai jenjangJalur
                 $jenjangJalurValue = $request->jenjangJalur;
                 
                 //Memisahkan nilai jenjang dan jalur
                 $pisah = explode(';', $jenjangJalurValue);
                 $jenjangValue = $pisah[0];
                 $jalurValue = $pisah[1];
-
+                
                 $murid = new DataMurid();
                 $murid->user_id             =   $register->id;
-                $murid->nik                 =   $request->nik;
+                // $murid->nik                 =   $request->nik;
                 $murid->jalur               =   $jalurValue;
                 $murid->jenjang             =   $jenjangValue;
                 $murid->whatsapp            =   '+62' . $request->whatsapp;
                 $murid->nama_sekolah_asal   =   $request->nama_sekolah_asal;
-
+                
                 // Generate dan simpan nomor registrasi di dataMurid
                 $murid->noreg = $this->generateNomorRegistrasi($jenjangValue, $jalurValue);
                 
                 $murid->save();
             }
 
+            $jenjang = $request->jenjang;
             if ($jenjangValue == 'TKTQ' AND $jalurValue == 'Reguler') {
                 $amount = 150000;
             } elseif ($jenjangValue == 'TKTQ' AND $jalurValue == 'Prestasi') {

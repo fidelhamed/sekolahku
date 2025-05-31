@@ -86,12 +86,15 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="basicInput">Jenjang Pendaftaran</label> <span class="text-danger">*</span>
-                                        <select name="jenjang" class="form-control">
-                                            <option value="SMP-IT" {{ $murid->muridDetail->jenjang == 'SMP-IT' ? 'selected' : ''}}>SMP-IT</option>                                                
-                                            <option value="SMA-IT" {{ $murid->muridDetail->jenjang == 'SMA-IT' ? 'selected' : ''}}>SMA-IT</option>
+                                        <select name="jenjang" class="form-control" readonly>
+                                            <option value="TKTQ" {{ $murid->muridDetail->jenjang == 'TKTQ' ? 'selected' : ''}}>TKTQ</option>                                                
+                                            <option value="TKTQ-2" {{ $murid->muridDetail->jenjang == 'TKTQ-2' ? 'selected' : ''}}>TKTQ 2</option>                                                
+                                            <option value="SD-IT" {{ $murid->muridDetail->jenjang == 'SD-IT' ? 'selected' : ''}}>SD IT</option>                                                
+                                            <option value="SD-IT-2" {{ $murid->muridDetail->jenjang == 'SD-IT-2' ? 'selected' : ''}}>SD IT 2</option>                                                
+                                            <option value="SMP-IT" {{ $murid->muridDetail->jenjang == 'SMP-IT' ? 'selected' : ''}}>SMP IT</option>                                                
+                                            <option value="SMA-IT" {{ $murid->muridDetail->jenjang == 'SMA-IT' ? 'selected' : ''}}>SMA IT</option>
                                             <option value="MA" {{ $murid->muridDetail->jenjang == 'MA' ? 'selected' : ''}}>MA</option>
                                         </select>
-                                        <small class="text-warning">Jika opsi tidak tersedia, maka periode telah ditutup.</small>
                                         @error('jenjang')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>

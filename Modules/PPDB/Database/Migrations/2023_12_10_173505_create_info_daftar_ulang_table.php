@@ -18,8 +18,8 @@ class CreateInfoDaftarUlangTable extends Migration
             $table->enum('jenjang', ['TKTQ', 'TKTQ-2', 'SD-IT', 'SD-IT-2', 'SMP-IT', 'SMA-IT', 'MA'])->nullable();
             $table->date('tgl_buka')->nullable();
             $table->date('tgl_tutup')->nullable();
-            $table->string('lokasi_laki_laki')->nullable();
-            $table->string('lokasi_perempuan')->nullable();
+            $table->string('lokasi_laki_laki', 50)->nullable();
+            $table->string('lokasi_perempuan', 50)->nullable();
             $table->text('deskripsi')->nullable();
             $table->timestamps();
         });

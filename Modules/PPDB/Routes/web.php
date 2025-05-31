@@ -99,5 +99,4 @@ Route::prefix('/ppdb')->middleware('role:PPDB')->group(function () {
     Route::post('rekap-laporan/cetak', 'RekapLaporanController@update');
     Route::post('rekap-laporan/download-berkas', 'RekapLaporanController@downloadBerkas');
     Route::post('rekap-laporan/download-data-murids', 'RekapLaporanController@downloadExcel');
-
 });

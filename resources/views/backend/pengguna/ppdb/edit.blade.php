@@ -70,8 +70,8 @@
                                
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <label for="basicInput">NIP</label> <span class="text-danger">*</span>
-                                        <input type="text" class="form-control @error('nip') is-invalid @enderror" name="nip" value="{{$user->userDetail->nip}}" placeholder="NIP" />
+                                        <label for="basicInput">No Kontak</label> <span class="text-danger">*</span>
+                                        <input type="text" class="form-control @error('nip') is-invalid @enderror" name="nip" value="{{$user->userDetail->nip}}" placeholder="Nomor Kontak" />
                                         @error('nip')
                                             <div class="invalid-feedback">
                                             <strong>{{ $message }}</strong>
@@ -110,7 +110,7 @@
 
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <label class="form-label">Admin PJ Jenjang</label> <span class="text-danger">*</span>
+                                        <label class="form-label">Admin PJ Jenjang</label><span class="text-danger">*</span>
                                         <select name="pj_jenjang" class="form-control">
                                             <option value="">-- Pilih --</option>
                                             <option value="TKTQ" {{ $user->userDetail->pj_jenjang == 'TKTQ' ? 'selected' : '' }}>TKTQ</option>

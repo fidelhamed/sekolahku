@@ -28,7 +28,7 @@ class BeritaRequest extends FormRequest
                 'title'         => ['required','unique:beritas,title'],
                 'kategori_id'   => ['required'],
                 'content'       => ['required'],
-                'thumbnail'     => ['required','image','max:1024'],
+                'thumbnail'     => ['required','image','max:2048'],
             ];
         }
 
@@ -36,7 +36,7 @@ class BeritaRequest extends FormRequest
             'title'         => ['required'],
             'kategori_id'   => ['required'],
             'content'       => ['required'],
-            'thumbnail'     => ['image','max:1024'],
+            'thumbnail'     => ['image','max:2048'],
         ];
     }
 
@@ -49,7 +49,7 @@ class BeritaRequest extends FormRequest
             'content.required'      => 'Content tidak boleh kosong.',
             'thumbnail.required'    => 'Thumbnail tidak boleh kosong.',
             'thumbnail.image'       => 'File yang di masukan tidak valid.',
-            'thumbnail.max'         => 'Maksimal size  Thumbnail 1MB.',
+            'thumbnail.max'         => 'Maksimal size  Thumbnail 2MB.',
         ];
     }
 }

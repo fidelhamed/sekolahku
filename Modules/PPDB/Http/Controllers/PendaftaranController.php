@@ -126,7 +126,7 @@ class PendaftaranController extends Controller
             $ortu->penghasilan_ayah = $request->penghasilan_ayah;
             $ortu->telp_ayah        = "+62" . $request->telp_ayah;
             $ortu->alamat_ayah      = $request->alamat_ayah;
-
+            
             // Data Ibu
             $ortu->nama_ibu         = $request->nama_ibu;
             $ortu->nik_ibu          = $request->nik_ibu;
@@ -179,7 +179,6 @@ class PendaftaranController extends Controller
     {
         try {
             DB::beginTransaction();
-
             if ($request->kartu_keluarga) {
                 $imageKk = $request->file('kartu_keluarga');
                 $kartuKeluarga = time() . "_" . $imageKk->getClientOriginalName();
@@ -246,7 +245,11 @@ class PendaftaranController extends Controller
         $accountbanks = User::with('banks')->first();
         $user = User::with('paymentRegis')->where('status', 'Aktif')->where('id', Auth::id())->first();
         if ($user->paymentRegis->file != null) {
-            Session::flash('error', 'Bukti pembayaran(Jalur Reguler) atau bukti prestasi(Jalur Prestasi) kamu sedang di proses.');
+            if (Auth::user()->muridDetail->jalur == 'Reguler' || Auth::user()->muridDetail->jalur == 'Internal') {
+                Session::flash('error', 'Bukti pembayaran kamu sedang di proses, tunggu proses konfirmasi dari admin.');
+            } else {
+                Session::flash('error', 'Bukti prestasi kamu sedang di proses, tunggu proses konfirmasi dari admin.');
+            }
             return redirect('/home');
         }
         return view('ppdb::backend.pendaftaran.paymentRegis', compact('accountbanks', 'user'));
@@ -266,7 +269,11 @@ class PendaftaranController extends Controller
         $payment->file              = $payments;
         $payment->update();
 
-        Session::flash('success', 'Bukti pembayaran(Jalur Reguler) atau bukti prestasi(Jalur Prestasi) berhasil dikirim, tunggu proses konfirmasi oleh admin  !');
+        if (Auth::user()->muridDetail->jalur == 'Reguler' || Auth::user()->muridDetail->jalur == 'Internal') {
+            Session::flash('success', 'Bukti pembayaran berhasil dikirim, tunggu proses konfirmasi oleh admin  !');
+        } else {
+            Session::flash('success', 'Bukti prestasi berhasil dikirim, tunggu proses konfirmasi oleh admin  !');
+        }
         return redirect('/home');
     }
 }

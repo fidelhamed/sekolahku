@@ -96,7 +96,7 @@
             <div class="col-md-6">
                 <div class="card shadow">
                 <div class="card-body">
-                    <h6>Mohon untuk mentransfer sesuai dengan jumlah yang ditentukan.</h6>
+                    <h6>Mohon untuk mentransfer sesuai dengan jumlah yang ditentukan ke rekening bank sesuai dengan jenjang yang diambil.</h6>
                 </div>
                 </div>
                 <div class="card shadow">
@@ -117,6 +117,12 @@
                     </div>
                     <hr>
                     <div class="d-flex justify-content-between">
+                        <span>
+                            <ul>
+                                <li>Jenjang SD IT 2, SMP IT, SMA IT, MA (BSI, Bank Syariah Indonesia)</li>
+                                <li>Jenjang TKTQ, SD IT (Bank Muamalat)</li>
+                            </ul>
+                        </span>
                     <span>
                         @foreach ($accountbanks->banks as $bank)
                         <ul>

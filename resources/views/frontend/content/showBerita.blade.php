@@ -24,7 +24,8 @@
                                 <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i><span>By</span> {{$berita->user->name}}</a></li>
                                 <li><a href="#"><i class="fa fa-tags" aria-hidden="true"></i>{{$berita->kategori->nama}}</a></li>
                             </ul>
-                            <p> {!! $berita->content !!} </p>
+                            <!--<p> {!! $berita->content !!} </p>-->
+                            <a href="{!! $berita->content !!}" target="_blank">KLIK UNTUK MELIHAT DETAIL FILE KELULUSAN</a>
 
                         </div>
                     </div>

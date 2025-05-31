@@ -35,15 +35,6 @@ class InfoDaftarUlangController extends Controller
                 }
 
                 return view('ppdb::backend.infoDaftarUlang.index', $infoData);
-
-                // $infoTKTQ = InfoDaftarUlang::where('jenjang', 'TKTQ')->first();
-                // $infoTKTQ2 = InfoDaftarUlang::where('jenjang', 'TKTQ-2')->first();
-                // $infoSDIT = InfoDaftarUlang::where('jenjang', 'SD-IT')->first();
-                // $infoSDIT2 = InfoDaftarUlang::where('jenjang', 'SD-IT-2')->first();
-                // $infoSMPIT = InfoDaftarUlang::where('jenjang', 'SMP-IT')->first();
-                // $infoSMAIT = InfoDaftarUlang::where('jenjang', 'SMA-IT')->first();
-                // $infoMA = InfoDaftarUlang::where('jenjang', 'MA')->first();
-                // return view('ppdb::backend.infoDaftarUlang.index', compact('infoTKTQ', 'infoTKTQ2', 'infoSDIT', 'infoSDIT2', 'infoSMPIT', 'infoSMAIT', 'infoMA'));          
             }
             DB::commit();
             Session::flash('success', 'Sukses, Data Berhasil dikirim !');

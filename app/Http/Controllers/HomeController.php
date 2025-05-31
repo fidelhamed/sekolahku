@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Events;
-use App\Models\dataMurid;
+use App\Models\DataMurid;
 use App\Models\dataPayment;
+use App\Models\UsersDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -33,12 +34,18 @@ class HomeController extends Controller
     public function index()
     {
         $role = Auth::user()->role;
+        $startDate = \Carbon\Carbon::create(2024, 11, 1);
+        $endDate = \Carbon\Carbon::create(2025, 3, 1);
+
 
         if (Auth::check()) {
             // DASHBOARD ADMIN \\
             if ($role == 'Admin') {
 
-              $murid = dataMurid::whereNotIn('proses',['Murid','Ditolak'])->whereYear('created_at', Carbon::now())->count();
+              $totalPendaftar = User::whereNotIn('role',['admin','PPDB'])
+                ->whereBetween('created_at', [$startDate, $endDate])
+                ->count();
+              $lulusAdm = User::where('role', 'Terverifikasi')->count();
               $lulus = User::where('role','Lulus')->count();
               $tidakLulus = User::where('role', 'Tidak Lulus')->count();
               $acara = Events::where('is_active','0')->count();
@@ -52,9 +59,16 @@ class HomeController extends Controller
               
               $pendaftar_jk = DB::table('data_murids')
                 ->select('jenjang',
-                         DB::raw('COUNT(*) as total_pendaftar'),
+                        //  DB::raw('COUNT(*) as total_pendaftar'),
                          DB::raw('SUM(CASE WHEN jenis_kelamin = "Laki-Laki" THEN 1 ELSE 0 END) AS jumlah_pendaftar_laki'),
                          DB::raw('SUM(CASE WHEN jenis_kelamin = "Perempuan" THEN 1 ELSE 0 END) AS jumlah_pendaftar_perempuan'))
+                ->groupBy('jenjang')
+                ->get();
+                
+              $pendaftar_jlr = DB::table('data_murids')
+                ->select('jenjang',
+                         DB::raw('SUM(CASE WHEN jalur = "Reguler" THEN 1 ELSE 0 END) AS jumlah_pendaftar_reguler'),
+                         DB::raw('SUM(CASE WHEN jalur = "Prestasi" THEN 1 ELSE 0 END) AS jumlah_pendaftar_prestasi'))
                 ->groupBy('jenjang')
                 ->get();
                 
@@ -64,70 +78,24 @@ class HomeController extends Controller
                 ->whereIn('jenjang', ['TKTQ', 'TKTQ-2', 'SD-IT', 'SD-IT-2', 'SMP-IT', 'SMA-IT', 'MA'])
                 ->groupBy('jenjang')
                 ->get();
-
-              return view('backend.website.home', compact('murid','lulus','tidakLulus','event','acara', 'pendaftar', 'pendaftar_jk', 'profit', 'biaya'));
-
+                
+              return view('backend.website.home', compact('totalPendaftar','lulusAdm','lulus','tidakLulus','event','acara', 'pendaftar', 'pendaftar_jk', 'profit', 'biaya', 'pendaftar_jlr'));
 
             }
-            // // DASHBOARD MURID \\
-            // elseif ($role == 'Murid') {
-            //   $auth = Auth::id();
 
-            //   $event = Events::where('is_active','0')->first();
-            //   $lateness = Borrowing::with('members')
-            //   ->when(isset($auth), function($q) use($auth){
-            //     $q->whereHas('members', function($a) use($auth){
-            //       switch ($auth) {
-            //         case $auth:
-            //          $a->where('user_id', Auth::id());
-            //           break;
-            //       }
-            //     });
-            //   })
-            //   ->whereNull('lateness')
-            //   ->count();
-
-
-            //   $pinjam = Borrowing::with('members')
-            //   ->when(isset($auth), function($q) use($auth){
-            //     $q->whereHas('members', function($a) use($auth){
-            //       switch ($auth) {
-            //         case $auth:
-            //          $a->where('user_id', Auth::id());
-            //           break;
-            //       }
-            //     });
-            //   })
-            //   ->count();
-
-            //   return view('murid::index', compact('event','lateness','pinjam'));
-
-            // }
-
-            // elseif ($role == 'Guru' || $role == 'Staf') {
-
-            //   $event = Events::where('is_active','0')->first();
-
-            //   return view('backend.website.home', compact('event'));
-
-
-            // }
             // DASHBOARD PPDB & PENDAFTAR \\
             elseif($role == 'PPDB') {
 
-              $startDate = \Carbon\Carbon::create(2024, 11, 1);
-              $endDate = \Carbon\Carbon::create(2025, 3, 1);
-      
               if (Auth::user()->userDetail->pj_jenjang == 'TKTQ') {
-                $register = dataMurid::whereBetween('created_at', [$startDate, $endDate])
+                $register = DataMurid::whereBetween('created_at', [$startDate, $endDate])
                   ->whereIn('jenjang', ['TKTQ', 'TKTQ-2'])      
                   ->count();
               } elseif (Auth::user()->userDetail->pj_jenjang == 'SD-IT') {
-                $register = dataMurid::whereBetween('created_at', [$startDate, $endDate])
+                $register = DataMurid::whereBetween('created_at', [$startDate, $endDate])
                   ->whereIn('jenjang', ['SD-IT', 'SD-IT-2'])      
                   ->count();
               } else {
-                $register = dataMurid::whereBetween('created_at', [$startDate, $endDate])
+                $register = DataMurid::whereBetween('created_at', [$startDate, $endDate])
                   ->where('jenjang', Auth::user()->userDetail->pj_jenjang)      
                   ->count();
               }
@@ -146,31 +114,31 @@ class HomeController extends Controller
                   ->sum('amount');
               }
               // TKTQ
-              $needConfirmPaymentTKTQ = dataPayment::whereNotNull('file')->whereNull('approve_date')->where('jenjang', 'TKTQ')->count();
+              $needConfirmPaymentTKTQ = dataPayment::whereNotNull(['file'])->whereNull('approve_date')->where('jenjang', 'TKTQ')->count();
               $confirmedPaymentTKTQ = dataPayment::where('status','Paid')->where('jenjang', 'TKTQ')->count();
               $needVerifTKTQ = dataMurid::whereNotNull(['tempat_lahir','tgl_lahir'])->where('proses', 'Input Data')->where('jenjang', 'TKTQ')->count();
               // TKTQ 2
-              $needConfirmPaymentTKTQ2 = dataPayment::whereNotNull('file')->whereNull('approve_date')->where('jenjang', 'TKTQ-2')->count();
+              $needConfirmPaymentTKTQ2 = dataPayment::whereNotNull(['file'])->whereNull('approve_date')->where('jenjang', 'TKTQ-2')->count();
               $confirmedPaymentTKTQ2 = dataPayment::where('status','Paid')->where('jenjang', 'TKTQ-2')->count();
               $needVerifTKTQ2 = dataMurid::whereNotNull(['tempat_lahir','tgl_lahir'])->where('proses', 'Input Data')->where('jenjang', 'TKTQ-2')->count();
               // SDIT
-              $needConfirmPaymentSDIT = dataPayment::whereNotNull('file')->whereNull('approve_date')->where('jenjang', 'SD-IT')->count();
+              $needConfirmPaymentSDIT = dataPayment::whereNotNull(['file'])->whereNull('approve_date')->where('jenjang', 'SD-IT')->count();
               $confirmedPaymentSDIT = dataPayment::where('status','Paid')->where('jenjang', 'SD-IT')->count();
               $needVerifSDIT = dataMurid::whereNotNull(['tempat_lahir','tgl_lahir'])->where('proses', 'Input Data')->where('jenjang', 'SD-IT')->count();
               // SDIT 2
-              $needConfirmPaymentSDIT2 = dataPayment::whereNotNull('file')->whereNull('approve_date')->where('jenjang', 'SD-IT-2')->count();
+              $needConfirmPaymentSDIT2 = dataPayment::whereNotNull(['file'])->whereNull('approve_date')->where('jenjang', 'SD-IT-2')->count();
               $confirmedPaymentSDIT2 = dataPayment::where('status','Paid')->where('jenjang', 'SD-IT-2')->count();
               $needVerifSDIT2 = dataMurid::whereNotNull(['tempat_lahir','tgl_lahir'])->where('proses', 'Input Data')->where('jenjang', 'SD-IT-2')->count();
               // SMP IT
-              $needConfirmPaymentSMPIT = dataPayment::whereNotNull('file')->whereNull('approve_date')->where('jenjang', 'SMP-IT')->count();
+              $needConfirmPaymentSMPIT = dataPayment::whereNotNull(['file'])->whereNull('approve_date')->where('jenjang', 'SMP-IT')->count();
               $confirmedPaymentSMPIT = dataPayment::where('status','Paid')->where('jenjang', 'SMP-IT')->count();
               $needVerifSMPIT = dataMurid::whereNotNull(['tempat_lahir','tgl_lahir'])->where('proses', 'Input Data')->where('jenjang', 'SMP-IT')->count();
               // SMA IT
-              $needConfirmPaymentSMAIT = dataPayment::whereNotNull('file')->whereNull('approve_date')->where('jenjang', 'SMA-IT')->count();
+              $needConfirmPaymentSMAIT = dataPayment::whereNotNull(['file'])->whereNull('approve_date')->where('jenjang', 'SMA-IT')->count();
               $confirmedPaymentSMAIT = dataPayment::where('status','Paid')->where('jenjang', 'SMA-IT')->count();
               $needVerifSMAIT = dataMurid::whereNotNull(['tempat_lahir','tgl_lahir'])->where('proses', 'Input Data')->where('jenjang', 'SMA-IT')->count();
               // MA
-              $needConfirmPaymentMA = dataPayment::whereNotNull('file')->whereNull('approve_date')->where('jenjang', 'MA')->count();
+              $needConfirmPaymentMA = dataPayment::whereNotNull(['file'])->whereNull('approve_date')->where('jenjang', 'MA')->count();
               $confirmedPaymentMA = dataPayment::where('status','Paid')->where('jenjang', 'MA')->count();
               $needVerifMA = dataMurid::whereNotNull(['tempat_lahir','tgl_lahir'])->where('proses', 'Input Data')->where('jenjang', 'MA')->count();              
               
@@ -181,9 +149,16 @@ class HomeController extends Controller
               
               $pendaftar_jk = DB::table('data_murids')
                 ->select('jenjang',
-                         DB::raw('COUNT(*) as total_pendaftar'),
+                        //  DB::raw('COUNT(*) as total_pendaftar'),
                          DB::raw('SUM(CASE WHEN jenis_kelamin = "Laki-Laki" THEN 1 ELSE 0 END) AS jumlah_pendaftar_laki'),
                          DB::raw('SUM(CASE WHEN jenis_kelamin = "Perempuan" THEN 1 ELSE 0 END) AS jumlah_pendaftar_perempuan'))
+                ->groupBy('jenjang')
+                ->get();
+                
+              $pendaftar_jlr = DB::table('data_murids')
+                ->select('jenjang',
+                         DB::raw('SUM(CASE WHEN jalur = "Reguler" THEN 1 ELSE 0 END) AS jumlah_pendaftar_reguler'),
+                         DB::raw('SUM(CASE WHEN jalur = "Prestasi" THEN 1 ELSE 0 END) AS jumlah_pendaftar_prestasi'))
                 ->groupBy('jenjang')
                 ->get();
 
@@ -219,32 +194,17 @@ class HomeController extends Controller
                                                           'pendaftar',
                                                           'pendaftar_jk',
                                                           'biaya',
-                                                          'profit'));
+                                                          'profit',
+                                                          'pendaftar_jlr'));
 
 
             } elseif ($role == 'Guest' || $role == 'Terverifikasi' ||  $role == 'Lulus' || $role == 'Tidak Lulus') {
-              $infoTesUjian = InfoTesUjian::where('jenjang', Auth::user()->muridDetail->jenjang)
-                              ->where('jalur', Auth::user()->muridDetail->jalur)
-                              ->first();
-              $infoDaftarUlang = InfoDaftarUlang::where('jenjang', Auth::user()->muridDetail->jenjang)
-                                ->first();
+              $infoTesUjian = InfoTesUjian::where('jenjang', Auth::user()->muridDetail->jenjang)->first();
+              $infoDaftarUlang = InfoDaftarUlang::where('jenjang', Auth::user()->muridDetail->jenjang)->first();
+              $admins = UsersDetail::all();
 
-              return view('ppdb::backend.index', compact('infoTesUjian', 'infoDaftarUlang'));
+              return view('ppdb::backend.index', compact('infoTesUjian', 'infoDaftarUlang', 'admins'));
             }
-            // // DASHBOARD PERPUSTAKAAN \\
-            // elseif ($role == 'Perpustakaan') {
-
-            //   $book = Book::sum('stock');
-            //   $borrow = Borrowing::whereNull('lateness')->count();
-            //   $member = Member::where('is_active',0)->count();
-            //   $members = Member::count();
-            //   return view('perpustakaan::index', compact('book','borrow','member','members'));
-            // }
-
-            // // DASHBOARD BENDAHARA \\
-            // elseif ($role == 'Bendahara') {
-            //   return view('spp::index');
-            // }
         }
     }
 }

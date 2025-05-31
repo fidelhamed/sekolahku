@@ -44,34 +44,6 @@ class PeriodeRegistrasiController extends Controller
                 }
                 
                 return view('ppdb::backend.periodeRegistrasi.index', $periodeData);
-                // $periodeTKTQReguler = PeriodeRegistrasi::where('jenjang', 'TKTQ')->where('jalur', 'Reguler')->first();
-                // $periodeTKTQPrestasi = PeriodeRegistrasi::where('jenjang', 'TKTQ')->where('jalur', 'Prestasi')->first();
-                // $periodeTKTQ2Reguler = PeriodeRegistrasi::where('jenjang', 'TKTQ-2')->where('jalur', 'Reguler')->first();
-                // $periodeTKTQ2Prestasi = PeriodeRegistrasi::where('jenjang', 'TKTQ-2')->where('jalur', 'Prestasi')->first();
-                // $periodeSDITReguler = PeriodeRegistrasi::where('jenjang', 'SD-IT')->where('jalur', 'Reguler')->first();
-                // $periodeSDITPrestasi = PeriodeRegistrasi::where('jenjang', 'SD-IT')->where('jalur', 'Prestasi')->first();
-                // $periodeSDIT2Reguler = PeriodeRegistrasi::where('jenjang', 'SD-IT-2')->where('jalur', 'Reguler')->first();
-                // $periodeSDIT2Prestasi = PeriodeRegistrasi::where('jenjang', 'SD-IT-2')->where('jalur', 'Prestasi')->first();
-                // $periodeSMPITReguler = PeriodeRegistrasi::where('jenjang', 'SMP-IT')->where('jalur', 'Reguler')->first();
-                // $periodeSMPITPrestasi = PeriodeRegistrasi::where('jenjang', 'SMP-IT')->where('jalur', 'Prestasi')->first();
-                // $periodeSMAITReguler = PeriodeRegistrasi::where('jenjang', 'SMA-IT')->where('jalur', 'Reguler')->first();
-                // $periodeSMAITPrestasi = PeriodeRegistrasi::where('jenjang', 'SMA-IT')->where('jalur', 'Prestasi')->first();
-                // $periodeMAReguler = PeriodeRegistrasi::where('jenjang', 'MA')->where('jalur', 'Reguler')->first();
-                // $periodeMAPrestasi = PeriodeRegistrasi::where('jenjang', 'MA')->where('jalur', 'Prestasi')->first();
-                // return view('ppdb::backend.periodeRegistrasi.index', compact('periodeTKTQReguler',
-                //                                                                 'periodeTKTQPrestasi',
-                //                                                                 'periodeTKTQ2Reguler', 
-                //                                                                 'periodeTKTQ2Prestasi', 
-                //                                                                 'periodeSDITReguler', 
-                //                                                                 'periodeSDITPrestasi', 
-                //                                                                 'periodeSDIT2Reguler', 
-                //                                                                 'periodeSDIT2Prestasi', 
-                //                                                                 'periodeSMPITReguler', 
-                //                                                                 'periodeSMPITPrestasi', 
-                //                                                                 'periodeSMAITReguler', 
-                //                                                                 'periodeSMAITPrestasi', 
-                //                                                                 'periodeMAReguler',
-                //                                                                 'periodeMAPrestasi'));          
             }
             DB::commit();
             Session::flash('success', 'Sukses, Data Berhasil dikirim !');

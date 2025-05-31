@@ -55,16 +55,16 @@
         }
 
         .student-info {
-            font-size: 16px;
+            font-size: 14px;
             margin-bottom: 10px;
         }
 
         .exam-info {
-            font-size: 14px;
+            font-size: 12px;
             color: #555;
         }
 
-        .passport-photo {
+        .pass-photo {
             position: absolute;
             top: 50%;
             left: 50%;
@@ -81,7 +81,7 @@
     <div class="card">
         <div class="card-header">
             <div class="logo-container">
-                <img src="../public/Assets/Frontend/img/logo-ibs-a.png" alt="Logo" class="logo">
+                <img src="{{ asset('Assets/Frontend/img/logo-ibs-a.png') }}" alt="Logo" class="logo">
             </div>
             <h3>Kartu Ujian</h3>
         </div>
@@ -100,8 +100,8 @@
                 @else
                 <strong>Lokasi:</strong> {{ $info->lokasi_perempuan }}<br>
                 @endif
+                <img src="../storage/app/public/images/berkas_murid/{{$cetak->berkas->foto}}" alt="Pas Foto" class="pass-photo">
             </div>
-            <img src="../storage/app/public/images/berkas_murid/{{$cetak->berkas->foto}}" alt="Pas Foto" class="passport-photo">
             <div class="passport-photo"></div>
         </div>
     </div>

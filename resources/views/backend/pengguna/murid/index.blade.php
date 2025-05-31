@@ -49,9 +49,9 @@
                                                 <th>No</th>
                                                 <th>Noreg</th>
                                                 <th>Nama</th>
-                                                <th>Email</th>
-                                                <th>Status</th>
                                                 <th>Role</th>
+                                                <th>Pembayaran/Prestasi</th>
+                                                <th>Status PPDB</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>    
@@ -62,9 +62,9 @@
                                                     <td> {{$key+1}} </td>
                                                     <td>{{ $murids->muridDetail->noreg }}</td>
                                                     <td> {{$murids->name}} </td>
-                                                    <td> {{$murids->email}} </td>
-                                                    <td> {{$murids->status}} </td>
                                                     <td> {{$murids->role}} </td>
+                                                    <td>{{ $murids->paymentRegis->status == 'Paid' ? 'Berhasil' : 'Belum terkonfirmasi' }}</td>
+                                                    <td>{{ $murids->muridDetail->proses }}</td>
                                                     <td>
                                                         <a href=" {{route('backend-pengguna-murid.edit', $murids->id)}} " class="btn btn-success btn-sm">Edit</a>
                                                     </td>
