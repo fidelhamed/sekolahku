@@ -69,7 +69,7 @@ class AddForeignKeysToDataMuridsDataOrangTuasBerkasMuridsPaymentRegistrations ex
 
         // Hapus foreign key dari payment_registrations
         Schema::table('payment_registrations', function (Blueprint $table) {
-            $table->dropForeign('fk_berkas_payment_registrations_id');
+            $table->dropForeign('fk_payment_registrations_user_id');
         });
 
     }
